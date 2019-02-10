@@ -3,7 +3,7 @@
 @section('content')
     <h2 class="mb-4">Activiteit toevoegen</h2>
 
-    <form class="form" method="POST" action="/activiteiten/toevoegen">
+    <form class="card" method="POST" action="/activiteiten/toevoegen">
         @csrf
         <h3>Activiteit</h3>
         <label for="datum">Datum</label>

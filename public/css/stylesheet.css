@@ -1,11 +1,10 @@
 /*general*/
 body{
     overflow-y: scroll;
-    background-color: white;
+    background-color: #f9fafb;
 }
 /*login page*/
 .form-login{
-    text-align: center;
     width: 300px;
     margin: 0 auto;
 }
@@ -13,46 +12,51 @@ body{
     margin-bottom: 10px;
 }
 
+/*navbar*/
+.navbar{
+    height: 50px;
+    background: white;
+    box-shadow: 0px 1px 2px #e6e6e6;
+    -webkit-box-shadow: 0px 1px 2px #e6e6e6;
+    -moz-box-shadow: 0px 1px 2px #e6e6e6;
+}
+
+/*flex*/
+.flex-container{
+    display:flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
 /*main section*/
 main{
-    padding-top: 100px;
-}
-
-/*icons*/
-.feather {
+    order: 1;
+    padding-top: 70px;
+    margin: 0 auto;
 
 }
 
-/*form*/
-.form{
-    padding: 20px;
-    background-color: #f8f9fa;
-    border: 1px solid rgba(0,0,0,.125);
-    border-radius: .25rem;
-}
 
-/*sidebar*/
+/*nav sidebar*/
 .sidebar {
+    order: 0;
     position: fixed;
     top: 0;
     bottom: 0;
     left: 0;
     z-index: 100; /* Behind the navbar */
     padding: 60px 0 0; /* Height of navbar */
-    box-shadow: inset -1px 0 0 rgba(0, 0, 0, .1);
-}
+    background: white;
+    box-shadow: 0px 1px 2px #e6e6e6;
+    -webkit-box-shadow: 0px 1px 2px #e6e6e6;
+    -moz-box-shadow: 0px 1px 2px #e6e6e6;
 
+}
+.sidebar ul{
+    margin-left: 20px;
+}
 .sidebar-sticky {
-    position: relative;
-    top: 0;
     padding-top: .5rem;
-}
-
-@supports ((position: -webkit-sticky) or (position: sticky)) {
-    .sidebar-sticky {
-        position: -webkit-sticky;
-        position: sticky;
-    }
 }
 
 .sidebar .nav-link {
@@ -77,4 +81,44 @@ main{
 .sidebar-heading {
     font-size: .75rem;
     text-transform: uppercase;
+}
+
+/*icons*/
+.feather {
+
+}
+
+/*card*/
+.card{
+    border-radius: .25rem;
+    background: white;
+    border: solid 1px #f7f7f7;
+    padding: 20px;
+    box-shadow: 0px 1px 2px #e6e6e6;
+    -webkit-box-shadow: 0px 1px 2px #e6e6e6;
+    -moz-box-shadow: 0px 1px 2px #e6e6e6;
+    margin-bottom: 10px;
+}
+
+/*MOBILE*/
+@media (max-width: 768px) {
+    .flex-container{
+        flex-direction: column;
+    }
+    .sidebar {
+        order: 0;
+        height: 500px;
+        width: 100%;
+        position: relative;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        z-index: 100; /* Behind the navbar */
+        padding: 60px 0 0; /* Height of navbar */
+        background: white;
+        box-shadow: 0px 1px 2px #e6e6e6;
+        -webkit-box-shadow: 0px 1px 2px #e6e6e6;
+        -moz-box-shadow: 0px 1px 2px #e6e6e6;
+
+    }
 }

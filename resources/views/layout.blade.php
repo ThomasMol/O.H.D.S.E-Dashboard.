@@ -4,14 +4,27 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>OHD SE - @yield('title')</title>
-    {{--<link href="https://fonts.googleapis.com/css?family=Roboto:200,600" rel="stylesheet" type="text/css">--}}
+
+    {{-- Stylesheets --}}
     <link href="/css/bootstrap.css" rel="stylesheet" type="text/css">
     <link href="/css/stylesheet.css" rel="stylesheet" type="text/css">
+
+    {{-- Scripts --}}
     <script src="https://unpkg.com/feather-icons"></script>
+
+    {{-- Favicon --}}
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon/favicon-16x16.png">
+    <link rel="manifest" href="/images/favicon/site.webmanifest">
+    <link rel="mask-icon" href="/images/favicon/safari-pinned-tab.svg" color="#e9ab3e">
+    <meta name="msapplication-TileColor" content="#367bde">
+    <meta name="theme-color" content="#e9ab3e">
+
 </head>
 <body>
-<nav class="navbar navbar-dark fixed-top bg-dark flex-md-nowrap">
-    <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="#">SE dashboard</a>
+<nav class="navbar navbar-light fixed-top flex-md-nowrap">
+    <a class="navbar-brand mr-0" href="#">SE dashboard</a>
     <ul class="navbar-nav px-3">
         @if(Auth::check())
             <li class="nav-item"><a class="nav-link" href="/loguit">Log uit</a></li>
@@ -21,9 +34,8 @@
     </ul>
 </nav>
 
-<div class="container-fluid">
-    <div class="row">
-        <nav class="col-md-2 d-none d-md-block bg-light sidebar">
+    <div class="flex-container">
+        <nav class="sidebar">
             <div class="sidebar-sticky">
                 <ul class="nav flex-column">
                     <li class="nav-item">
@@ -85,7 +97,7 @@
             </div>
         </nav>
 
-        <main class="col-md-9 ml-sm-auto col-lg-10 px-4">
+        <main class="main">
             @if ($errors->any())
                 <div class="alert alert-danger">
                     <ul>
@@ -98,7 +110,6 @@
             @yield('content')
         </main>
     </div>
-</div>
 
 <script src="/js/jquery.js" type="text/javascript"></script>
 <script src="/js/bootstrap.js" type="text/javascript"></script>

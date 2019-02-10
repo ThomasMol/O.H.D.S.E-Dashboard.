@@ -14,7 +14,7 @@
         <button class="btn btn-primary btn-lg btn-block" type="submit">Opslaan</button>
     </form>--}}
 
-    <form class="form mb-4" method="POST" action="/leden/wijzig/{{$lid->lid_id}}">
+    <form class="card mb-4" method="POST" action="/leden/wijzig/{{$lid->lid_id}}">
         @csrf
         <h3>Persoonsgevevens</h3>
         <label for="roepnaam">Roepnaam</label>

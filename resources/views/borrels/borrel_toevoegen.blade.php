@@ -3,7 +3,7 @@
 @section('content')
     <h2 class="mb-4">Borrel toevoegen</h2>
 
-    <form class="form" method="POST" action="/borrels/toevoegen">
+    <form class="card" method="POST" action="/borrels/toevoegen">
         @csrf
         <h3>Activiteit</h3>
         <label for="datum">Datum</label>
@@ -59,6 +59,6 @@
             </tbody>
         </table>
 
-        <button type="submit" class="btn btn-primary btn-lg btn-block mb-3 mt-3">Voeg borrel toe</button>
+        <button type="submit" class="btn btn-primary btn-lg btn-block mb-3 mt-3 floating">Voeg borrel toe</button>
     </form>
 @endsection

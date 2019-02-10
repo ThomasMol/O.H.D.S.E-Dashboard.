@@ -3,7 +3,7 @@
 @section('content')
     <h2 class="mb-4">Lid toevoegen</h2>
 
-    <form class="form" method="POST" action="/leden/toevoegen">
+    <form class="card" method="POST" action="/leden/toevoegen">
         @csrf
         <h3>Persoonsgevevens</h3>
         <label for="roepnaam">Roepnaam</label>

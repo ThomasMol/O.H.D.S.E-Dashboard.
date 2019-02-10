@@ -3,7 +3,7 @@
 @section('content')
     <h2 class="mb-4">Borrel wijzigen</h2>
 
-    <form class="form" method="POST" action="/borrel/wijzig{{$borrel->borrel_id}}">
+    <form class="card" method="POST" action="/borrel/wijzig{{$borrel->borrel_id}}">
         @csrf
         <h3>Activiteit</h3>
         <label for="datum">Datum</label>
@@ -35,26 +35,7 @@
             </tr>
             </thead>
             <tbody>
-           {{-- @foreach($leden_aanwezigheid as $lid)
-                <tr>
-                    @if($lid->type_lid == "Actief")
-                        <th scope="row">{{ $lid->roepnaam }} {{ $lid->achternaam }}</th>
-                        <td><input type="radio" name="{{$lid->lid_id}}[]" value="aanwezig" @if($lid->aanwezig == 1) checked @endif required></td>
-                        <td><input type="radio" name="{{$lid->lid_id}}[]" value="afwezig" @if($lid->afwezig == 1) checked @endif required></td>
-                        <td><input type="checkbox" name="{{$lid->lid_id}}[]" value="afgemeld" @if($lid->afgemeld == 1) checked @endif></td>
-                        <td><input type="checkbox" name="{{$lid->lid_id}}[]" value="te_laat" @if($lid->te_laat == 1) checked @endif></td>
-                        <td><input type="checkbox" name="{{$lid->lid_id}}[]" value="naheffing_aanwezig" @if($lid->naheffing_aanwezig == 1) checked @endif></td>
-                    @else
-                        <th scope="row">{{ $lid->roepnaam }} {{ $lid->achternaam }}</th>
-                        <td><input type="checkbox" name="{{$lid->lid_id}}[]" value="aanwezig" ></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td><input type="checkbox" name="{{$lid->lid_id}}[]" value="naheffing_aanwezig"></td>
-                    @endif
-                </tr>
-            @endforeach--}}
-            @foreach($overige_leden as $lid)
+            @foreach($leden_aanwezigheid as $lid)
                 <tr>
                     @if($lid->type_lid == "Actief")
                         <th scope="row">{{ $lid->roepnaam }} {{ $lid->achternaam }}</th>

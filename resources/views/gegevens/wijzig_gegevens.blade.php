@@ -4,7 +4,7 @@
 
         <h2 class="mb-4">Wijzig je gegevens</h2>
 
-        <form class="form mb-4" method="POST" action="/gegevens/wijziglogin">
+        <form class="card mb-4" method="POST" action="/gegevens/wijziglogin">
             @csrf
             <h3>Inlog gegevens</h3>
             <label for="email">Email</label>
@@ -14,7 +14,7 @@
             <button class="btn btn-primary btn-lg btn-block" type="submit">Opslaan</button>
         </form>
 
-        <form class="form mb-4" method="POST" action="/gegevens/wijzig">
+        <form class="card mb-4" method="POST" action="/gegevens/wijzig">
             @csrf
             <h3>Persoonsgevevens</h3>
             <label for="roepnaam">Roepnaam</label>
