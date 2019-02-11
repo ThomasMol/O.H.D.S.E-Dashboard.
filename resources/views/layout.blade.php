@@ -23,96 +23,89 @@
 
 </head>
 <body>
-<nav class="navbar navbar-light fixed-top flex-md-nowrap">
-    <a class="navbar-brand mr-0" href="#">SE dashboard</a>
-    <ul class="navbar-nav px-3">
-        @if(Auth::check())
-            <li class="nav-item"><a class="nav-link" href="/loguit">Log uit</a></li>
-        @else
-            <li class="nav-item"><a class="nav-link" href="/login">Log in</a></li>
-        @endif
-    </ul>
-</nav>
+<div class="flex-container">
+    <nav>
+        <div class="mobile-nav">
+            <a>SE</a>
+            <button id="menu" class="btn menu navbar-toggler" data-target="#sidebarCollapse" data-toggle="collapse">menu <span data-feather="menu"></span></button>
+        </div>
+        <div class="sidebar collapse" id="sidebarCollapse">
 
-    <div class="flex-container">
-        <nav class="sidebar">
-            <div class="sidebar-sticky">
-                <ul class="nav flex-column">
-                    <li class="nav-item">
-                        <a class="nav-link {{ Request::is('/') ? 'active' : '' }}" href="/">
-                            <span data-feather="home"></span>
-                            Home
+            <ul class="nav flex-column ">
+                <li class="nav-item">
+                    <img src="/images/sadas.png" class="logo" width="70px">
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link {{ Request::is('/') ? 'active' : '' }}" href="/">
+                        <span data-feather="home"></span>
+                        Home
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link {{ Request::is('gegevens*') ? 'active' : '' }}" href="/gegevens">
+                        <span data-feather="user"></span>
+                        Mijn gegevens
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link {{ Request::is('leden*') ? 'active' : '' }}" href="/leden">
+                        <span data-feather="users"></span>
+                        Leden
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link {{ Request::is('activiteit*') ? 'active' : '' }}" href="/activiteiten">
+                        <span data-feather="coffee"></span>
+                        Activiteiten
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link {{ Request::is('borrel*') ? 'active' : '' }}" href="/borrels">
+                        <span data-feather="coffee"></span>
+                        Borrels
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link {{ Request::is('declaratie*') ? 'active' : '' }}" href="/declaraties">
+                        <span data-feather="dollar-sign"></span>
+                        Declaraties
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link {{ Request::is('transacties*') ? 'active' : '' }}" href="/transacties">
+                        <span data-feather="repeat"></span>
+                        Transacties
+                    </a>
+                </li>
+                @if(Auth::check())
+                    <li class="nav-item logout">
+                        <a class="nav-link" href="/loguit">
+                            <span data-feather="log-out"></span>
+                            Log uit
                         </a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link {{ Request::is('gegevens*') ? 'active' : '' }}" href="/gegevens">
-                            <span data-feather="user"></span>
-                            Mijn gegevens
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link {{ Request::is('leden*') ? 'active' : '' }}" href="/leden">
-                            <span data-feather="users"></span>
-                            Leden
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link {{ Request::is('activiteit*') ? 'active' : '' }}" href="/activiteiten">
-                            <span data-feather="coffee"></span>
-                            Activiteiten
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link {{ Request::is('borrel*') ? 'active' : '' }}" href="/borrels">
-                            <span data-feather="coffee"></span>
-                            Borrels
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link {{ Request::is('declaratie*') ? 'active' : '' }}" href="/declaraties">
-                            <span data-feather="dollar-sign"></span>
-                            Declaratie's
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link {{ Request::is('transacties*') ? 'active' : '' }}" href="/transacties">
-                            <span data-feather="repeat"></span>
-                            Transacties
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link {{ Request::is('bestuur*') ? 'active' : '' }}" href="/bestuur">
-                            <span data-feather="trash-2"></span>
-                            Bestuur
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link {{ Request::is('commissie*') ? 'active' : '' }}" href="/commissie">
-                            <span data-feather="disc"></span>
-                            Commissies
-                        </a>
-                    </li>
+                @endif
+            </ul>
+        </div>
+    </nav>
 
+    <main class="main">
+        @if ($errors->any())
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
                 </ul>
             </div>
-        </nav>
-
-        <main class="main">
-            @if ($errors->any())
-                <div class="alert alert-danger">
-                    <ul>
-                        @foreach ($errors->all() as $error)
-                            <li>{{ $error }}</li>
-                        @endforeach
-                    </ul>
-                </div>
-            @endif
-            @yield('content')
-        </main>
-    </div>
+        @endif
+        @yield('content')
+    </main>
+</div>
 
 <script src="/js/jquery.js" type="text/javascript"></script>
 <script src="/js/bootstrap.js" type="text/javascript"></script>
+<script src="/js/scripts.js" type="text/javascript"></script>
 <script>
     feather.replace();
 </script>

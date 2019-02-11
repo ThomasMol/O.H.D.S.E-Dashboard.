@@ -34,4 +34,7 @@
 
             </tbody>
         </table>
+    <div>
+        {!! $leden->links(); !!}
+    </div>
 @endsection

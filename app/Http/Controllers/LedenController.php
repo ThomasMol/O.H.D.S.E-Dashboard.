@@ -5,18 +5,19 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use App\Lid;
 
 class LedenController extends Controller
 {
     public function index(){
-        $leden = DB::table('lid')->get();
+        $leden = Lid::where('type_lid','!=','Geen')->orderBy('type_lid','asc')->paginate(20);
         return view('leden/leden',['leden' => $leden]);
     }
     public function toevoegen(){
         return view('leden/lid_toevoegen');
     }
     public function wijzig($id){
-        $lid = DB::table('lid')->where('lid_id',$id)->first();
+        $lid = Lid::find($id);
         return view('leden/lid_wijzigen', ['lid' => $lid]);
     }
 

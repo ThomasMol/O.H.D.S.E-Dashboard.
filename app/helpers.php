@@ -1,7 +1,8 @@
 <?php
 
-function divide_money($total, $divisor){
-    $total = (float) round($total, 2);
+function divide_money($total, $divisor)
+{
+    $total = (float)round($total, 2);
 
     $splitTotals = array_fill(1, $divisor, round($total / $divisor, 2));
 
@@ -19,9 +20,9 @@ function divide_money($total, $divisor){
     }
 
     return $splitTotals;
-
+}
     function add_boete($lid_id,$bedrag, $reden, $datum){
-        $boete = new Boete;
+        $boete = new App\Boete;
         $boete->lid_id = $lid_id;
         $boete->datum = $datum;
         $boete->bedrag = $bedrag;
@@ -31,18 +32,17 @@ function divide_money($total, $divisor){
     }
 
     function add_verschuldigd($lid_id,$bedrag){
-        $lid = Lid::find($lid_id);
+        $lid = App\Lid::find($lid_id);
         $lid->verschuldigd = $lid->verschuldigd + $bedrag;
         $lid->save();
     }
 
     function remove_boete($lid_id, $boete_id, $bedrag){
-        $boete = Boete::destroy($boete_id);
+        $boete = App\Boete::destroy($boete_id);
         remove_verschuldigd($lid_id,$bedrag);
     }
     function remove_verschuldigd($lid_id, $bedrag){
-        $lid = Lid::find($lid_id);
+        $lid = App\Lid::find($lid_id);
         $lid->verschuldigd = $lid->verschuldigd - $bedrag;
         $lid->save();
     }
-}

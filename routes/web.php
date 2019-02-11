@@ -42,6 +42,15 @@ Route::middleware(['auth'])->group(function (){
     Route::post('/borrels/toevoegen','BorrelsController@voeg_borrel_toe')->middleware('admin');
     Route::post('/borrels/wijzig/{id}','BorrelsController@wijzig_borrel')->middleware('admin');
 
+    /*declaraties*/
+    Route::get('/declaraties','DeclaratiesController@index');
+    Route::get('/declaraties/toevoegen','DeclaratiesController@toevoegen');
+    Route::get('/declaraties/wijzig/{id}','DeclaratiesController@wijzigen');
+    Route::get('/declaratie/{id}', 'DeclaratiesController@declaratie');
+
+    Route::post('/declaraties/toevoegen','DeclaratiesController@voeg_declaratie_toe');
+    Route::post('/declaraties/wijzig/{id}','DeclaratiesController@wijzig_declaratie');
+
 
     /*transacties*/
     Route::get('/transacties', 'TransactiesController@index');

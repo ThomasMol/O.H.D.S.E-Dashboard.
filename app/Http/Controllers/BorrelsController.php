@@ -13,7 +13,7 @@ use DB;
 class BorrelsController extends Controller
 {
     public function index(){
-        $borrels = Borrel::all();
+        $borrels = Borrel::orderBy('datum','desc')->paginate(10);
         return view('borrels/borrels',['borrels' => $borrels]);
     }
     public function borrel($id){
@@ -83,13 +83,13 @@ class BorrelsController extends Controller
                 }
                 if($borrel_aanwezigheid->afgemeld != 1){
                     if($borrel_aanwezigheid->afwezig == 1){
-                        $this->add_boete($lid->lid_id,10.00,"Afwezig zonder af te melden", $borrel->datum);
+                        add_boete($lid->lid_id,10.00,"Afwezig zonder af te melden", $borrel->datum);
                     }else if($borrel_aanwezigheid->te_laat == 1){
-                        $this->add_boete($lid->lid_id,10.00,"Te laat zonder af te melden", $borrel->datum);
+                        add_boete($lid->lid_id,10.00,"Te laat zonder af te melden", $borrel->datum);
                     }
                 }
                 if($lid->type_lid != "Actief" && $borrel_aanwezigheid->aanwezig == 1){
-                    $this->add_verschuldigd($lid->lid_id,10.00);
+                    add_verschuldigd($lid->lid_id,10.00);
                 }
                 $borrel_aanwezigheid->save();
             }
@@ -153,13 +153,13 @@ class BorrelsController extends Controller
                 }
                 if($borrel_aanwezigheid->afgemeld != 1){
                     if($borrel_aanwezigheid->afwezig == 1){
-                        $this->add_boete($lid->lid_id,10.00,"Afwezig zonder af te melden", $borrel->datum);
+                        add_boete($lid->lid_id,10.00,"Afwezig zonder af te melden", $borrel->datum);
                     }else if($borrel_aanwezigheid->te_laat == 1){
-                        $this->add_boete($lid->lid_id,10.00,"Te laat zonder af te melden", $borrel->datum);
+                        add_boete($lid->lid_id,10.00,"Te laat zonder af te melden", $borrel->datum);
                     }
                 }
                 if($lid->type_lid != "Actief" && $borrel_aanwezigheid->aanwezig == 1){
-                    $this->add_verschuldigd($lid->lid_id,10.00);
+                    add_verschuldigd($lid->lid_id,10.00);
                 }
                 $borrel_aanwezigheid->save();
             }

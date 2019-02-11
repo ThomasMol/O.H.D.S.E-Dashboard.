@@ -12,8 +12,6 @@
         <input type="number" class="form-control mb-3" id="budget" name="budget" step=".01" value="0.00" required>
         <label for="naheffing">Naheffing</label>
         <input type="number" class="form-control mb-3" id="naheffing" name="naheffing" step=".01" value="0.00" required>
-        <label for="activiteit_soort">Activiteit soort</label>
-
         <label for="betaald_door">Betaald door:</label>
         <select class="form-control mb-3"id="betaald_door" name="betaald_door_id" >
             <option selected value="se">SE</option>
