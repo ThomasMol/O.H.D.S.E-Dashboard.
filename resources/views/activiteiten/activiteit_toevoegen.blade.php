@@ -7,7 +7,7 @@
         @csrf
         <h3>Activiteit</h3>
         <label for="datum">Datum</label>
-        <input type="date" class="form-control mb-3" id="datum" name="datum" required>
+        <input type="date" class="form-control mb-3" id="datum" name="datum" value="{{ date('Y-m-d') }}" required>
         <label for="budget">Budget</label>
         <input type="number" class="form-control mb-3" id="budget" name="budget" step=".01" required>
         <label for="naheffing">Naheffing</label>

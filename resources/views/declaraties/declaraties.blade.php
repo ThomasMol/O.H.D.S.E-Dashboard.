@@ -20,11 +20,10 @@
                 <td>{{ $declaratie->datum }}</td>
                 <td>{{ $declaratie->omschrijving }}</td>
                 <td>&euro;{{ $declaratie->bedrag }}</td>
-                <td>&euro;{{ $declaratie->betaald_door_id }}</td>
-                <td><a class="btn btn-success" href="/declaratie/{{$declaratie->declaratie_id}}">Bekijk</a>
-                    @if(Auth::user()->admin == 1)
-                        <a class="btn btn-primary" href="/declaraties/wijzig/{{$declaratie->declaratie_id}}">Wijzig</a>
-                    @endif
+                <td>{{ $declaratie->betaald_door_id }}</td>
+                <td>
+                    <a class="btn btn-success" href="/declaratie/{{$declaratie->declaratie_id}}">Bekijk</a>
+                    <a class="btn btn-primary" href="/declaraties/wijzig/{{$declaratie->declaratie_id}}">Wijzig</a>
                 </td>
 
             </tr>

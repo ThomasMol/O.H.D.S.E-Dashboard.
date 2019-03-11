@@ -5,9 +5,9 @@
 
     <form class="card" method="POST" action="/declaraties/toevoegen">
         @csrf
-        <h3>Declratie</h3>
+        <h3>Declaratie</h3>
         <label for="datum">Datum</label>
-        <input type="date" class="form-control mb-3" id="datum" name="datum" required>
+        <input type="date" class="form-control mb-3" id="datum" name="datum" value="{{ date('Y-m-d') }}"required>
         <label for="bedrag">Totaal bedrag</label>
         <input type="number" class="form-control mb-3" id="bedrag" name="bedrag" step=".01" value="0.00" required>
         <label for="betaald_door">Betaald door:</label>

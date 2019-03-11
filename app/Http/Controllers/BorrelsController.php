@@ -29,8 +29,12 @@ class BorrelsController extends Controller
     }
     public function wijzigen($id){
         $borrel = Borrel::find($id);
-        $test = DB::select('select * from `lid` left join `borrel_aanwezigheid` on `lid`.`lid_id` = `borrel_aanwezigheid`.`lid_id` and `borrel_aanwezigheid`.`borrel_id` = ? where `type_lid` != \'Geen\' order by `type_lid` asc',[$id]);
-        return view('borrels/borrel_wijzigen',['borrel' => $borrel, 'leden_aanwezigheid' =>  $test]);
+
+        $leden = Lid::leftJoin('borrel_aanwezigheid', function($join) use ($id){
+            $join->on('lid.lid_id','borrel_aanwezigheid.lid_id');
+            $join->where('borrel_aanwezigheid.borrel_id',$id);
+        })->where('type_lid','!=','Geen')->orderBy('type_lid','asc')->get();
+        return view('borrels/borrel_wijzigen',['borrel' => $borrel, 'leden_aanwezigheid' =>  $leden]);
     }
 
     public function voeg_borrel_toe(Request $request){
@@ -49,7 +53,7 @@ class BorrelsController extends Controller
         }
         $borrel->save();
 
-        $leden = Lid::all();
+        $leden = Lid::select('lid_id')->get();
         $naheffing_leden = [];
 
         foreach($leden as $lid){
@@ -119,13 +123,21 @@ class BorrelsController extends Controller
             $borrel->omschrijving = $request->omschrijving;
         }
         $borrel->save();
-        $leden = Lid::all();
+        $leden = Lid::select('lid_id')->get();
         $naheffing_leden = [];
 
         foreach($leden as $lid){
             $id = $lid->lid_id;
             if($request->has($id)){
-                $borrel_aanwezigheid = BorrelAanwezigheid::where();
+
+                $borrel_aanwezigheid = BorrelAanwezigheid::where('lid_id',$id)->first();
+                if($borrel_aanwezigheid != null){
+                    update_borrel_aanwezigheid();
+                }elseif($borrel_aanwezigheid === null){
+                    add_borrel_aanwezigheid();
+                }
+
+                $borrel_aanwezigheid = new BorrelAanwezigheid;
                 $borrel_aanwezigheid->lid_id = $id;
                 $borrel_aanwezigheid->borrel_id = $borrel->borrel_id;
                 $aanwezigheid = $request->$id;
@@ -165,6 +177,7 @@ class BorrelsController extends Controller
             }
 
         }
+
         if(count($naheffing_leden) > 0){
             $this->add_naheffing($naheffing_leden, $borrel->naheffing);
         }

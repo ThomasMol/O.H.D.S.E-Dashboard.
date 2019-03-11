@@ -3,9 +3,9 @@
 @section('content')
     <h2 class="mb-4">Borrel wijzigen</h2>
 
-    <form class="card" method="POST" action="/borrel/wijzig{{$borrel->borrel_id}}">
+    <form class="card" method="POST" action="/borrel/wijzig/{{$borrel->borrel_id}}">
         @csrf
-        <h3>Activiteit</h3>
+        <h3>Borrel</h3>
         <label for="datum">Datum</label>
         <input type="date" class="form-control mb-3" id="datum" name="datum" value="{{$borrel->datum}}" required>
         <label for="budget">Budget</label>

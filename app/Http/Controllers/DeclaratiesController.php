@@ -16,7 +16,14 @@ class DeclaratiesController extends Controller
 {
     public function index()
     {
-        $declaraties = Declaratie::orderBy('datum', 'desc')->paginate(10);
+        $user_id = Auth::user()->lid_id;
+        $declaraties = Declaratie::join('declaratie_deelname', function($join) use ($user_id){
+            $join->on('declaratie.declaratie_id','declaratie_deelname.declaratie_id');
+        })->orWhere(function ($query) use ($user_id){
+        $query->orWhere('declaratie.created_by_id', '=', $user_id)
+            ->orWhere('declaratie.betaald_door_id', '=', $user_id)
+            ->orWhere('declaratie_deelname.lid_id', '=', $user_id);
+        })->groupBy('declaratie.declaratie_id')->orderBy('datum', 'desc')->paginate(10);
         return view('declaraties/declaraties', ['declaraties' => $declaraties]);
     }
 
@@ -37,8 +44,13 @@ class DeclaratiesController extends Controller
     public function wijzigen($id)
     {
         $declaratie = Declaratie::find($id);
-        $test = DB::select('select * from `lid` left join `declaratie_deelname` on `lid`.`lid_id` = `declaratie_deelname`.`lid_id` and `declaratie_deelname`.`declaratie_id` = ? where `type_lid` != \'Geen\' order by `type_lid` asc', [$id]);
-        return view('declaraties/declaratie_wijzigen', ['declaratie' => $declaratie, 'leden_deelname' => $test]);
+        $leden = Lid::select('lid_id', 'roepnaam', 'achternaam')->where('type_lid', '!=', 'Geen')->orderBy('type_lid', 'asc')->get();
+
+        $leden_deelname = Lid::leftJoin('declaratie_deelname', function($join) use ($id){
+            $join->on('lid.lid_id','declaratie_deelname.lid_id');
+            $join->where('declaratie_deelname.declaratie_id',$id);
+        })->where('type_lid','!=','Geen')->orderBy('type_lid','asc')->get();
+        return view('declaraties/declaratie_wijzigen', ['declaratie' => $declaratie, 'leden_deelname' => $leden_deelname, 'leden'=>$leden]);
     }
 
     public function voeg_declaratie_toe(Request $request)

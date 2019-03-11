@@ -2,22 +2,20 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1d93f86e-b11f-418d-aa3e-7306eb9d7eb9" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/public/js/scripts.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/declaraties/declaratie.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/declaraties/declaratie_toevoegen.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/declaraties/declaratie_wijzigen.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/declaraties/declaraties.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/BorrelsController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/BorrelsController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/LedenController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/LedenController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/helpers.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/helpers.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/DeclaratiesController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/DeclaratiesController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/database.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/database.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/css/stylesheet.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/stylesheet.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/activiteiten/activiteit_toevoegen.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/activiteiten/activiteit_toevoegen.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/borrels/borrel_toevoegen.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/borrels/borrel_toevoegen.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/borrels/borrels.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/borrels/borrels.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/gegevens/gegevens.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/gegevens/gegevens.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/borrels/borrel_wijzigen.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/borrels/borrel_wijzigen.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/declaraties/declaratie.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/declaraties/declaratie.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/declaraties/declaratie_toevoegen.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/declaraties/declaratie_toevoegen.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/declaraties/declaratie_wijzigen.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/declaraties/declaratie_wijzigen.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/declaraties/declaraties.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/declaraties/declaraties.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/index.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/layout.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layout.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/leden/leden.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/leden/leden.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -39,30 +37,12 @@
     <select />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/resources/views/declaraties/declaraties.blade.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="700">
-              <caret line="35" selection-start-line="35" selection-end-line="35" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/resources/views/declaraties/declaratie_toevoegen.blade.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="203">
-              <caret line="11" column="65" selection-start-line="11" selection-start-column="65" selection-end-line="11" selection-end-column="65" />
-            </state>
-          </provider>
-        </entry>
-      </file>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/Http/Controllers/DeclaratiesController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="549">
-              <caret line="77" column="37" selection-start-line="77" selection-start-column="37" selection-end-line="77" selection-end-column="37" />
+            <state relative-caret-position="603">
+              <caret line="47" lean-forward="true" selection-start-line="47" selection-end-line="47" />
               <folding>
                 <element signature="e#40#68#0#PHP" expanded="true" />
               </folding>
@@ -71,57 +51,79 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/Declaratie.php">
+        <entry file="file://$PROJECT_DIR$/resources/views/declaraties/declaratie_wijzigen.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="120">
-              <caret line="6" selection-start-line="6" selection-end-line="6" />
+            <state relative-caret-position="280">
+              <caret line="14" column="27" selection-start-line="14" selection-start-column="21" selection-end-line="14" selection-end-column="27" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/resources/views/borrels/borrels.blade.php">
+        <entry file="file://$PROJECT_DIR$/resources/views/borrels/borrel_wijzigen.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-128">
-              <caret line="4" column="23" lean-forward="true" selection-start-line="4" selection-start-column="23" selection-end-line="4" selection-end-column="23" />
+            <state relative-caret-position="140">
+              <caret line="19" column="17" lean-forward="true" selection-start-line="19" selection-start-column="17" selection-end-line="19" selection-end-column="17" />
               <folding>
-                <marker date="1549907009096" expanded="true" signature="9:17" ph="..." />
-                <marker date="1549907009096" expanded="true" signature="28:45" ph="..." />
-                <marker date="1549907009096" expanded="true" signature="56:65" ph="..." />
-                <marker date="1549907009096" expanded="true" signature="96:120" ph="..." />
-                <marker date="1549907009096" expanded="true" signature="559:578" ph="..." />
-                <marker date="1549907009096" expanded="true" signature="619:635" ph="..." />
-                <marker date="1549907009096" expanded="true" signature="665:688" ph="..." />
-                <marker date="1549907009096" expanded="true" signature="724:741" ph="..." />
-                <marker date="1549907009096" expanded="true" signature="777:797" ph="..." />
-                <marker date="1549907009096" expanded="true" signature="868:886" ph="..." />
+                <marker date="1552342121255" expanded="true" signature="9:17" ph="..." />
+                <marker date="1552342121255" expanded="true" signature="28:50" ph="..." />
+                <marker date="1552342121255" expanded="true" signature="61:70" ph="..." />
+                <marker date="1552342121255" expanded="true" signature="177:195" ph="..." />
+                <marker date="1552342121255" expanded="true" signature="365:374" ph="..." />
+                <marker date="1552342121255" expanded="true" signature="365:379" ph="..." />
+                <marker date="1552342121255" expanded="true" signature="526:541" ph="..." />
+                <marker date="1552342121255" expanded="true" signature="724:742" ph="..." />
+                <marker date="1552342121255" expanded="true" signature="1144:1165" ph="..." />
+                <marker date="1552342121255" expanded="true" signature="1651:1678" ph="..." />
+                <marker date="1552342121255" expanded="true" signature="1652:1678" ph="..." />
+                <marker date="1552342121255" expanded="true" signature="1725:1751" ph="..." />
+                <marker date="1552342121255" expanded="true" signature="1795:1811" ph="..." />
+                <marker date="1552342121255" expanded="true" signature="1816:1834" ph="..." />
+                <marker date="1552342121255" expanded="true" signature="1898:1910" ph="..." />
+                <marker date="1552342121255" expanded="true" signature="1937:1956" ph="..." />
+                <marker date="1552342121255" expanded="true" signature="2044:2056" ph="..." />
+                <marker date="1552342121255" expanded="true" signature="2082:2100" ph="..." />
+                <marker date="1552342121255" expanded="true" signature="2191:2203" ph="..." />
+                <marker date="1552342121255" expanded="true" signature="2230:2249" ph="..." />
+                <marker date="1552342121255" expanded="true" signature="2331:2343" ph="..." />
+                <marker date="1552342121255" expanded="true" signature="2369:2387" ph="..." />
+                <marker date="1552342121255" expanded="true" signature="2469:2481" ph="..." />
+                <marker date="1552342121255" expanded="true" signature="2518:2547" ph="..." />
+                <marker date="1552342121255" expanded="true" signature="2638:2654" ph="..." />
+                <marker date="1552342121255" expanded="true" signature="2659:2677" ph="..." />
+                <marker date="1552342121255" expanded="true" signature="2744:2756" ph="..." />
+                <marker date="1552342121255" expanded="true" signature="2783:2802" ph="..." />
+                <marker date="1552342121255" expanded="true" signature="2986:2998" ph="..." />
+                <marker date="1552342121255" expanded="true" signature="3034:3063" ph="..." />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/resources/views/borrels/borrel_toevoegen.blade.php">
+        <entry file="file://$PROJECT_DIR$/resources/views/borrels/borrel.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-140">
-              <caret line="13" column="85" lean-forward="true" selection-start-line="13" selection-start-column="85" selection-end-line="13" selection-end-column="85" />
+            <state relative-caret-position="140">
+              <caret line="7" column="47" lean-forward="true" selection-start-line="7" selection-start-column="47" selection-end-line="7" selection-end-column="47" />
               <folding>
-                <marker date="1549902742024" expanded="true" signature="9:17" ph="..." />
-                <marker date="1549902742024" expanded="true" signature="28:54" ph="..." />
-                <marker date="1549902742024" expanded="true" signature="65:74" ph="..." />
-                <marker date="1549902742024" expanded="true" signature="1528:1542" ph="..." />
-                <marker date="1549902742024" expanded="true" signature="1589:1615" ph="..." />
-                <marker date="1549902742024" expanded="true" signature="1655:1671" ph="..." />
-                <marker date="1549902742024" expanded="true" signature="1676:1694" ph="..." />
-                <marker date="1549902742024" expanded="true" signature="1754:1766" ph="..." />
-                <marker date="1549902742024" expanded="true" signature="1864:1876" ph="..." />
-                <marker date="1549902742024" expanded="true" signature="1968:1980" ph="..." />
-                <marker date="1549902742024" expanded="true" signature="2064:2076" ph="..." />
-                <marker date="1549902742024" expanded="true" signature="2159:2171" ph="..." />
-                <marker date="1549902742024" expanded="true" signature="2278:2294" ph="..." />
-                <marker date="1549902742024" expanded="true" signature="2299:2317" ph="..." />
-                <marker date="1549902742024" expanded="true" signature="2384:2396" ph="..." />
-                <marker date="1549902742024" expanded="true" signature="2586:2598" ph="..." />
+                <marker date="1549906626935" expanded="true" signature="9:17" ph="..." />
+                <marker date="1549906626935" expanded="true" signature="28:44" ph="..." />
+                <marker date="1549906626935" expanded="true" signature="55:64" ph="..." />
+                <marker date="1549906626935" expanded="true" signature="94:118" ph="..." />
+                <marker date="1549906626935" expanded="true" signature="179:197" ph="..." />
+                <marker date="1549906626935" expanded="true" signature="493:517" ph="..." />
+                <marker date="1549906626935" expanded="true" signature="674:676" ph="..." />
+                <marker date="1549906626935" expanded="true" signature="674:690" ph="..." />
+                <marker date="1549906626935" expanded="true" signature="720:743" ph="..." />
+                <marker date="1549906626935" expanded="true" signature="779:796" ph="..." />
+                <marker date="1549906626935" expanded="true" signature="832:852" ph="..." />
+                <marker date="1549906626935" expanded="true" signature="880:904" ph="..." />
+                <marker date="1549906626935" expanded="true" signature="932:958" ph="..." />
+                <marker date="1549906626935" expanded="true" signature="940:958" ph="..." />
+                <marker date="1549906626935" expanded="true" signature="1065:1092" ph="..." />
+                <marker date="1549906626935" expanded="true" signature="1084:1092" ph="..." />
+                <marker date="1549906626935" expanded="true" signature="1112:1126" ph="..." />
+                <marker date="1549906626935" expanded="true" signature="1141:1155" ph="..." />
               </folding>
             </state>
           </provider>
@@ -130,12 +132,29 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/Http/Controllers/BorrelsController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1120">
-              <caret line="168" column="71" lean-forward="true" selection-start-line="168" selection-start-column="71" selection-end-line="168" selection-end-column="71" />
+            <state relative-caret-position="-2320">
+              <caret line="12" column="42" lean-forward="true" selection-start-line="12" selection-start-column="42" selection-end-line="12" selection-end-column="42" />
               <folding>
                 <element signature="e#40#68#0#PHP" expanded="true" />
-                <marker date="1549907071695" expanded="true" signature="1024:1221" ph="select * fro... lid" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/resources/views/declaraties/declaraties.blade.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="460">
+              <caret line="23" column="20" selection-start-line="23" selection-start-column="20" selection-end-line="23" selection-end-column="20" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/resources/views/declaraties/declaratie_toevoegen.blade.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="400">
+              <caret line="20" lean-forward="true" selection-end-line="43" selection-end-column="11" />
             </state>
           </provider>
         </entry>
@@ -163,6 +182,8 @@
       <find>$borrel</find>
       <find>borrels</find>
       <find>aanwezigheid</find>
+      <find>primary</find>
+      <find>borrel</find>
     </findStrings>
     <replaceStrings>
       <replace>max:255</replace>
@@ -176,6 +197,7 @@
       <replace>$declaratie</replace>
       <replace>eclaraties</replace>
       <replace>deelname</replace>
+      <replace>declaratie</replace>
     </replaceStrings>
   </component>
   <component name="Git.Settings">
@@ -184,9 +206,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/app/Http/Controllers/ProfielController.php" />
-        <option value="$PROJECT_DIR$/resources/views/profiel/wijzigprofiel.blade.php" />
-        <option value="$PROJECT_DIR$/resources/views/login_layout.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/gegevens/profiel.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/leden.blade.php" />
         <option value="$PROJECT_DIR$/app/Transactie.php" />
@@ -210,30 +229,33 @@
         <option value="$PROJECT_DIR$/config/app.php" />
         <option value="$PROJECT_DIR$/.env" />
         <option value="$PROJECT_DIR$/resources/views/login.blade.php" />
-        <option value="$PROJECT_DIR$/resources/views/borrels/borrel_wijzigen.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/gegevens/wijzig_gegevens.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/leden/lid_toevoegen.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/leden/lid_wijzigen.blade.php" />
-        <option value="$PROJECT_DIR$/resources/views/activiteiten/activiteit_toevoegen.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/activiteiten/activiteit_wijzigen.blade.php" />
-        <option value="$PROJECT_DIR$/resources/views/index.blade.php" />
         <option value="$PROJECT_DIR$/public/js/scripts.js" />
         <option value="$PROJECT_DIR$/resources/views/gegevens/gegevens.blade.php" />
-        <option value="$PROJECT_DIR$/public/css/stylesheet.css" />
-        <option value="$PROJECT_DIR$/resources/views/borrels/borrel_toevoegen.blade.php" />
         <option value="$PROJECT_DIR$/app/helpers.php" />
         <option value="$PROJECT_DIR$/resources/views/borrels/borrel.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/borrels/borrels.blade.php" />
-        <option value="$PROJECT_DIR$/app/Http/Controllers/BorrelsController.php" />
         <option value="$PROJECT_DIR$/resources/views/leden/leden.blade.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/LedenController.php" />
-        <option value="$PROJECT_DIR$/resources/views/layout.blade.php" />
         <option value="$PROJECT_DIR$/routes/web.php" />
         <option value="$PROJECT_DIR$/app/DeclaratieDeelname.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/Declaraties.php" />
-        <option value="$PROJECT_DIR$/resources/views/declaraties/declaraties.blade.php" />
-        <option value="$PROJECT_DIR$/resources/views/declaraties/declaratie_toevoegen.blade.php" />
         <option value="$PROJECT_DIR$/app/Declaratie.php" />
+        <option value="$PROJECT_DIR$/resources/views/layout.blade.php" />
+        <option value="$PROJECT_DIR$/resources/views/index.blade.php" />
+        <option value="$PROJECT_DIR$/public/css/stylesheet.css" />
+        <option value="$PROJECT_DIR$/resources/views/declaraties/declaratie_toevoegen.blade.php" />
+        <option value="$PROJECT_DIR$/resources/views/borrels/borrel_toevoegen.blade.php" />
+        <option value="$PROJECT_DIR$/resources/views/activiteiten/activiteit_toevoegen.blade.php" />
+        <option value="$PROJECT_DIR$/resources/views/declaraties/declaraties.blade.php" />
+        <option value="$PROJECT_DIR$/config/database.php" />
+        <option value="$PROJECT_DIR$/resources/views/declaraties/declaratie.blade.php" />
+        <option value="$PROJECT_DIR$/resources/views/borrels/borrel_wijzigen.blade.php" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/BorrelsController.php" />
+        <option value="$PROJECT_DIR$/resources/views/declaraties/declaratie_wijzigen.blade.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/DeclaratiesController.php" />
       </list>
     </option>
@@ -242,10 +264,10 @@
     <dismissed value="$PROJECT_DIR$/package.json" />
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="-1543" />
-    <option name="y" value="-10" />
+    <option name="x" value="-1545" />
+    <option name="y" value="-14" />
     <option name="width" value="1460" />
-    <option name="height" value="1113" />
+    <option name="height" value="1115" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -253,7 +275,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -278,6 +299,11 @@
               <item name="app" type="462c0819:PsiDirectoryNode" />
               <item name="Http" type="462c0819:PsiDirectoryNode" />
               <item name="Controllers" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="laravel" type="b2602c69:ProjectViewProjectNode" />
+              <item name="laravel" type="462c0819:PsiDirectoryNode" />
+              <item name="config" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="laravel" type="b2602c69:ProjectViewProjectNode" />
@@ -313,6 +339,7 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -379,18 +406,25 @@
       <workItem from="1549654630954" duration="262000" />
       <workItem from="1549824176639" duration="39000" />
       <workItem from="1549824769795" duration="1574000" />
-      <workItem from="1549828151002" duration="29450000" />
+      <workItem from="1549828151002" duration="29453000" />
+      <workItem from="1549974532289" duration="10780000" />
+      <workItem from="1550073872197" duration="1210000" />
+      <workItem from="1550179407630" duration="2214000" />
+      <workItem from="1550221228521" duration="2387000" />
+      <workItem from="1551381884440" duration="72000" />
+      <workItem from="1552237710143" duration="741000" />
+      <workItem from="1552301158127" duration="11704000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="181578000" />
+    <option name="totallyTimeSpent" value="210689000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-2567" y="-8" width="2062" height="1166" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.11788212" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.13386613" />
       <window_info id="Structure" order="1" weight="0.25" />
       <window_info id="npm" order="2" side_tool="true" />
       <window_info id="Favorites" order="3" side_tool="true" />
@@ -416,27 +450,6 @@
     <option name="version" value="1" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/Lid.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="175">
-          <caret line="7" column="1" selection-start-line="7" selection-start-column="1" selection-end-line="7" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/ActiviteitAanwezigheid.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
-          <caret line="9" selection-start-line="9" selection-end-line="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Activiteit.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="250">
-          <caret line="10" column="44" lean-forward="true" selection-start-line="9" selection-start-column="4" selection-end-line="10" selection-end-column="44" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/borrels/activiteit.blade.php" />
     <entry file="file://$PROJECT_DIR$/app/Boete.php">
       <provider selected="true" editor-type-id="text-editor">
@@ -478,45 +491,6 @@
     <entry file="file://$PROJECT_DIR$/public/images/selogo.png">
       <provider selected="true" editor-type-id="images" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/borrels/borrel_wijzigen.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="100">
-          <caret line="5" column="21" selection-start-line="5" selection-start-column="21" selection-end-line="5" selection-end-column="21" />
-          <folding>
-            <marker date="1549830192842" expanded="true" signature="9:17" ph="..." />
-            <marker date="1549830192842" expanded="true" signature="28:50" ph="..." />
-            <marker date="1549830192842" expanded="true" signature="61:70" ph="..." />
-            <marker date="1549830192842" expanded="true" signature="176:194" ph="..." />
-            <marker date="1549830192842" expanded="true" signature="368:377" ph="..." />
-            <marker date="1549830192842" expanded="true" signature="368:382" ph="..." />
-            <marker date="1549830192842" expanded="true" signature="529:544" ph="..." />
-            <marker date="1549830192842" expanded="true" signature="727:745" ph="..." />
-            <marker date="1549830192842" expanded="true" signature="1147:1168" ph="..." />
-            <marker date="1549830192842" expanded="true" signature="1654:1681" ph="..." />
-            <marker date="1549830192842" expanded="true" signature="1655:1681" ph="..." />
-            <marker date="1549830192842" expanded="true" signature="1728:1754" ph="..." />
-            <marker date="1549830192842" expanded="true" signature="1798:1814" ph="..." />
-            <marker date="1549830192842" expanded="true" signature="1819:1837" ph="..." />
-            <marker date="1549830192842" expanded="true" signature="1901:1913" ph="..." />
-            <marker date="1549830192842" expanded="true" signature="1940:1959" ph="..." />
-            <marker date="1549830192842" expanded="true" signature="2047:2059" ph="..." />
-            <marker date="1549830192842" expanded="true" signature="2085:2103" ph="..." />
-            <marker date="1549830192842" expanded="true" signature="2194:2206" ph="..." />
-            <marker date="1549830192842" expanded="true" signature="2233:2252" ph="..." />
-            <marker date="1549830192842" expanded="true" signature="2334:2346" ph="..." />
-            <marker date="1549830192842" expanded="true" signature="2372:2390" ph="..." />
-            <marker date="1549830192842" expanded="true" signature="2472:2484" ph="..." />
-            <marker date="1549830192842" expanded="true" signature="2521:2550" ph="..." />
-            <marker date="1549830192842" expanded="true" signature="2641:2657" ph="..." />
-            <marker date="1549830192842" expanded="true" signature="2662:2680" ph="..." />
-            <marker date="1549830192842" expanded="true" signature="2747:2759" ph="..." />
-            <marker date="1549830192842" expanded="true" signature="2786:2805" ph="..." />
-            <marker date="1549830192842" expanded="true" signature="2989:3001" ph="..." />
-            <marker date="1549830192842" expanded="true" signature="3037:3066" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/gegevens/wijzig_gegevens.blade.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="320">
@@ -538,13 +512,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/activiteiten/activiteit_toevoegen.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="200">
-          <caret line="10" column="42" selection-start-line="10" selection-start-column="42" selection-end-line="10" selection-end-column="42" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/activiteiten/activiteit_wijzigen.blade.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="200">
@@ -557,13 +524,6 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/public/index.php">
       <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/css/stylesheet.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="800">
-          <caret line="128" column="25" selection-start-line="128" selection-start-column="25" selection-end-line="128" selection-end-column="25" />
-        </state>
-      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/gegevens/gegevens.blade.php">
       <provider selected="true" editor-type-id="text-editor">
@@ -579,27 +539,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/index.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="260">
-          <caret line="13" column="34" selection-start-line="13" selection-start-column="34" selection-end-line="13" selection-end-column="34" />
-          <folding>
-            <element signature="e#511#517#0#HTML" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/login_layout.blade.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="340">
           <caret line="17" column="29" selection-start-line="17" selection-start-column="29" selection-end-line="17" selection-end-column="29" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/login.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="140">
-          <caret line="7" column="36" selection-start-line="7" selection-start-column="36" selection-end-line="7" selection-end-column="36" />
         </state>
       </provider>
     </entry>
@@ -635,17 +578,193 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/leden/leden.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="740">
+          <caret line="37" column="28" selection-start-line="37" selection-start-column="28" selection-end-line="37" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/LedenController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="123">
+          <caret line="12" column="49" selection-start-line="12" selection-start-column="49" selection-end-line="12" selection-end-column="49" />
+          <folding>
+            <element signature="e#40#68#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/BorrelAanwezigheid.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="160">
+          <caret line="8" column="43" selection-start-line="8" selection-start-column="43" selection-end-line="8" selection-end-column="43" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Borrel.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="140">
+          <caret line="7" column="1" lean-forward="true" selection-start-line="7" selection-start-column="1" selection-end-line="7" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.env">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="320">
+          <caret line="16" column="17" lean-forward="true" selection-start-line="16" selection-start-column="17" selection-end-line="16" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/routes/web.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="352">
+          <caret line="48" column="68" selection-start-line="48" selection-start-column="68" selection-end-line="48" selection-end-column="68" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/css/bootstrap.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-11448">
+          <caret line="7" column="29237" selection-start-line="7" selection-start-column="29230" selection-end-line="7" selection-end-column="29237" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/borrels/borrels.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="80">
+          <caret line="4" column="23" selection-start-line="4" selection-start-column="23" selection-end-line="4" selection-end-column="23" />
+          <folding>
+            <marker date="1549907009096" expanded="true" signature="9:17" ph="..." />
+            <marker date="1549907009096" expanded="true" signature="28:45" ph="..." />
+            <marker date="1549907009096" expanded="true" signature="56:65" ph="..." />
+            <marker date="1549907009096" expanded="true" signature="96:120" ph="..." />
+            <marker date="1549907009096" expanded="true" signature="559:578" ph="..." />
+            <marker date="1549907009096" expanded="true" signature="619:635" ph="..." />
+            <marker date="1549907009096" expanded="true" signature="665:688" ph="..." />
+            <marker date="1549907009096" expanded="true" signature="724:741" ph="..." />
+            <marker date="1549907009096" expanded="true" signature="777:797" ph="..." />
+            <marker date="1549907009096" expanded="true" signature="868:886" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/login.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="140">
+          <caret line="7" column="36" selection-start-line="7" selection-start-column="36" selection-end-line="7" selection-end-column="36" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Lid.php">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/index.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="480">
+          <caret line="24" column="10" selection-start-line="24" selection-start-column="10" selection-end-line="24" selection-end-column="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/css/stylesheet.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="9" column="30" selection-start-line="9" selection-start-column="30" selection-end-line="9" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/layout.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="540">
+          <caret line="27" column="13" selection-start-line="27" selection-start-column="11" selection-end-line="27" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Declaratie.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="6" selection-start-line="6" selection-end-line="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/DeclaratieDeelname.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="160">
+          <caret line="8" column="43" selection-start-line="8" selection-start-column="43" selection-end-line="8" selection-end-column="43" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/helpers.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="412">
-          <caret line="40" column="47" selection-start-line="40" selection-start-column="47" selection-end-line="40" selection-end-column="47" />
+        <state relative-caret-position="543">
+          <caret line="29" column="16" selection-start-line="29" selection-start-column="16" selection-end-line="29" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/borrels/borrel_toevoegen.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="9" column="105" selection-start-line="9" selection-start-column="105" selection-end-line="9" selection-end-column="105" />
+          <folding>
+            <marker date="1552332731437" expanded="true" signature="9:17" ph="..." />
+            <marker date="1552332731437" expanded="true" signature="28:54" ph="..." />
+            <marker date="1552332731437" expanded="true" signature="65:74" ph="..." />
+            <marker date="1552332731437" expanded="true" signature="1556:1570" ph="..." />
+            <marker date="1552332731437" expanded="true" signature="1617:1643" ph="..." />
+            <marker date="1552332731437" expanded="true" signature="1683:1699" ph="..." />
+            <marker date="1552332731437" expanded="true" signature="1704:1722" ph="..." />
+            <marker date="1552332731437" expanded="true" signature="1782:1794" ph="..." />
+            <marker date="1552332731437" expanded="true" signature="1892:1904" ph="..." />
+            <marker date="1552332731437" expanded="true" signature="1996:2008" ph="..." />
+            <marker date="1552332731437" expanded="true" signature="2092:2104" ph="..." />
+            <marker date="1552332731437" expanded="true" signature="2187:2199" ph="..." />
+            <marker date="1552332731437" expanded="true" signature="2306:2322" ph="..." />
+            <marker date="1552332731437" expanded="true" signature="2327:2345" ph="..." />
+            <marker date="1552332731437" expanded="true" signature="2412:2424" ph="..." />
+            <marker date="1552332731437" expanded="true" signature="2614:2626" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/activiteiten/activiteit_toevoegen.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="18" lean-forward="true" selection-start-column="18" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/declaraties/declaraties.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="460">
+          <caret line="23" column="20" selection-start-line="23" selection-start-column="20" selection-end-line="23" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/config/database.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="700">
+          <caret line="59" column="34" lean-forward="true" selection-start-line="59" selection-start-column="34" selection-end-line="59" selection-end-column="34" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/declaraties/declaratie.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="580">
+          <caret line="29" column="8" lean-forward="true" selection-start-line="29" selection-start-column="8" selection-end-line="29" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/declaraties/declaratie_toevoegen.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="400">
+          <caret line="20" lean-forward="true" selection-end-line="43" selection-end-column="11" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/borrels/borrel.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="512">
-          <caret line="31" column="12" selection-start-line="31" selection-start-column="12" selection-end-line="31" selection-end-column="12" />
+        <state relative-caret-position="140">
+          <caret line="7" column="47" lean-forward="true" selection-start-line="7" selection-start-column="47" selection-end-line="7" selection-end-column="47" />
           <folding>
             <marker date="1549906626935" expanded="true" signature="9:17" ph="..." />
             <marker date="1549906626935" expanded="true" signature="28:44" ph="..." />
@@ -669,17 +788,49 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/leden/leden.blade.php">
+    <entry file="file://$PROJECT_DIR$/resources/views/borrels/borrel_wijzigen.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="740">
-          <caret line="37" column="28" selection-start-line="37" selection-start-column="28" selection-end-line="37" selection-end-column="28" />
+        <state relative-caret-position="140">
+          <caret line="19" column="17" lean-forward="true" selection-start-line="19" selection-start-column="17" selection-end-line="19" selection-end-column="17" />
+          <folding>
+            <marker date="1552342121255" expanded="true" signature="9:17" ph="..." />
+            <marker date="1552342121255" expanded="true" signature="28:50" ph="..." />
+            <marker date="1552342121255" expanded="true" signature="61:70" ph="..." />
+            <marker date="1552342121255" expanded="true" signature="177:195" ph="..." />
+            <marker date="1552342121255" expanded="true" signature="365:374" ph="..." />
+            <marker date="1552342121255" expanded="true" signature="365:379" ph="..." />
+            <marker date="1552342121255" expanded="true" signature="526:541" ph="..." />
+            <marker date="1552342121255" expanded="true" signature="724:742" ph="..." />
+            <marker date="1552342121255" expanded="true" signature="1144:1165" ph="..." />
+            <marker date="1552342121255" expanded="true" signature="1651:1678" ph="..." />
+            <marker date="1552342121255" expanded="true" signature="1652:1678" ph="..." />
+            <marker date="1552342121255" expanded="true" signature="1725:1751" ph="..." />
+            <marker date="1552342121255" expanded="true" signature="1795:1811" ph="..." />
+            <marker date="1552342121255" expanded="true" signature="1816:1834" ph="..." />
+            <marker date="1552342121255" expanded="true" signature="1898:1910" ph="..." />
+            <marker date="1552342121255" expanded="true" signature="1937:1956" ph="..." />
+            <marker date="1552342121255" expanded="true" signature="2044:2056" ph="..." />
+            <marker date="1552342121255" expanded="true" signature="2082:2100" ph="..." />
+            <marker date="1552342121255" expanded="true" signature="2191:2203" ph="..." />
+            <marker date="1552342121255" expanded="true" signature="2230:2249" ph="..." />
+            <marker date="1552342121255" expanded="true" signature="2331:2343" ph="..." />
+            <marker date="1552342121255" expanded="true" signature="2369:2387" ph="..." />
+            <marker date="1552342121255" expanded="true" signature="2469:2481" ph="..." />
+            <marker date="1552342121255" expanded="true" signature="2518:2547" ph="..." />
+            <marker date="1552342121255" expanded="true" signature="2638:2654" ph="..." />
+            <marker date="1552342121255" expanded="true" signature="2659:2677" ph="..." />
+            <marker date="1552342121255" expanded="true" signature="2744:2756" ph="..." />
+            <marker date="1552342121255" expanded="true" signature="2783:2802" ph="..." />
+            <marker date="1552342121255" expanded="true" signature="2986:2998" ph="..." />
+            <marker date="1552342121255" expanded="true" signature="3034:3063" ph="..." />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/LedenController.php">
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/BorrelsController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="123">
-          <caret line="12" column="49" selection-start-line="12" selection-start-column="49" selection-end-line="12" selection-end-column="49" />
+        <state relative-caret-position="-2320">
+          <caret line="12" column="42" lean-forward="true" selection-start-line="12" selection-start-column="42" selection-end-line="12" selection-end-column="42" />
           <folding>
             <element signature="e#40#68#0#PHP" expanded="true" />
           </folding>
@@ -687,133 +838,16 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/declaraties/declaratie_wijzigen.blade.php">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/layout.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="678">
-          <caret line="70" column="35" selection-start-line="70" selection-start-column="35" selection-end-line="70" selection-end-column="35" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/BorrelAanwezigheid.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="160">
-          <caret line="8" column="43" selection-start-line="8" selection-start-column="43" selection-end-line="8" selection-end-column="43" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/DeclaratieDeelname.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="160">
-          <caret line="8" column="43" selection-start-line="8" selection-start-column="43" selection-end-line="8" selection-end-column="43" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Borrel.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="140">
-          <caret line="7" column="1" lean-forward="true" selection-start-line="7" selection-start-column="1" selection-end-line="7" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/declaraties/declaratie.blade.php">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/.env">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="320">
-          <caret line="16" column="17" lean-forward="true" selection-start-line="16" selection-start-column="17" selection-end-line="16" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/routes/web.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="352">
-          <caret line="48" column="68" selection-start-line="48" selection-start-column="68" selection-end-line="48" selection-end-column="68" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/borrels/borrels.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-128">
-          <caret line="4" column="23" lean-forward="true" selection-start-line="4" selection-start-column="23" selection-end-line="4" selection-end-column="23" />
-          <folding>
-            <marker date="1549907009096" expanded="true" signature="9:17" ph="..." />
-            <marker date="1549907009096" expanded="true" signature="28:45" ph="..." />
-            <marker date="1549907009096" expanded="true" signature="56:65" ph="..." />
-            <marker date="1549907009096" expanded="true" signature="96:120" ph="..." />
-            <marker date="1549907009096" expanded="true" signature="559:578" ph="..." />
-            <marker date="1549907009096" expanded="true" signature="619:635" ph="..." />
-            <marker date="1549907009096" expanded="true" signature="665:688" ph="..." />
-            <marker date="1549907009096" expanded="true" signature="724:741" ph="..." />
-            <marker date="1549907009096" expanded="true" signature="777:797" ph="..." />
-            <marker date="1549907009096" expanded="true" signature="868:886" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/borrels/borrel_toevoegen.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-140">
-          <caret line="13" column="85" lean-forward="true" selection-start-line="13" selection-start-column="85" selection-end-line="13" selection-end-column="85" />
-          <folding>
-            <marker date="1549902742024" expanded="true" signature="9:17" ph="..." />
-            <marker date="1549902742024" expanded="true" signature="28:54" ph="..." />
-            <marker date="1549902742024" expanded="true" signature="65:74" ph="..." />
-            <marker date="1549902742024" expanded="true" signature="1528:1542" ph="..." />
-            <marker date="1549902742024" expanded="true" signature="1589:1615" ph="..." />
-            <marker date="1549902742024" expanded="true" signature="1655:1671" ph="..." />
-            <marker date="1549902742024" expanded="true" signature="1676:1694" ph="..." />
-            <marker date="1549902742024" expanded="true" signature="1754:1766" ph="..." />
-            <marker date="1549902742024" expanded="true" signature="1864:1876" ph="..." />
-            <marker date="1549902742024" expanded="true" signature="1968:1980" ph="..." />
-            <marker date="1549902742024" expanded="true" signature="2064:2076" ph="..." />
-            <marker date="1549902742024" expanded="true" signature="2159:2171" ph="..." />
-            <marker date="1549902742024" expanded="true" signature="2278:2294" ph="..." />
-            <marker date="1549902742024" expanded="true" signature="2299:2317" ph="..." />
-            <marker date="1549902742024" expanded="true" signature="2384:2396" ph="..." />
-            <marker date="1549902742024" expanded="true" signature="2586:2598" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/BorrelsController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1120">
-          <caret line="168" column="71" lean-forward="true" selection-start-line="168" selection-start-column="71" selection-end-line="168" selection-end-column="71" />
-          <folding>
-            <element signature="e#40#68#0#PHP" expanded="true" />
-            <marker date="1549907071695" expanded="true" signature="1024:1221" ph="select * fro... lid" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/declaraties/declaraties.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="700">
-          <caret line="35" selection-start-line="35" selection-end-line="35" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/declaraties/declaratie_toevoegen.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="203">
-          <caret line="11" column="65" selection-start-line="11" selection-start-column="65" selection-end-line="11" selection-end-column="65" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Declaratie.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="6" selection-start-line="6" selection-end-line="6" />
+        <state relative-caret-position="280">
+          <caret line="14" column="27" selection-start-line="14" selection-start-column="21" selection-end-line="14" selection-end-column="27" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/DeclaratiesController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="549">
-          <caret line="77" column="37" selection-start-line="77" selection-start-column="37" selection-end-line="77" selection-end-column="37" />
+        <state relative-caret-position="603">
+          <caret line="47" lean-forward="true" selection-start-line="47" selection-end-line="47" />
           <folding>
             <element signature="e#40#68#0#PHP" expanded="true" />
           </folding>
