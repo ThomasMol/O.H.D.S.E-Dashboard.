@@ -1,9 +1,9 @@
 @extends('layout')
-@section('title','Activiteit')
+@section('title','Contributie')
 @section('content')
-    <h3>Activiteit</h3>
+    <h3>Contributie</h3>
     @if(Auth::user()->admin == 1)
-        <a class="btn btn-primary" href="/activiteiten/wijzig/{{$activiteit->activiteit_id}}">Activiteit wijzigen</a>
+        <a class="btn btn-primary" href="/contributies/wijzig/{{$contributie->contributie_id}}">Contributie wijzigen</a>
     @endif
     <table class="table table-hover table-sm ">
         <thead>
@@ -20,13 +20,13 @@
         </thead>
         <tbody>
             <tr>
-                <th scope="row">{{ $activiteit->activiteit_soort }}</th>
-                <td>{{ $activiteit->datum }}</td>
-                <td>{{ $activiteit->omschrijving }}</td>
-                <td>&euro;{{ $activiteit->budget }}</td>
-                <td>&euro;{{ $activiteit->naheffing }}</td>
+                <th scope="row">{{ $contributie->contributie_soort }}</th>
+                <td>{{ $contributie->datum }}</td>
+                <td>{{ $contributie->omschrijving }}</td>
+                <td>&euro;{{ $contributie->budget }}</td>
+                <td>&euro;{{ $contributie->naheffing }}</td>
                 @if(Auth::user()->admin == 1)
-                    <td>{{ $activiteit->betaald_door_id }}</td>
+                    <td>{{ $contributie->betaald_door_id }}</td>
                 @endif
             </tr>
 

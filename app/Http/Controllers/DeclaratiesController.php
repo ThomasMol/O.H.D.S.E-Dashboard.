@@ -17,7 +17,7 @@ class DeclaratiesController extends Controller
     public function index()
     {
         $user_id = Auth::user()->lid_id;
-        $declaraties = Declaratie::join('declaratie_deelname', function($join) use ($user_id){
+        $declaraties = Declaratie::select('declaratie.declaratie_id','betaald_door_id','datum','declaratie.bedrag','omschrijving','created_by_id')->join('declaratie_deelname', function($join) use ($user_id){
             $join->on('declaratie.declaratie_id','declaratie_deelname.declaratie_id');
         })->orWhere(function ($query) use ($user_id){
         $query->orWhere('declaratie.created_by_id', '=', $user_id)
@@ -46,7 +46,7 @@ class DeclaratiesController extends Controller
         $declaratie = Declaratie::find($id);
         $leden = Lid::select('lid_id', 'roepnaam', 'achternaam')->where('type_lid', '!=', 'Geen')->orderBy('type_lid', 'asc')->get();
 
-        $leden_deelname = Lid::leftJoin('declaratie_deelname', function($join) use ($id){
+        $leden_deelname = Lid::select('lid.lid_id', 'roepnaam', 'achternaam','declaratie_deelname.lid_id as deelname','type_lid')->leftJoin('declaratie_deelname', function($join) use ($id){
             $join->on('lid.lid_id','declaratie_deelname.lid_id');
             $join->where('declaratie_deelname.declaratie_id',$id);
         })->where('type_lid','!=','Geen')->orderBy('type_lid','asc')->get();
@@ -69,35 +69,90 @@ class DeclaratiesController extends Controller
         $declaratie->created_by_id = Auth::user()->lid_id;
         $declaratie->save();
 
+        remove_verschuldigd($declaratie->betaald_door_id, $declaratie->bedrag);
+
         $deelnemers = [];
         foreach ($request->deelnemers as $id) {
-
-            $declaratie_deelname = new DeclaratieDeelname;
-            $declaratie_deelname->lid_id = $id;
-            $declaratie_deelname->declaratie_id = $declaratie->declaratie_id;
-            $declaratie_deelname->save();
             array_push($deelnemers, $id);
-            if ($id == $declaratie->betaald_door_id) {
-                remove_verschuldigd($id, $declaratie->bedrag);
-            }
-
+        }
+        if($deelnemers == 0){
+            //TODO reject declaratie!
+        }else if($deelnemers > 0){
+            $this->add_declaratie_deelname($deelnemers, $declaratie);
         }
 
-        if ($deelnemers > 0) {
-            $this->add_kosten_declaratie($deelnemers, $declaratie->bedrag);
-        }
-
-        return redirect('/declaraties');
+        return redirect('/declaratie/' . $declaratie->declaratie_id);
     }
 
+    public function wijzig_declaratie(Request $request, $id){
+        $validatedData = $request->validate([
+            'datum' => 'required|date',
+            'bedrag' => 'required|numeric|min:0.00',
+            'betaald_door_id' => 'required|numeric',
+            'omschrijving' => 'required|max:100000']);
 
-    public function add_kosten_declaratie($deelnemers, $bedrag)
-    {
-        $bedragen = divide_money($bedrag, count($deelnemers));
+        $declaratie = Declaratie::find($id);
+
+        // First remove costs and participation
+        $this->remove_declaratie_deelname($declaratie);
+
+        // Set new values if updated
+        $declaratie->datum = $request->datum;
+        $declaratie->bedrag = $request->bedrag;
+        $declaratie->betaald_door_id = $request->betaald_door_id;
+        $declaratie->omschrijving = $request->omschrijving;
+        $declaratie->save();
+
+
+        remove_verschuldigd($declaratie->betaald_door_id, $declaratie->bedrag);
+
+        $deelnemers = [];
+        foreach ($request->deelnemers as $id) {
+            array_push($deelnemers, $id);
+        }
+        if($deelnemers == 0){
+            //TODO reject declaratie!
+        }else if($deelnemers > 0){
+            $this->add_declaratie_deelname($deelnemers, $declaratie);
+        }
+
+        return redirect('/declaratie/' . $declaratie->declaratie_id);
+    }
+
+    // Adds declaratie deelname per lid, also adds costs
+    public function add_declaratie_deelname($deelnemers, $declaratie){
+        $bedragen = divide_money($declaratie->bedrag, count($deelnemers));
         $i = 1;
-        foreach ($deelnemers as $naheffing_lid) {
-            add_verschuldigd($naheffing_lid, $bedragen[$i]);
+        foreach ($deelnemers as $lid) {
+            add_verschuldigd($lid, $bedragen[$i]);
+            $declaratie_deelname = new DeclaratieDeelname;
+            $declaratie_deelname->lid_id = $lid;
+            $declaratie_deelname->declaratie_id = $declaratie->declaratie_id;
+            $declaratie_deelname->bedrag = $bedragen[$i];
+            $declaratie_deelname->save();
             $i++;
         }
     }
+
+    // Remove declaratie deelname, remove costs
+    public function remove_declaratie_deelname($declaratie){
+        add_verschuldigd($declaratie->betaald_door_id, $declaratie->bedrag);
+        $declaratie_id = $declaratie->declaratie_id;
+        $deelnemers = Lid::select('lid.lid_id as lid_id' , 'declaratie_deelname.lid_id as deelname', 'declaratie_deelname.bedrag as bedrag')->leftJoin('declaratie_deelname', function($join) use ($declaratie_id){
+            $join->on('lid.lid_id','declaratie_deelname.lid_id');
+            $join->where('declaratie_deelname.declaratie_id',$declaratie_id);
+        })->get();
+        foreach ($deelnemers as $deelnemer){
+            remove_verschuldigd($deelnemer->lid_id, $deelnemer->bedrag);
+            DeclaratieDeelname::where('lid_id',$deelnemer->lid_id)->where('declaratie_id',$declaratie_id)->delete();
+        }
+    }
+
+    public function verwijderen($id){
+        $declaratie = Declaratie::find($id);
+        $this->remove_declaratie_deelname($declaratie);
+        $declaratie->delete();
+        return redirect('/declaraties');
+    }
+
 }

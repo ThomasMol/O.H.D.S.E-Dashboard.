@@ -16,6 +16,7 @@ class BorrelsController extends Controller
         $borrels = Borrel::orderBy('datum','desc')->paginate(10);
         return view('borrels/borrels',['borrels' => $borrels]);
     }
+
     public function borrel($id){
         $borrel = Borrel::find($id);
         $leden_aanwezigheid = Lid::join('borrel_aanwezigheid','lid.lid_id','=','borrel_aanwezigheid.lid_id')->where('borrel_aanwezigheid.borrel_id','=',$id)->get();
@@ -27,6 +28,7 @@ class BorrelsController extends Controller
         $leden = Lid::where('type_lid','!=','Geen')->orderBy('type_lid','asc')->get();
         return view('borrels/borrel_toevoegen',['leden' => $leden]);
     }
+
     public function wijzigen($id){
         $borrel = Borrel::find($id);
 

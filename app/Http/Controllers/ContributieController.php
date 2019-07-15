@@ -3,53 +3,53 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Activiteit;
-use App\ActiviteitAanwezigheid;
+use App\Contributie;
+use App\ContributieDeelname;
 use App\Lid;
 use App\SErekening;
 
-class ActiviteitenController extends Controller
+class ContributieController extends Controller
 {
     public function index(){
-        $activiteiten = Activiteit::all();
-        return view('activiteiten/activiteiten',['activiteiten' => $activiteiten]);
+        $contributies = Contributie::all();
+        return view('contributies/contributies',['contributies' => $contributies]);
     }
-    public function activiteit($id){
-        $activiteit = Activiteit::find($id);
-        $leden_participatie = Lid::join('activiteit_participatie','lid.lid_id','=','activiteit_participatie.lid_id')->where('activiteit_participatie.activiteit_id','=',$id)->get();
+    public function contributie($id){
+        $contributie = Contributie::find($id);
+        $leden_participatie = Lid::join('contributie_participatie','lid.lid_id','=','contributie_participatie.lid_id')->where('contributie_participatie.contributie_id','=',$id)->get();
 
-        return view('activiteiten/activiteit',['activiteit' => $activiteit, 'leden_participatie' => $leden_participatie]);
+        return view('contributies/contributie',['contributie' => $contributie, 'leden_participatie' => $leden_participatie]);
     }
 
 
     public function toevoegen(){
         $leden = Lid::where('type_lid','!=','Geen')->orderBy('type_lid','asc')->get();
-        return view('activiteiten/activiteit_toevoegen',['leden' => $leden]);
+        return view('contributies/contributie_toevoegen',['leden' => $leden]);
     }
     public function wijzigen($id){
-        $activiteit = Activiteit::where('activiteit_id', $id)->first();
+        $contributie = Contributie::where('contributie_id', $id)->first();
         $leden = Lid::where('type_lid','!=','Geen')->orderBy('type_lid','asc')->get();
 
-        return view('activiteiten/activiteit_wijzigen',['activiteit' => $activiteit, 'leden' => $leden]);
+        return view('contributies/contributie_wijzigen',['contributie' => $contributie, 'leden' => $leden]);
     }
 
-    public function voeg_activiteit_toe(Request $request){
+    public function voeg_contributie_toe(Request $request){
         $validatedData = $request->validate([
             'datum' => 'required|date',
             'budget' => 'required|numeric',
             'naheffing' => 'required|numeric',
-            'activiteit_soort' => 'required|max:255',
+            'contributie_soort' => 'required|max:255',
             'omschrijving' => 'max:100000']);
 
-        $activiteit = new Activiteit;
-        $activiteit->datum = $request->datum;
-        $activiteit->budget = $request->budget;
-        $activiteit->naheffing = $request->naheffing;
-        $activiteit->activiteit_soort = $request->activiteit_soort;
+        $contributie = new Contributie;
+        $contributie->datum = $request->datum;
+        $contributie->budget = $request->budget;
+        $contributie->naheffing = $request->naheffing;
+        $contributie->contributie_soort = $request->contributie_soort;
         if($request->omschrijving){
-            $activiteit->omschrijving = $request->omschrijving;
+            $contributie->omschrijving = $request->omschrijving;
         }
-        $activiteit->save();
+        $contributie->save();
         $leden = Lid::all();
 
         $naheffing_leden = [];
@@ -59,33 +59,33 @@ class ActiviteitenController extends Controller
         foreach($leden as $lid){
             $id = $lid->lid_id;
             if($request->has($id)){
-                $activiteit_participatie = new ActiviteitAanwezigheid;
-                $activiteit_participatie->lid_id = $id;
-                $activiteit_participatie->activiteit_id = $activiteit->activiteit_id;
+                $contributie_participatie = new ContributieDeelname;
+                $contributie_participatie->lid_id = $id;
+                $contributie_participatie->contributie_id = $contributie->contributie_id;
                 $participatie = $request->$id;
 
                 foreach($participatie as $value){
                     switch ($value){
                         case 'aanwezig':
-                            $activiteit_participatie->aanwezig = 1;
+                            $contributie_participatie->aanwezig = 1;
                             break;
                         case 'afgemeld':
-                            $activiteit_participatie->afgemeld = 1;
+                            $contributie_participatie->afgemeld = 1;
                             break;
                         case 'te_laat':
-                            $activiteit_participatie->te_laat = 1;
+                            $contributie_participatie->te_laat = 1;
                             break;
                         case 'naheffing_aanwezig':
-                            $activiteit_participatie->naheffing_aanwezig = 1;
+                            $contributie_participatie->naheffing_aanwezig = 1;
                             array_push($naheffing_leden,$lid);
                             break;
 
                     }
                 }
 
-                if($activiteit->soort == "Dinsdagborrel"){
+                if($contributie->soort == "Dinsdagborrel"){
                     if($lid->type_lid == "Actief"){
-                        if($activiteit_participatie->afgemeld != 1){
+                        if($contributie_participatie->afgemeld != 1){
 
                         }
 
@@ -96,13 +96,13 @@ class ActiviteitenController extends Controller
 
 
 
-                $activiteit_participatie->save();
+                $contributie_participatie->save();
             }
 
         }
 
         if(count($naheffing_leden) > 0){
-            $this->add_naheffing($naheffing_leden, $activiteit->naheffing);
+            $this->add_naheffing($naheffing_leden, $contributie->naheffing);
         }
         if(count($boete_leden) > 0){
 
@@ -110,10 +110,10 @@ class ActiviteitenController extends Controller
         if(count($extra_kosten_leden) > 0)
 
 
-        return redirect('/activiteiten');
+        return redirect('/contributies');
     }
 
-    public function wijzig_activiteit($id, Request $request){
+    public function wijzig_contributie($id, Request $request){
 
     }
 

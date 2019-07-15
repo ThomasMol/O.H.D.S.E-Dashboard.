@@ -1,22 +1,22 @@
 @extends('layout')
-@section('title','Activiteiten')
+@section('title','Contributies')
 @section('content')
-    <h2 class="mb-4">Activiteit toevoegen</h2>
+    <h2 class="mb-4">Contributie toevoegen</h2>
 
-    <form class="card" method="POST" action="/activiteiten/toevoegen">
+    <form class="card" method="POST" action="/contributies/toevoegen">
         @csrf
-        <h3>Activiteit</h3>
+        <h3>Contributie</h3>
         <label for="datum">Datum</label>
-        <input type="date" class="form-control mb-3" id="datum" name="datum" value="{{ date('Y-m-d') }}" required>
+        <input type="date" class="form-control mb-3" id="datum" name="datum" required>
         <label for="budget">Budget</label>
         <input type="number" class="form-control mb-3" id="budget" name="budget" step=".01" required>
         <label for="naheffing">Naheffing</label>
         <input type="number" class="form-control mb-3" id="naheffing" name="naheffing" step=".01" value="0.00" required>
-        <label for="activiteit_soort">Activiteit soort</label>
-        <select class="form-control mb-3"id="activiteit_soort" name="activiteit_soort" required>
+        <label for="contributie_soort">Contributie soort</label>
+        <select class="form-control mb-3"id="contributie_soort" name="contributie_soort" required>
             <option selected value="Dinsdagborrel">Dinsdagborrel</option>
-            <option value="AkCie">AkCie activiteit</option>
-            <option value="XtCie">XtCie activiteit</option>
+            <option value="AkCie">AkCie contributie</option>
+            <option value="XtCie">XtCie contributie</option>
             <option value="TripCie">TripCie weekend</option>
             <option value="BrokCie">BrokCie feest</option>
             <option value="Kerstdiner">BrokCie feest</option>
@@ -24,7 +24,7 @@
             <option value="Dies">Dies feest</option>
             <option value="SERgift">SER gift</option>
             <option value="UITweek">UIT week</option>
-            <option value="Overig">Overige activiteit</option>
+            <option value="Overig">Overige contributie</option>
         </select>
 
         <label for="betaald_door">Betaald door:</label>
@@ -63,6 +63,6 @@
             </tbody>
         </table>
 
-        <button type="submit" class="btn btn-primary btn-lg btn-block mb-3 mt-3">Voeg activiteit toe</button>
+        <button type="submit" class="btn btn-primary btn-lg btn-block mb-3 mt-3">Voeg contributie toe</button>
     </form>
 @endsection

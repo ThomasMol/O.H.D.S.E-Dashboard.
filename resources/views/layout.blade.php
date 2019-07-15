@@ -25,7 +25,7 @@
 <body>
 <nav>
     <div class="mobile-nav">
-        <a>SE</a>
+        <a href="/"><img src="/images/sadas.png" class="logo-mobile" width="40px"></a>
         <button id="menu" class="btn menu navbar-toggler" data-target="#sidebarCollapse" data-toggle="collapse">menu
             <span data-feather="menu"></span></button>
     </div>
@@ -54,9 +54,9 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link {{ Request::is('activiteit*') ? 'active' : '' }}" href="/activiteiten">
+                <a class="nav-link {{ Request::is('contributie*') ? 'active' : '' }}" href="/contributies">
                     <span data-feather="coffee"></span>
-                    Activiteiten
+                    Contributies
                 </a>
             </li>
             <li class="nav-item">
@@ -105,6 +105,7 @@
 <script src="/js/jquery.js" type="text/javascript"></script>
 <script src="/js/bootstrap.js" type="text/javascript"></script>
 <script src="/js/scripts.js" type="text/javascript"></script>
+
 <script>
     feather.replace();
 </script>

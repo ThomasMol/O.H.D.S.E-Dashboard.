@@ -32,6 +32,9 @@ main {
 .mobile-nav {
     display: none;
 }
+.logo-mobile{
+    padding: 4px;
+}
 
 /*sidebar*/
 .sidebar {

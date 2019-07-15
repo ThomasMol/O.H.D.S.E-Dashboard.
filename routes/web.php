@@ -24,14 +24,14 @@ Route::middleware(['auth'])->group(function (){
     Route::post('/gegevens/wijzig','GegevensController@wijzig');
     Route::post('/gegevens/wijziglogin','GegevensController@wijziglogin');
 
-    /*activiteiten*/
-    Route::get('/activiteiten','ActiviteitenController@index');
-    Route::get('/activiteiten/toevoegen','ActiviteitenController@toevoegen')->middleware('admin');
-    Route::get('/activiteiten/wijzig/{id}','ActiviteitenController@wijzigen')->middleware('admin');
-    Route::get('/activiteit/{id}', 'ActiviteitenController@activiteit');
+    /*contributies*/
+    Route::get('/contributies','ContributieController@index');
+    Route::get('/contributies/toevoegen','ContributieController@toevoegen')->middleware('admin');
+    Route::get('/contributies/wijzig/{id}','ContributieController@wijzigen')->middleware('admin');
+    Route::get('/contributie/{id}', 'ContributieController@contributie');
 
-    Route::post('/activiteiten/toevoegen','ActiviteitenController@voeg_activiteit_toe')->middleware('admin');
-    Route::post('/activiteiten/wijzig/{id}','ActiviteitenController@wijzig_activiteit')->middleware('admin');
+    Route::post('/contributies/toevoegen','ContributieController@voeg_contributie_toe')->middleware('admin');
+    Route::post('/contributies/wijzig/{id}','ContributieController@wijzig_contributie')->middleware('admin');
 
     /*borrels*/
     Route::get('/borrels','BorrelsController@index');
@@ -44,12 +44,13 @@ Route::middleware(['auth'])->group(function (){
 
     /*declaraties*/
     Route::get('/declaraties','DeclaratiesController@index');
-    Route::get('/declaraties/toevoegen','DeclaratiesController@toevoegen');
-    Route::get('/declaraties/wijzig/{id}','DeclaratiesController@wijzigen');
+    Route::get('/declaratie/toevoegen','DeclaratiesController@toevoegen');
+    Route::get('/declaratie/wijzig/{id}','DeclaratiesController@wijzigen');
     Route::get('/declaratie/{id}', 'DeclaratiesController@declaratie');
+    Route::get('/declaratie/verwijder/{id}', 'DeclaratiesController@verwijderen');
 
-    Route::post('/declaraties/toevoegen','DeclaratiesController@voeg_declaratie_toe');
-    Route::post('/declaraties/wijzig/{id}','DeclaratiesController@wijzig_declaratie');
+    Route::post('/declaratie/toevoegen','DeclaratiesController@voeg_declaratie_toe');
+    Route::post('/declaratie/wijzig/{id}','DeclaratiesController@wijzig_declaratie');
 
 
     /*transacties*/

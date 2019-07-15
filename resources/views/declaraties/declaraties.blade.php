@@ -2,7 +2,7 @@
 @section('title','Declaraties')
 @section('content')
     <h3>Declaraties</h3>
-    <a class="btn btn-primary" href="/declaraties/toevoegen">Declaratie toevoegen</a>
+    <a class="btn btn-primary" href="/declaratie/toevoegen">Declaratie toevoegen</a>
     <table class="table table-hover table-sm ">
         <thead>
         <tr>
@@ -22,8 +22,9 @@
                 <td>&euro;{{ $declaratie->bedrag }}</td>
                 <td>{{ $declaratie->betaald_door_id }}</td>
                 <td>
-                    <a class="btn btn-success" href="/declaratie/{{$declaratie->declaratie_id}}">Bekijk</a>
-                    <a class="btn btn-primary" href="/declaraties/wijzig/{{$declaratie->declaratie_id}}">Wijzig</a>
+                    <a class="btn btn-outline-primary" href="/declaratie/{{$declaratie->declaratie_id}}">Bekijk</a>
+                    <a class="btn btn-outline-primary" href="/declaratie/wijzig/{{$declaratie->declaratie_id}}">Wijzig</a>
+                    <a class="btn btn-outline-danger" href="/declaratie/verwijder/{{$declaratie->declaratie_id}}">Verwijder</a>
                 </td>
 
             </tr>
