@@ -31,6 +31,7 @@ function divide_money($total, $divisor)
         add_verschuldigd($lid_id, $bedrag);
     }
 
+    //todo verander deze naar nieuwe db design
     function add_verschuldigd($lid_id,$bedrag){
         $lid = App\Lid::find($lid_id);
         $lid->verschuldigd = $lid->verschuldigd + $bedrag;
