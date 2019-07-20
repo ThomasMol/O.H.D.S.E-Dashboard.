@@ -1,5 +1,7 @@
 <?php
 
+use App\Boete;
+
 function divide_money($total, $divisor)
 {
     $total = (float)round($total, 2);
@@ -31,19 +33,21 @@ function divide_money($total, $divisor)
         add_verschuldigd($lid_id, $bedrag);
     }
 
+    function remove_boete($lid_id, $boete_id, $bedrag){
+        $boete = App\Boete::destroy($boete_id);
+        subtract_verschuldigd($lid_id,$bedrag);
+    }
+
+
     //todo verander deze naar nieuwe db design
-    function add_verschuldigd($lid_id,$bedrag){
-        $lid = App\Lid::find($lid_id);
+    function add_verschuldigd($lid_id, $bedrag){
+        $lid = App\Financien::find($lid_id);
         $lid->verschuldigd = $lid->verschuldigd + $bedrag;
         $lid->save();
     }
 
-    function remove_boete($lid_id, $boete_id, $bedrag){
-        $boete = App\Boete::destroy($boete_id);
-        remove_verschuldigd($lid_id,$bedrag);
-    }
-    function remove_verschuldigd($lid_id, $bedrag){
-        $lid = App\Lid::find($lid_id);
+    function subtract_verschuldigd($lid_id, $bedrag){
+        $lid = App\Financien::find($lid_id);
         $lid->verschuldigd = $lid->verschuldigd - $bedrag;
         $lid->save();
     }

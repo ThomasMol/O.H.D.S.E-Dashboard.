@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\DeclaratieDeelname;
 use Illuminate\Http\Request;
 use App\Contributie;
 use App\ContributieDeelname;
@@ -29,17 +28,22 @@ class ContributieController extends Controller
     }
 
     public function wijzigen($id){
-        $contributie = Contributie::where('contributie_id', $id)->first();
-        $leden = Lid::where('type_lid','!=','Geen')->orderBy('type_lid','asc')->get();
+        $contributie = Contributie::find($id);
+        $leden = Lid::select('lid_id', 'roepnaam', 'achternaam')->where('type_lid', '!=', 'Geen')->orderBy('type_lid', 'asc')->get();
 
-        return view('contributies/contributie_wijzigen',['contributie' => $contributie, 'leden' => $leden]);
+        $leden_deelname = Lid::select('lid.lid_id', 'roepnaam', 'achternaam','contributie_deelname.lid_id as deelname','type_lid')->leftJoin('contributie_deelname', function($join) use ($id){
+            $join->on('lid.lid_id','contributie_deelname.lid_id');
+            $join->where('contributie_deelname.contributie_id',$id);
+        })->where('type_lid','!=','Geen')->orderBy('type_lid','asc')->get();
+        return view('contributies/contributie_wijzigen', ['contributie' => $contributie, 'leden_deelname' => $leden_deelname, 'leden'=>$leden]);
     }
 
     public function voeg_contributie_toe(Request $request){
         $validatedData = $request->validate([
             'datum' => 'required|date',
             'bedrag' => 'required|numeric',
-            'contributie_soort' => 'required|max:255']);
+            'contributie_soort' => 'required|max:255',
+            'deelnemers'=>'required']);
 
         $contributie = new Contributie;
         $contributie->datum = $request->datum;
@@ -47,7 +51,6 @@ class ContributieController extends Controller
         $contributie->omschrijving = $request->contributie_soort;
         $contributie->save();
 
-        $leden = Lid::all();
         $deelnemers = [];
 
         //todo moet dit wel? request->deelnemers is al array
@@ -56,7 +59,7 @@ class ContributieController extends Controller
         }
 
         if($deelnemers == 0){
-            //TODO reject declaratie!
+            //TODO reject contributie!
         }else if($deelnemers > 0){
             $this->add_contributie_deelname($deelnemers, $contributie);
         }
@@ -87,7 +90,7 @@ class ContributieController extends Controller
         }
 
         if($deelnemers == 0){
-            //TODO reject declaratie!
+            //TODO reject contributie!
         }else if($deelnemers > 0){
             $this->add_contributie_deelname($deelnemers, $contributie);
         }
@@ -98,7 +101,7 @@ class ContributieController extends Controller
     public function add_contributie_deelname($deelnemers, $contributie){
         foreach ($deelnemers as $lid){
             add_verschuldigd($lid, $contributie->bedrag);
-            $contributie_deelname = new DeclaratieDeelname;
+            $contributie_deelname = new ContributieDeelname;
             $contributie_deelname->lid_id = $lid;
             $contributie_deelname->contributie_id = $contributie->contributie_id;
             $contributie_deelname->save();
@@ -107,12 +110,13 @@ class ContributieController extends Controller
 
     public function remove_contributie_deelname($contributie){
         $contributie_id = $contributie->contributie_id;
-        $deelnemers = Lid::select('lid.lid_id as lid_id', 'contributie_deelname.lid_id as deelname')->leftJoin('contributie_deelname', function($join) use ($contributie_id){
+        $deelnemers = Lid::join('contributie_deelname', function($join) use ($contributie_id){
             $join->on('lid.lid_id', 'contributie_deelname.lid_id');
-            $join->where('contributie_deelname.declaratie_id', $contributie_id);
+            $join->where('contributie_deelname.contributie_id', $contributie_id);
         })->get();
+        echo $deelnemers;
         foreach($deelnemers as $deelnemer){
-            remove_verschuldigd($deelnemer->lid_id, $contributie->bedrag);
+            subtract_verschuldigd($deelnemer->lid_id, $contributie->bedrag);
             ContributieDeelname::where('lid_id', $deelnemer->lid_id)->where('contributie_id', $contributie_id)->delete();
         }
     }

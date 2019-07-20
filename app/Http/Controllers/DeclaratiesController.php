@@ -69,7 +69,7 @@ class DeclaratiesController extends Controller
         $declaratie->created_by_id = Auth::user()->lid_id;
         $declaratie->save();
 
-        remove_verschuldigd($declaratie->betaald_door_id, $declaratie->bedrag);
+        subtract_verschuldigd($declaratie->betaald_door_id, $declaratie->bedrag);
 
         $deelnemers = [];
         foreach ($request->deelnemers as $id) {
@@ -104,7 +104,7 @@ class DeclaratiesController extends Controller
         $declaratie->save();
 
 
-        remove_verschuldigd($declaratie->betaald_door_id, $declaratie->bedrag);
+        subtract_verschuldigd($declaratie->betaald_door_id, $declaratie->bedrag);
 
         $deelnemers = [];
         foreach ($request->deelnemers as $id) {
@@ -138,12 +138,12 @@ class DeclaratiesController extends Controller
     public function remove_declaratie_deelname($declaratie){
         add_verschuldigd($declaratie->betaald_door_id, $declaratie->bedrag);
         $declaratie_id = $declaratie->declaratie_id;
-        $deelnemers = Lid::select('lid.lid_id as lid_id' , 'declaratie_deelname.lid_id as deelname', 'declaratie_deelname.bedrag as bedrag')->leftJoin('declaratie_deelname', function($join) use ($declaratie_id){
+        $deelnemers = Lid::select('lid.lid_id','declaratie_deelname.bedrag as bedrag')->join('declaratie_deelname', function($join) use ($declaratie_id){
             $join->on('lid.lid_id','declaratie_deelname.lid_id');
             $join->where('declaratie_deelname.declaratie_id',$declaratie_id);
         })->get();
         foreach ($deelnemers as $deelnemer){
-            remove_verschuldigd($deelnemer->lid_id, $deelnemer->bedrag);
+            subtract_verschuldigd($deelnemer->lid_id, $deelnemer->bedrag);
             DeclaratieDeelname::where('lid_id',$deelnemer->lid_id)->where('declaratie_id',$declaratie_id)->delete();
         }
     }

@@ -31,7 +31,7 @@ Route::middleware(['auth'])->group(function (){
     Route::get('/contributie/{id}', 'ContributieController@contributie');
 
     Route::post('/contributies/toevoegen','ContributieController@voeg_contributie_toe')->middleware('admin');
-    Route::post('/contributies/wijzig/{id}','ContributieController@wijzig_contributie')->middleware('admin');
+    Route::post('/contributies/wijzig','ContributieController@wijzig_contributie')->middleware('admin');
 
     /*borrels*/
     Route::get('/borrels','BorrelsController@index');
