@@ -3,8 +3,9 @@
 @section('content')
     <h2 class="mb-4">Declaratie wijzgien</h2>
 
-    <form class="card" method="POST" action="/declaratie/wijzig/{{$declaratie->declaratie_id}}">
+    <form class="card" method="POST" action="/declaratie/wijzig">
         @csrf
+        <input type="hidden" name="declaratie_id" value="{{$declaratie->declaratie_id}}">
         <h3>Declaratie</h3>
         <label for="datum">Datum</label>
         <input type="date" class="form-control mb-3" id="datum" name="datum" value="{{ $declaratie->datum }}"required>

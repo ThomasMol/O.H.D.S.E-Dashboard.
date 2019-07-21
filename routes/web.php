@@ -30,8 +30,8 @@ Route::middleware(['auth'])->group(function (){
     Route::get('/contributies/wijzig/{id}','ContributieController@wijzigen')->middleware('admin');
     Route::get('/contributie/{id}', 'ContributieController@contributie');
 
-    Route::post('/contributies/toevoegen','ContributieController@voeg_contributie_toe')->middleware('admin');
-    Route::post('/contributies/wijzig','ContributieController@wijzig_contributie')->middleware('admin');
+    Route::post('/contributies/toevoegen','ContributieController@insert_update_contributie')->middleware('admin');
+    Route::post('/contributies/wijzig','ContributieController@insert_update_contributie')->middleware('admin');
 
     /*borrels*/
     Route::get('/borrels','BorrelsController@index');
@@ -49,8 +49,8 @@ Route::middleware(['auth'])->group(function (){
     Route::get('/declaratie/{id}', 'DeclaratiesController@declaratie');
     Route::get('/declaratie/verwijder/{id}', 'DeclaratiesController@verwijderen');
 
-    Route::post('/declaratie/toevoegen','DeclaratiesController@voeg_declaratie_toe');
-    Route::post('/declaratie/wijzig/{id}','DeclaratiesController@wijzig_declaratie');
+    Route::post('/declaratie/toevoegen','DeclaratiesController@insert_update_declaratie');
+    Route::post('/declaratie/wijzig','DeclaratiesController@insert_update_declaratie');
 
 
     /*transacties*/

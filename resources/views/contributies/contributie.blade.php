@@ -8,34 +8,24 @@
     <table class="table table-hover table-sm ">
         <thead>
         <tr>
-            <th scope="col">Soort</th>
             <th scope="col">Datum</th>
             <th scope="col">Omschrijving</th>
-            <th scope="col">Budget</th>
-            <th scope="col">Naheffing</th>
-            @if(Auth::user()->admin == 1)
-                <th scope="col">Betaald door</th>
-            @endif
+            <th scope="col">Bedrag</th>
         </tr>
         </thead>
         <tbody>
             <tr>
-                <th scope="row">{{ $contributie->contributie_soort }}</th>
-                <td>{{ $contributie->datum }}</td>
+                <th scope="row">{{ $contributie->datum }}</th>
                 <td>{{ $contributie->omschrijving }}</td>
-                <td>&euro;{{ $contributie->budget }}</td>
-                <td>&euro;{{ $contributie->naheffing }}</td>
-                @if(Auth::user()->admin == 1)
-                    <td>{{ $contributie->betaald_door_id }}</td>
-                @endif
+                <td>{{ $contributie->bedrag }}</td>
             </tr>
 
         </tbody>
     </table>
 
     <ul>
-        @foreach($leden_participatie as $lid)
-            <li>{{$lid->roepnaam}} aanwezig: {{$lid->aanwezig}}</li>
+        @foreach($leden_deelname as $lid)
+            <li>{{$lid->roepnaam}} deelname </li>
         @endforeach
     </ul>
 @endsection

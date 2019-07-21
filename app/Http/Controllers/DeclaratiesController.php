@@ -53,15 +53,22 @@ class DeclaratiesController extends Controller
         return view('declaraties/declaratie_wijzigen', ['declaratie' => $declaratie, 'leden_deelname' => $leden_deelname, 'leden'=>$leden]);
     }
 
-    public function voeg_declaratie_toe(Request $request)
+    public function insert_update_declaratie(Request $request)
     {
         $validatedData = $request->validate([
             'datum' => 'required|date',
             'bedrag' => 'required|numeric|min:0.00',
             'betaald_door_id' => 'required|numeric',
-            'omschrijving' => 'required|max:100000']);
+            'omschrijving' => 'required|max:100000',
+            'deelnemers'=> 'required']);
 
-        $declaratie = new Declaratie;
+        if(isset($request->declaratie_id)){
+            $declaratie = Declaratie::find($request->declaratie_id);
+            $this->remove_declaratie_deelname($declaratie);
+        }else{
+            $declaratie = new Declaratie;
+        }
+
         $declaratie->datum = $request->datum;
         $declaratie->bedrag = $request->bedrag;
         $declaratie->betaald_door_id = $request->betaald_door_id;
@@ -71,53 +78,11 @@ class DeclaratiesController extends Controller
 
         subtract_verschuldigd($declaratie->betaald_door_id, $declaratie->bedrag);
 
-        $deelnemers = [];
-        foreach ($request->deelnemers as $id) {
-            array_push($deelnemers, $id);
-        }
-        if($deelnemers == 0){
-            //TODO reject declaratie!
-        }else if($deelnemers > 0){
-            $this->add_declaratie_deelname($deelnemers, $declaratie);
-        }
+        $this->add_declaratie_deelname($request->deelnemers, $declaratie);
 
         return redirect('/declaratie/' . $declaratie->declaratie_id);
     }
 
-    public function wijzig_declaratie(Request $request, $id){
-        $validatedData = $request->validate([
-            'datum' => 'required|date',
-            'bedrag' => 'required|numeric|min:0.00',
-            'betaald_door_id' => 'required|numeric',
-            'omschrijving' => 'required|max:100000']);
-
-        $declaratie = Declaratie::find($id);
-
-        // First remove costs and participation
-        $this->remove_declaratie_deelname($declaratie);
-
-        // Set new values if updated
-        $declaratie->datum = $request->datum;
-        $declaratie->bedrag = $request->bedrag;
-        $declaratie->betaald_door_id = $request->betaald_door_id;
-        $declaratie->omschrijving = $request->omschrijving;
-        $declaratie->save();
-
-
-        subtract_verschuldigd($declaratie->betaald_door_id, $declaratie->bedrag);
-
-        $deelnemers = [];
-        foreach ($request->deelnemers as $id) {
-            array_push($deelnemers, $id);
-        }
-        if($deelnemers == 0){
-            //TODO reject declaratie!
-        }else if($deelnemers > 0){
-            $this->add_declaratie_deelname($deelnemers, $declaratie);
-        }
-
-        return redirect('/declaratie/' . $declaratie->declaratie_id);
-    }
 
     // Adds declaratie deelname per lid, also adds costs
     public function add_declaratie_deelname($deelnemers, $declaratie){
