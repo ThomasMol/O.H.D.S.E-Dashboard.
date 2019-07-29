@@ -95,7 +95,7 @@ class UitgavenController extends Controller
 
     public function verwijderen($id){
         $uitgave = Uitgave::find($id);
-        $this->remove_declaratie_deelname($uitgave);
+        $this->remove_uitgave_deelname($uitgave);
         $uitgave->delete();
         return redirect('/uitgaven');
     }

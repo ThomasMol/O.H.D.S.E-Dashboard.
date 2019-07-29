@@ -32,25 +32,27 @@ Route::middleware(['auth'])->group(function (){
 
     Route::post('/contributies/toevoegen','ContributieController@insert_update_contributie')->middleware('admin');
     Route::post('/contributies/wijzig','ContributieController@insert_update_contributie')->middleware('admin');
+    Route::get('/contributies/verwijder/{id}', 'ContributieController@verwijderen');
 
     /*uitgaven*/
     Route::get('/uitgaven','UitgavenController@index');
     Route::get('/uitgaven/toevoegen','UitgavenController@toevoegen')->middleware('admin');
     Route::get('/uitgaven/wijzig/{id}','UitgavenController@wijzigen')->middleware('admin');
     Route::get('/uitgave/{id}', 'UitgavenController@uitgave');
+    Route::get('/uitgaven/verwijder/{id}', 'UitgavenController@verwijderen');
 
     Route::post('/uitgaven/toevoegen','UitgavenController@insert_update_uitgave')->middleware('admin');
     Route::post('/uitgaven/wijzig','UitgavenController@insert_update_uitgave')->middleware('admin');
 
     /*declaraties*/
     Route::get('/declaraties','DeclaratiesController@index');
-    Route::get('/declaratie/toevoegen','DeclaratiesController@toevoegen');
-    Route::get('/declaratie/wijzig/{id}','DeclaratiesController@wijzigen');
-    Route::get('/declaratie/{id}', 'DeclaratiesController@declaratie');
-    Route::get('/declaratie/verwijder/{id}', 'DeclaratiesController@verwijderen');
+    Route::get('/declaraties/toevoegen','DeclaratiesController@toevoegen');
+    Route::get('/declaraties/wijzig/{id}','DeclaratiesController@wijzigen');
+    Route::get('/declaraties/{id}', 'DeclaratiesController@declaratie');
+    Route::get('/declaraties/verwijder/{id}', 'DeclaratiesController@verwijderen');
 
-    Route::post('/declaratie/toevoegen','DeclaratiesController@insert_update_declaratie');
-    Route::post('/declaratie/wijzig','DeclaratiesController@insert_update_declaratie');
+    Route::post('/declaraties/toevoegen','DeclaratiesController@insert_update_declaratie');
+    Route::post('/declaraties/wijzig','DeclaratiesController@insert_update_declaratie');
 
 
     /*transacties*/

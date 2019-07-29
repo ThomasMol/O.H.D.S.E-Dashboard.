@@ -61,15 +61,15 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link {{ Request::is('uitgave*') ? 'active' : '' }}" href="/uitgaven">
-                    <span data-feather="dollar-sign"></span>
-                    Uitgaven
-                </a>
-            </li>
-            <li class="nav-item">
                 <a class="nav-link {{ Request::is('declaratie*') ? 'active' : '' }}" href="/declaraties">
                     <span data-feather="dollar-sign"></span>
                     Declaraties
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link {{ Request::is('uitgave*') ? 'active' : '' }}" href="/uitgaven">
+                    <span data-feather="dollar-sign"></span>
+                    Uitgaven
                 </a>
             </li>
             <li class="nav-item">

@@ -3,7 +3,7 @@
 @section('content')
     <h2 class="mb-4">Declaratie toevoegen</h2>
 
-    <form class="card" method="POST" action="/declaratie/toevoegen">
+    <form class="card" method="POST" action="/declaraties/toevoegen">
         @csrf
         <h3>Declaratie</h3>
         <label for="datum">Datum</label>

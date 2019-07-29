@@ -2,14 +2,15 @@
 @section('title','Declaraties')
 @section('content')
     <h3>Declaraties</h3>
-    <a class="btn btn-primary" href="/declaratie/toevoegen">Declaratie toevoegen</a>
+    <a class="btn btn-primary" href="/declaraties/toevoegen">Declaratie toevoegen</a>
     <table class="table table-hover table-sm ">
         <thead>
         <tr>
             <th scope="col">Datum</th>
             <th scope="col">Omschrijving</th>
-            <th scope="col">Bedrag</th>
+            <th scope="col">(Totaal) Bedrag</th>
             <th scope="col">Betaald door</th>
+            <th scope="col">Aangemaakt door</th>
             <th scope="col"></th>
 
         </tr>
@@ -17,14 +18,17 @@
         <tbody>
         @foreach($declaraties as $declaratie)
             <tr>
-                <td>{{ $declaratie->datum }}</td>
+                <th>{{ date('d F Y - l', strtotime($declaratie->datum)) }}</th>
                 <td>{{ $declaratie->omschrijving }}</td>
                 <td>&euro;{{ $declaratie->bedrag }}</td>
                 <td>{{ $declaratie->betaald_door_id }}</td>
+                <td>{{ $declaratie->created_by_id }}</td>
                 <td>
-                    <a class="btn btn-outline-primary" href="/declaratie/{{$declaratie->declaratie_id}}">Bekijk</a>
-                    <a class="btn btn-outline-primary" href="/declaratie/wijzig/{{$declaratie->declaratie_id}}">Wijzig</a>
-                    <a class="btn btn-outline-danger" href="/declaratie/verwijder/{{$declaratie->declaratie_id}}">Verwijder</a>
+                    <a class="btn btn-outline-primary" href="/declaraties/{{$declaratie->declaratie_id}}">Bekijk</a>
+                    @if(Auth::user()->admin == 1)
+                    <a class="btn btn-outline-primary" href="/declaraties/wijzig/{{$declaratie->declaratie_id}}">Wijzig</a>
+                    <a class="btn btn-outline-danger" href="/declaraties/verwijder/{{$declaratie->declaratie_id}}">Verwijder</a>
+                    @endif
                 </td>
 
             </tr>

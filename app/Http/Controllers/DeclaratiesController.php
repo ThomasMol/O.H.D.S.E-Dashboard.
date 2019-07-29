@@ -24,6 +24,7 @@ class DeclaratiesController extends Controller
             ->orWhere('declaratie.betaald_door_id', '=', $user_id)
             ->orWhere('declaratie_deelname.lid_id', '=', $user_id);
         })->groupBy('declaratie.declaratie_id')->orderBy('datum', 'desc')->paginate(10);
+
         return view('declaraties/declaraties', ['declaraties' => $declaraties]);
     }
 
@@ -82,7 +83,6 @@ class DeclaratiesController extends Controller
 
         return redirect('/declaratie/' . $declaratie->declaratie_id);
     }
-
 
     public function add_declaratie_deelname($deelnemers, $declaratie){
         $bedragen = divide_money($declaratie->bedrag, count($deelnemers));

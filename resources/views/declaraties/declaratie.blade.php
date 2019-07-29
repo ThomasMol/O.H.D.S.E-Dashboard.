@@ -3,7 +3,7 @@
 @section('content')
     <h3>Declaratie</h3>
     @if(Auth::user()->admin == 1)
-        <a class="btn btn-primary" href="/declaratie/wijzig/{{$declaratie->declaratie_id}}">Declaratie wijzigen</a>
+        <a class="btn btn-primary" href="/declaraties/wijzig/{{$declaratie->declaratie_id}}">Declaratie wijzigen</a>
     @endif
     <table class="table table-hover table-sm ">
         <thead>
