@@ -11,6 +11,7 @@
 
     {{-- Scripts --}}
     <script src="https://unpkg.com/feather-icons"></script>
+    <script src="/js/jquery-3.4.1.min.js"></script>
 
     {{-- Favicon --}}
     <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon/apple-touch-icon.png">
@@ -55,14 +56,14 @@
             </li>
             <li class="nav-item">
                 <a class="nav-link {{ Request::is('contributie*') ? 'active' : '' }}" href="/contributies">
-                    <span data-feather="coffee"></span>
+                    <span data-feather="dollar-sign"></span>
                     Contributies
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link {{ Request::is('borrel*') ? 'active' : '' }}" href="/borrels">
-                    <span data-feather="coffee"></span>
-                    Borrels
+                <a class="nav-link {{ Request::is('uitgave*') ? 'active' : '' }}" href="/uitgaven">
+                    <span data-feather="dollar-sign"></span>
+                    Uitgaven
                 </a>
             </li>
             <li class="nav-item">

@@ -87,5 +87,10 @@ class ContributieController extends Controller
 
 
     //todo verwijder functie
-
+    public function verwijderen($id){
+        $contributie = Contributie::find($id);
+        $this->remove_contributie_deelname($contributie);
+        $contributie->delete();
+        return redirect('/contributies');
+    }
 }

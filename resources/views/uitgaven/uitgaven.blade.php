@@ -1,9 +1,9 @@
 @extends('layout')
-@section('title','Borrels')
+@section('title','Uitgaven')
 @section('content')
-    <h3>Borrels</h3>
+    <h3>Uitgaven</h3>
     @if(Auth::user()->admin == 1)
-        <a class="btn btn-primary" href="/borrels/toevoegen">Borrel toevoegen</a>
+        <a class="btn btn-primary" href="/uitgaven/toevoegen">Uitgave toevoegen</a>
     @endif
     <table class="table table-hover table-sm ">
         <thead>
@@ -17,15 +17,15 @@
         </tr>
         </thead>
         <tbody>
-        @foreach($borrels as $borrel)
+        @foreach($uitgaven as $uitgave)
             <tr>
-                <td>{{ $borrel->datum }}</td>
-                <td>{{ $borrel->omschrijving }}</td>
-                <td>&euro;{{ $borrel->budget }}</td>
-                <td>&euro;{{ $borrel->naheffing }}</td>
-                <td><a class="btn btn-success" href="/borrel/{{$borrel->borrel_id}}">Bekijk</a>
+                <td>{{ $uitgave->datum }}</td>
+                <td>{{ $uitgave->omschrijving }}</td>
+                <td>&euro;{{ $uitgave->budget }}</td>
+                <td>&euro;{{ $uitgave->naheffing }}</td>
+                <td><a class="btn btn-success" href="/uitgave/{{$uitgave->uitgave_id}}">Bekijk</a>
                     @if(Auth::user()->admin == 1)
-                        <a class="btn btn-primary" href="/borrels/wijzig/{{$borrel->borrel_id}}">Wijzig</a>
+                        <a class="btn btn-primary" href="/uitgaven/wijzig/{{$uitgave->uitgave_id}}">Wijzig</a>
                     @endif
                 </td>
 
@@ -35,6 +35,6 @@
         </tbody>
     </table>
     <div class="text-center">
-        {!! $borrels->links(); !!}
+        {!! $uitgaven->links(); !!}
     </div>
 @endsection

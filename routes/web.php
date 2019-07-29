@@ -33,14 +33,14 @@ Route::middleware(['auth'])->group(function (){
     Route::post('/contributies/toevoegen','ContributieController@insert_update_contributie')->middleware('admin');
     Route::post('/contributies/wijzig','ContributieController@insert_update_contributie')->middleware('admin');
 
-    /*borrels*/
-    Route::get('/borrels','BorrelsController@index');
-    Route::get('/borrels/toevoegen','BorrelsController@toevoegen')->middleware('admin');
-    Route::get('/borrels/wijzig/{id}','BorrelsController@wijzigen')->middleware('admin');
-    Route::get('/borrel/{id}', 'BorrelsController@borrel');
+    /*uitgaven*/
+    Route::get('/uitgaven','UitgavenController@index');
+    Route::get('/uitgaven/toevoegen','UitgavenController@toevoegen')->middleware('admin');
+    Route::get('/uitgaven/wijzig/{id}','UitgavenController@wijzigen')->middleware('admin');
+    Route::get('/uitgave/{id}', 'UitgavenController@uitgave');
 
-    Route::post('/borrels/toevoegen','BorrelsController@voeg_borrel_toe')->middleware('admin');
-    Route::post('/borrels/wijzig/{id}','BorrelsController@wijzig_borrel')->middleware('admin');
+    Route::post('/uitgaven/toevoegen','UitgavenController@insert_update_uitgave')->middleware('admin');
+    Route::post('/uitgaven/wijzig','UitgavenController@insert_update_uitgave')->middleware('admin');
 
     /*declaraties*/
     Route::get('/declaraties','DeclaratiesController@index');

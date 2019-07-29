@@ -84,7 +84,6 @@ class DeclaratiesController extends Controller
     }
 
 
-    // Adds declaratie deelname per lid, also adds costs
     public function add_declaratie_deelname($deelnemers, $declaratie){
         $bedragen = divide_money($declaratie->bedrag, count($deelnemers));
         $i = 1;
@@ -99,7 +98,6 @@ class DeclaratiesController extends Controller
         }
     }
 
-    // Remove declaratie deelname, remove costs
     public function remove_declaratie_deelname($declaratie){
         add_verschuldigd($declaratie->betaald_door_id, $declaratie->bedrag);
         $declaratie_id = $declaratie->declaratie_id;
