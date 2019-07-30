@@ -14,8 +14,8 @@ Route::middleware(['auth'])->group(function (){
     Route::get('/leden/toevoegen','LedenController@toevoegen')->middleware('admin');
     Route::get('/leden/wijzig/{id}','LedenController@wijzig')->middleware('admin');
 
-    Route::post('/leden/toevoegen','LedenController@voeg_lid_toe')->middleware('admin');
-    Route::post('/leden/wijzig/{id}','LedenController@wijzig_lid')->middleware('admin');
+    Route::post('/leden/toevoegen','LedenController@insert_update_lid')->middleware('admin');
+    Route::post('/leden/wijzig','LedenController@insert_update_lid')->middleware('admin');
 
     /*eigen gegevens*/
     Route::get('/gegevens','GegevensController@index');

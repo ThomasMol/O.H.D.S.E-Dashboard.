@@ -45,7 +45,6 @@ class GegevensController extends Controller
         $lid->roepnaam = $request->roepnaam;
         $lid->voornamen = $request->voornamen;
         $lid->achternaam = $request->roepnaam;
-        $lid->save();
 
         $lid_gegevens->geboortedatum = $request->geboortedatum;
         $lid_gegevens->geboorteplaats = $request->geboorteplaats;
@@ -54,6 +53,8 @@ class GegevensController extends Controller
         $lid_gegevens->postcode = $request->postcode;
         $lid_gegevens->stad = $request->stad;
         $lid_gegevens->land = $request->land;
+
+        $lid->save();
         $lid_gegevens->save();
 
         return redirect('/gegevens');
