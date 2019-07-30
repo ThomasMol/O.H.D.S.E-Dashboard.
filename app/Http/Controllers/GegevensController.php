@@ -2,6 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Financien;
+use App\Lid;
+use App\LidGegevens;
+use App\Rekeningnummer;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
@@ -11,10 +15,15 @@ use Illuminate\Support\Facades\Auth;
 class GegevensController extends Controller
 {
     public function index(){
-        return view('gegevens/gegevens');
+        $financien = Financien::find(Auth::user()->lid_id);
+        $rekeningnummers = Rekeningnummer::findMany( Auth::user()->lid_id);
+        $lid_gegevens = LidGegevens::find(Auth::user()->lid_id);
+        return view('gegevens/gegevens',['financien'=>$financien,'rekeningnummers' => $rekeningnummers,'lid_gegevens'=>$lid_gegevens]);
     }
     public function wijzigform(){
-        return view('gegevens/wijzig_gegevens');
+        $rekeningnummers = Rekeningnummer::findMany( Auth::user()->lid_id);
+        $lid_gegevens = LidGegevens::find(Auth::user()->lid_id);
+        return view('gegevens/wijzig_gegevens',['rekeningnummers' => $rekeningnummers,'lid_gegevens'=>$lid_gegevens]);
     }
 
     public function wijzig(Request $request){
@@ -22,42 +31,31 @@ class GegevensController extends Controller
             'roepnaam' => 'required|max:255',
             'voornamen' => 'required|max:255',
             'achternaam' => 'required|max:255',
-            'dob' => 'required|date',
+            'geboortedatum' => 'required|date',
             'geboorteplaats' => 'required|max:255',
             'telefoonnummer'=> 'required|max:255',
-            'adres' => 'required|max:255',
+            'straatnaam' => 'required|max:255',
             'postcode' => 'required|max:255',
-            'woonplaats' => 'required|max:255'/*,
-            'rekeningnummer' => 'required|max:255',
-            'rekeningnummer_2' => 'required|max:255',
-            'verschuldigd' => 'required|numeric',
-            'overgemaakt' => 'required|numeric',
-            'gespaard' => 'required|numeric',
-            'type_lid' => 'required|max:255',
-            'admin' => 'required|min:0|max:1',
-            'lichting' => 'numeric'*/]);
+            'stad' => 'required|max:255',
+            'land' => 'required|max:255']);
 
-        DB::table('lid')->where('lid_id', Auth::user()->lid_id)->update(
-            ['roepnaam' => $request->input('roepnaam'),
-                'voornamen' => $request->input('voornamen'),
-                'achternaam' => $request->input('achternaam'),
-                'dob' => $request->input('dob'),
-                'geboorteplaats' => $request->input('geboorteplaats'),
-                'telefoonnummer' => $request->input('telefoonnummer'),
-                'adres' => $request->input('adres'),
-                'postcode' => $request->input('postcode'),
-                'woonplaats' => $request->input('woonplaats')/*,
-                'rekeningnummer' => $request->input('rekeningnummer'),
-                'rekeningnummer_2' => $request->input('rekeningnummer2'),
-                'verschuldigd' => $request->input('verschuldigd'),
-                'overgemaakt' => $request->input('overgemaakt'),
-                'gespaard' => $request->input('gespaard'),
-                'schuld' => $request->input('verschuldigd') - $request->input('overgemaakt'),
-                'type_lid' => $request->input('type_lid'),
-                'admin' => $request->input('admin'),
-                'lichting' => $request->input('lichting'),
-                'pasfoto' => $request->input('profiel_foto')*/]
-        );
+        $lid = Auth::user();
+        $lid_gegevens = LidGegevens::find($lid->lid_id);
+
+        $lid->roepnaam = $request->roepnaam;
+        $lid->voornamen = $request->voornamen;
+        $lid->achternaam = $request->roepnaam;
+        $lid->save();
+
+        $lid_gegevens->geboortedatum = $request->geboortedatum;
+        $lid_gegevens->geboorteplaats = $request->geboorteplaats;
+        $lid_gegevens->telefoonnummer = $request->telefoonnummer;
+        $lid_gegevens->straatnaam = $request->straatnaam;
+        $lid_gegevens->postcode = $request->postcode;
+        $lid_gegevens->stad = $request->stad;
+        $lid_gegevens->land = $request->land;
+        $lid_gegevens->save();
+
         return redirect('/gegevens');
     }
 }

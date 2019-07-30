@@ -7,48 +7,60 @@
 
     <div class="row">
         <div class="col-md-4 card">
-            <h3>Persoonsgevevens</h3>
-            <label for="roepnaam">Roepnaam</label>
-            <h4>{{Auth::user()->roepnaam}}</h4>
-            <label for="voornamen">Voornamen</label>
-            <h4>{{Auth::user()->voornamen}}</h4>
-            <label for="achternaam">Achternaam</label>
-            <h4>{{Auth::user()->achternaam}}</h4>
-            <label for="dob">Geboortedatum</label>
-            <h4>{{Auth::user()->dob}}</h4>
-            <label for="geboorteplaats">Geboorteplaats</label>
-            <h4>{{Auth::user()->geboorteplaats}}</h4>
-            <label for="telefoonnummer">Telefoonnummer</label>
-            <h4>{{Auth::user()->telefoonnummer}}</h4>
             <h3>Accountgegevens</h3>
-            <label for="email">Email</label>
+            <label for="email">Email (en inlogcode)</label>
             <h4>{{Auth::user()->email}}</h4>
         </div>
 
         <div class="col-md-4 card">
-            <h3>Adres</h3>
-            <label for="adres">Straatnaam, nummer en toevoeging</label>
-            <h4>{{Auth::user()->adres}}</h4>
+            <h3>Persoonlijke gegevens</h3>
+
+            <label for="roepnaam">Roepnaam</label>
+            <h4>{{Auth::user()->roepnaam}}</h4>
+
+            <label for="voornamen">Voornamen</label>
+            <h4>{{Auth::user()->voornamen}}</h4>
+
+            <label for="achternaam">Achternaam</label>
+            <h4>{{Auth::user()->achternaam}}</h4>
+
+            <label for="straatnaam">Straatnaam, nummer en toevoeging</label>
+            <h4>{{$lid_gegevens->straatnaam}}</h4>
+
             <label for="postcode">Postcode</label>
-            <h4>{{Auth::user()->postcode}}</h4>
-            <label for="woonplaats">Woonplaats</label>
-            <h4>{{Auth::user()->woonplaats}}</h4>
+            <h4>{{$lid_gegevens->postcode}}</h4>
+
+            <label for="stad">Stad</label>
+            <h4>{{$lid_gegevens->stad}}</h4>
+
+            <label for="land">Land</label>
+            <h4>{{$lid_gegevens->land}}</h4>
+
+            <label for="telefoonnummer">Telefoonnummer</label>
+            <h4>{{$lid_gegevens->telefoonnummer}}</h4>
+
+            <label for="geboorteplaats">Geboorteplaats</label>
+            <h4>{{$lid_gegevens->geboorteplaats}}</h4>
+
+            <label for="geboortedatum">Geboortedatum</label>
+            <h4>{{$lid_gegevens->geboortedatum}}</h4>
+
         </div>
 
         <div class="col-md-4 card">
             <h3>Finance</h3>
-            <label for="rekeningnummer">Rekeningnummer 1</label>
-            <h4>{{Auth::user()->rekeningnummer}}</h4>
-            <label for="rekeningnummer2">Rekeningnummer 2 (optioneel)</label>
-            <h4>{{Auth::user()->rekeningnummer_2}}</h4>
+            @foreach($rekeningnummers as $rekeningnummer)
+            <label for="rekeningnummer">Rekeningnummer {{$loop->index + 1}}</label>
+            <h4>{{$rekeningnummer->rekeningnummer}}</h4>
+            @endforeach
             <label for="verschuldigd">Verschuldigd</label>
-            <h4>{{Auth::user()->verschuldigd}}</h4>
+            <h4>&euro;{{$financien->verschuldigd}}</h4>
             <label for="overgemaakt">Overgemaakt</label>
-            <h4>{{Auth::user()->overgemaakt}}</h4>
+            <h4>&euro;{{$financien->overgemaakt}}</h4>
             <label for="gespaard">Gespaard</label>
-            <h4>{{Auth::user()->gespaard}}</h4>
+            <h4>&euro;{{$financien->gespaard}}</h4>
             <label for="gespaard">Schuld</label>
-            <h4>{{Auth::user()->verschuldigd - Auth::user()->overgemaakt}}</h4>
+            <h4>&euro;{{$financien->schuld}}</h4>
         </div>
 
         <div class="col-md-4 card">

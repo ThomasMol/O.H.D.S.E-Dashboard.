@@ -44,7 +44,8 @@ class UitgavenController extends Controller
             'budget' => 'required|numeric|min:0.00',
             'uitgave' => 'required|numeric|min:0.00',
             'categorie' => 'required',
-            'omschrijving' => 'required|max:100000']);
+            'omschrijving' => 'required|max:100000',
+            'deelnemers' => 'required']);
 
         if(isset($request->uitgave_id)){
             $uitgave = Uitgave::find($request->uitgave_id);
