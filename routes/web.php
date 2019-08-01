@@ -11,6 +11,7 @@ Route::middleware(['auth'])->group(function (){
 
     /*leden*/
     Route::get('/leden','LedenController@index');
+    Route::get('/lid/{id}','LedenController@lid');
     Route::get('/leden/toevoegen','LedenController@toevoegen')->middleware('admin');
     Route::get('/leden/wijzig/{id}','LedenController@wijzig')->middleware('admin');
 

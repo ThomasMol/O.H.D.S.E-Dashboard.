@@ -44,7 +44,7 @@ class GegevensController extends Controller
 
         $lid->roepnaam = $request->roepnaam;
         $lid->voornamen = $request->voornamen;
-        $lid->achternaam = $request->roepnaam;
+        $lid->achternaam = $request->achternaam;
 
         $lid_gegevens->geboortedatum = $request->geboortedatum;
         $lid_gegevens->geboorteplaats = $request->geboorteplaats;

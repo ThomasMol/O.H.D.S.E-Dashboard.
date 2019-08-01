@@ -14,12 +14,24 @@ use App\Lid;
 class LedenController extends Controller
 {
     public function index(){
-        $financien = Financien::find(Auth::user()->lid_id);
-        $rekeningnummers = Rekeningnummer::findMany( Auth::user()->lid_id);
-        $lid_gegevens = LidGegevens::find(Auth::user()->lid_id);
-        $leden = Lid::where('type_lid','!=','Geen')->orderBy('type_lid','asc')->paginate(20);
+        $leden = Lid::select('lid.lid_id', 'roepnaam', 'achternaam','email','telefoonnummer','type_lid','schuld','gespaard','financien.lid_id')
+            ->leftJoin('financien', 'lid.lid_id','financien.lid_id')
+            ->leftJoin('lid_gegevens', 'lid.lid_id','lid_gegevens.lid_id')
+            ->where('type_lid','!=','Geen')->orderBy('type_lid','asc')->paginate(20);
         return view('leden/leden',['leden' => $leden]);
     }
+
+    public function lid($id){
+        $lid = Lid::select('*')
+            ->leftJoin('financien', 'lid.lid_id','financien.lid_id')
+            ->leftJoin('lid_gegevens', 'lid.lid_id','lid_gegevens.lid_id')
+            ->where('lid.lid_id',$id)->first();
+        $rekeningnummers = Rekeningnummer::findMany($id);
+
+        //dd($lid);
+        return view('leden/lid',['lid' => $lid,'rekeningnummers'=>$rekeningnummers]);
+    }
+
     public function toevoegen(){
         return view('leden/lid_toevoegen');
     }

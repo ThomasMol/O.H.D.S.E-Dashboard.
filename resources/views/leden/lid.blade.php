@@ -1,0 +1,78 @@
+@extends('layout')
+@section('title','Gegevens')
+@section('content')
+    <h3 class="mb-4">Gegevens van: {{$lid->roepnaam}}</h3>
+    <div class="row">
+        <div class="col-md-4 card">
+            <h3>Accountgegevens</h3>
+            <label for="email">Email (en inlogcode)</label>
+            <h4>{{$lid->email}}</h4>
+        </div>
+
+        <div class="col-md-4 card">
+            <h3>Persoonlijke gegevens</h3>
+
+            <label for="roepnaam">Roepnaam</label>
+            <h4>{{$lid->roepnaam}}</h4>
+
+            <label for="voornamen">Voornamen</label>
+            <h4>{{$lid->voornamen}}</h4>
+
+            <label for="achternaam">Achternaam</label>
+            <h4>{{$lid->achternaam}}</h4>
+
+            <label for="straatnaam">Straatnaam, nummer en toevoeging</label>
+            <h4>{{$lid->straatnaam}}</h4>
+
+            <label for="postcode">Postcode</label>
+            <h4>{{$lid->postcode}}</h4>
+
+            <label for="stad">Stad</label>
+            <h4>{{$lid->stad}}</h4>
+
+            <label for="land">Land</label>
+            <h4>{{$lid->land}}</h4>
+
+            <label for="telefoonnummer">Telefoonnummer</label>
+            <h4>{{$lid->telefoonnummer}}</h4>
+
+            <label for="geboorteplaats">Geboorteplaats</label>
+            <h4>{{$lid->geboorteplaats}}</h4>
+
+            <label for="geboortedatum">Geboortedatum</label>
+            <h4>{{$lid->geboortedatum}}</h4>
+
+        </div>
+
+        <div class="col-md-4 card">
+            <h3>Finance</h3>
+            @foreach($rekeningnummers as $rekeningnummer)
+                <label for="rekeningnummer">Rekeningnummer {{$loop->index + 1}}</label>
+                <h4>{{$rekeningnummer->rekeningnummer}}</h4>
+            @endforeach
+            <label for="verschuldigd">Verschuldigd</label>
+            <h4>&euro;{{$lid->verschuldigd}}</h4>
+            <label for="overgemaakt">Overgemaakt</label>
+            <h4>&euro;{{$lid->overgemaakt}}</h4>
+            <label for="gespaard">Gespaard</label>
+            <h4>&euro;{{$lid->gespaard}}</h4>
+            <label for="gespaard">Schuld</label>
+            <h4>&euro;{{$lid->schuld}}</h4>
+        </div>
+
+        <div class="col-md-4 card">
+            <h3>Overige gegevens</h3>
+            <label for="admin">Admin?</label>
+            <h4>{{$lid->admin}}</h4>
+
+            <label for="type_lid">Type lid</label>
+            <h4>{{$lid->type_lid}}</h4>
+
+            <label for="lichting">Lichting</label>
+            <h4>{{$lid->lichting}}</h4>
+
+            <label for="profiel_foto">Profiel foto</label>
+            <img/>
+        </div>
+    </div>
+@endsection

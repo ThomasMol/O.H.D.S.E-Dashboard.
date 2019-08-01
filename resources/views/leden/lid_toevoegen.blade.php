@@ -37,8 +37,9 @@
 
         <h3>Finance</h3>
         <label for="rekeningnummer">Rekeningnummer 1</label>
-        <input type="text" class="form-control mb-3" id="rekeningnummer" name="rekeningnummers[]" required>
-
+        <input type="text" class="form-control mb-3" id="rekeningnummer" name="rekeningnummers[]" required value="{{old('rekeningnummers')}}">
+        <div id="rekeningnummers"></div>
+        <button type="button" id="add_rekeningnummer" class="btn btn-outline-primary mb-2">Voeg nog een rekeniningnummer toe</button>
 
         <label for="verschuldigd">Verschuldigd</label>
         <input type="number" class="form-control mb-3" id="verschuldigd" name="verschuldigd" value="0" step=".01" required value="{{old('verschuldigd')}}">
@@ -67,7 +68,18 @@
         <label for="profiel_foto">Profiel foto</label>
         <input type="file" class="form-control mb-3" id="profiel_foto" name="profiel_foto" accept="image/" >
 
-        <button type="submit" class="btn btn-primary btn-lg btn-block mb-3 mt-3">Voeg lid toe</button>
+        <button type="submit" class="btn btn-primary btn-lg btn-block mb-3 mt-3 ">Voeg lid toe</button>
     </form>
+    <script>
+    var i = 2;
+    $("#add_rekeningnummer").click(function () {
+       console.log(i);
+       $("#rekeningnummers").append('<div id="extra_rekeningnummer"><button class="btn btn-link" id="verwijder_rekeningnummer">verwijder</button><label for=\"rekeningnummer\">Rekeningnummer '+i+'</label>\n<input type=\"text\" class=\"form-control mb-3\" id=\"rekeningnummer\" name=\"rekeningnummers[]\" required value=\"{{old('rekeningnummers')}}\"></div>' );
+       i++;
+    });
 
+    $("#verwijder_rekeningnummer").click(function(){
+       $(this).remove();
+    });
+</script>
 @endsection

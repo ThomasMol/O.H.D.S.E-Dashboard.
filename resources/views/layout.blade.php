@@ -34,50 +34,79 @@
 
         <ul class="nav flex-column ">
             <li class="nav-item">
-                <img src="/images/sadas.png" class="logo" width="70px">
+                <img src="/images/sadas.png" class="logo" width="50px">
+            </li>
+            <li class="nav-item category">
+                Algemeen
             </li>
             <li class="nav-item">
                 <a class="nav-link {{ Request::is('/') ? 'active' : '' }}" href="/">
-                    <span data-feather="home"></span>
-                    Home
+                    Overzicht
                 </a>
             </li>
             <li class="nav-item">
                 <a class="nav-link {{ Request::is('gegevens*') ? 'active' : '' }}" href="/gegevens">
-                    <span data-feather="user"></span>
                     Mijn gegevens
                 </a>
             </li>
             <li class="nav-item">
                 <a class="nav-link {{ Request::is('leden*') ? 'active' : '' }}" href="/leden">
-                    <span data-feather="users"></span>
                     Leden
+                </a>
+            </li>
+            <li class="nav-item category">
+                Financi&euml;n
+            </li>
+            <li class="nav-item">
+                <a class="nav-link {{ Request::is('borrel*') ? 'active' : '' }}" href="/borrels">
+                    Borrels
                 </a>
             </li>
             <li class="nav-item">
                 <a class="nav-link {{ Request::is('contributie*') ? 'active' : '' }}" href="/contributies">
-                    <span data-feather="dollar-sign"></span>
                     Contributies
                 </a>
             </li>
             <li class="nav-item">
                 <a class="nav-link {{ Request::is('declaratie*') ? 'active' : '' }}" href="/declaraties">
-                    <span data-feather="dollar-sign"></span>
                     Declaraties
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link {{ Request::is('uitgave*') ? 'active' : '' }}" href="/uitgaven">
-                    <span data-feather="dollar-sign"></span>
-                    Uitgaven
-                </a>
-            </li>
-            <li class="nav-item">
                 <a class="nav-link {{ Request::is('transacties*') ? 'active' : '' }}" href="/transacties">
-                    <span data-feather="repeat"></span>
                     Transacties
                 </a>
             </li>
+            <li class="nav-item">
+                <a class="nav-link {{ Request::is('uitgave*') ? 'active' : '' }}" href="/uitgaven">
+                    Uitgaven
+                </a>
+            </li>
+
+            <li class="nav-item category">
+                Dispuut
+            </li>
+            <li class="nav-item">
+                <a class="nav-link {{ Request::is('bestu*') ? 'active' : '' }}" href="/besturen">
+                    Besturen
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link {{ Request::is('commissie*') ? 'active' : '' }}" href="/commissies">
+                    Commissies
+                </a>
+            </li>
+
+            @if(Auth::user()->admin == 1)
+            <li class="nav-item category">
+                Bestuur
+            </li>
+            <li class="nav-item">
+                <a class="nav-link {{ Request::is('instelling*') ? 'active' : '' }}" href="/instellingen">
+                    Instellingen
+                </a>
+            </li>
+            @endif
             @if(Auth::check())
                 <li class="nav-item logout">
                     <a class="nav-link" href="/loguit">
@@ -102,7 +131,6 @@
     @endif
     @yield('content')
 </main>
-
 <script src="/js/jquery.js" type="text/javascript"></script>
 <script src="/js/bootstrap.js" type="text/javascript"></script>
 <script src="/js/scripts.js" type="text/javascript"></script>
