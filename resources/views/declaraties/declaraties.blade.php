@@ -24,9 +24,9 @@
                 <td>{{ $declaratie->betaald_door_id }}</td>
                 <td>{{ $declaratie->created_by_id }}</td>
                 <td>
-                    <a class="btn btn-outline-primary" href="/declaraties/{{$declaratie->declaratie_id}}">Bekijk</a>
+                    <a class="btn btn-light" href="/declaratie/{{$declaratie->declaratie_id}}">Bekijk</a>
                     @if(Auth::user()->admin == 1)
-                    <a class="btn btn-outline-primary" href="/declaraties/wijzig/{{$declaratie->declaratie_id}}">Wijzig</a>
+                    <a class="btn btn-light" href="/declaraties/wijzig/{{$declaratie->declaratie_id}}">Wijzig</a>
                     <a class="btn btn-outline-danger" href="/declaraties/verwijder/{{$declaratie->declaratie_id}}">Verwijder</a>
                     @endif
                 </td>

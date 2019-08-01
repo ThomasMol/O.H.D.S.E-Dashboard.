@@ -39,7 +39,7 @@
         <label for="rekeningnummer">Rekeningnummer 1</label>
         <input type="text" class="form-control mb-3" id="rekeningnummer" name="rekeningnummers[]" required value="{{old('rekeningnummers')}}">
         <div id="rekeningnummers"></div>
-        <button type="button" id="add_rekeningnummer" class="btn btn-outline-primary mb-2">Voeg nog een rekeniningnummer toe</button>
+        <button type="button" id="add_rekeningnummer" class="btn btn-light mb-2">Voeg nog een rekeniningnummer toe</button>
 
         <label for="verschuldigd">Verschuldigd</label>
         <input type="number" class="form-control mb-3" id="verschuldigd" name="verschuldigd" value="0" step=".01" required value="{{old('verschuldigd')}}">

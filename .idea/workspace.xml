@@ -2,225 +2,18 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1d93f86e-b11f-418d-aa3e-7306eb9d7eb9" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/.editorconfig" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.env.example" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.gitattributes" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/dataSources/8125161c-afe8-407d-8a81-5835eb95a820.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/dataSources/8125161c-afe8-407d-8a81-5835eb95a820/storage_v2/_src_/schema/OHDSE.HQV7BA.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/dataSources/8125161c-afe8-407d-8a81-5835eb95a820/storage_v2/_src_/schema/OHDSE.HQV7BA.zip" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/laravel.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Boete.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Console/Kernel.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Contributie.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/ContributieDeelname.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Declaratie.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/DeclaratieDeelname.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Exceptions/Handler.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Financien.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Http/Controllers/Auth/ForgotPasswordController.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Http/Controllers/Auth/LoginController.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Http/Controllers/Auth/RegisterController.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Http/Controllers/Auth/ResetPasswordController.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Http/Controllers/Auth/VerificationController.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Http/Controllers/ContributieController.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Http/Controllers/Controller.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Http/Controllers/DeclaratiesController.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Http/Controllers/GegevensController.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Http/Controllers/HomeController.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Http/Controllers/LedenController.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Http/Controllers/TransactiesController.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Http/Controllers/UitgavenController.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Http/Kernel.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Http/Middleware/Admin.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Http/Middleware/Authenticate.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Http/Middleware/CheckForMaintenanceMode.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Http/Middleware/EncryptCookies.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Http/Middleware/RedirectIfAuthenticated.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Http/Middleware/TrimStrings.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Http/Middleware/TrustProxies.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Http/Middleware/VerifyCsrfToken.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Lid.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/LidGegevens.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Providers/AppServiceProvider.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Providers/AuthServiceProvider.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Providers/BroadcastServiceProvider.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Providers/EventServiceProvider.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Providers/RouteServiceProvider.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Rekeningnummer.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/SErekening.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Transactie.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Uitgave.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/UitgaveDeelname.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/User.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/helpers.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/artisan" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bootstrap/app.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bootstrap/cache/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/config/app.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/config/auth.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/config/broadcasting.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/config/cache.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/config/database.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/config/filesystems.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/config/hashing.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/config/logging.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/config/mail.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/config/queue.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/config/services.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/config/session.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/config/view.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/database/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/database/factories/UserFactory.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/database/migrations/2014_10_12_000000_create_users_table.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/database/migrations/2014_10_12_100000_create_password_resets_table.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/database/seeds/DatabaseSeeder.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/phpunit.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/.htaccess" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/css/bootstrap.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/css/stylesheet.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/favicon.ico" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/favicon/android-chrome-192x192.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/favicon/android-chrome-512x512.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/favicon/apple-touch-icon.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/favicon/browserconfig.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/favicon/favicon-16x16.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/favicon/favicon-32x32.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/favicon/favicon.ico" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/favicon/mstile-150x150.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/favicon/safari-pinned-tab.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/favicon/site.webmanifest" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/images/leden/bberg.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/images/leden/bwilschut.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/images/leden/cscheffers.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/images/leden/ddedem.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/images/leden/ddevries.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/images/leden/dleeftink.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/images/leden/fmulder.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/images/leden/gasselbergs.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/images/leden/hpolman.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/images/leden/ibakker.JPG" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/images/leden/igerritsen.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/images/leden/jbeishuizen.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/images/leden/jboeve.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/images/leden/jdedem.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/images/leden/jkolenberg.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/images/leden/jmacco.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/images/leden/joliemans.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/images/leden/jschinkelshoek.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/images/leden/jschoppink.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/images/leden/lkembaraulsamer.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/images/leden/llouter.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/images/leden/lschemmekes.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/images/leden/lsonneveld.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/images/leden/lzijlstra.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/images/leden/mcoppens.JPG" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/images/leden/meuwes.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/images/leden/mjansen.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/images/leden/mmaahs.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/images/leden/mschenk.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/images/leden/mvandun.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/images/leden/mveenhuizen.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/images/leden/mverloop.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/images/leden/mvermeulen.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/images/leden/mvlugt.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/images/leden/nbouter.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/images/leden/ndemeijer.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/images/leden/nschemmekes.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/images/leden/okolenberg.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/images/leden/pravestein.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/images/leden/rbruijn.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/images/leden/rdamwijk.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/images/leden/rmijn.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/images/leden/roosterholt.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/images/leden/rwerker.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/images/leden/sdaalen.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/images/leden/sdekerf.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/images/leden/shermans.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/images/leden/sverbeek.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/images/leden/svries.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/images/leden/tdedie.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/images/leden/tdejong.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/images/leden/tjansen.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/images/leden/tmol.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/images/leden/vpoen.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/images/leden/wverloop.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/images/sadas.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/images/selogo.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/index.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/js/app.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/js/bootstrap.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/js/jquery-3.4.1.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/js/jquery.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/js/scripts.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/robots.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/svg/403.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/svg/404.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/svg/500.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/svg/503.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/web.config" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/readme.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/js/app.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/js/bootstrap.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/js/components/ExampleComponent.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/lang/en/auth.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/lang/en/pagination.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/lang/en/passwords.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/lang/en/validation.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/sass/_variables.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/sass/app.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/contributies/contributie.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/contributies/contributie_toevoegen.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/contributies/contributie_wijzigen.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/contributies/contributies.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/declaraties/declaratie.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/declaraties/declaratie_toevoegen.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/declaraties/declaratie_wijzigen.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/declaraties/declaraties.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/gegevens/gegevens.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/gegevens/wijzig_gegevens.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/index.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/layout.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/leden/leden.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/leden/lid.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/leden/lid_toevoegen.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/leden/lid_wijzigen.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/login.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/login_layout.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/transacties/transacties.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/uitgaven/uitgave.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/uitgaven/uitgave_toevoegen.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/uitgaven/uitgave_wijzigen.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/uitgaven/uitgaven.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/routes/api.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/routes/channels.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/routes/console.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/storage/app/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/storage/app/public/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/storage/debugbar/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/storage/framework/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/storage/framework/cache/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/storage/framework/cache/data/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/storage/framework/sessions/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/storage/framework/testing/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/storage/framework/views/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/storage/logs/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tests/CreatesApplication.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tests/Feature/ExampleTest.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tests/TestCase.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tests/Unit/ExampleTest.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/webpack.mix.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/ContributieDeelname.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/ContributieDeelname.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/LedenController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/LedenController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Lid.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Lid.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/css/bootstrap.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/bootstrap.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/contributies/contributies.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/contributies/contributies.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/declaraties/declaraties.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/declaraties/declaraties.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/layout.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layout.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/leden/leden.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/leden/leden.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/leden/lid_toevoegen.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/leden/lid_toevoegen.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/leden/lid_wijzigen.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/leden/lid_wijzigen.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/uitgaven/uitgaven.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/uitgaven/uitgaven.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -275,51 +68,56 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/routes/web.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="260">
-              <caret line="13" column="25" selection-start-line="13" selection-start-column="25" selection-end-line="13" selection-end-column="25" />
+            <state relative-caret-position="1060">
+              <caret line="53" column="42" selection-start-line="53" selection-start-column="40" selection-end-line="53" selection-end-column="42" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/Http/Controllers/HomeController.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="140">
+              <caret line="7" column="6" selection-start-line="7" selection-start-column="6" selection-end-line="7" selection-end-column="6" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/resources/views/index.blade.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="480">
+              <caret line="24" column="10" selection-start-line="24" selection-start-column="10" selection-end-line="24" selection-end-column="10" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/Http/Controllers/LedenController.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="640">
-              <caret line="36" column="5" lean-forward="true" selection-start-line="36" selection-start-column="5" selection-end-line="36" selection-end-column="5" />
-              <folding>
-                <element signature="e#40#58#0#PHP" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/resources/views/gegevens/gegevens.blade.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="466">
-              <caret line="32" column="25" lean-forward="true" selection-end-line="80" selection-end-column="11" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/Http/Controllers/ContributieController.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="606">
-              <caret line="36" column="76" lean-forward="true" selection-start-line="33" selection-start-column="8" selection-end-line="36" selection-end-column="76" />
-              <folding>
-                <element signature="e#40#68#0#PHP" expanded="true" />
-                <element signature="e#206#364#0#PHP" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/resources/views/leden/leden.blade.php">
           <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="680">
+              <caret line="34" column="23" selection-start-line="34" selection-start-column="23" selection-end-line="34" selection-end-column="23" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/Http/Controllers/DeclaratiesController.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="10">
+              <caret line="65" column="16" selection-start-line="65" selection-start-column="16" selection-end-line="65" selection-end-column="16" />
+              <folding>
+                <element signature="e#40#68#0#PHP" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/resources/views/layout.blade.php">
+          <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="540">
-              <caret line="27" column="66" selection-start-line="27" selection-start-column="66" selection-end-line="27" selection-end-column="66" />
+              <caret line="119" column="6" selection-start-line="119" selection-start-column="6" selection-end-line="119" selection-end-column="6" />
             </state>
           </provider>
         </entry>
@@ -381,8 +179,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/resources/views/borrels/borrels.blade.php" />
-        <option value="$PROJECT_DIR$/app/Http/Controllers/Declaraties.php" />
         <option value="$PROJECT_DIR$/app/Declaratie.php" />
         <option value="$PROJECT_DIR$/resources/views/index.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/activiteiten/activiteit_toevoegen.blade.php" />
@@ -391,7 +187,6 @@
         <option value="$PROJECT_DIR$/app/DeclaratieDeelname.php" />
         <option value="$PROJECT_DIR$/composer.json" />
         <option value="$PROJECT_DIR$/app/Contributie.php" />
-        <option value="$PROJECT_DIR$/app/ContributieDeelname.php" />
         <option value="$PROJECT_DIR$/resources/views/activiteiten/activiteit.blade.php" />
         <option value="$PROJECT_DIR$/app/Financien.php" />
         <option value="$PROJECT_DIR$/app/helpers.php" />
@@ -416,7 +211,6 @@
         <option value="$PROJECT_DIR$/config/app.php" />
         <option value="$PROJECT_DIR$/resources/views/contributies/contributies.blade.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/DeclaratiesController.php" />
-        <option value="$PROJECT_DIR$/resources/views/declaraties/declaraties.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/uitgaven/uitgaven.blade.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/UitgavenController.php" />
         <option value="$PROJECT_DIR$/app/LidGegevens.php" />
@@ -425,13 +219,17 @@
         <option value="$APPLICATION_CONFIG_DIR$/consoles/db/8125161c-afe8-407d-8a81-5835eb95a820/console.sql" />
         <option value="$PROJECT_DIR$/app/Rekeningnummer.php" />
         <option value="$PROJECT_DIR$/resources/views/leden/lid_toevoegen.blade.php" />
-        <option value="$PROJECT_DIR$/resources/views/layout.blade.php" />
         <option value="$PROJECT_DIR$/public/css/stylesheet.css" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/GegevensController.php" />
-        <option value="$PROJECT_DIR$/resources/views/leden/leden.blade.php" />
-        <option value="$PROJECT_DIR$/routes/web.php" />
         <option value="$PROJECT_DIR$/resources/views/leden/lid.blade.php" />
+        <option value="$PROJECT_DIR$/resources/views/leden/lid_wijzigen.blade.php" />
+        <option value="$PROJECT_DIR$/app/ContributieDeelname.php" />
+        <option value="$PROJECT_DIR$/app/Lid.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/LedenController.php" />
+        <option value="$PROJECT_DIR$/resources/views/declaraties/declaraties.blade.php" />
+        <option value="$PROJECT_DIR$/routes/web.php" />
+        <option value="$PROJECT_DIR$/resources/views/layout.blade.php" />
+        <option value="$PROJECT_DIR$/resources/views/leden/leden.blade.php" />
       </list>
     </option>
   </component>
@@ -445,7 +243,7 @@
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="7">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="-1385" />
     <option name="y" value="-10" />
     <option name="width" value="1459" />
@@ -493,6 +291,13 @@
               <item name="laravel" type="462c0819:PsiDirectoryNode" />
               <item name="resources" type="462c0819:PsiDirectoryNode" />
               <item name="views" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="laravel" type="b2602c69:ProjectViewProjectNode" />
+              <item name="laravel" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+              <item name="views" type="462c0819:PsiDirectoryNode" />
+              <item name="declaraties" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="laravel" type="b2602c69:ProjectViewProjectNode" />
@@ -612,18 +417,18 @@
       <workItem from="1564345020103" duration="1213000" />
       <workItem from="1564403927644" duration="7460000" />
       <workItem from="1564424976058" duration="22767000" />
-      <workItem from="1564601616519" duration="9528000" />
+      <workItem from="1564601616519" duration="16784000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="326561000" />
+    <option name="totallyTimeSpent" value="333817000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-2567" y="-7" width="2062" height="1166" extended-state="7" />
+    <frame x="-2567" y="-7" width="2062" height="1166" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.2067932" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.2067932" />
       <window_info id="Structure" order="1" weight="0.25" />
       <window_info id="npm" order="2" side_tool="true" />
       <window_info id="Favorites" order="3" side_tool="true" />
@@ -672,41 +477,6 @@
     <option name="version" value="1" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/Financien.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="200">
-          <caret line="10" column="1" lean-forward="true" selection-start-line="10" selection-start-column="1" selection-end-line="10" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/contributies/contributie_toevoegen.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="740">
-          <caret line="37" column="63" selection-start-line="37" selection-start-column="53" selection-end-line="37" selection-end-column="63" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/contributies/contributie_wijzigen.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="140">
-          <caret line="7" column="49" selection-start-line="7" selection-start-column="35" selection-end-line="7" selection-end-column="49" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Console/Kernel.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="7" column="6" selection-start-line="7" selection-start-column="6" selection-end-line="7" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/helpers.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="803">
-          <caret line="51" column="21" selection-start-line="51" selection-start-column="21" selection-end-line="51" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/resources/js/components/ExampleComponent.vue">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -735,13 +505,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="640">
           <caret line="32" column="2" selection-start-line="32" selection-start-column="2" selection-end-line="32" selection-end-column="2" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Declaratie.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="200">
-          <caret line="10" column="44" selection-start-line="9" selection-start-column="4" selection-end-line="10" selection-end-column="44" />
         </state>
       </provider>
     </entry>
@@ -821,21 +584,12 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/declaraties/declaraties.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="400">
-          <caret line="20" column="71" selection-start-line="20" selection-start-column="23" selection-end-line="20" selection-end-column="71" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/uitgaven/uitgaven.blade.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="480">
           <caret line="24" column="42" selection-start-line="24" selection-start-column="42" selection-end-line="24" selection-end-column="42" />
           <folding>
             <element signature="e#807#813#1#HTML" expanded="true" />
-            <marker date="1564434167644" expanded="true" signature="9:17" ph="..." />
-            <marker date="1564434167644" expanded="true" signature="28:37" ph="..." />
           </folding>
         </state>
       </provider>
@@ -862,13 +616,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="180">
           <caret line="9" column="35" selection-start-line="9" selection-start-column="35" selection-end-line="9" selection-end-column="35" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/index.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="480">
-          <caret line="24" column="10" selection-start-line="24" selection-start-column="10" selection-end-line="24" selection-end-column="10" />
         </state>
       </provider>
     </entry>
@@ -920,18 +667,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/DeclaratiesController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="500">
-          <caret line="70" column="9" lean-forward="true" selection-start-line="65" selection-start-column="7" selection-end-line="70" selection-end-column="9" />
-          <folding>
-            <element signature="e#40#68#0#PHP" expanded="true" />
-            <element signature="e#3616#4184#0#PHP" />
-            <element signature="e#4190#4946#0#PHP" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/Rekeningnummer.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="200">
@@ -966,16 +701,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/leden/lid_wijzigen.blade.php">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/leden/lid_toevoegen.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="523">
-          <caret line="64" column="22" selection-start-line="64" selection-start-column="22" selection-end-line="64" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/gegevens/wijzig_gegevens.blade.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="540">
@@ -993,16 +718,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/layout.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="363">
-          <caret line="36" column="66" selection-start-line="36" selection-start-column="66" selection-end-line="36" selection-end-column="66" />
-          <folding>
-            <element signature="e#2381#2387#0#HTML" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/public/css/stylesheet.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="580">
@@ -1013,7 +728,7 @@
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/ContributieController.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="606">
-          <caret line="36" column="76" lean-forward="true" selection-start-line="33" selection-start-column="8" selection-end-line="36" selection-end-column="76" />
+          <caret line="36" column="76" selection-start-line="33" selection-start-column="8" selection-end-line="36" selection-end-column="76" />
           <folding>
             <element signature="e#40#68#0#PHP" expanded="true" />
             <element signature="e#206#364#0#PHP" />
@@ -1021,47 +736,131 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/leden/leden.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="540">
-          <caret line="27" column="66" selection-start-line="27" selection-start-column="66" selection-end-line="27" selection-end-column="66" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/gegevens/gegevens.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="466">
-          <caret line="32" column="25" lean-forward="true" selection-end-line="80" selection-end-column="11" />
+        <state relative-caret-position="200">
+          <caret line="10" column="33" selection-start-line="10" selection-start-column="33" selection-end-line="10" selection-end-column="33" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/routes/web.php">
+    <entry file="file://$PROJECT_DIR$/resources/views/leden/lid_toevoegen.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="260">
-          <caret line="13" column="25" selection-start-line="13" selection-start-column="25" selection-end-line="13" selection-end-column="25" />
+        <state>
+          <caret selection-end-line="84" selection-end-column="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/leden/lid_wijzigen.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="320">
+          <caret line="24" column="111" selection-start-line="24" selection-start-column="111" selection-end-line="24" selection-end-column="111" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/ContributieDeelname.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="160">
+          <caret line="8" column="46" selection-start-line="8" selection-start-column="46" selection-end-line="8" selection-end-column="46" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/leden/lid.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="822">
-          <caret line="59" column="34" selection-start-line="59" selection-start-column="34" selection-end-line="59" selection-end-column="34" />
+        <state relative-caret-position="620">
+          <caret line="31" selection-start-line="31" selection-end-line="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/DeclaratieDeelname.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="6" column="6" selection-start-line="6" selection-start-column="6" selection-end-line="6" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Lid.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="6" selection-start-line="6" selection-end-line="6" />
           <folding>
-            <element signature="e#1849#1855#1#HTML" expanded="true" />
-            <element signature="e#1893#1899#1#HTML" expanded="true" />
-            <element signature="e#1993#1999#1#HTML" expanded="true" />
-            <element signature="e#2088#2094#1#HTML" expanded="true" />
+            <element signature="e#23#62#0#PHP" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/LedenController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="640">
-          <caret line="36" column="5" lean-forward="true" selection-start-line="36" selection-start-column="5" selection-end-line="36" selection-end-column="5" />
+        <state relative-caret-position="483">
+          <caret line="47" selection-start-line="47" selection-end-line="47" />
           <folding>
             <element signature="e#40#58#0#PHP" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Declaratie.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="140">
+          <caret line="7" column="6" selection-start-line="7" selection-start-column="6" selection-end-line="7" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Boete.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="220">
+          <caret line="11" selection-start-line="11" selection-end-line="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/declaraties/declaraties.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="520">
+          <caret line="26" column="72" selection-start-line="26" selection-start-column="72" selection-end-line="26" selection-end-column="72" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/DeclaratiesController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="10">
+          <caret line="65" column="16" selection-start-line="65" selection-start-column="16" selection-end-line="65" selection-end-column="16" />
+          <folding>
+            <element signature="e#40#68#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/routes/web.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1060">
+          <caret line="53" column="42" selection-start-line="53" selection-start-column="40" selection-end-line="53" selection-end-column="42" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/HomeController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="140">
+          <caret line="7" column="6" selection-start-line="7" selection-start-column="6" selection-end-line="7" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/index.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="480">
+          <caret line="24" column="10" selection-start-line="24" selection-start-column="10" selection-end-line="24" selection-end-column="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/layout.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="540">
+          <caret line="119" column="6" selection-start-line="119" selection-start-column="6" selection-end-line="119" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/leden/leden.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="680">
+          <caret line="34" column="23" selection-start-line="34" selection-start-column="23" selection-end-line="34" selection-end-column="23" />
         </state>
       </provider>
     </entry>

@@ -1,64 +1,66 @@
 @extends('layout')
-@section('title','Wijzig lid gegevens')
+@section('title','Lid wijzigen')
 @section('content')
+    <h2 class="mb-4">Lid wijzigen</h2>
 
-    <h2 class="mb-4">Wijzig gegevens van {{$lid->roepnaam}} {{$lid->achternaam}}</h2>
-
-    {{--<form class="form mb-4" method="POST" action="/leden/wijzig/{{$lid->lid_id}}">
+    <form class="card" method="POST" action="/leden/wijzig">
         @csrf
-        <h3>Inlog gegevens</h3>
-        <label for="email">Email</label>
-        <input type="email" class="form-control mb-3" id="email" name="email" required value="{{$lid->email}}">
-        <label for="wacthwoord">Wachtwoord</label>
-        <input type="text" class="form-control mb-3" id="wacthwoord" name="password" value="">
-        <button class="btn btn-primary btn-lg btn-block" type="submit">Opslaan</button>
-    </form>--}}
-
-    <form class="card mb-4" method="POST" action="/leden/wijzig/{{$lid->lid_id}}">
-        @csrf
+        <input type="hidden" name="lid_id" value="{{$lid->lid_id}}">
         <h3>Persoonsgevevens</h3>
         <label for="roepnaam">Roepnaam</label>
-        <input type="text" class="form-control mb-3" id="roepnaam" name="roepnaam" required value="{{$lid->roepnaam}}">
+        <input type="text" class="form-control mb-3" id="roepnaam" name="roepnaam" autofocus required value="{{$lid->roepnaam}}">
         <label for="voornamen">Voornamen</label>
         <input type="text" class="form-control mb-3" id="voornamen" name="voornamen" required value="{{$lid->voornamen}}">
         <label for="achternaam">Achternaam</label>
         <input type="text" class="form-control mb-3" id="achternaam" name="achternaam" required value="{{$lid->achternaam}}">
-        <label for="dob">Geboortedatum</label>
-        <input type="date" class="form-control mb-3" id="dob" name="dob" required value="{{$lid->dob}}">
+        <label for="geboortedatum">Geboortedatum</label>
+        <input type="date" class="form-control mb-3" id="geboortedatum" name="geboortedatum" required value="{{$lid->geboortedatum}}">
         <label for="geboorteplaats">Geboorteplaats</label>
         <input type="text" class="form-control mb-3" id="geboorteplaats" name="geboorteplaats" required value="{{$lid->geboorteplaats}}">
         <label for="telefoonnummer">Telefoonnummer</label>
         <input type="text" class="form-control mb-3" id="telefoonnummer" name="telefoonnummer" required value="{{$lid->telefoonnummer}}">
 
+        <h3>Accountgegevens</h3>
+        <label for="email">Email</label>
+        <input type="email" class="form-control mb-3" id="email" name="email" required value="{{$lid->email}}">
+
         <h3>Adres</h3>
-        <label for="adres">Straatnaam, nummer en toevoeging</label>
-        <input type="text" class="form-control mb-3" id="adres" name="adres" required value="{{$lid->adres}}">
+        <label for="straatnaam">Straatnaam, nummer en toevoeging</label>
+        <input type="text" class="form-control mb-3" id="straatnaam" name="straatnaam" required value="{{$lid->straatnaam}}">
         <label for="postcode">Postcode</label>
         <input type="text" class="form-control mb-3" id="postcode" name="postcode" required value="{{$lid->postcode}}">
-        <label for="woonplaats">Woonplaats</label>
-        <input type="text" class="form-control mb-3" id="woonplaats" name="woonplaats" required value="{{$lid->woonplaats}}">
+        <label for="stad">Stad</label>
+        <input type="text" class="form-control mb-3" id="stad" name="stad" required value="{{$lid->stad}}">
+        <label for="land">Land</label>
+        <input type="text" class="form-control mb-3" id="land" name="land" required value="{{$lid->land}}">
 
         <h3>Finance</h3>
-        <label for="rekeningnummer">Rekeningnummer 1</label>
-        <input type="text" class="form-control mb-3" id="rekeningnummer" name="rekeningnummer" required value="{{$lid->rekeningnummer}}">
-        <label for="rekeningnummer2">Rekeningnummer 2 (optioneel)</label>
-        <input type="text" class="form-control mb-3" id="rekeningnummer2" name="rekeningnummer2" value="{{$lid->rekeningnummer_2}}">
+        @foreach($rekeningnummers as $rekeningnummer)
+            <label for="rekeningnummer">Rekeningnummer {{$loop->index + 1}}</label>
+            <input type="text" class="form-control mb-3" id="rekeningnummer" name="rekeningnummers[]" required value="{{$rekeningnummer->rekeningnummer}}">
+        @endforeach
+
+        <div id="rekeningnummers"></div>
+        <button type="button" id="add_rekeningnummer" class="btn btn-light mb-2">Voeg nog een rekeniningnummer toe</button>
+
         <label for="verschuldigd">Verschuldigd</label>
-        <input type="number" class="form-control mb-3" id="verschuldigd" name="verschuldigd" required step=".01" value="{{$lid->verschuldigd}}">
+        <input type="number" class="form-control mb-3" id="verschuldigd" name="verschuldigd" value="0" step=".01" required value="{{$lid->verschuldigd}}">
         <label for="overgemaakt">Overgemaakt</label>
-        <input type="number" class="form-control mb-3" id="overgemaakt" name="overgemaakt" required step=".01" value="{{$lid->overgemaakt}}">
+        <input type="number" class="form-control mb-3" id="overgemaakt" name="overgemaakt" value="0" step=".01" required value="{{$lid->overgemaakt}}">
         <label for="gespaard">Gespaard</label>
-        <input type="number" class="form-control mb-3" id="gespaard" name="gespaard" required step=".01" value="{{$lid->gespaard}}">
+        <input type="number" class="form-control mb-3" id="gespaard" name="gespaard" value="0" step=".01" required value="{{$lid->gespaard}}">
 
         <h3>Overige gegevens</h3>
         <label for="admin">Admin?</label>
-        <select class="form-control mb-3" id="admin" name="admin" required value="{{$lid->admin}}">
-            <option selected value="1">Ja</option>
+        <select class="form-control mb-3" id="admin" name="admin" required>
+            <option selected value="{{$lid->admin}}">{{$lid->admin}}</option>
+            <option value="1">Ja</option>
             <option value="0">Nee</option>
         </select>
         <label for="type_lid">Type lid</label>
-        <select class="form-control mb-3" id="type_lid" name="type_lid" required value="{{$lid->type_lid}}">
-            <option selected value="Actief">Actief</option>
+        <select class="form-control mb-3" id="type_lid" name="type_lid" required>
+            <option selected value="{{$lid->type_lid}}">{{$lid->type_lid}}</option>
+            <option value="Actief">Actief</option>
             <option value="Passief">Passief</option>
             <option value="Reünist">Re&uuml;nist</option>
             <option value="Geen">Geen</option>
@@ -68,9 +70,20 @@
         <input type="number" class="form-control mb-3" id="lichting" name="lichting" min="1" required value="{{$lid->lichting}}">
 
         <label for="profiel_foto">Profiel foto</label>
-        <input type="file" class="form-control mb-3" id="profiel_foto" name="profiel_foto" accept="image/"  {{--value="{{$lid->profiel_foto}}"--}}>
+        <input type="file" class="form-control mb-3" id="profiel_foto" name="profiel_foto" accept="image/" >
 
-        <button type="submit" class="btn btn-primary btn-lg btn-block mb-3 mt-3">Opslaan</button>
+        <button type="submit" class="btn btn-primary btn-lg btn-block mb-3 mt-3 ">Wijzig lid</button>
     </form>
+    <script>
+        var i = 2;
+        $("#add_rekeningnummer").click(function () {
+            console.log(i);
+            $("#rekeningnummers").append('<div id="extra_rekeningnummer"><button class="btn btn-link" id="verwijder_rekeningnummer">verwijder</button><label for=\"rekeningnummer\">Rekeningnummer '+i+'</label>\n<input type=\"text\" class=\"form-control mb-3\" id=\"rekeningnummer\" name=\"rekeningnummers[]\" required value=\"{{old('rekeningnummers')}}\"></div>' );
+            i++;
+        });
 
+        $("#verwijder_rekeningnummer").click(function(){
+            $(this).remove();
+        });
+    </script>
 @endsection

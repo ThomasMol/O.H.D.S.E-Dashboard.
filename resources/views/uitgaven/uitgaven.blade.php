@@ -27,9 +27,9 @@
                 <td>&euro;{{ $uitgave->budget }}</td>
                 <td>&euro;{{ $uitgave->uitgave }}</td>
                 <td>&euro;{{ $uitgave->naheffing }}</td>
-                <td><a class="btn btn-outline-primary" href="/uitgave/{{$uitgave->uitgave_id}}">Bekijk</a>
+                <td><a class="btn btn-light" href="/uitgave/{{$uitgave->uitgave_id}}">Bekijk</a>
                     @if(Auth::user()->admin == 1)
-                        <a class="btn btn-outline-primary" href="/uitgaven/wijzig/{{$uitgave->uitgave_id}}">Wijzig</a>
+                        <a class="btn btn-light" href="/uitgaven/wijzig/{{$uitgave->uitgave_id}}">Wijzig</a>
                         <a class="btn btn-outline-danger" href="/uitgaven/verwijder/{{$uitgave->uitgave_id}}">Verwijder</a>
                     @endif
                 </td>

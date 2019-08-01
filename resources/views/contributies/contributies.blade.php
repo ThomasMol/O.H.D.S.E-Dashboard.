@@ -20,9 +20,9 @@
                 <th scope="row">{{ date('d F Y - l', strtotime($contributie->datum))  }}</th>
                 <td>{{ $contributie->omschrijving }}</td>
                 <td>&euro;{{ $contributie->bedrag }}</td>
-                <td><a class="btn btn-outline-primary" href="/contributie/{{$contributie->contributie_id}}">Bekijk</a>
+                <td><a class="btn btn-light" href="/contributie/{{$contributie->contributie_id}}">Bekijk</a>
                 @if(Auth::user()->admin == 1)
-                    <a class="btn btn-outline-primary" href="/contributies/wijzig/{{$contributie->contributie_id}}">Wijzig</a>
+                    <a class="btn btn-light" href="/contributies/wijzig/{{$contributie->contributie_id}}">Wijzig</a>
                     <a class="btn btn-outline-danger" href="/contributies/verwijder/{{$contributie->contributie_id}}">Verwijder</a>
                 @endif
                 </td>

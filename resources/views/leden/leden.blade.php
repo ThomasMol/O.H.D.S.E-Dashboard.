@@ -25,9 +25,9 @@
                 <td>&euro;{{ $lid->schuld }}</td>
                 <td>&euro;{{ $lid->gespaard }}</td>
                 <td scope="col">
-                    <a class="btn btn-outline-primary" href="/lid/{{$lid->lid_id}}">bekijk</a>
+                    <a class="btn btn-light" href="/lid/{{$lid->lid_id}}">bekijk</a>
                 @if(Auth::user()->admin == 1)
-                    <a class="btn btn-outline-primary" href="/leden/wijzig/{{$lid->lid_id}}">Wijzig</a>
+                    <a class="btn btn-light" href="/leden/wijzig/{{$lid->lid_id}}">Wijzig</a>
                     <a class="btn btn-outline-danger" href="/leden/verwijder/{{$lid->lid_id}}">Verwijder</a>
                 @endif
                 </td>

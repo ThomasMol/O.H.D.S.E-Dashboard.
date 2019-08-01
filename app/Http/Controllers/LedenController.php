@@ -28,7 +28,6 @@ class LedenController extends Controller
             ->where('lid.lid_id',$id)->first();
         $rekeningnummers = Rekeningnummer::findMany($id);
 
-        //dd($lid);
         return view('leden/lid',['lid' => $lid,'rekeningnummers'=>$rekeningnummers]);
     }
 
@@ -36,13 +35,18 @@ class LedenController extends Controller
         return view('leden/lid_toevoegen');
     }
     public function wijzig($id){
-        $financien = Financien::find($id);
+        $lid = Lid::select('*')
+            ->leftJoin('financien', 'lid.lid_id','financien.lid_id')
+            ->leftJoin('lid_gegevens', 'lid.lid_id','lid_gegevens.lid_id')
+            ->where('lid.lid_id',$id)->first();
         $rekeningnummers = Rekeningnummer::findMany($id);
-        $lid_gegevens = LidGegevens::find($id);
-        $lid = Lid::find($id);
-        return view('leden/lid_wijzigen', ['lid' => $lid]);
+        return view('leden/lid_wijzigen', ['lid' => $lid,'rekeningnummers' => $rekeningnummers]);
     }
 
+    public function verwijder($id){
+        $lid = Lid::destroy($id);
+        return redirect('/leden');
+    }
 
     public function insert_update_lid(Request $request){
 
@@ -54,7 +58,7 @@ class LedenController extends Controller
             'geboorteplaats' => 'required|max:255',
             'telefoonnummer'=> 'required|max:255',
             'email' => 'required|email|max:255|unique:lid',
-            'password' => 'required|max:255',
+            'password' => 'max:255',
             'straatnaam' => 'required|max:255',
             'postcode' => 'required|max:255',
             'stad' => 'required|max:255',

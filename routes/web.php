@@ -14,6 +14,7 @@ Route::middleware(['auth'])->group(function (){
     Route::get('/lid/{id}','LedenController@lid');
     Route::get('/leden/toevoegen','LedenController@toevoegen')->middleware('admin');
     Route::get('/leden/wijzig/{id}','LedenController@wijzig')->middleware('admin');
+    Route::get('/leden/verwijder/{id}','LedenController@verwijder')->middleware('admin');
 
     Route::post('/leden/toevoegen','LedenController@insert_update_lid')->middleware('admin');
     Route::post('/leden/wijzig','LedenController@insert_update_lid')->middleware('admin');
@@ -30,17 +31,17 @@ Route::middleware(['auth'])->group(function (){
     Route::get('/contributies/toevoegen','ContributieController@toevoegen')->middleware('admin');
     Route::get('/contributies/wijzig/{id}','ContributieController@wijzigen')->middleware('admin');
     Route::get('/contributie/{id}', 'ContributieController@contributie');
+    Route::get('/contributies/verwijder/{id}', 'ContributieController@verwijderen')->middleware('admin');
 
     Route::post('/contributies/toevoegen','ContributieController@insert_update_contributie')->middleware('admin');
     Route::post('/contributies/wijzig','ContributieController@insert_update_contributie')->middleware('admin');
-    Route::get('/contributies/verwijder/{id}', 'ContributieController@verwijderen');
 
     /*uitgaven*/
     Route::get('/uitgaven','UitgavenController@index');
     Route::get('/uitgaven/toevoegen','UitgavenController@toevoegen')->middleware('admin');
     Route::get('/uitgaven/wijzig/{id}','UitgavenController@wijzigen')->middleware('admin');
     Route::get('/uitgave/{id}', 'UitgavenController@uitgave');
-    Route::get('/uitgaven/verwijder/{id}', 'UitgavenController@verwijderen');
+    Route::get('/uitgaven/verwijder/{id}', 'UitgavenController@verwijderen')->middleware('admin');
 
     Route::post('/uitgaven/toevoegen','UitgavenController@insert_update_uitgave')->middleware('admin');
     Route::post('/uitgaven/wijzig','UitgavenController@insert_update_uitgave')->middleware('admin');
@@ -49,12 +50,11 @@ Route::middleware(['auth'])->group(function (){
     Route::get('/declaraties','DeclaratiesController@index');
     Route::get('/declaraties/toevoegen','DeclaratiesController@toevoegen');
     Route::get('/declaraties/wijzig/{id}','DeclaratiesController@wijzigen');
-    Route::get('/declaraties/{id}', 'DeclaratiesController@declaratie');
+    Route::get('/declaratie/{id}', 'DeclaratiesController@declaratie');
     Route::get('/declaraties/verwijder/{id}', 'DeclaratiesController@verwijderen');
 
     Route::post('/declaraties/toevoegen','DeclaratiesController@insert_update_declaratie');
     Route::post('/declaraties/wijzig','DeclaratiesController@insert_update_declaratie');
-
 
     /*transacties*/
     Route::get('/transacties', 'TransactiesController@index');
