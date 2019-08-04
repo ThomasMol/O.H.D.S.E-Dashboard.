@@ -36,8 +36,13 @@
 
         <h3>Finance</h3>
         @foreach($rekeningnummers as $rekeningnummer)
-            <label for="rekeningnummer">Rekeningnummer {{$loop->index + 1}}</label>
-            <input type="text" class="form-control mb-3" id="rekeningnummer" name="rekeningnummers[]" required value="{{$rekeningnummer->rekeningnummer}}">
+            @if($loop->index == 0)
+                <label for="rekeningnummer">Rekeningnummer {{$loop->index + 1}}</label>
+                <input type="text" class="form-control mb-3" id="rekeningnummer" name="rekeningnummers[]" data-id="{{$loop->index + 1}}" required value="{{$rekeningnummer->rekeningnummer}}">
+            @else
+                <div id="extra_rekeningnummer" data-id="{{$loop->index + 1}}"><label for="rekeningnummer">Rekeningnummer {{$loop->index + 1}}</label><button data-button="{{$loop->index + 1}}" type="button" class="btn btn-link" id="remove_rekeningnummer">verwijder</button>
+                <input type="text" class="form-control mb-3" id="rekeningnummer" name="rekeningnummers[]" value="{{$rekeningnummer->rekeningnummer}}"></div>
+            @endif
         @endforeach
 
         <div id="rekeningnummers"></div>
@@ -75,15 +80,16 @@
         <button type="submit" class="btn btn-primary btn-lg btn-block mb-3 mt-3 ">Wijzig lid</button>
     </form>
     <script>
-        var i = 2;
-        $("#add_rekeningnummer").click(function () {
-            console.log(i);
-            $("#rekeningnummers").append('<div id="extra_rekeningnummer"><button class="btn btn-link" id="verwijder_rekeningnummer">verwijder</button><label for=\"rekeningnummer\">Rekeningnummer '+i+'</label>\n<input type=\"text\" class=\"form-control mb-3\" id=\"rekeningnummer\" name=\"rekeningnummers[]\" required value=\"{{old('rekeningnummers')}}\"></div>' );
-            i++;
-        });
+        $(document).ready(function () {
+            var i = {{count($rekeningnummers)}} + 1;
+            $("form").on("click","#add_rekeningnummer",function () {
+                $("#rekeningnummers").append('<div id="extra_rekeningnummer" data-id="'+i+'"><label for=\"rekeningnummer\">Extra Rekeningnummer</label><button data-button="'+i+'" type="button" class="btn btn-link" id="remove_rekeningnummer">verwijder</button>\n<input type=\"text\" class=\"form-control mb-3\" id=\"rekeningnummer\" name=\"rekeningnummers[]\"></div>' );
+                i++;
+            });
 
-        $("#verwijder_rekeningnummer").click(function(){
-            $(this).remove();
+            $("form").on("click","#remove_rekeningnummer",function(){
+                $("#extra_rekeningnummer[data-id='"+$(this).data("button")+"']").remove();
+            });
         });
     </script>
 @endsection

@@ -8,5 +8,4 @@ class Rekeningnummer extends Model
 {
     protected $table = 'rekeningnummer';
     protected $primaryKey = 'lid_id';
-    protected $fillable = ['rekeningnummer'];
 }

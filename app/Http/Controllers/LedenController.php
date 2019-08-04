@@ -57,7 +57,7 @@ class LedenController extends Controller
             'geboortedatum' => 'required|date',
             'geboorteplaats' => 'required|max:255',
             'telefoonnummer'=> 'required|max:255',
-            'email' => 'required|email|max:255|unique:lid',
+            'email' => 'required|email|max:255|unique:lid,email,'.$request->lid_id.',lid_id',
             'password' => 'max:255',
             'straatnaam' => 'required|max:255',
             'postcode' => 'required|max:255',
@@ -75,6 +75,7 @@ class LedenController extends Controller
             $lid = Lid::find($request->lid_id);
             $lid_gegevens = LidGegevens::find($request->lid_id);
             $financien = Financien::find($request->lid_id);
+            $this->remove_rekeningnummers($lid->lid_id);
         }else{
             $lid = new Lid;
             $lid_gegevens = new LidGegevens;
@@ -109,13 +110,19 @@ class LedenController extends Controller
         $lid_gegevens->save();
         $financien->save();
 
-        foreach($request->rekeningnummers as $rekeningnummer){
-            $rekeningnummer = Rekeningnummer::firstOrCreate(['rekeningnummer' => $rekeningnummer]);
+        foreach($request->rekeningnummers as $nummer){
+            //dd($rekeningnummer);
+
+            $rekeningnummer = new Rekeningnummer;
             $rekeningnummer->lid_id = $lid->lid_id;
-            $rekeningnummer->rekeningnummer = $request->rekeningnummer;
+            $rekeningnummer->rekeningnummer = $nummer;
             $rekeningnummer->save();
         }
 
         return redirect('/leden');
+    }
+
+    public function remove_rekeningnummers($id){
+        Rekeningnummer::destroy($id);
     }
 }

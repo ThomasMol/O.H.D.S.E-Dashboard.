@@ -70,16 +70,18 @@
 
         <button type="submit" class="btn btn-primary btn-lg btn-block mb-3 mt-3 ">Voeg lid toe</button>
     </form>
-    <script>
-    var i = 2;
-    $("#add_rekeningnummer").click(function () {
-       console.log(i);
-       $("#rekeningnummers").append('<div id="extra_rekeningnummer"><button class="btn btn-link" id="verwijder_rekeningnummer">verwijder</button><label for=\"rekeningnummer\">Rekeningnummer '+i+'</label>\n<input type=\"text\" class=\"form-control mb-3\" id=\"rekeningnummer\" name=\"rekeningnummers[]\" required value=\"{{old('rekeningnummers')}}\"></div>' );
-       i++;
-    });
 
-    $("#verwijder_rekeningnummer").click(function(){
-       $(this).remove();
+<script>
+    $(document).ready(function () {
+        var i = 2;
+        $("form").on("click","#add_rekeningnummer",function () {
+            $("#rekeningnummers").append('<div id="extra_rekeningnummer" data-id="'+i+'"><label for=\"rekeningnummer\">Extra Rekeningnummer</label><button data-button="'+i+'" type="button" class="btn btn-link" id="remove_rekeningnummer">verwijder</button>\n<input type=\"text\" class=\"form-control mb-3\" id=\"rekeningnummer\" name=\"rekeningnummers[]\"></div>' );
+            i++;
+        });
+
+        $("form").on("click","#remove_rekeningnummer",function(){
+            $("#extra_rekeningnummer[data-id='"+$(this).data("button")+"']").remove();
+        });
     });
 </script>
 @endsection
