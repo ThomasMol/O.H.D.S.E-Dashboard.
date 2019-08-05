@@ -12,54 +12,66 @@ class ContributieController extends Controller
 {
     public function index(){
         $contributies = Contributie::all();
-        return view('contributies/contributies',['contributies' => $contributies]);
+        return view('contributies/contributies',compact('contributies'));
     }
 
-    public function contributie($id){
-        $contributie = Contributie::find($id);
-        $leden_deelname = Lid::join('contributie_deelname','lid.lid_id','=','contributie_deelname.lid_id')->where('contributie_deelname.contributie_id','=',$id)->get();
-
-        return view('contributies/contributie',['contributie' => $contributie, 'leden_deelname' => $leden_deelname]);
-    }
-
-    public function toevoegen(){
+    public function create(){
         $leden = Lid::where('type_lid','!=','Geen')->orderBy('type_lid','asc')->get();
-        return view('contributies/contributie_toevoegen',['leden' => $leden]);
+        return view('contributies/contributie_toevoegen',compact('leden'));
     }
 
-    public function wijzigen($id){
-        $contributie = Contributie::find($id);
+    public function store(Request $request){
+        $data = $request->validate([
+            'datum' => 'required|date',
+            'bedrag' => 'required|numeric|gt:0',
+            'contributie_soort' => 'required|max:255'
+
+        ]);
+        $deelnemers = $request->validate(['deelnemers'=>'required']);
+        $contributie = Contributie::create($data);
+        $this->add_contributie_deelname($deelnemers['deelnemers'], $contributie);
+
+        return redirect('/contributie/' . $contributie->contributie_id);
+
+    }
+
+    public function show(Contributie $contributie){
+        $leden_deelname = Lid::join('contributie_deelname','lid.lid_id','=','contributie_deelname.lid_id')->where('contributie_deelname.contributie_id','=',$contributie->contributie_id)->get();
+        return view('contributies/contributie',compact('contributie','leden_deelname'));
+    }
+
+    public function edit(Contributie $contributie){
+        $id = $contributie->contributie_id;
         $leden = Lid::select('lid_id', 'roepnaam', 'achternaam')->where('type_lid', '!=', 'Geen')->orderBy('type_lid', 'asc')->get();
 
         $leden_deelname = Lid::select('lid.lid_id', 'roepnaam', 'achternaam','contributie_deelname.lid_id as deelname','type_lid')->leftJoin('contributie_deelname', function($join) use ($id){
             $join->on('lid.lid_id','contributie_deelname.lid_id');
             $join->where('contributie_deelname.contributie_id',$id);
         })->where('type_lid','!=','Geen')->orderBy('type_lid','asc')->get();
-        return view('contributies/contributie_wijzigen', ['contributie' => $contributie, 'leden_deelname' => $leden_deelname, 'leden'=>$leden]);
+        return view('contributies/contributie_wijzigen', compact('contributie','leden_deelname','leden'));
     }
 
-    public function insert_update_contributie(Request $request){
-        $validatedData = $request->validate([
+    public function update(Contributie $contributie){
+        $id = $contributie->contributie_id;
+        $data = request()->validate([
             'datum' => 'required|date',
-            'bedrag' => 'required|numeric',
-            'contributie_soort' => 'required|max:255',
-            'deelnemers'=>'required']);
+            'bedrag' => 'required|numeric|gt:0',
+            'contributie_soort' => 'required|max:255'
 
-        if(isset($request->contributie_id)){
-            $contributie = Contributie::find($request->contributie_id);
-            $this->remove_contributie_deelname($contributie);
-        }else{
-            $contributie = new Contributie;
-        }
+        ]);
+        $deelnemers = request()->validate(['deelnemers'=>'required']);
+        $this->remove_contributie_deelname($contributie);
+        $contributie->update($data);
+        $this->add_contributie_deelname($deelnemers['deelnemers'],$contributie);
 
-        $contributie->datum = $request->datum;
-        $contributie->bedrag = $request->bedrag;
-        $contributie->omschrijving = $request->contributie_soort;
-        $contributie->save();
+        return redirect('/contributie/' . $id);
 
-        $this->add_contributie_deelname($request->deelnemers, $contributie);
+    }
 
-        return redirect('/contributie/' . $contributie->contributie_id);
+    public function destroy(Contributie $contributie){
+        $this->remove_contributie_deelname($contributie);
+        $contributie->delete();
+        return redirect('/contributies');
     }
 
     public function add_contributie_deelname($deelnemers, $contributie){
@@ -86,11 +98,5 @@ class ContributieController extends Controller
     }
 
 
-    //todo verwijder functie
-    public function verwijderen($id){
-        $contributie = Contributie::find($id);
-        $this->remove_contributie_deelname($contributie);
-        $contributie->delete();
-        return redirect('/contributies');
-    }
+
 }

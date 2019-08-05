@@ -3,13 +3,13 @@
 @section('content')
     <h2 class="mb-4">Contributie toevoegen</h2>
 
-    <form class="card" method="POST" action="/contributies/toevoegen">
+    <form class="card" method="POST" action="/contributies">
         @csrf
         <h3>Contributie</h3>
         <label for="datum">Datum</label>
-        <input type="date" class="form-control mb-3" id="datum" name="datum" value="{{ date('Y-m-d') }}" required>
+        <input type="date" class="form-control mb-3" id="datum" name="datum" value="{{ old('datum') }}" required>
         <label for="bedrag">Bedrag</label>
-        <input type="number" class="form-control mb-3" id="budget" name="bedrag" step=".01" min="0" required>
+        <input type="number" class="form-control mb-3" id="budget" name="bedrag" step=".01" min="0" value="{{ old('bedrag') }}" required>
 
         <label for="contributie_soort">Contributie soort</label>
         <select class="form-control mb-3" id="contributie_soort" name="contributie_soort" required>
@@ -19,9 +19,7 @@
             <option value="1e Weekend">1e Weekend</option>
             <option value="2e Wekend">2e Weekend</option>
             <option value="Overig">Overig</option>
-
         </select>
-
 
         <h3>Aanwezigheid</h3>
         <table class="table table-hover table-sm">

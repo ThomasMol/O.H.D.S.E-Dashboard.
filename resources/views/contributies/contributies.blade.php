@@ -12,6 +12,10 @@
             <th scope="col">Omschrijving</th>
             <th scope="col">Bedrag</th>
             <th scope="col"></th>
+            @if(Auth::user()->admin == 1)
+                <th scope="col"></th>
+
+            @endif
         </tr>
         </thead>
         <tbody>
@@ -22,8 +26,14 @@
                 <td>&euro;{{ $contributie->bedrag }}</td>
                 <td><a class="btn btn-light" href="/contributie/{{$contributie->contributie_id}}">Bekijk</a>
                 @if(Auth::user()->admin == 1)
-                    <a class="btn btn-light" href="/contributies/wijzig/{{$contributie->contributie_id}}">Wijzig</a>
-                    <a class="btn btn-outline-danger" href="/contributies/verwijder/{{$contributie->contributie_id}}">Verwijder</a>
+                    <a class="btn btn-light" href="/contributies/{{$contributie->contributie_id}}/wijzig">Wijzig</a>
+                    </td>
+                    <td>
+                    <form action="/contributies/{{$contributie->contributie_id}}" method="POST">
+                        @csrf
+                        @method('DELETE')
+                        <button class="btn btn-outline-danger" type="submit">Verwijder</button>
+                    </form>
                 @endif
                 </td>
             </tr>

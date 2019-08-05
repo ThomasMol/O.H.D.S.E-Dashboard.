@@ -3,7 +3,7 @@
 @section('content')
     <h3>Contributie</h3>
     @if(Auth::user()->admin == 1)
-        <a class="btn btn-primary" href="/contributies/wijzig/{{$contributie->contributie_id}}">Contributie wijzigen</a>
+        <a class="btn btn-primary" href="/contributies/{{$contributie->contributie_id}}/wijzig">Contributie wijzigen</a>
     @endif
     <table class="table table-hover table-sm ">
         <thead>
@@ -16,7 +16,7 @@
         <tbody>
             <tr>
                 <th scope="row">{{ $contributie->datum }}</th>
-                <td>{{ $contributie->omschrijving }}</td>
+                <td>{{ $contributie->contributie_soort }}</td>
                 <td>{{ $contributie->bedrag }}</td>
             </tr>
 

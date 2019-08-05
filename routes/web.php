@@ -7,7 +7,7 @@ Route::post('/login' , 'Auth\LoginController@authenticate');
 
 Route::middleware(['auth'])->group(function (){
 
-    Route::get('/','HomeController@index')->middleware('auth');
+    Route::get('/','HomeController@index');
 
     /*leden*/
     Route::get('/leden','LedenController@index');
@@ -28,13 +28,13 @@ Route::middleware(['auth'])->group(function (){
 
     /*contributies*/
     Route::get('/contributies','ContributieController@index');
-    Route::get('/contributies/toevoegen','ContributieController@toevoegen')->middleware('admin');
-    Route::get('/contributies/wijzig/{id}','ContributieController@wijzigen')->middleware('admin');
-    Route::get('/contributie/{id}', 'ContributieController@contributie');
-    Route::get('/contributies/verwijder/{id}', 'ContributieController@verwijderen')->middleware('admin');
+    Route::get('/contributies/toevoegen','ContributieController@create')->middleware('admin');
+    Route::post('/contributies','ContributieController@store')->middleware('admin');
+    Route::get('/contributie/{contributie}', 'ContributieController@show');
+    Route::get('/contributies/{contributie}/wijzig','ContributieController@edit')->middleware('admin');
+    Route::patch('/contributies/{contributie}','ContributieController@update')->middleware('admin');
+    Route::delete('/contributies/{contributie}', 'ContributieController@destroy')->middleware('admin');
 
-    Route::post('/contributies/toevoegen','ContributieController@insert_update_contributie')->middleware('admin');
-    Route::post('/contributies/wijzig','ContributieController@insert_update_contributie')->middleware('admin');
 
     /*uitgaven*/
     Route::get('/uitgaven','UitgavenController@index');

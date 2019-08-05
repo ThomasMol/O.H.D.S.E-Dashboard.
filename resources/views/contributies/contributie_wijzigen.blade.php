@@ -1,11 +1,11 @@
 @extends('layout')
 @section('title','Contributies')
 @section('content')
-    <h2 class="mb-4">Contributie toevoegen</h2>
+    <h2 class="mb-4">Contributie wijzigen</h2>
 
-    <form class="card" method="POST" action="/contributies/wijzig">
+    <form class="card" method="POST" action="/contributies/{{$contributie->contributie_id}}">
         @csrf
-        <input type="hidden" name="contributie_id" value="{{$contributie->contributie_id}}">
+        @method('PATCH')
         <h3>Contributie</h3>
         <label for="datum">Datum</label>
         <input type="date" class="form-control mb-3" id="datum" name="datum" value="{{ $contributie->datum }}" required>
