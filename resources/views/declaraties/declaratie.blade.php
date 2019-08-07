@@ -2,8 +2,8 @@
 @section('title','Declaratie')
 @section('content')
     <h3>Declaratie</h3>
-    @if(Auth::user()->admin == 1)
-        <a class="btn btn-primary" href="/declaraties/wijzig/{{$declaratie->declaratie_id}}">Declaratie wijzigen</a>
+    @if(Auth::user()->lid_id == $declaratie->betaald_door_id || Auth::user()->lid_id == $declaratie->created_by_id )
+        <a class="btn btn-primary" href="/declaraties/{{$declaratie->declaratie_id}}/wijzig">Declaratie wijzigen</a>
     @endif
     <table class="table table-hover table-sm ">
         <thead>

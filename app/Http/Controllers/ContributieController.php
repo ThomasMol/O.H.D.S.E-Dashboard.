@@ -20,14 +20,14 @@ class ContributieController extends Controller
         return view('contributies/contributie_toevoegen',compact('leden'));
     }
 
-    public function store(Request $request){
-        $data = $request->validate([
+    public function store(){
+        $data = request()->validate([
             'datum' => 'required|date',
             'bedrag' => 'required|numeric|gt:0',
             'contributie_soort' => 'required|max:255'
 
         ]);
-        $deelnemers = $request->validate(['deelnemers'=>'required']);
+        $deelnemers = request()->validate(['deelnemers'=>'required']);
         $contributie = Contributie::create($data);
         $this->add_contributie_deelname($deelnemers['deelnemers'], $contributie);
 
@@ -60,6 +60,7 @@ class ContributieController extends Controller
 
         ]);
         $deelnemers = request()->validate(['deelnemers'=>'required']);
+
         $this->remove_contributie_deelname($contributie);
         $contributie->update($data);
         $this->add_contributie_deelname($deelnemers['deelnemers'],$contributie);
@@ -96,7 +97,4 @@ class ContributieController extends Controller
             ContributieDeelname::where('lid_id', $deelnemer->lid_id)->where('contributie_id', $contributie_id)->delete();
         }
     }
-
-
-
 }

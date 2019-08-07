@@ -35,6 +35,14 @@ Route::middleware(['auth'])->group(function (){
     Route::patch('/contributies/{contributie}','ContributieController@update')->middleware('admin');
     Route::delete('/contributies/{contributie}', 'ContributieController@destroy')->middleware('admin');
 
+    /*declaraties*/
+    Route::get('/declaraties','DeclaratiesController@index');
+    Route::get('/declaraties/toevoegen','DeclaratiesController@create');
+    Route::post('/declaraties','DeclaratiesController@store');
+    Route::get('/declaratie/{declaratie}','DeclaratiesController@show');
+    Route::get('/declaraties/{declaratie}/wijzig','DeclaratiesController@edit');
+    Route::patch('/declaraties/{declaratie}', 'DeclaratiesController@update');
+    Route::delete('/declaraties/{declaratie}', 'DeclaratiesController@destroy');
 
     /*uitgaven*/
     Route::get('/uitgaven','UitgavenController@index');
@@ -46,15 +54,6 @@ Route::middleware(['auth'])->group(function (){
     Route::post('/uitgaven/toevoegen','UitgavenController@insert_update_uitgave')->middleware('admin');
     Route::post('/uitgaven/wijzig','UitgavenController@insert_update_uitgave')->middleware('admin');
 
-    /*declaraties*/
-    Route::get('/declaraties','DeclaratiesController@index');
-    Route::get('/declaraties/toevoegen','DeclaratiesController@toevoegen');
-    Route::get('/declaraties/wijzig/{id}','DeclaratiesController@wijzigen');
-    Route::get('/declaratie/{id}', 'DeclaratiesController@declaratie');
-    Route::get('/declaraties/verwijder/{id}', 'DeclaratiesController@verwijderen');
-
-    Route::post('/declaraties/toevoegen','DeclaratiesController@insert_update_declaratie');
-    Route::post('/declaraties/wijzig','DeclaratiesController@insert_update_declaratie');
 
     /*transacties*/
     Route::get('/transacties', 'TransactiesController@index');

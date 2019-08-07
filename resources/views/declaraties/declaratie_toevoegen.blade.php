@@ -3,8 +3,9 @@
 @section('content')
     <h2 class="mb-4">Declaratie toevoegen</h2>
 
-    <form class="card" method="POST" action="/declaraties/toevoegen">
+    <form class="card" method="POST" action="/declaraties">
         @csrf
+        <input type="hidden" name="created_by_id" value="{{Auth::user()->lid_id}}">
         <h3>Declaratie</h3>
         <label for="datum">Datum</label>
         <input type="date" class="form-control mb-3" id="datum" name="datum" value="{{ date('Y-m-d') }}"required>
@@ -37,8 +38,6 @@
 
             </tbody>
         </table>
-
-
         <button type="submit" class="btn btn-primary btn-lg btn-block mb-3 mt-3 floating">Voeg declaratie toe</button>
     </form>
 @endsection

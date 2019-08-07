@@ -14,7 +14,6 @@
             <th scope="col"></th>
             @if(Auth::user()->admin == 1)
                 <th scope="col"></th>
-
             @endif
         </tr>
         </thead>

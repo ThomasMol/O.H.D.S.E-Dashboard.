@@ -12,6 +12,7 @@
             <th scope="col">Betaald door</th>
             <th scope="col">Aangemaakt door</th>
             <th scope="col"></th>
+            <th scope="col"></th>
 
         </tr>
         </thead>
@@ -26,11 +27,16 @@
                 <td>
                     <a class="btn btn-light" href="/declaratie/{{$declaratie->declaratie_id}}">Bekijk</a>
                     @if(Auth::user()->admin == 1)
-                    <a class="btn btn-light" href="/declaraties/wijzig/{{$declaratie->declaratie_id}}">Wijzig</a>
-                    <a class="btn btn-outline-danger" href="/declaraties/verwijder/{{$declaratie->declaratie_id}}">Verwijder</a>
+                    <a class="btn btn-light" href="/declaraties/{{$declaratie->declaratie_id}}/wijzig">Wijzig</a>
                     @endif
                 </td>
-
+                <td>
+                    <form action="/declaraties/{{$declaratie->declaratie_id}}" method="POST">
+                        @csrf
+                        @method('DELETE')
+                        <button class="btn btn-outline-danger" type="submit">Verwijder</button>
+                    </form>
+                </td>
             </tr>
         @endforeach
 
