@@ -46,13 +46,13 @@ Route::middleware(['auth'])->group(function (){
 
     /*uitgaven*/
     Route::get('/uitgaven','UitgavenController@index');
-    Route::get('/uitgaven/toevoegen','UitgavenController@toevoegen')->middleware('admin');
-    Route::get('/uitgaven/wijzig/{id}','UitgavenController@wijzigen')->middleware('admin');
-    Route::get('/uitgave/{id}', 'UitgavenController@uitgave');
-    Route::get('/uitgaven/verwijder/{id}', 'UitgavenController@verwijderen')->middleware('admin');
+    Route::get('/uitgaven/toevoegen','UitgavenController@create')->middleware('admin');
+    Route::post('/uitgaven','UitgavenController@store')->middleware('admin');
+    Route::get('/uitgave/{uitgave}', 'UitgavenController@show');
+    Route::get('/uitgaven/{uitgave}/wijzig','UitgavenController@edit')->middleware('admin');
+    Route::patch('/uitgaven/{uitgave}','UitgavenController@update')->middleware('admin');
+    Route::delete('/uitgaven/{uitgave}', 'UitgavenController@destroy')->middleware('admin');
 
-    Route::post('/uitgaven/toevoegen','UitgavenController@insert_update_uitgave')->middleware('admin');
-    Route::post('/uitgaven/wijzig','UitgavenController@insert_update_uitgave')->middleware('admin');
 
 
     /*transacties*/

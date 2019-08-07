@@ -8,9 +8,9 @@
         <input type="hidden" name="created_by_id" value="{{Auth::user()->lid_id}}">
         <h3>Declaratie</h3>
         <label for="datum">Datum</label>
-        <input type="date" class="form-control mb-3" id="datum" name="datum" value="{{ date('Y-m-d') }}"required>
+        <input type="date" class="form-control mb-3" id="datum" name="datum" value="{{ old('datum') ?? date('Y-m-d') }}"required>
         <label for="bedrag">Totaal bedrag</label>
-        <input type="number" class="form-control mb-3" id="bedrag" name="bedrag" step=".01" value="0.00" required>
+        <input type="number" class="form-control mb-3" id="bedrag" name="bedrag" step=".01" value="{{ old('bedrag')  }}" required>
         <label for="betaald_door">Betaald door:</label>
         <select class="form-control mb-3"id="betaald_door" name="betaald_door_id" >
             @foreach($leden as $lid)
@@ -18,7 +18,7 @@
             @endforeach
         </select>
         <label for="omschrijving">Omschrijving</label>
-        <textarea type="text" class="form-control mb-3" id="omschrijving" name="omschrijving" required></textarea>
+        <textarea type="text" class="form-control mb-3" id="omschrijving" name="omschrijving" required>{{ old('omschrijving')  }}</textarea>
 
         <h3>Aanwezigheid</h3>
         <table class="table table-hover table-sm ">

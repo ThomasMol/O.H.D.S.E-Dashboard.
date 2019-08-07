@@ -12,61 +12,76 @@ class UitgavenController extends Controller
 {
     public function index(){
         $uitgaven = Uitgave::orderBy('datum','desc')->paginate(10);
-        return view('uitgaven/uitgaven',['uitgaven' => $uitgaven]);
+        return view('uitgaven/uitgaven',compact('uitgaven'));
     }
 
-    public function uitgave($id){
-        $uitgave = Uitgave::find($id);
-        $leden_deelname = Lid::join('uitgave_deelname','lid.lid_id','=','uitgave_deelname.lid_id')->where('uitgave_deelname.uitgave_id','=',$id)->get();
-
-        return view('uitgaven/uitgave',['uitgave' => $uitgave, 'leden_deelname' => $leden_deelname]);
-    }
-
-    public function toevoegen(){
+    public function create(){
         $leden = Lid::where('type_lid','!=','Geen')->orderBy('type_lid','asc')->get();
-        return view('uitgaven/uitgave_toevoegen',['leden' => $leden]);
+        return view('uitgaven/uitgave_toevoegen',compact('leden'));
     }
 
-    public function wijzigen($id){
-        $uitgave = Uitgave::find($id);
+    public function store(){
+        $data = request()->validate([
+            'datum' => 'required|date',
+            'budget' => 'required|numeric|gte:0',
+            'uitgave' => 'required|numeric|gte:0',
+            'naheffing' => 'required|numeric',
+            'categorie' => 'required',
+            'omschrijving' => 'required|max:100000'
+        ]);
+
+
+        $deelnemers = request()->validate([
+            'deelnemers' => 'required']
+        );
+        $uitgave = Uitgave::create($data);
+
+        $this->add_uitgave_deelname($deelnemers['deelnemers'], $uitgave);
+
+
+        return redirect('/uitgave/' . $uitgave->uitgave_id);
+    }
+
+    public function show(Uitgave $uitgave){
+        $leden_deelname = Lid::join('uitgave_deelname','lid.lid_id','=','uitgave_deelname.lid_id')->where('uitgave_deelname.uitgave_id',$uitgave->uitgave_id)->get();
+
+        return view('uitgaven/uitgave',compact('uitgave' , 'leden_deelname'));
+    }
+
+    public function edit(Uitgave $uitgave){
+        $id = $uitgave->uitgave_id;
         $leden = Lid::select('lid_id', 'roepnaam', 'achternaam')->where('type_lid', '!=', 'Geen')->orderBy('type_lid', 'asc')->get();
 
         $leden_deelname = Lid::select('lid.lid_id', 'roepnaam', 'achternaam','uitgave_deelname.lid_id as deelname','type_lid')->leftJoin('uitgave_deelname', function($join) use ($id){
             $join->on('lid.lid_id','uitgave_deelname.lid_id');
             $join->where('uitgave_deelname.uitgave_id',$id);
         })->where('type_lid','!=','Geen')->orderBy('type_lid','asc')->get();
-        return view('uitgaven/uitgave_wijzigen', ['uitgave' => $uitgave, 'leden_deelname' => $leden_deelname, 'leden'=>$leden]);
+        return view('uitgaven/uitgave_wijzigen', compact('uitgave', 'leden_deelname' , 'leden'));
     }
 
-    public function insert_update_uitgave(Request $request){
-        $validatedData = $request->validate([
+    public function update(Uitgave $uitgave){
+        $data = request()->validate([
             'datum' => 'required|date',
-            'budget' => 'required|numeric|min:0.00',
-            'uitgave' => 'required|numeric|min:0.00',
+            'budget' => 'required|numeric|gte:0',
+            'uitgave' => 'required|numeric|gte:0',
+            'naheffing' => 'required|numeric',
             'categorie' => 'required',
-            'omschrijving' => 'required|max:100000',
-            'deelnemers' => 'required']);
-
-        if(isset($request->uitgave_id)){
-            $uitgave = Uitgave::find($request->uitgave_id);
-            $this->remove_uitgave_deelname($uitgave);
-        }else{
-            $uitgave = new Uitgave;
-        }
-        $uitgave->datum = $request->datum;
-        $uitgave->budget = $request->budget;
-        $uitgave->uitgave = $request->uitgave;
-        $uitgave->naheffing = $request->uitgave - $request->budget;
-        $uitgave->categorie = $request->categorie;
-        $uitgave->omschrijving = $request->omschrijving;
-        $uitgave->save();
-
-        $this->add_uitgave_deelname($request->deelnemers, $uitgave);
-
-
+            'omschrijving' => 'required|max:100000'
+        ]);
+        $deelnemers = request()->validate([
+                'deelnemers' => 'required']
+        );
+        $this->remove_uitgave_deelname($uitgave);
+        $uitgave->update($data);
+        $this->add_uitgave_deelname($deelnemers['deelnemers'], $uitgave);
         return redirect('/uitgave/' . $uitgave->uitgave_id);
     }
 
+    public function destroy(Uitgave $uitgave){
+        $this->remove_uitgave_deelname($uitgave);
+        $uitgave->delete();
+        return redirect('/uitgaven');
+    }
 
     public function add_uitgave_deelname($deelnemers, $uitgave){
         $bedragen = divide_money($uitgave->naheffing, count($deelnemers));
@@ -94,10 +109,4 @@ class UitgavenController extends Controller
         }
     }
 
-    public function verwijderen($id){
-        $uitgave = Uitgave::find($id);
-        $this->remove_uitgave_deelname($uitgave);
-        $uitgave->delete();
-        return redirect('/uitgaven');
-    }
 }
