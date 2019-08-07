@@ -9,13 +9,22 @@ Route::middleware(['auth'])->group(function (){
 
     Route::get('/','HomeController@index');
 
-
-    /*eigen gegevens*/
+    /*eigen gegevens todo refactor*/
     Route::get('/gegevens','GegevensController@index');
-    Route::get('/gegevens/wijzig','GegevensController@wijzigform');
+    Route::get('/gegevens/wijzig','GegevensController@edit');
+    Route::post('/gegevens','GegevensController@update');
 
-    Route::post('/gegevens/wijzig','GegevensController@wijzig');
+    // todo password reset, email change
     Route::post('/gegevens/wijziglogin','GegevensController@wijziglogin');
+
+    /*borrels todo*/
+    Route::get('/borrels','BorrelsController@index');
+    Route::get('/borrels/toevoegen','BorrelsController@create')->middleware('admin');
+    Route::post('/borrels','BorrelsController@store')->middleware('admin');
+    Route::get('/borrel/{borrel}', 'BorrelsController@show');
+    Route::get('/borrels/{borrel}/wijzig','BorrelsController@edit')->middleware('admin');
+    Route::patch('/borrels/{borrel}','BorrelsController@update')->middleware('admin');
+    Route::delete('/borrels/{borrel}', 'BorrelsController@destroy')->middleware('admin');
 
     /*contributies*/
     Route::get('/contributies','ContributieController@index');
@@ -44,6 +53,15 @@ Route::middleware(['auth'])->group(function (){
     Route::patch('/leden/{lid}','LedenController@update')->middleware('admin');
     Route::delete('/leden/{lid}','LedenController@destroy')->middleware('admin');
 
+    /*transacties todo */
+    Route::get('/transacties','TransactiesController@index');
+    Route::get('/transacties/toevoegen','TransactiesController@create')->middleware('admin');
+    Route::post('/transacties','TransactiesController@store')->middleware('admin');
+    Route::get('/transactie/{transactie}', 'TransactiesController@show');
+    Route::get('/transacties/{transactie}/wijzig','TransactiesController@edit')->middleware('admin');
+    Route::patch('/transacties/{transactie}','TransactiesController@update')->middleware('admin');
+    Route::delete('/transacties/{transactie}', 'TransactiesController@destroy')->middleware('admin');
+
     /*uitgaven*/
     Route::get('/uitgaven','UitgavenController@index');
     Route::get('/uitgaven/toevoegen','UitgavenController@create')->middleware('admin');
@@ -54,9 +72,6 @@ Route::middleware(['auth'])->group(function (){
     Route::delete('/uitgaven/{uitgave}', 'UitgavenController@destroy')->middleware('admin');
 
 
-
-    /*transacties*/
-    Route::get('/transacties', 'TransactiesController@index');
 });
 
 
