@@ -5,9 +5,6 @@ namespace App\Http\Controllers;
 use App\Financien;
 use App\LidGegevens;
 use App\Rekeningnummer;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use App\Lid;
 
@@ -18,101 +15,65 @@ class LedenController extends Controller
             ->leftJoin('financien', 'lid.lid_id','financien.lid_id')
             ->leftJoin('lid_gegevens', 'lid.lid_id','lid_gegevens.lid_id')
             ->where('type_lid','!=','Geen')->orderBy('type_lid','asc')->paginate(20);
-        return view('leden/leden',['leden' => $leden]);
+        return view('leden/leden',compact('leden'));
     }
 
-    public function lid($id){
-        $lid = Lid::select('*')
-            ->leftJoin('financien', 'lid.lid_id','financien.lid_id')
-            ->leftJoin('lid_gegevens', 'lid.lid_id','lid_gegevens.lid_id')
-            ->where('lid.lid_id',$id)->first();
-        $rekeningnummers = Rekeningnummer::findMany($id);
-
-        return view('leden/lid',['lid' => $lid,'rekeningnummers'=>$rekeningnummers]);
-    }
-
-    public function toevoegen(){
+    public function create(){
         return view('leden/lid_toevoegen');
     }
-    public function wijzig($id){
-        $lid = Lid::select('*')
-            ->leftJoin('financien', 'lid.lid_id','financien.lid_id')
-            ->leftJoin('lid_gegevens', 'lid.lid_id','lid_gegevens.lid_id')
-            ->where('lid.lid_id',$id)->first();
-        $rekeningnummers = Rekeningnummer::findMany($id);
-        return view('leden/lid_wijzigen', ['lid' => $lid,'rekeningnummers' => $rekeningnummers]);
-    }
 
-    public function verwijder($id){
-        $lid = Lid::destroy($id);
-        return redirect('/leden');
-    }
+    public function store(){
 
-    public function insert_update_lid(Request $request){
+        //todo password confirmation
+        $password_data = request()->validate([
+            'password' => 'max:255'
+        ]);
 
-        $validatedData = $request->validate([
+        $lid_data = request()->validate([
             'roepnaam' => 'required|max:255',
             'voornamen' => 'required|max:255',
             'achternaam' => 'required|max:255',
-            'geboortedatum' => 'required|date',
-            'geboorteplaats' => 'required|max:255',
-            'telefoonnummer'=> 'required|max:255',
-            'email' => 'required|email|max:255|unique:lid,email,'.$request->lid_id.',lid_id',
-            'password' => 'max:255',
-            'straatnaam' => 'required|max:255',
-            'postcode' => 'required|max:255',
-            'stad' => 'required|max:255',
-            'land' => 'required|max:255',
-            'rekeningnummers' => 'required|max:255',
-            'verschuldigd' => 'required|numeric',
-            'overgemaakt' => 'required|numeric',
-            'gespaard' => 'required|numeric',
+            'email' => 'required|email|max:255|unique:lid,email,'.request()->lid_id.',lid_id',
             'type_lid' => 'required|max:255',
             'admin' => 'required|min:0|max:1',
             'lichting' => 'required|numeric']);
 
-        if(isset($request->lid_id)){
-            $lid = Lid::find($request->lid_id);
-            $lid_gegevens = LidGegevens::find($request->lid_id);
-            $financien = Financien::find($request->lid_id);
-            $this->remove_rekeningnummers($lid->lid_id);
-        }else{
-            $lid = new Lid;
-            $lid_gegevens = new LidGegevens;
-            $financien = new Financien;
-        }
+        $financien_data = request()->validate([
+            'verschuldigd' => 'required|numeric',
+            'overgemaakt' => 'required|numeric',
+            'gespaard' => 'required|numeric'
+        ]);
 
-        $lid->type_lid = $request->type_lid;
-        $lid->admin = $request->admin;
-        $lid->lichting = $request->lichting;
-        $lid->roepnaam = $request->roepnaam;
-        $lid->voornamen = $request->voornamen;
-        $lid->achternaam = $request->achternaam;
-        $lid->email = $request->email;
-        $lid->password = Hash::make($request->password);
-        //$lid->profiel_foto = $request->profiel_foto;
+        $lid_gegevens_data = request()->validate([
+            'geboortedatum' => 'required|date',
+            'geboorteplaats' => 'required|max:255',
+            'telefoonnummer'=> 'required|max:255',
+            'straatnaam' => 'required|max:255',
+            'postcode' => 'required|max:255',
+            'stad' => 'required|max:255',
+            'land' => 'required|max:255',
+        ]);
+
+        $rekeningnummers_data = request()->validate([
+            'rekeningnummers' => 'required|max:255|unique:rekeningnummer,rekeningnummer',
+        ]);
+
+
+        $lid = Lid::create($lid_data);
+        $lid->password = Hash::make($password_data['password']);
         $lid->save();
 
+        $lid_gegevens = new LidGegevens;
         $lid_gegevens->lid_id = $lid->lid_id;
-        $lid_gegevens->straatnaam = $request->straatnaam;
-        $lid_gegevens->postcode = $request->postcode;
-        $lid_gegevens->stad = $request->stad;
-        $lid_gegevens->land = $request->land;
-        $lid_gegevens->geboortedatum = $request->geboortedatum;
-        $lid_gegevens->geboorteplaats = $request->geboorteplaats;
-        $lid_gegevens->telefoonnummer = $request->telefoonnummer;
-
-        $financien->lid_id = $lid->lid_id;
-        $financien->overgemaakt = $request->overgemaakt;
-        $financien->verschuldigd = $request->verschuldigd;
-        $financien->gespaard = $request->gespaard;
-
+        $lid_gegevens->fill($lid_gegevens_data);
         $lid_gegevens->save();
+
+        $financien = new Financien;
+        $financien->lid_id = $lid->lid_id;
+        $financien->fill($financien_data);
         $financien->save();
 
-        foreach($request->rekeningnummers as $nummer){
-            //dd($rekeningnummer);
-
+        foreach($rekeningnummers_data['rekeningnummers'] as $nummer){
             $rekeningnummer = new Rekeningnummer;
             $rekeningnummer->lid_id = $lid->lid_id;
             $rekeningnummer->rekeningnummer = $nummer;
@@ -122,7 +83,92 @@ class LedenController extends Controller
         return redirect('/leden');
     }
 
+    public function show(Lid $lid){
+        $id = $lid->lid_id;
+        $lid = Lid::select('*')
+            ->leftJoin('financien', 'lid.lid_id','financien.lid_id')
+            ->leftJoin('lid_gegevens', 'lid.lid_id','lid_gegevens.lid_id')
+            ->where('lid.lid_id',$id)->first();
+        $rekeningnummers = Rekeningnummer::findMany($id);
+
+        return view('leden/lid',compact('lid','rekeningnummers'));
+    }
+
+    public function edit(Lid $lid){
+        $id = $lid->lid_id;
+        $lid = Lid::select('*')
+            ->leftJoin('financien', 'lid.lid_id','financien.lid_id')
+            ->leftJoin('lid_gegevens', 'lid.lid_id','lid_gegevens.lid_id')
+            ->where('lid.lid_id',$id)->first();
+        $rekeningnummers = Rekeningnummer::findMany($id);
+        return view('leden/lid_wijzigen', compact('lid','rekeningnummers' ));
+    }
+
+    public function update(Lid $lid){
+        $lid_id = $lid->lid_id;
+
+        //todo password confirmation
+        $password_data = request()->validate([
+            'password' => 'max:255'
+        ]);
+
+        $lid_data = request()->validate([
+            'roepnaam' => 'required|max:255',
+            'voornamen' => 'required|max:255',
+            'achternaam' => 'required|max:255',
+            'email' => 'required|email|max:255|unique:lid,email,'.$lid_id.',lid_id',
+            'type_lid' => 'required|max:255',
+            'admin' => 'required|min:0|max:1',
+            'lichting' => 'required|numeric']);
+
+        $financien_data = request()->validate([
+            'verschuldigd' => 'required|numeric',
+            'overgemaakt' => 'required|numeric',
+            'gespaard' => 'required|numeric'
+        ]);
+
+        $lid_gegevens_data = request()->validate([
+            'geboortedatum' => 'required|date',
+            'geboorteplaats' => 'required|max:255',
+            'telefoonnummer'=> 'required|max:255',
+            'straatnaam' => 'required|max:255',
+            'postcode' => 'required|max:255',
+            'stad' => 'required|max:255',
+            'land' => 'required|max:255',
+        ]);
+
+        $rekeningnummers_data = request()->validate([
+            'rekeningnummers' => 'required|max:255|unique:rekeningnummer,rekeningnummer,'.$lid_id.',lid_id',
+        ]);
+
+        $lid->update($lid_data);
+        //$lid->password = Hash::make($password_data['password']);
+
+        $lid_gegevens = LidGegevens::find($lid_id);
+        $lid_gegevens->update($lid_gegevens_data);
+
+        $financien = Financien::find($lid_id);
+        $financien->update($financien_data);
+
+        $this->remove_rekeningnummers($lid_id);
+
+        foreach($rekeningnummers_data['rekeningnummers'] as $nummer){
+            $rekeningnummer = new Rekeningnummer;
+            $rekeningnummer->lid_id = $lid->lid_id;
+            $rekeningnummer->rekeningnummer = $nummer;
+            $rekeningnummer->save();
+        }
+
+        return redirect('/lid/' . $lid->lid_id);
+    }
+
+    public function delete(Lid $lid){
+        $lid->delete();
+        return redirect('/leden');
+    }
+
     public function remove_rekeningnummers($id){
         Rekeningnummer::destroy($id);
     }
+
 }

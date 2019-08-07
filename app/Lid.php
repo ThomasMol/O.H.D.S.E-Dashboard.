@@ -9,6 +9,7 @@ class Lid extends Model
 {
 
     use SoftDeletes;
+    protected $guarded = ['password'];
     protected $table = 'lid';
     protected $primaryKey = 'lid_id';
 

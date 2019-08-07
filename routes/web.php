@@ -9,15 +9,6 @@ Route::middleware(['auth'])->group(function (){
 
     Route::get('/','HomeController@index');
 
-    /*leden*/
-    Route::get('/leden','LedenController@index');
-    Route::get('/lid/{id}','LedenController@lid');
-    Route::get('/leden/toevoegen','LedenController@toevoegen')->middleware('admin');
-    Route::get('/leden/wijzig/{id}','LedenController@wijzig')->middleware('admin');
-    Route::get('/leden/verwijder/{id}','LedenController@verwijder')->middleware('admin');
-
-    Route::post('/leden/toevoegen','LedenController@insert_update_lid')->middleware('admin');
-    Route::post('/leden/wijzig','LedenController@insert_update_lid')->middleware('admin');
 
     /*eigen gegevens*/
     Route::get('/gegevens','GegevensController@index');
@@ -43,6 +34,15 @@ Route::middleware(['auth'])->group(function (){
     Route::get('/declaraties/{declaratie}/wijzig','DeclaratiesController@edit');
     Route::patch('/declaraties/{declaratie}', 'DeclaratiesController@update');
     Route::delete('/declaraties/{declaratie}', 'DeclaratiesController@destroy');
+
+    /*leden*/
+    Route::get('/leden','LedenController@index');
+    Route::get('/leden/toevoegen','LedenController@create')->middleware('admin');
+    Route::post('/leden','LedenController@store')->middleware('admin');
+    Route::get('/lid/{lid}','LedenController@show');
+    Route::get('/leden/{lid}/wijzig','LedenController@edit')->middleware('admin');
+    Route::patch('/leden/{lid}','LedenController@update')->middleware('admin');
+    Route::delete('/leden/{lid}','LedenController@destroy')->middleware('admin');
 
     /*uitgaven*/
     Route::get('/uitgaven','UitgavenController@index');

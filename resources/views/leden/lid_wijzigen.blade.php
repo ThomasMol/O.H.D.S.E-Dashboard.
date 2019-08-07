@@ -3,9 +3,9 @@
 @section('content')
     <h2 class="mb-4">Lid wijzigen</h2>
 
-    <form class="card" method="POST" action="/leden/wijzig">
+    <form class="card" method="POST" action="/leden/{{$lid->lid_id}}">
         @csrf
-        <input type="hidden" name="lid_id" value="{{$lid->lid_id}}">
+        @method('patch')
         <h3>Persoonsgevevens</h3>
         <label for="roepnaam">Roepnaam</label>
         <input type="text" class="form-control mb-3" id="roepnaam" name="roepnaam" autofocus required value="{{$lid->roepnaam}}">

@@ -3,7 +3,7 @@
 @section('content')
     <h2 class="mb-4">Lid toevoegen</h2>
 
-    <form class="card" method="POST" action="/leden/toevoegen">
+    <form class="card" method="POST" action="/leden">
         @csrf
         <h3>Persoonsgevevens</h3>
         <label for="roepnaam">Roepnaam</label>
@@ -37,7 +37,7 @@
 
         <h3>Finance</h3>
         <label for="rekeningnummer">Rekeningnummer 1</label>
-        <input type="text" class="form-control mb-3" id="rekeningnummer" name="rekeningnummers[]" required value="{{old('rekeningnummers')}}">
+        <input type="text" class="form-control mb-3" id="rekeningnummer" name="rekeningnummers[]" required>
         <div id="rekeningnummers"></div>
         <button type="button" id="add_rekeningnummer" class="btn btn-light mb-2">Voeg nog een rekeniningnummer toe</button>
 

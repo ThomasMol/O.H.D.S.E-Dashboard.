@@ -14,6 +14,9 @@
                 <th scope="col">Schuld</th>
                 <th scope="col">Gespaard</th>
                 <th scope="col"></th>
+                @if(Auth::user()->admin == 1)
+                    <th scope="col"></th>
+                @endif
             </tr>
             </thead>
             <tbody>
@@ -27,8 +30,14 @@
                 <td scope="col">
                     <a class="btn btn-light" href="/lid/{{$lid->lid_id}}">bekijk</a>
                 @if(Auth::user()->admin == 1)
-                    <a class="btn btn-light" href="/leden/wijzig/{{$lid->lid_id}}">Wijzig</a>
-                    <a class="btn btn-outline-danger" href="/leden/verwijder/{{$lid->lid_id}}">Verwijder</a>
+                    <a class="btn btn-light" href="/leden/{{$lid->lid_id}}/wijzig">Wijzig</a>
+                </td>
+                <td>
+                    <form action="/leden/{{$lid->lid_id}}" method="POST">
+                        @csrf
+                        @method('DELETE')
+                        <button class="btn btn-outline-danger" type="submit">Verwijder</button>
+                    </form>
                 @endif
                 </td>
             </tr>
