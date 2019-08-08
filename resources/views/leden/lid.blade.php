@@ -21,6 +21,18 @@
             <label for="achternaam">Achternaam</label>
             <h4>{{$lid->achternaam}}</h4>
 
+            <label for="telefoonnummer">Telefoonnummer</label>
+            <h4>{{$lid->telefoonnummer}}</h4>
+
+            <label for="geboorteplaats">Geboorteplaats</label>
+            <h4>{{$lid->geboorteplaats}}</h4>
+
+            <label for="geboortedatum">Geboortedatum</label>
+            <h4>{{$lid->geboortedatum}}</h4>
+        </div>
+
+        <div class="col-md-4 card">
+            <h3>Adres</h3>
             <label for="straatnaam">Straatnaam, nummer en toevoeging</label>
             <h4>{{$lid->straatnaam}}</h4>
 
@@ -32,16 +44,6 @@
 
             <label for="land">Land</label>
             <h4>{{$lid->land}}</h4>
-
-            <label for="telefoonnummer">Telefoonnummer</label>
-            <h4>{{$lid->telefoonnummer}}</h4>
-
-            <label for="geboorteplaats">Geboorteplaats</label>
-            <h4>{{$lid->geboorteplaats}}</h4>
-
-            <label for="geboortedatum">Geboortedatum</label>
-            <h4>{{$lid->geboortedatum}}</h4>
-
         </div>
 
         <div class="col-md-4 card">
@@ -51,13 +53,13 @@
                 <h4>{{$rekeningnummer->rekeningnummer}}</h4>
             @endforeach
             <label for="verschuldigd">Verschuldigd</label>
-            <h4>&euro;{{$lid->verschuldigd}}</h4>
+            <h4>&euro; {{ format_currency($lid->verschuldigd)}}</h4>
             <label for="overgemaakt">Overgemaakt</label>
-            <h4>&euro;{{$lid->overgemaakt}}</h4>
+            <h4>&euro; {{format_currency($lid->overgemaakt)}}</h4>
             <label for="gespaard">Gespaard</label>
-            <h4>&euro;{{$lid->gespaard}}</h4>
+            <h4>&euro; {{format_currency($lid->gespaard)}}</h4>
             <label for="gespaard">Schuld</label>
-            <h4>&euro;{{$lid->schuld}}</h4>
+            <h4>&euro; {{format_currency($lid->schuld)}}</h4>
         </div>
 
         <div class="col-md-4 card">

@@ -22,7 +22,7 @@
             <tr>
                 <th scope="row">{{ date('d F Y - l', strtotime($contributie->datum))  }}</th>
                 <td>{{ $contributie->omschrijving }}</td>
-                <td>&euro;{{ $contributie->bedrag }}</td>
+                <td>&euro; {{ format_currency($contributie->bedrag) }}</td>
                 <td><a class="btn btn-light" href="/contributie/{{$contributie->contributie_id}}">Bekijk</a>
                 @if(Auth::user()->admin == 1)
                     <a class="btn btn-light" href="/contributies/{{$contributie->contributie_id}}/wijzig">Wijzig</a>

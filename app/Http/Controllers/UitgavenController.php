@@ -16,15 +16,15 @@ class UitgavenController extends Controller
     }
 
     public function create(){
-        $leden = Lid::where('type_lid','!=','Geen')->orderBy('type_lid','asc')->get();
+        $leden = Lid::ledenGesorteerd()->get();
         return view('uitgaven/uitgave_toevoegen',compact('leden'));
     }
 
     public function store(){
         $data = request()->validate([
             'datum' => 'required|date',
-            'budget' => 'required|numeric|gte:0',
-            'uitgave' => 'required|numeric|gte:0',
+            'budget' => 'required|numeric|gte:0|lt:99999999',
+            'uitgave' => 'required|numeric|gte:0|lt:99999999',
             'naheffing' => 'required|numeric',
             'categorie' => 'required',
             'omschrijving' => 'required|max:100000'
@@ -62,9 +62,9 @@ class UitgavenController extends Controller
     public function update(Uitgave $uitgave){
         $data = request()->validate([
             'datum' => 'required|date',
-            'budget' => 'required|numeric|gte:0',
-            'uitgave' => 'required|numeric|gte:0',
-            'naheffing' => 'required|numeric',
+            'budget' => 'required|numeric|gte:0|lt:99999999',
+            'uitgave' => 'required|numeric|gte:0|lt:99999999',
+            'naheffing' => 'required|numeric|lt:99999999',
             'categorie' => 'required',
             'omschrijving' => 'required|max:100000'
         ]);

@@ -14,8 +14,9 @@
             <button class="btn btn-primary btn-lg btn-block" type="submit" disabled>Opslaan</button>
         </form>
 
-        <form class="card mb-4" method="POST" action="/gegevens/wijzig">
+        <form class="card mb-4" method="POST" action="/gegevens">
             @csrf
+            @method('PATCH')
             <h3>Persoonlijke gevevens</h3>
             <label for="roepnaam">Roepnaam</label>
             <input type="text" class="form-control mb-3" id="roepnaam" name="roepnaam" required value="{{Auth::user()->roepnaam}}">

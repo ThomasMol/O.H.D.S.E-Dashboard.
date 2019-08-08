@@ -17,7 +17,7 @@
             <tr>
                 <th scope="row">{{ $contributie->datum }}</th>
                 <td>{{ $contributie->contributie_soort }}</td>
-                <td>{{ $contributie->bedrag }}</td>
+                <td>{{ format_currency($contributie->bedrag) }}</td>
             </tr>
 
         </tbody>

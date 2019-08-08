@@ -9,7 +9,7 @@
         <label for="datum">Datum</label>
         <input type="date" class="form-control mb-3" id="datum" name="datum" value="{{ old('datum') ?? date('Y-m-d') }}" required>
         <label for="bedrag">Bedrag</label>
-        <input type="number" class="form-control mb-3" id="budget" name="bedrag" step=".01" min="0" value="{{ old('bedrag') }}" required>
+        <input type="number" class="form-control mb-3" id="budget" name="bedrag" step=".01" min="0" max="99999999" value="{{ old('bedrag') }}" required>
 
         <label for="contributie_soort">Contributie soort</label>
         <select class="form-control mb-3" id="contributie_soort" name="contributie_soort" required>

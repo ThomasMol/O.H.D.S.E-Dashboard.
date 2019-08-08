@@ -10,11 +10,11 @@
         <label for="datum">Datum</label>
         <input type="date" class="form-control mb-3" id="datum" name="datum" value="{{ $uitgave->datum }}" required>
         <label for="budget">Budget</label>
-        <input type="number" class="form-control mb-3" id="budget" name="budget" step=".01" value="{{ $uitgave->budget }}" min="0" required>
+        <input type="number" class="form-control mb-3" id="budget" name="budget" step=".01" value="{{ $uitgave->budget }}" min="0" max="99999999" required>
         <label for="uitgave">Uitgave</label>
-        <input type="number" class="form-control mb-3" id="uitgave" name="uitgave" step=".01" value="{{ $uitgave->uitgave }}" min="0" required>
+        <input type="number" class="form-control mb-3" id="uitgave" name="uitgave" step=".01" value="{{ $uitgave->uitgave }}" min="0" max="99999999" required>
         <label for="naheffing">Naheffing</label>
-        <input type="number" class="form-control mb-3" id="naheffing" name="naheffing" step=".01" value="{{ $uitgave->naheffing }}" required readonly>
+        <input type="number" class="form-control mb-3" id="naheffing" name="naheffing" step=".01" value="{{ $uitgave->naheffing }}" max="99999999" required readonly>
         <label for="categorie">Categorie:</label>
         <select class="form-control mb-3"id="categorie" name="categorie" required>
             <option selected value="{{ $uitgave->categorie }}">{{ $uitgave->categorie }}</option>

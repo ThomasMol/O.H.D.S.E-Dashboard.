@@ -38,7 +38,7 @@ class DeclaratiesController extends Controller
     {
         $data = request()->validate([
             'datum' => 'required|date',
-            'bedrag' => 'required|numeric|gt:0',
+            'bedrag' => 'required|numeric|gt:0|lt:99999999',
             'betaald_door_id' => 'required|numeric',
             'omschrijving' => 'required|max:100000',
             'created_by_id' => 'required'
@@ -78,12 +78,11 @@ class DeclaratiesController extends Controller
     public function update(Declaratie $declaratie)    {
         $data = request()->validate([
             'datum' => 'required|date',
-            'bedrag' => 'required|numeric|gt:0',
+            'bedrag' => 'required|numeric|gt:0|lt:99999999',
             'betaald_door_id' => 'required|numeric',
             'omschrijving' => 'required|max:100000',
             'created_by_id' => 'required'
         ]);
-
         $deelnemers = request()->validate([
             'deelnemers'=> 'required'
         ]);
@@ -130,35 +129,5 @@ class DeclaratiesController extends Controller
             DeclaratieDeelname::where('lid_id',$deelnemer->lid_id)->where('declaratie_id',$declaratie_id)->delete();
         }
     }
-
-    /*public function insert_update_declaratie(Request $request)
-    {
-        $validatedData = $request->validate([
-            'datum' => 'required|date',
-            'bedrag' => 'required|numeric|min:0.00',
-            'betaald_door_id' => 'required|numeric',
-            'omschrijving' => 'required|max:100000',
-            'deelnemers'=> 'required']);
-
-        if(isset($request->declaratie_id)){
-            $declaratie = Declaratie::find($request->declaratie_id);
-            $this->remove_declaratie_deelname($declaratie);
-        }else{
-            $declaratie = new Declaratie;
-        }
-
-        $declaratie->datum = $request->datum;
-        $declaratie->bedrag = $request->bedrag;
-        $declaratie->betaald_door_id = $request->betaald_door_id;
-        $declaratie->omschrijving = $request->omschrijving;
-        $declaratie->created_by_id = Auth::user()->lid_id;
-        $declaratie->save();
-
-        subtract_verschuldigd($declaratie->betaald_door_id, $declaratie->bedrag);
-
-        $this->add_declaratie_deelname($request->deelnemers, $declaratie);
-
-        return redirect('/declaratie/' . $declaratie->declaratie_id);
-    }*/
 
 }

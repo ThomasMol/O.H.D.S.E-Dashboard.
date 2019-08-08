@@ -83,7 +83,7 @@
                 </a>
             </li>
 
-            <li class="nav-item category">
+          {{--  <li class="nav-item category">
                 Dispuut
             </li>
             <li class="nav-item">
@@ -96,7 +96,7 @@
                     Commissies
                 </a>
             </li>
-
+--}}
             @if(Auth::user()->admin == 1)
             <li class="nav-item category">
                 Bestuur

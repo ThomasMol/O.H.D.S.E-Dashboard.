@@ -27,9 +27,9 @@
                 <th>{{ date('d F Y - l', strtotime($uitgave->datum))}}</th>
                 <td>{{ $uitgave->categorie }}</td>
                 <td>{{ $uitgave->omschrijving }}</td>
-                <td>&euro;{{ $uitgave->budget }}</td>
-                <td>&euro;{{ $uitgave->uitgave }}</td>
-                <td>&euro;{{ $uitgave->naheffing }}</td>
+                <td>&euro; {{ format_currency($uitgave->budget) }}</td>
+                <td>&euro; {{ format_currency($uitgave->uitgave) }}</td>
+                <td>&euro; {{ format_currency($uitgave->naheffing) }}</td>
                 <td><a class="btn btn-light" href="/uitgave/{{$uitgave->uitgave_id}}">Bekijk</a>
                     @if(Auth::user()->admin == 1)
                         <a class="btn btn-light" href="/uitgaven/{{$uitgave->uitgave_id}}/wijzig">Wijzig</a>

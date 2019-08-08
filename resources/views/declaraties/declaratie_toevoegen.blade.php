@@ -10,7 +10,7 @@
         <label for="datum">Datum</label>
         <input type="date" class="form-control mb-3" id="datum" name="datum" value="{{ old('datum') ?? date('Y-m-d') }}"required>
         <label for="bedrag">Totaal bedrag</label>
-        <input type="number" class="form-control mb-3" id="bedrag" name="bedrag" step=".01" value="{{ old('bedrag')  }}" required>
+        <input type="number" class="form-control mb-3" id="bedrag" name="bedrag" step=".01" min="0" max="99999999" value="{{ old('bedrag')  }}" required>
         <label for="betaald_door">Betaald door:</label>
         <select class="form-control mb-3"id="betaald_door" name="betaald_door_id" >
             @foreach($leden as $lid)

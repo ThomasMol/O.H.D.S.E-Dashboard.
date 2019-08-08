@@ -25,8 +25,8 @@
                 <th scope="row">{{ $lid->roepnaam }} {{ $lid->achternaam }}</th>
                 <td>{{ $lid->email }}</td>
                 <td>{{ $lid->telefoonnummer }}</td>
-                <td>&euro;{{ $lid->schuld }}</td>
-                <td>&euro;{{ $lid->gespaard }}</td>
+                <td>&euro; {{ format_currency($lid->schuld) }}</td>
+                <td>&euro; {{ format_currency($lid->gespaard) }}</td>
                 <td scope="col">
                     <a class="btn btn-light" href="/lid/{{$lid->lid_id}}">bekijk</a>
                 @if(Auth::user()->admin == 1)

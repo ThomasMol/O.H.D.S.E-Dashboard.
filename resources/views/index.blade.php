@@ -13,13 +13,13 @@
             <h2>Financi&euml;n:</h2>
             <hr>
             <h6>Verschuldigd</h6>
-            <h3>&euro; {{Auth::user()->verschuldigd}}</h3>
+            <h3>&euro; {{format_currency($financien->verschuldigd)}}</h3>
             <hr>
             <h6>Verschuldigd</h6>
-            <h3>&euro; {{Auth::user()->overgemaakt}}</h3>
+            <h3>&euro; {{format_currency($financien->overgemaakt)}}</h3>
             <hr>
             <h4>Actuele schuld</h4>
-            <h2>&euro; {{Auth::user()->schuld}}</h2>
+            <h2>&euro; {{format_currency($financien->schuld)}}</h2>
             </div>
         </div>
     </div>

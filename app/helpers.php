@@ -24,7 +24,7 @@ use App\Boete;
     return $splitTotals;
 }
 
-    function add_boete($lid_id,$bedrag, $reden, $datum){
+    function add_boete($lid_id, $bedrag, $reden, $datum){
         $boete = new App\Boete;
         $boete->lid_id = $lid_id;
         $boete->datum = $datum;
@@ -32,6 +32,7 @@ use App\Boete;
         $boete->reden = $reden;
         $boete->save();
         add_verschuldigd($lid_id, $bedrag);
+        return $boete->boete_id;
     }
 
     function remove_boete($lid_id, $boete_id, $bedrag){
@@ -49,4 +50,8 @@ use App\Boete;
         $lid = App\Financien::find($lid_id);
         $lid->verschuldigd = $lid->verschuldigd - $bedrag;
         $lid->save();
+    }
+
+    function format_currency($number){
+        return number_format($number, 2, ',', '.');
     }

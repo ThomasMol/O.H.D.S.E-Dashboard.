@@ -21,7 +21,7 @@
             <tr>
                 <th>{{ date('d F Y - l', strtotime($declaratie->datum)) }}</th>
                 <td>{{ $declaratie->omschrijving }}</td>
-                <td>&euro;{{ $declaratie->bedrag }}</td>
+                <td>&euro; {{ format_currency($declaratie->bedrag) }}</td>
                 <td>{{ $declaratie->betaald_door_id }}</td>
                 <td>{{ $declaratie->created_by_id }}</td>
                 <td>

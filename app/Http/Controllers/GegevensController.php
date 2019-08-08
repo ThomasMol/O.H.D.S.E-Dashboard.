@@ -18,19 +18,22 @@ class GegevensController extends Controller
         $financien = Financien::find(Auth::user()->lid_id);
         $rekeningnummers = Rekeningnummer::findMany( Auth::user()->lid_id);
         $lid_gegevens = LidGegevens::find(Auth::user()->lid_id);
-        return view('gegevens/gegevens',['financien'=>$financien,'rekeningnummers' => $rekeningnummers,'lid_gegevens'=>$lid_gegevens]);
+        return view('gegevens/gegevens',compact('financien','rekeningnummers' ,'lid_gegevens'));
     }
-    public function wijzigform(){
+    public function edit(){
         $rekeningnummers = Rekeningnummer::findMany( Auth::user()->lid_id);
         $lid_gegevens = LidGegevens::find(Auth::user()->lid_id);
-        return view('gegevens/wijzig_gegevens',['rekeningnummers' => $rekeningnummers,'lid_gegevens'=>$lid_gegevens]);
+        return view('gegevens/wijzig_gegevens',compact('rekeningnummers','lid_gegevens'));
     }
 
-    public function wijzig(Request $request){
-        $validatedData = $request->validate([
+    public function update(){
+        $lid_data = request()->validate([
             'roepnaam' => 'required|max:255',
             'voornamen' => 'required|max:255',
-            'achternaam' => 'required|max:255',
+            'achternaam' => 'required|max:255'
+            ]);
+
+        $lid_gegevens_data = request()->validate([
             'geboortedatum' => 'required|date',
             'geboorteplaats' => 'required|max:255',
             'telefoonnummer'=> 'required|max:255',
@@ -42,20 +45,8 @@ class GegevensController extends Controller
         $lid = Auth::user();
         $lid_gegevens = LidGegevens::find($lid->lid_id);
 
-        $lid->roepnaam = $request->roepnaam;
-        $lid->voornamen = $request->voornamen;
-        $lid->achternaam = $request->achternaam;
-
-        $lid_gegevens->geboortedatum = $request->geboortedatum;
-        $lid_gegevens->geboorteplaats = $request->geboorteplaats;
-        $lid_gegevens->telefoonnummer = $request->telefoonnummer;
-        $lid_gegevens->straatnaam = $request->straatnaam;
-        $lid_gegevens->postcode = $request->postcode;
-        $lid_gegevens->stad = $request->stad;
-        $lid_gegevens->land = $request->land;
-
-        $lid->save();
-        $lid_gegevens->save();
+        $lid->update($lid_data);
+        $lid_gegevens->update($lid_gegevens_data);
 
         return redirect('/gegevens');
     }

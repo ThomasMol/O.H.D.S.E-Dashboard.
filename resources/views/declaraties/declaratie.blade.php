@@ -19,7 +19,7 @@
         <tr>
             <td>{{ $declaratie->datum }}</td>
             <td>{{ $declaratie->omschrijving }}</td>
-            <td>&euro; {{ $declaratie->bedrag }}</td>
+            <td>&euro; {{ format_currency($declaratie->bedrag) }}</td>
             <td>{{ $declaratie->betaald_door_id }}</td>
             <td>{{ $declaratie->created_by_id }}</td>
         </tr>
@@ -29,7 +29,7 @@
 
     <ul>
         @foreach($leden_deelname as $lid)
-            <li>{{$lid->roepnaam}} kosten: &euro; {{$lid->bedrag}}</li>
+            <li>{{$lid->roepnaam}} kosten: &euro; {{format_currency($lid->bedrag)}}</li>
         @endforeach
     </ul>
 @endsection

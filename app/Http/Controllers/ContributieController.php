@@ -23,14 +23,13 @@ class ContributieController extends Controller
     public function store(){
         $data = request()->validate([
             'datum' => 'required|date',
-            'bedrag' => 'required|numeric|gt:0',
+            'bedrag' => 'required|numeric|gt:0|lt:99999999',
             'contributie_soort' => 'required|max:255'
 
         ]);
         $deelnemers = request()->validate(['deelnemers'=>'required']);
         $contributie = Contributie::create($data);
         $this->add_contributie_deelname($deelnemers['deelnemers'], $contributie);
-
         return redirect('/contributie/' . $contributie->contributie_id);
 
     }
@@ -55,7 +54,7 @@ class ContributieController extends Controller
         $id = $contributie->contributie_id;
         $data = request()->validate([
             'datum' => 'required|date',
-            'bedrag' => 'required|numeric|gt:0',
+            'bedrag' => 'required|numeric|gt:0|lt:99999999',
             'contributie_soort' => 'required|max:255'
 
         ]);
@@ -64,7 +63,6 @@ class ContributieController extends Controller
         $this->remove_contributie_deelname($contributie);
         $contributie->update($data);
         $this->add_contributie_deelname($deelnemers['deelnemers'],$contributie);
-
         return redirect('/contributie/' . $id);
 
     }

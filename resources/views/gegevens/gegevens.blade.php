@@ -24,6 +24,18 @@
             <label for="achternaam">Achternaam</label>
             <h4>{{Auth::user()->achternaam}}</h4>
 
+            <label for="telefoonnummer">Telefoonnummer</label>
+            <h4>{{$lid_gegevens->telefoonnummer}}</h4>
+
+            <label for="geboorteplaats">Geboorteplaats</label>
+            <h4>{{$lid_gegevens->geboorteplaats}}</h4>
+
+            <label for="geboortedatum">Geboortedatum</label>
+            <h4>{{$lid_gegevens->geboortedatum}}</h4>
+
+        </div>
+        <div class="col-md-4 card">
+            <h3>Adres</h3>
             <label for="straatnaam">Straatnaam, nummer en toevoeging</label>
             <h4>{{$lid_gegevens->straatnaam}}</h4>
 
@@ -36,15 +48,6 @@
             <label for="land">Land</label>
             <h4>{{$lid_gegevens->land}}</h4>
 
-            <label for="telefoonnummer">Telefoonnummer</label>
-            <h4>{{$lid_gegevens->telefoonnummer}}</h4>
-
-            <label for="geboorteplaats">Geboorteplaats</label>
-            <h4>{{$lid_gegevens->geboorteplaats}}</h4>
-
-            <label for="geboortedatum">Geboortedatum</label>
-            <h4>{{$lid_gegevens->geboortedatum}}</h4>
-
         </div>
 
         <div class="col-md-4 card">
@@ -54,13 +57,13 @@
             <h4>{{$rekeningnummer->rekeningnummer}}</h4>
             @endforeach
             <label for="verschuldigd">Verschuldigd</label>
-            <h4>&euro;{{$financien->verschuldigd}}</h4>
+            <h4>&euro; {{ format_currency($financien->verschuldigd)}}</h4>
             <label for="overgemaakt">Overgemaakt</label>
-            <h4>&euro;{{$financien->overgemaakt}}</h4>
+            <h4>&euro; {{format_currency($financien->overgemaakt)}}</h4>
             <label for="gespaard">Gespaard</label>
-            <h4>&euro;{{$financien->gespaard}}</h4>
+            <h4>&euro; {{format_currency($financien->gespaard)}}</h4>
             <label for="gespaard">Schuld</label>
-            <h4>&euro;{{$financien->schuld}}</h4>
+            <h4>&euro; {{format_currency($financien->schuld)}}</h4>
         </div>
 
         <div class="col-md-4 card">

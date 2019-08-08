@@ -12,7 +12,7 @@ Route::middleware(['auth'])->group(function (){
     /*eigen gegevens todo refactor*/
     Route::get('/gegevens','GegevensController@index');
     Route::get('/gegevens/wijzig','GegevensController@edit');
-    Route::post('/gegevens','GegevensController@update');
+    Route::patch('/gegevens','GegevensController@update');
 
     // todo password reset, email change
     Route::post('/gegevens/wijziglogin','GegevensController@wijziglogin');
