@@ -17,7 +17,7 @@
         </thead>
         <tbody>
         <tr>
-            <td>{{ $borrel->datum }}</td>
+            <td>{{ date('d F Y - l', strtotime($borrel->datum)) }}</td>
             <td>&euro; {{ format_currency($borrel->bedrag) }}</td>
             <td>&euro; {{ format_currency($borrel->uitgave) }}</td>
             <td>&euro; {{ format_currency($borrel->naheffing) }}</td>
@@ -30,7 +30,7 @@
 
     <ul>
         @foreach($leden_deelname as $lid)
-            <li>{{$lid->roepnaam}} kosten: &euro; {{format_currency($lid->bedrag)}}</li>
+            <li>{{$lid->roepnaam}}: Aanwezig: {{$lid->aanwezig}}. Naheffing: &euro; {{format_currency($lid->naheffing)}}</li>
         @endforeach
     </ul>
 @endsection

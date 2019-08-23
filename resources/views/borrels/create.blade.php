@@ -58,7 +58,7 @@
                 <tr>
                     <th scope="row">{{ $lid->roepnaam }} {{ $lid->achternaam }}</th>
                     <td><input class="form-control" type="checkbox" name="aanwezigheid[{{$lid->lid_id}}][aanwezig]" value="1"></td>
-                    <td><input class="form-control" type="checkbox" name="aanwezigheid[{{$lid->lid_id}}][naheffing]" value="1"></td>
+                    <td><input class="form-control" id="naheffing_leden" type="checkbox" name="aanwezigheid[{{$lid->lid_id}}][naheffing]" value="1"></td>
                     @if($lid->type_lid == "Actief")
                     <td><input class="form-control" type="checkbox" name="aanwezigheid[{{$lid->lid_id}}][afgemeld]" value="1"></td>
                     <td><input class="form-control" type="checkbox" name="aanwezigheid[{{$lid->lid_id}}][boete]" value="1"></td>
@@ -67,6 +67,7 @@
             @endforeach
             </tbody>
         </table>
+        <input class="form-control" type="number" id="naheffing_leden_aantal" name="naheffing_leden_aantal" value="0" readonly hidden>
 
         <button type="submit" class="btn btn-primary btn-lg btn-block mb-3 mt-3 floating">Voeg borrel toe</button>
     </form>
@@ -75,7 +76,10 @@
         $('form').on("change paste keyup click blur focus submit",function(){
             var budget  = Number($('#budget').val());
             var uitgave = Number($('#uitgave').val());
+            var naheffing_checked = $('#naheffing_leden:checked').length;
+
             $('#naheffing').val((uitgave - budget).toFixed(2));
+            $('#naheffing_leden_aantal').val(naheffing_checked);
         });
     </script>
 @endsection

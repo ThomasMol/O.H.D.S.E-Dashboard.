@@ -1,6 +1,5 @@
 <?php
 
-use App\Boete;
 
     function divide_money($total, $divisor)
 {
@@ -35,9 +34,11 @@ use App\Boete;
         return $boete->boete_id;
     }
 
-    function remove_boete($lid_id, $boete_id, $bedrag){
-        $boete = App\Boete::destroy($boete_id);
-        subtract_verschuldigd($lid_id,$bedrag);
+    function remove_boete($lid_id, $boete_id){
+        $boete = App\Boete::find($boete_id);
+
+        subtract_verschuldigd($lid_id,$boete->bedrag);
+        $boete->delete();
     }
 
     function add_verschuldigd($lid_id, $bedrag){

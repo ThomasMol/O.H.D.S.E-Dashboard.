@@ -56,8 +56,7 @@ class DeclaratiesController extends Controller
         return redirect('/declaratie/' . $declaratie->declaratie_id);
     }
 
-    public function show(Declaratie $declaratie)
-    {
+    public function show(Declaratie $declaratie)    {
         $leden_deelname = Lid::join('declaratie_deelname', 'lid.lid_id', '=', 'declaratie_deelname.lid_id')->where('declaratie_deelname.declaratie_id', $declaratie->declaratie_id)->get();
 
         return view('declaraties/declaratie', compact('declaratie' , 'leden_deelname'));
