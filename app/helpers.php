@@ -34,10 +34,9 @@
         return $boete->boete_id;
     }
 
-    function remove_boete($lid_id, $boete_id){
+    function remove_boete($boete_id){
         $boete = App\Boete::find($boete_id);
-
-        subtract_verschuldigd($lid_id,$boete->bedrag);
+        subtract_verschuldigd($boete_id->lid_id,$boete->bedrag);
         $boete->delete();
     }
 

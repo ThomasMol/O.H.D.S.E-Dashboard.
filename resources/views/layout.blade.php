@@ -54,6 +54,11 @@
                     Leden
                 </a>
             </li>
+            <li class="nav-item">
+                <a class="nav-link {{ Request::is('boet*') ? 'active' : '' }}" href="/boetes">
+                    Boetes
+                </a>
+            </li>
             <li class="nav-item category">
                 Financi&euml;n
             </li>

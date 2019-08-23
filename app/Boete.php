@@ -8,4 +8,5 @@ class Boete extends Model
 {
     protected $table = 'boete';
     protected $primaryKey = 'boete_id';
+    protected $guarded = [];
 }

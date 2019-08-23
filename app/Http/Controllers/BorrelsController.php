@@ -47,7 +47,9 @@ class BorrelsController extends Controller
 
 
     public function show(Borrel $borrel){
-        $leden_deelname = Lid::join('borrel_aanwezigheid', 'lid.lid_id', '=', 'borrel_aanwezigheid.lid_id')->where('borrel_aanwezigheid.borrel_id', $borrel->borrel_id)->get();
+        $leden_deelname = Lid::join('borrel_aanwezigheid', 'lid.lid_id', '=', 'borrel_aanwezigheid.lid_id')
+            ->where('borrel_aanwezigheid.borrel_id', $borrel->borrel_id)
+            ->get();
 
         return view('borrels/show', compact('borrel','leden_deelname'));
     }

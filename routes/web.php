@@ -17,7 +17,16 @@ Route::middleware(['auth'])->group(function (){
     // todo password reset, email change
     Route::post('/gegevens/wijziglogin','GegevensController@wijziglogin');
 
-    /*borrels todo*/
+    /*boetes*/
+    Route::get('/boetes','BoetesController@index');
+    Route::get('/boetes/toevoegen','BoetesController@create')->middleware('admin');
+    Route::post('/boetes','BoetesController@store')->middleware('admin');
+    Route::get('/boete/{boete}', 'BoetesController@show');
+    Route::get('/boetes/{boete}/wijzig','BoetesController@edit')->middleware('admin');
+    Route::patch('/boetes/{boete}','BoetesController@update')->middleware('admin');
+    Route::delete('/boetes/{boete}', 'BoetesController@destroy')->middleware('admin');
+
+    /*borrels*/
     Route::get('/borrels','BorrelsController@index');
     Route::get('/borrels/toevoegen','BorrelsController@create')->middleware('admin');
     Route::post('/borrels','BorrelsController@store')->middleware('admin');

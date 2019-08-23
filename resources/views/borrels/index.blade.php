@@ -2,7 +2,9 @@
 @section('title','Borrels')
 @section('content')
     <h3>Borrels</h3>
-    <a class="btn btn-primary" href="/borrels/toevoegen">Borrel toevoegen</a>
+    @if(Auth::user()->admin == 1)
+        <a class="btn btn-primary" href="/borrels/toevoegen">Borrel toevoegen</a>
+    @endif
     <table class="table table-hover table-sm ">
         <thead>
         <tr>
