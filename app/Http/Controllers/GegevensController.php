@@ -42,10 +42,12 @@ class GegevensController extends Controller
             'stad' => 'required|max:255',
             'land' => 'required|max:255']);
 
-        $lid = Auth::user();
+        $lid = Lid::find(Auth::user()->lid_id);
         $lid_gegevens = LidGegevens::find($lid->lid_id);
 
         $lid->update($lid_data);
+
+
         $lid_gegevens->update($lid_gegevens_data);
 
         return redirect('/gegevens');

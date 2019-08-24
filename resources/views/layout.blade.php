@@ -14,11 +14,11 @@
     <script src="/js/jquery-3.4.1.min.js"></script>
 
     {{-- Favicon --}}
-    <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon/favicon-16x16.png">
-    <link rel="manifest" href="/images/favicon/site.webmanifest">
-    <link rel="mask-icon" href="/images/favicon/safari-pinned-tab.svg" color="#e9ab3e">
+    <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png">
+    <link rel="manifest" href="/favicon/site.webmanifest">
+    <link rel="mask-icon" href="/favicon/safari-pinned-tab.svg" color="#e9ab3e">
     <meta name="msapplication-TileColor" content="#367bde">
     <meta name="theme-color" content="#e9ab3e">
 
@@ -27,7 +27,7 @@
 <nav>
     <div class="mobile-nav">
         <a href="/"><img src="/images/sadas.png" class="logo-mobile" width="40px"></a>
-        <button id="menu" class="btn menu navbar-toggler" data-target="#sidebarCollapse" data-toggle="collapse">menu
+        <button id="menu" class="btn menu navbar-toggler" data-target="#sidebarCollapse" data-toggle="collapse">
             <span data-feather="menu"></span></button>
     </div>
     <div class="sidebar collapse" id="sidebarCollapse">

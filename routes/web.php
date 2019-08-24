@@ -9,7 +9,7 @@ Route::middleware(['auth'])->group(function (){
 
     Route::get('/','HomeController@index');
 
-    /*eigen gegevens todo refactor*/
+    /*eigen gegevens */
     Route::get('/gegevens','GegevensController@index');
     Route::get('/gegevens/wijzig','GegevensController@edit');
     Route::patch('/gegevens','GegevensController@update');

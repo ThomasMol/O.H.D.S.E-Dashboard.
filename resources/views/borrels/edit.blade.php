@@ -44,7 +44,7 @@
         <textarea type="text" class="form-control mb-3" id="omschrijving" name="omschrijving">{{ $borrel->omschrijving }}</textarea>
 
         <h3>Aanwezigheid</h3>
-        <table class="table table-hover table-sm ">
+        <table class="table table-hover table-sm table-responsive ">
             <thead>
             <tr>
                 <th scope="col">Naam</th>

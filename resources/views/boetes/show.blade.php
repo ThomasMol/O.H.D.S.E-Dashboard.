@@ -5,7 +5,7 @@
     @if(Auth::user()->admin == 1 )
         <a class="btn btn-primary" href="/boetes/{{$boete->boete_id}}/wijzig">Boete wijzigen</a>
     @endif
-    <table class="table table-hover table-sm ">
+    <table class="table table-hover table-sm table-responsive ">
         <thead>
         <tr>
             <th scope="col">Datum</th>

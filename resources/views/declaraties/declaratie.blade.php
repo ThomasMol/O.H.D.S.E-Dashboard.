@@ -5,7 +5,7 @@
     @if(Auth::user()->lid_id == $declaratie->betaald_door_id || Auth::user()->lid_id == $declaratie->created_by_id )
         <a class="btn btn-primary" href="/declaraties/{{$declaratie->declaratie_id}}/wijzig">Declaratie wijzigen</a>
     @endif
-    <table class="table table-hover table-sm ">
+    <table class="table table-hover table-sm table-responsive ">
         <thead>
         <tr>
             <th scope="col">Datum</th>

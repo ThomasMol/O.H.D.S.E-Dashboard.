@@ -6,35 +6,38 @@
     <form class="card" method="POST" action="/borrels">
         @csrf
         <h3>Borrel</h3>
-        <label for="datum">Datum</label>
-        <input type="date" class="form-control mb-3" id="datum" name="datum" value="{{ old('datum') ?? date('Y-m-d') }}" required>
+
 
         <div class="form-row">
-            <div class="col">
+            <div class="col-md-3">
+                <label for="datum">Datum</label>
+                <input type="date" class="form-control mb-3" id="datum" name="datum" value="{{ old('datum') ?? date('Y-m-d') }}" required>
+            </div>
+            <div class="col-md-3">
                 <label for="budget">Budget</label>
                 <div class="input-group mb-3">
                     <div class="input-group-prepend">
                         <div class="input-group-text">&euro;</div>
                     </div>
-                <input type="number" class="form-control" id="budget" name="budget" step=".01" value="{{ old('budget') }}" min="0" max="99999999" required>
+                <input type="number" class="form-control" id="budget" name="budget" step=".01" value="{{ old('budget') }}" min="0" max="99999999" placeholder="Vul bedrag in" required>
                 </div>
             </div>
-            <div class="col">
+            <div class="col-md-3">
                 <label for="uitgave">Uitgave</label>
                 <div class="input-group mb-3">
                     <div class="input-group-prepend">
                         <div class="input-group-text">&euro;</div>
                     </div>
-                    <input type="number" class="form-control " id="uitgave" name="uitgave" step=".01" value="{{ old('uitgave') }}" min="0" max="99999999" required>
+                    <input type="number" class="form-control " id="uitgave" name="uitgave" step=".01" value="{{ old('uitgave') }}" min="0" max="99999999" placeholder="Vul bedrag in" required>
                 </div>
             </div>
-            <div class="col">
+            <div class="col-md-3">
                 <label for="naheffing">(Totale) Naheffing</label>
                 <div class="input-group mb-3">
                     <div class="input-group-prepend">
                         <div class="input-group-text">&euro;</div>
                     </div>
-                <input type="number" class="form-control" id="naheffing" name="naheffing" step=".01" value="{{ old('naheffing')}}" max="99999999" required readonly>
+                <input type="number" class="form-control" id="naheffing" name="naheffing" step=".01" value="{{ old('naheffing')}}" max="99999999" placeholder="0.00" required readonly>
                 </div>
             </div>
         </div>
@@ -43,7 +46,7 @@
         <textarea type="text" class="form-control mb-3" id="omschrijving" name="omschrijving">{{ old('omschrijving')}}</textarea>
 
         <h3>Aanwezigheid</h3>
-        <table class="table table-hover table-sm ">
+        <table class="table table-hover table-sm table-responsive ">
             <thead>
             <tr>
                 <th scope="col">Naam</th>

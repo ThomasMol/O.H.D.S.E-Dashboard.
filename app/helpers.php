@@ -1,7 +1,9 @@
 <?php
 
 
-    function divide_money($total, $divisor)
+use App\Financien;
+
+function divide_money($total, $divisor)
 {
     $total = (float)round($total, 2);
 
@@ -49,6 +51,29 @@
     function subtract_verschuldigd($lid_id, $bedrag){
         $lid = App\Financien::find($lid_id);
         $lid->verschuldigd = $lid->verschuldigd - $bedrag;
+        $lid->save();
+    }
+
+    function add_overgemaakt($lid_id, $bedrag){
+        $lid = App\Financien::find($lid_id);
+        $lid->overgemaakt = $lid->overgemaakt + $bedrag;
+        $lid->save();
+    }
+
+    function subtract_overgemaakt($lid_id, $bedrag){
+        $lid = App\Financien::find($lid_id);
+        $lid->overgemaakt = $lid->overgemaakt - $bedrag;
+        $lid->save();
+    }
+    function add_gespaard($lid_id, $bedrag){
+        $lid = App\Financien::find($lid_id);
+        $lid->gespaard = $lid->gespaard + $bedrag;
+        $lid->save();
+    }
+
+    function subtract_gespaard($lid_id, $bedrag){
+        $lid = App\Financien::find($lid_id);
+        $lid->gespaard = $lid->gespaard - $bedrag;
         $lid->save();
     }
 

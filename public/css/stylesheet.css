@@ -126,11 +126,11 @@ main {
     .mobile-nav {
         display: block;
         padding: 8px;
-        height: 50px;
+        height: 60px;
         background: rgb(253, 253, 253);
-        box-shadow: 0px 3px 15px 1px rgba(230, 230, 230, 0.23);
-        -webkit-box-shadow: 0px 3px 15px 1px rgba(230, 230, 230, 0.23);
-        -moz-box-shadow: 0px 3px 15px 1px rgba(230, 230, 230, 0.23);
+        box-shadow: 0px 2px 15px 1px rgba(230, 230, 230, 0.5);
+        -webkit-box-shadow: 0px 2px 15px 1px rgba(230, 230, 230, 0.5);
+        -moz-box-shadow: 0px 2px 15px 1px rgba(230, 230, 230, 0.5);
     }
     .sidebar .logo{
         display: none;
@@ -139,6 +139,7 @@ main {
 
     .menu {
         float: right;
+        height: 100%;
     }
     .sidebar{
         position: static;
@@ -148,16 +149,16 @@ main {
 
     }
     .sidebar .nav-link{
-        font-size: 14px;
+        font-size: 20px;
     }
     .collapse:not(.show){
          display: none;
     }
 
-
     main {
         width: 100%;
-        margin: 20px auto;
+        margin: 10px auto;
+        padding: 0px 10px;
     }
 
 
