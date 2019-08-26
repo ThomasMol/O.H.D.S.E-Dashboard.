@@ -20,22 +20,22 @@
                 </select>
             </div>
             <div class="col-md">
-                <label for="code">Type</label>
-                <select class="form-control mb-3" id="code" name="code" required>
+                <label for="mutatie_soort">Type</label>
+                <select class="form-control mb-3" id="mutatie_soort" name="mutatie_soort" required>
                     <option selected disabled value="">Selecteer type</option>
-                    <option value="AC">Acceptgiro (AC)</option>
-                    <option value="BA">Betaalautomaat (BA)</option>
-                    <option value="DV">Diversen (DV)</option>
-                    <option value="FL">Filiaalboeking (FL)</option>
-                    <option value="GF">Telefonisch bankieren (GF)</option>
-                    <option value="GM">Geldautomaat (GM)</option>
-                    <option value="GT">Online bankieren (GT)</option>
-                    <option value="IC">Incasso (IC)</option>
-                    <option value="OV">Overschrijving (OV)</option>
-                    <option value="PK">Opname kantoor (PK)</option>
-                    <option value="PO">Periodieke overschrijving (PO)</option>
-                    <option value="ST">Storting (ST)</option>
-                    <option value="VZ">Verzamelbetaling (VZ)</option>
+                    <option value="Acceptgiro (AC)">Acceptgiro (AC)</option>
+                    <option value="Betaalautomaat (BA)">Betaalautomaat (BA)</option>
+                    <option value="Diversen (DV)">Diversen (DV)</option>
+                    <option value="Filiaalboeking (FL)">Filiaalboeking (FL)</option>
+                    <option value="Telefonisch bankieren (GF)">Telefonisch bankieren (GF)</option>
+                    <option value="Geldautomaat (GM)">Geldautomaat (GM)</option>
+                    <option value="Online bankieren (GT)">Online bankieren (GT)</option>
+                    <option value="Incasso (IC)">Incasso (IC)</option>
+                    <option value="Overschrijving (OV)">Overschrijving (OV)</option>
+                    <option value="Opname kantoor (PK)">Opname kantoor (PK)</option>
+                    <option value="Periodieke overschrijving (PO)">Periodieke overschrijving (PO)</option>
+                    <option value="Storting (ST)">Storting (ST)</option>
+                    <option value="Verzamelbetaling (VZ)">Verzamelbetaling (VZ)</option>
                 </select>
             </div>
 
@@ -53,22 +53,35 @@
         <label for="naam">Naam/Omschrijving</label>
         <input type="text" class="form-control mb-3" id="naam" name="naam" value="{{ old('naam')}}" required>
 
-        <label for="lid_id">Lid (optioneel)</label>
-        <select class="form-control mb-3"id="lid_id" name="lid_id">
-            <option selected value="">Geen lid</option>
-            @foreach($leden as $lid)
-                <option value="{{$lid->lid_id}}">{{$lid->roepnaam}} {{$lid->achternaam}}</option>
-            @endforeach
-        </select>
+        <div class="form-row">
+            <div class="col-md">
+                <label for="lid_id">Lid (bij geen tegenrekening)</label>
+                <select class="form-control mb-3"id="lid_id" name="lid_id">
+                    <option selected value="">Geen lid</option>
+                    @foreach($leden as $lid)
+                        <option value="{{$lid->lid_id}}">{{$lid->roepnaam}} {{$lid->achternaam}}</option>
+                    @endforeach
+                </select>
+            </div>
+            <div class="col-md">
+                <label for="spaarplan">Spaarplan (bij wel lid)</label>
+                <select class="form-control mb-3"id="spaarplan" name="spaarplan">
+                    <option selected value="">Niet van toepassing</option>
+                    <option value="1">Wel spaarplan</option>
+                    <option value="0">Geen spaarplan</option>
+                </select>
 
-        <label for="tegenrekening">Tegenrekening (optioneel)</label>
+            </div>
+        </div>
+
+
+        <label for="tegenrekening">Tegenrekening (bij geen lid)</label>
         <input type="text" class="form-control mb-3" id="tegenrekening" name="tegenrekening" value="{{ old('tegenrekening')}}" >
 
         <label for="mededelingen">Mededelingen</label>
         <input type="text" class="form-control mb-3" id="mededelingen" name="mededelingen" value="{{ old('mededelingen')}}" required>
 
-        <label for="spaarplan">Spaarplan?</label>
-        <input type="checkbox" class="mb-3" id="spaarplan" name="spaarplan" value="1">
+
 
         <button type="submit" class="btn btn-primary btn-lg btn-block mb-3 mt-3 floating">Voeg transactie toe</button>
     </form>

@@ -124,7 +124,7 @@ class BorrelsController extends Controller
 
     public function  remove_borrel_aanwezigheid($borrel){
         $borrel_id = $borrel->borrel_id;
-        $deelnemers = Lid::select('lid.lid_id','borrel_aanwezigheid.naheffing','borrel_aanwezigheid.boete')->join('borrel_aanwezigheid', function($join) use ($borrel_id){
+        $deelnemers = Lid::select('lid.lid_id as lid_id','borrel_aanwezigheid.naheffing','borrel_aanwezigheid.boete')->join('borrel_aanwezigheid', function($join) use ($borrel_id){
             $join->on('lid.lid_id','borrel_aanwezigheid.lid_id');
             $join->where('borrel_aanwezigheid.borrel_id',$borrel_id);
         })->get();
@@ -133,7 +133,7 @@ class BorrelsController extends Controller
                 subtract_verschuldigd($deelnemer->lid_id, $deelnemer->naheffing);
             }
             if(isset($deelnemer->boete)){
-                remove_boete($deelnemer->lid_id, $deelnemer->boete);
+                remove_boete($deelnemer->boete);
             }
             BorrelAanwezigheid::where('lid_id',$deelnemer->lid_id)->where('borrel_id',$borrel_id)->delete();
         }

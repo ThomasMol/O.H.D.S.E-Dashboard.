@@ -32,51 +32,36 @@ class TransactiesController extends Controller
             'lid_id' => 'required_without:tegenrekening',
             'tegenrekening' => 'required_without:lid_id',
             'bedrag' => 'required|numeric|gte:0|lt:99999999',
-            'code' => 'required',
+            'mutatie_soort' => 'required',
             'af_bij' => 'required',
             'mededelingen' => 'required',
-            'spaarplan' => ''
+            'spaarplan' => 'required_with:lid_id'
         ]);
-        $rekening = SErekening::first();
-
-
         $afbij = $data['af_bij'];
         $lid_id = $data['lid_id'];
         $bedrag = $data['bedrag'];
+        $spaarplan = $data['spaarplan'];
 
-        if($afbij == "Bij" && isset($lid_id)){
-            $rekening->saldo = $rekening->saldo + $bedrag;
-
-            if(isset($data->spaarplan)){
-                add_gespaard($lid_id, $bedrag);
-            }else{
-                add_overgemaakt($lid_id, $bedrag);
-            }
-            $rekeningnummer = Rekeningnummer::first($lid_id);
-            $data->tegenrekening = $rekeningnummer;
-
+        if(isset($lid_id)){
+            $rekeningnummer = Rekeningnummer::find($lid_id);
+            $data['tegenrekening'] = $rekeningnummer->rekeningnummer;
+        }
+        if($afbij == "Af"){
+            $this->af($bedrag,$lid_id,$spaarplan);
         }elseif($afbij == "Bij"){
-            $rekening->saldo = $rekening->saldo + $bedrag;
-
-        }elseif($afbij == "Af" && isset($lid_id)){
-            $rekening->saldo = $rekening->saldo - $bedrag;
-
-        }elseif($afbij == "Af"){
-            $rekening->saldo = $rekening->saldo - $bedrag;
-
+            $this->bij($bedrag,$lid_id,$spaarplan);
         }
 
         $transactie = Transactie::create($data);
-        return redirect('/transactie'.$transactie->transactie_id);
+        return redirect('/transactie/'.$transactie->transactie_id);
     }
 
 
     public function show(Transactie $transactie)
     {
         $lid = Lid::find($transactie->lid_id);
-        return view('transactie/show', compact('transactie','lid'));
+        return view('transacties/show', compact('transactie','lid'));
     }
-
 
     public function edit(Transactie $transactie)
     {
@@ -84,7 +69,6 @@ class TransactiesController extends Controller
         $lid = Lid::find($transactie->lid_id);
         return view('transacties/create', compact('transactie','leden','lid'));
     }
-
 
     public function update(Request $request, Transactie $transactie)
     {
@@ -95,5 +79,38 @@ class TransactiesController extends Controller
     public function destroy(Transactie $transactie)
     {
         //
+    }
+
+
+    public function af($bedrag, $lid_id,$spaarplan){
+        $rekening = SErekening::find(1);
+        $rekening->saldo = $rekening->saldo - $bedrag;
+        $rekening->save();
+
+        if(isset($lid_id) && $spaarplan == 1){
+            add_gespaard($lid_id,$bedrag);
+            return;
+        }elseif(isset($lid_id) && $spaarplan != 1){
+            subtract_overgemaakt($lid_id,$bedrag);
+            return;
+        }else{
+            return;
+        }
+    }
+
+    public function bij($bedrag, $lid_id,$spaarplan){
+        $rekening = SErekening::find(1);
+        $rekening->saldo = $rekening->saldo + $bedrag;
+        $rekening->save();
+
+        if(isset($lid_id) && $spaarplan == 1){
+            subtract_gespaard($lid_id,$bedrag);
+            return;
+        }elseif(isset($lid_id) && $spaarplan != 1){
+            add_overgemaakt($lid_id,$bedrag);
+            return;
+        }else{
+            return;
+        }
     }
 }
