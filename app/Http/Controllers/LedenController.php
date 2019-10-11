@@ -162,7 +162,7 @@ class LedenController extends Controller
         return redirect('/lid/' . $lid->lid_id);
     }
 
-    public function delete(Lid $lid){
+    public function destroy(Lid $lid){
         $lid->delete();
         return redirect('/leden');
     }

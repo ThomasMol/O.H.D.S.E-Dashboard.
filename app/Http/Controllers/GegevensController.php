@@ -18,6 +18,9 @@ class GegevensController extends Controller
         $financien = Financien::find(Auth::user()->lid_id);
         $rekeningnummers = Rekeningnummer::findMany( Auth::user()->lid_id);
         $lid_gegevens = LidGegevens::find(Auth::user()->lid_id);
+        $verschuldigd = verschuldigd(Auth::user()->lid_id);
+        $overgemaakt = overgemaakt(Auth::user()->lid_id);
+        $gespaard = gespaard(Auth::user()->lid_id);
         return view('gegevens/gegevens',compact('financien','rekeningnummers' ,'lid_gegevens'));
     }
     public function edit(){

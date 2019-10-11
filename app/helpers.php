@@ -79,6 +79,52 @@ function divide_money($total, $divisor)
         $lid->save();
     }
 
+    function verschuldigd($lid_id){
+        $boetes = App\Boete::where('boete.lid_id',$lid_id)->sum('bedrag');
+        $borrels = App\BorrelAanwezigheid::where('borrel_aanwezigheid.lid_id',$lid_id)->sum('naheffing');
+        //$contributies = App\ContributieDeelname::where('contributie_deelname.lid_id',$lid_id)->sum('bedrag');
+        $declaraties = App\DeclaratieDeelname::where('declaratie_deelname.lid_id',$lid_id)->sum('bedrag');
+        $declaraties_betaald = App\Declaratie::where('declaratie.betaald_door_id',$lid_id)->sum('bedrag');
+        $uitgaven = App\UitgaveDeelname::where('uitgave_deelname.lid_id',$lid_id)->sum('naheffing');
+        $total = $boetes + $borrels + /*$contributies +*/ $declaraties - $declaraties_betaald + $uitgaven;
+        return $total;
+    }
+
+    function overgemaakt($lid_id){
+        $transacties_bij = App\Transactie::where('transactie.lid_id',$lid_id)
+            ->where('transactie.af_bij','bij')
+            ->where('transactie.spaarplan', 0)
+            ->sum('bedrag');
+        $transacties_af = App\Transactie::where('transactie.lid_id',$lid_id)
+            ->where('transactie.af_bij','af')
+            ->where('transactie.spaarplan', 0)
+            ->sum('bedrag');
+        $total = $transacties_bij - $transacties_af;
+        return $total;
+
+    }
+
+    function gespaard($lid_id){
+        $transacties_bij = App\Transactie::where('transactie.lid_id',$lid_id)
+            ->where('transactie.af_bij','bij')
+            ->where('transactie.spaarplan', 1)
+            ->sum('bedrag');
+        $transacties_af = App\Transactie::where('transactie.lid_id',$lid_id)
+            ->where('transactie.af_bij','af')
+            ->where('transactie.spaarplan', 1)
+            ->sum('bedrag');
+        $total = $transacties_bij - $transacties_af;
+        return $total;
+    }
+
+    //todo put in scope
+    function cumulatief_af(){
+        $transacties = App\Transactie::where('transactie.af_bij','af')
+            ->where('transactie.spaarplan', 1)
+            ->sum('bedrag');
+        return $transacties;
+    }
+
     function format_currency($number){
         return number_format($number, 2, ',', '.');
     }

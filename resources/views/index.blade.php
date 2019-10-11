@@ -15,7 +15,7 @@
             <h6>Verschuldigd</h6>
             <h3>&euro; {{format_currency($financien->verschuldigd)}}</h3>
             <hr>
-            <h6>Verschuldigd</h6>
+            <h6>Overgemaakt</h6>
             <h3>&euro; {{format_currency($financien->overgemaakt)}}</h3>
             <hr>
             <h4>Actuele schuld</h4>

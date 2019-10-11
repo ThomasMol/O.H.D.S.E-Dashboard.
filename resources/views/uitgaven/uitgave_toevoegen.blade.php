@@ -6,20 +6,46 @@
     <form class="card" method="POST" action="/uitgaven">
         @csrf
         <h3>Activiteit</h3>
-        <label for="datum">Datum</label>
-        <input type="date" class="form-control mb-3" id="datum" name="datum" value="{{ old('datum') ?? date('Y-m-d') }}" required>
-        <label for="budget">Budget</label>
-        <input type="number" class="form-control mb-3" id="budget" name="budget" step=".01" value="{{ old('budget') }}" min="0" max="99999999" required>
-        <label for="uitgave">Uitgave</label>
-        <input type="number" class="form-control mb-3" id="uitgave" name="uitgave" step=".01" value="{{ old('uitgave') }}" min="0" max="99999999" required>
-        <label for="naheffing">Naheffing</label>
-        <input type="number" class="form-control mb-3" id="naheffing" name="naheffing" step=".01" value="{{ old('naheffing')}}" max="99999999" required readonly>
+        <div class="form-row">
+            <div class="col-md-3">
+                <label for="datum">Datum</label>
+                <input type="date" class="form-control mb-3" id="datum" name="datum" value="{{ old('datum') ?? date('Y-m-d') }}" required>
+            </div>
+            <div class="col-md-3">
+                <label for="budget">Budget</label>
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <div class="input-group-text">&euro;</div>
+                    </div>
+                    <input type="number" class="form-control" id="budget" name="budget" step=".01" value="{{ old('budget') }}" min="0" max="99999999" placeholder="Vul bedrag in" required>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <label for="uitgave">Uitgave</label>
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <div class="input-group-text">&euro;</div>
+                    </div>
+                    <input type="number" class="form-control " id="uitgave" name="uitgave" step=".01" value="{{ old('uitgave') }}" min="0" max="99999999" placeholder="Vul bedrag in" required>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <label for="naheffing">(Totale) Naheffing</label>
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <div class="input-group-text">&euro;</div>
+                    </div>
+                    <input type="number" class="form-control" id="naheffing" name="naheffing" step=".01" value="{{ old('naheffing')}}" max="99999999" placeholder="0.00" required readonly>
+                </div>
+            </div>
+        </div>
         <label for="categorie">Categorie:</label>
         <select class="form-control mb-3"id="categorie" name="categorie" required>
             <option selected value="Overig">Overig</option>
             <option value="Weekend 1">Weekend 1</option>
             <option value="Weekend 2">Weekend 2</option>
         </select>
+
         <label for="omschrijving">Omschrijving</label>
         <textarea type="text" class="form-control mb-3" id="omschrijving" name="omschrijving" required>{{ old('omschrijving')}}</textarea>
 

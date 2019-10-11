@@ -89,7 +89,6 @@ class ContributieController extends Controller
             $join->on('lid.lid_id', 'contributie_deelname.lid_id');
             $join->where('contributie_deelname.contributie_id', $contributie_id);
         })->get();
-        echo $deelnemers;
         foreach($deelnemers as $deelnemer){
             subtract_verschuldigd($deelnemer->lid_id, $contributie->bedrag);
             ContributieDeelname::where('lid_id', $deelnemer->lid_id)->where('contributie_id', $contributie_id)->delete();

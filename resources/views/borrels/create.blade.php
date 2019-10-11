@@ -7,7 +7,6 @@
         @csrf
         <h3>Borrel</h3>
 
-
         <div class="form-row">
             <div class="col-md-3">
                 <label for="datum">Datum</label>
