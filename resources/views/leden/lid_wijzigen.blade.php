@@ -79,17 +79,4 @@
 
         <button type="submit" class="btn btn-primary btn-lg btn-block mb-3 mt-3 ">Wijzig lid</button>
     </form>
-    <script>
-        $(document).ready(function () {
-            var i = {{count($rekeningnummers)}} + 1;
-            $("form").on("click","#add_rekeningnummer",function () {
-                $("#rekeningnummers").append('<div id="extra_rekeningnummer" data-id="'+i+'"><label for=\"rekeningnummer\">Extra Rekeningnummer</label><button data-button="'+i+'" type="button" class="btn btn-link" id="remove_rekeningnummer">verwijder</button>\n<input type=\"text\" class=\"form-control mb-3\" id=\"rekeningnummer\" name=\"rekeningnummers[]\"></div>' );
-                i++;
-            });
-
-            $("form").on("click","#remove_rekeningnummer",function(){
-                $("#extra_rekeningnummer[data-id='"+$(this).data("button")+"']").remove();
-            });
-        });
-    </script>
 @endsection

@@ -2,23 +2,20 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1d93f86e-b11f-418d-aa3e-7306eb9d7eb9" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/8125161c-afe8-407d-8a81-5835eb95a820/storage_v2/_src_/schema/OHDSE.HQV7BA.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/8125161c-afe8-407d-8a81-5835eb95a820/storage_v2/_src_/schema/OHDSE.HQV7BA.zip" beforeDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/begroting/edit.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/begroting/show.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ContributieController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ContributieController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/GegevensController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/GegevensController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/BegrotingController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/BegrotingController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/LedenController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/LedenController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/TransactiesController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/TransactiesController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Lid.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Lid.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/helpers.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/helpers.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Inkomsten.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Inkomsten.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Uitgaven.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Uitgaven.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/css/stylesheet.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/stylesheet.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/borrels/create.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/borrels/create.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/index.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/uitgaven/uitgave_toevoegen.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/uitgaven/uitgave_toevoegen.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/uitgaven/uitgave_wijzigen.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/uitgaven/uitgave_wijzigen.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/js/scripts.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/scripts.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/layout.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layout.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/leden/lid_toevoegen.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/leden/lid_toevoegen.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/leden/lid_wijzigen.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/leden/lid_wijzigen.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -261,7 +258,7 @@
       <workItem from="1570387225990" duration="4139000" />
       <workItem from="1570823171463" duration="33000" />
       <workItem from="1570823381215" duration="72000" />
-      <workItem from="1570823520746" duration="4565000" />
+      <workItem from="1570823520746" duration="31079000" />
     </task>
     <servers />
   </component>

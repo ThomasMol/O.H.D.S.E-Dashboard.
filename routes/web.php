@@ -17,6 +17,14 @@ Route::middleware(['auth'])->group(function (){
     // todo password reset, email change
     Route::post('/gegevens/wijziglogin','GegevensController@wijziglogin');
 
+    //Route::get('/begroting','BegrotingController@index')->middleware('admin');
+    Route::get('/begroting/toevoegen','BegrotingController@create')->middleware('admin');
+    Route::post('/begroting','BegrotingController@store')->middleware('admin');
+    Route::get('/begroting/{bestuursjaar}', 'BegrotingController@show')->middleware('admin');
+    Route::get('/begroting/{bestuursjaar}/wijzig','BegrotingController@edit')->middleware('admin');
+    Route::patch('/begroting/{bestuursjaar}','BegrotingController@update')->middleware('admin');
+    Route::delete('/begroting/{bestuursjaar}', 'BegrotingController@destroy')->middleware('admin');
+
     /*boetes*/
     Route::get('/boetes','BoetesController@index');
     Route::get('/boetes/toevoegen','BoetesController@create')->middleware('admin');

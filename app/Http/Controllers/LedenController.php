@@ -138,7 +138,7 @@ class LedenController extends Controller
         ]);
 
         $rekeningnummers_data = request()->validate([
-            'rekeningnummers' => 'required|max:255|unique:rekeningnummer,rekeningnummer,'.$lid_id.',lid_id',
+            'rekeningnummers.*' => 'required|max:255|unique:rekeningnummer,rekeningnummer,'.$lid_id.',lid_id',
         ]);
 
         $lid->update($lid_data);

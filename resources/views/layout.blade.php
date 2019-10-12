@@ -62,6 +62,13 @@
             <li class="nav-item category">
                 Financi&euml;n
             </li>
+            @if(Auth::user()->admin == 1)
+                <li class="nav-item">
+                    <a class="nav-link {{ Request::is('begroting*') ? 'active' : '' }}" href="/begroting">
+                        Begroting
+                    </a>
+                </li>
+            @endif
             <li class="nav-item">
                 <a class="nav-link {{ Request::is('borrel*') ? 'active' : '' }}" href="/borrels">
                     Borrels
@@ -88,24 +95,26 @@
                 </a>
             </li>
 
-          {{--  <li class="nav-item category">
-                Dispuut
-            </li>
-            <li class="nav-item">
-                <a class="nav-link {{ Request::is('bestu*') ? 'active' : '' }}" href="/besturen">
-                    Besturen
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link {{ Request::is('commissie*') ? 'active' : '' }}" href="/commissies">
-                    Commissies
-                </a>
-            </li>
---}}
+
+            {{--  <li class="nav-item category">
+                  Dispuut
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link {{ Request::is('bestu*') ? 'active' : '' }}" href="/besturen">
+                      Besturen
+                  </a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link {{ Request::is('commissie*') ? 'active' : '' }}" href="/commissies">
+                      Commissies
+                  </a>
+              </li>
+  --}}
             @if(Auth::user()->admin == 1)
             <li class="nav-item category">
                 Bestuur
             </li>
+
             <li class="nav-item">
                 <a class="nav-link {{ Request::is('instelling*') ? 'active' : '' }}" href="/instellingen">
                     Instellingen
@@ -135,7 +144,6 @@
     @endif
     @yield('content')
 </main>
-<script src="/js/jquery.js" type="text/javascript"></script>
 <script src="/js/bootstrap.js" type="text/javascript"></script>
 <script src="/js/scripts.js" type="text/javascript"></script>
 
