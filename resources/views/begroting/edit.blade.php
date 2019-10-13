@@ -16,15 +16,16 @@
                 </tr>
                 </thead>
                 <tbody>
+
                 @foreach($inkomsten_list as $inkomsten)
                     <tr>
-
-                        <td><input type="text" class="form-control" id="soort" name="inkomsten[{{$inkomsten->inkomsten_id}}][soort]" value="{{$inkomsten->soort}}" required></td>
+                            <input type="hidden" name="inkomsten[{{$loop->iteration}}][id]" value="{{$inkomsten->inkomsten_id}}">
+                        <td><input type="text" class="form-control" id="soort" name="inkomsten[{{$loop->iteration}}][soort]" value="{{$inkomsten->soort}}" required></td>
                         <td>
                             <div class="input-group mb-3">
                                 <div class="input-group-prepend">
                                     <div class="input-group-text">&euro;</div>
-                                </div><input type="number" class="form-control" id="budget" name="inkomsten[{{$inkomsten->inkomsten_id}}][bedrag]" step=".01" value="{{$inkomsten->bedrag}}" min="0" max="99999999" required>
+                                </div><input type="number" class="form-control" id="bedrag" name="inkomsten[{{$loop->iteration}}][bedrag]" step=".01" value="{{$inkomsten->bedrag}}" min="0" max="99999999" required>
                             </div>
                         </td>
                     </tr>
@@ -74,20 +75,23 @@
     </form>
     <script>
         //Add and remove rekeningnummer input field
+        var i = {{count($inkomsten_list)}} + 1;
         $("form").on("click","#add_inkomsten",function () {
             $("#inkomsten").before(`<tr>
-                <td><input type=\"text\" class="form-control" id="soort" name="inkomsten[-1][soort]" value="" placeholder="soort"></td>
+                <input type="hidden" name="inkomsten[`+i+`][id]" value="">
+                <td><input type=\"text\" class="form-control" id="soort" name="inkomsten[`+i+`][soort]" value="" placeholder="soort"></td>
                 <td>
                 <div class="input-group mb-3">
                 <div class="input-group-prepend">
                 <div class="input-group-text">&euro;</div>
             </div>
-            <input type="number" class="form-control" id="budget" name="inkomsten[-1][bedrag]" step=".01" value="" min="0" max="99999999" placeholder="bedrag">
+            <input type="number" class="form-control" id="budget" name="inkomsten[`+i+`][bedrag]" step=".01" value="" min="0" max="99999999" placeholder="bedrag">
                 <button id="remove_rij" class="btn btn-link" type="button">X</button>
 
                 </div>
                 </td>
                 </tr>` );
+            i++;
         });
 
         $("form").on("click","#add_uitgave",function () {
