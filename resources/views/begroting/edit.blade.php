@@ -49,18 +49,19 @@
                 </tr>
                 </thead>
                 <tbody>
-                @foreach($uitgaven_list as $uitgave)
+                @foreach($uitgaven_list as $uitgaven)
                     <tr>
-                        <td><input type="text" class="form-control" id="soort" name="uitgave_soort[]" value="{{$uitgave->soort}}" required></td>
+                        <input type="hidden" name="uitgaven[{{$loop->iteration}}][id]" value="{{$uitgaven->uitgaven_id}}">
+                        <td><input type="text" class="form-control" id="soort" name="uitgaven[{{$loop->iteration}}][soort]" value="{{$uitgaven->soort}}" required></td>
                         <td>
                             <div class="input-group mb-3">
                                 <div class="input-group-prepend">
                                     <div class="input-group-text">&euro;</div>
-                                </div><input type="number" class="form-control" id="budget" name="uitgave_budget[]" step=".01" value="{{$uitgave->budget}}" min="0" max="99999999" required>
+                                </div><input type="number" class="form-control" id="budget" name="uitgaven[{{$loop->iteration}}][budget]" step=".01" value="{{$uitgaven->budget}}" min="0" max="99999999" required>
                             </div>
                         </td>
-                        <td>&euro; {{ format_currency($uitgave->realisatie) }}</td>
-                        <td>&euro; {{ format_currency($uitgave->verschil) }}</td>
+                        <td>&euro; {{ format_currency($uitgaven->realisatie) }}</td>
+                        <td>&euro; {{ format_currency($uitgaven->verschil) }}</td>
                     </tr>
                 @endforeach
 
@@ -94,24 +95,29 @@
             i++;
         });
 
+        var j = {{count($uitgaven_list)}} + 1;
         $("form").on("click","#add_uitgave",function () {
             $("#uitgaven").before(`<tr>
-                    <td><input type="text" class="form-control" id="soort" name="uitgave_soort[]" value="" placeholder="soort"></td>
+                    <input type="hidden" name="uitgaven[`+j+`][id]" value="">
+                    <td><input type="text" class="form-control" id="soort" name="uitgaven[`+j+`][soort]" value="" placeholder="soort"></td>
                     <td>
                         <div class="input-group mb-3">
                             <div class="input-group-prepend">
                                 <div class="input-group-text">&euro;</div>
                             </div>
-                            <input type="number" class="form-control" id="budget" name="uitgave_budget[]" step=".01" value="" min="0" max="99999999" placeholder="budget">
+                            <input type="number" class="form-control" id="budget" name="uitgaven[`+j+`][budget]" step=".01" value="" min="0" max="99999999" placeholder="budget">
                         </div>
                     </td>
                     <td></td>
                     <td><button id="remove_rij" class="btn btn-link" type="button">X</button></td>
                 </tr>` );
+            j++;
         });
 
         $("form").on("click","#remove_rij",function(e){
             $(this).closest('tr').remove();
         });
+
+
     </script>
 @endsection

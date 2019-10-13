@@ -1,7 +1,8 @@
 @extends('layout')
 @section('title','Begroting')
 @section('content')
-    <h3>Begroting van het {{$bestuursjaar->jaargang}}e bestuursjaar</h3>
+    <h3 >Begroting van het {{$bestuursjaar->jaargang}}e bestuursjaar</h3>
+    <a href="/begroting/{{$bestuursjaar->jaargang}}/wijzig" class="btn btn-outline-primary">Wijzig</a>
     <div class="row">
         <div class="col-md-6">
             <h4>Inkomsten</h4>

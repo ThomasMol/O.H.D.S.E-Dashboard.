@@ -64,7 +64,7 @@
             </li>
             @if(Auth::user()->admin == 1)
                 <li class="nav-item">
-                    <a class="nav-link {{ Request::is('begroting*') ? 'active' : '' }}" href="/begroting">
+                    <a class="nav-link {{ Request::is('begroting*') ? 'active' : '' }}" href="/begroting/14">
                         Begroting
                     </a>
                 </li>
