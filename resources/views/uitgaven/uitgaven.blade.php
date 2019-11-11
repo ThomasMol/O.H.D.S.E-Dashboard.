@@ -3,7 +3,7 @@
 @section('content')
     <h3>Uitgaven</h3>
     @if(Auth::user()->admin == 1)
-        <a class="btn btn-primary" href="/uitgaven/toevoegen">Uitgave toevoegen</a>
+        <a class="btn btn-primary" href="/uitgaven/toevoegen/{{$huidig_jaar->jaargang}}">Uitgave toevoegen</a>
     @endif
     <table class="table table-hover table-sm table-responsive ">
         <thead>

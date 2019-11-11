@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Bestuursjaar;
+use App\Uitgaven;
 use Illuminate\Http\Request;
 use App\Uitgave;
 use App\UitgaveDeelname;
@@ -15,9 +17,11 @@ class UitgavenController extends Controller
         return view('uitgaven/uitgaven',compact('uitgaven'));
     }
 
-    public function create(){
+    public function create(Bestuursjaar $bestuursjaar){
         $leden = Lid::ledenGesorteerd()->get();
-        return view('uitgaven/uitgave_toevoegen',compact('leden'));
+        $bestuursjaren = Bestuursjaar::all();
+        $categorieen = Uitgaven::where('jaargang',$bestuursjaar->jaargang)->get();
+        return view('uitgaven/uitgave_toevoegen',compact('leden', 'bestuursjaren', 'categorieen'));
     }
 
     public function store(){

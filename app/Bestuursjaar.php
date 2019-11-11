@@ -12,6 +12,6 @@ class Bestuursjaar extends Model
 
     public function scopeHuidigJaar($query){
         $date = date('Y-m-d');
-        return $query->where('tot','>=',$date)->where('van','<=',$date)->get();
+        return $query->where('tot','>=',$date)->where('van','<=',$date)->first();
     }
 }

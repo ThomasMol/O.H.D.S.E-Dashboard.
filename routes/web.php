@@ -81,10 +81,10 @@ Route::middleware(['auth'])->group(function (){
 
     /*uitgaven*/
     Route::get('/uitgaven','UitgavenController@index');
-    Route::get('/uitgaven/toevoegen','UitgavenController@create')->middleware('admin');
+    Route::get('/uitgaven/toevoegen/{bestuursjaar}','UitgavenController@create')->middleware('admin');
     Route::post('/uitgaven','UitgavenController@store')->middleware('admin');
     Route::get('/uitgave/{uitgave}', 'UitgavenController@show');
-    Route::get('/uitgaven/{uitgave}/wijzig','UitgavenController@edit')->middleware('admin');
+    Route::get('/uitgaven/{uitgave}/wijzig/{bestuursjaar}','UitgavenController@edit')->middleware('admin');
     Route::patch('/uitgaven/{uitgave}','UitgavenController@update')->middleware('admin');
     Route::delete('/uitgaven/{uitgave}', 'UitgavenController@destroy')->middleware('admin');
 

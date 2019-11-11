@@ -9,9 +9,7 @@
     <link href="/css/bootstrap.css" rel="stylesheet" type="text/css">
     <link href="/css/stylesheet.css" rel="stylesheet" type="text/css">
 
-    {{-- Scripts --}}
-    <script src="https://unpkg.com/feather-icons"></script>
-    <script src="/js/jquery-3.4.1.min.js"></script>
+
 
     {{-- Favicon --}}
     <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png">
@@ -64,7 +62,7 @@
             </li>
             @if(Auth::user()->admin == 1)
                 <li class="nav-item">
-                    <a class="nav-link {{ Request::is('begroting*') ? 'active' : '' }}" href="/begroting/14">
+                    <a class="nav-link {{ Request::is('begroting*') ? 'active' : '' }}" href="/begroting/{{$huidig_jaar->jaargang}}">
                         Begroting
                     </a>
                 </li>
@@ -144,8 +142,14 @@
     @endif
     @yield('content')
 </main>
+{{-- Scripts --}}
+<script src="/js/jquery.js" type="text/javascript"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
 <script src="/js/bootstrap.js" type="text/javascript"></script>
+<script src="https://unpkg.com/feather-icons"></script>
 <script src="/js/scripts.js" type="text/javascript"></script>
+
+
 
 <script>
     feather.replace();

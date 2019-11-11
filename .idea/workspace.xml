@@ -2,14 +2,20 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1d93f86e-b11f-418d-aa3e-7306eb9d7eb9" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/resources/views/begroting/index.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Http/View/ViewComposer.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Providers/ViewComposerServiceProvider.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Bestuursjaar.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Bestuursjaar.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/BegrotingController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/BegrotingController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/js/scripts.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/scripts.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/begroting/edit.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/begroting/edit.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/begroting/show.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/begroting/show.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/UitgavenController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/UitgavenController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/app.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/app.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/css/bootstrap.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/bootstrap.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/js/jquery-3.4.1.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/js/jquery.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/jquery.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/layout.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layout.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/uitgaven/uitgave.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/uitgaven/uitgave.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/uitgaven/uitgave_toevoegen.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/uitgaven/uitgave_toevoegen.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/uitgaven/uitgaven.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/uitgaven/uitgaven.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -150,14 +156,15 @@
     <property name="settings.editor.selected.configurable" value="reference.settingsdialog.IDE.editor.colors" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\xampp\htdocs\laravel\resources\views\borrels" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\xampp\htdocs\laravel\app\Providers" />
       <recent name="C:\xampp\htdocs\laravel\public" />
       <recent name="C:\xampp\htdocs\laravel\public\images" />
       <recent name="C:\xampp\htdocs\laravel\resources\views\leden" />
       <recent name="C:\xampp\htdocs\laravel\resources\views\profiel" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\xampp\htdocs\laravel\resources\views\borrels" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -254,7 +261,9 @@
       <workItem from="1570823171463" duration="33000" />
       <workItem from="1570823381215" duration="72000" />
       <workItem from="1570823520746" duration="37854000" />
-      <workItem from="1570999276050" duration="4857000" />
+      <workItem from="1570999276050" duration="7071000" />
+      <workItem from="1571258801277" duration="9076000" />
+      <workItem from="1571516754632" duration="597000" />
     </task>
     <servers />
   </component>

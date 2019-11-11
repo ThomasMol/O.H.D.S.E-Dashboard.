@@ -2,10 +2,20 @@
 @section('title','Uitgave')
 @section('content')
     <h2 class="mb-4">Uitgave toevoegen</h2>
+    <div class="dropdown">
+        <button class="btn btn-outline-primary dropdown-toggle" type="button" id="dropdownJaar" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Jaar:
+        </button>
+        <div class="dropdown-menu" aria-labelledby="dropdownJaar">
 
+            @foreach($bestuursjaren as $bestuursjaar)
+                <a class="dropdown-item" href="/uitgaven/toevoegen/{{$bestuursjaar->jaargang}}">Jaar {{$bestuursjaar->jaargang}} @if($bestuursjaar->jaargang == $huidig_jaar->jaargang) <i>Huidig jaar</i>@endif</a>
+            @endforeach
+        </div>
+    </div>
     <form class="card" method="POST" action="/uitgaven">
         @csrf
-        <h3>Activiteit</h3>
+        <h3>Uitgave</h3>
         <div class="form-row">
             <div class="col-md-3">
                 <label for="datum">Datum</label>
@@ -39,12 +49,14 @@
                 </div>
             </div>
         </div>
+
         <label for="categorie">Categorie:</label>
-        <select class="form-control mb-3"id="categorie" name="categorie" required>
-            <option selected value="Overig">Overig</option>
-            <option value="Weekend 1">Weekend 1</option>
-            <option value="Weekend 2">Weekend 2</option>
-        </select>
+                <select class="form-control mb-3"id="categorie" name="categorie" required>
+                    @foreach($categorieen as $categorie)
+                        <option value="{{$categorie->uitgaven_id}}">{{$categorie->soort}}</option>
+                    @endforeach
+                  </select>
+
 
         <label for="omschrijving">Omschrijving</label>
         <textarea type="text" class="form-control mb-3" id="omschrijving" name="omschrijving" required>{{ old('omschrijving')}}</textarea>
@@ -76,5 +88,6 @@
             var uitgave = Number($('#uitgave').val());
             $('#naheffing').val((uitgave - budget).toFixed(2));
         });
+
     </script>
 @endsection
