@@ -31,11 +31,11 @@
                     </tr>
                 @endforeach
 
-                    <tr id="inkomsten">
-                        <td colspan="2"><button id="add_inkomsten" class="btn btn-light btn-block" type="button">Nieuwe inkomsten rij</button></td>
-                    </tr>
+                <tr id="inkomsten"></tr>
+
                 </tbody>
             </table>
+            <button id="add_inkomsten" class="btn btn-light btn-block" type="button">Nieuwe inkomsten rij</button>
         </div>
         <div class="col md-6">
             <h4>Uitgaven</h4>
@@ -64,60 +64,12 @@
                         <td>&euro; {{ format_currency($uitgaven->verschil) }}</td>
                     </tr>
                 @endforeach
-
-                <tr id="uitgaven">
-                    <td colspan="4"><button id="add_uitgave" class="btn btn-light btn-block" type="button">Nieuwe uitgave rij</button></td>
-                </tr>
+                <tr id="uitgaven"></tr>
                 </tbody>
             </table>
+            <button id="add_uitgave" class="btn btn-light btn-block" type="button">Nieuwe uitgave rij</button>
         </div>
     </div>
     <button type="submit" class="btn btn-primary btn-lg btn-block mb-3 mt-3 floating">Opslaan</button>
     </form>
-    <script>
-        //Add and remove rekeningnummer input field
-        var i = {{count($inkomsten_list)}} + 1;
-        $("form").on("click","#add_inkomsten",function () {
-            $("#inkomsten").before(`<tr>
-                <input type="hidden" name="inkomsten[`+i+`][id]" value="">
-                <td><input type=\"text\" class="form-control" id="soort" name="inkomsten[`+i+`][soort]" value="" placeholder="soort"></td>
-                <td>
-                <div class="input-group mb-3">
-                <div class="input-group-prepend">
-                <div class="input-group-text">&euro;</div>
-            </div>
-            <input type="number" class="form-control" id="budget" name="inkomsten[`+i+`][bedrag]" step=".01" value="" min="0" max="99999999" placeholder="bedrag">
-                <button id="remove_rij" class="btn btn-link" type="button">X</button>
-
-                </div>
-                </td>
-                </tr>` );
-            i++;
-        });
-
-        var j = {{count($uitgaven_list)}} + 1;
-        $("form").on("click","#add_uitgave",function () {
-            $("#uitgaven").before(`<tr>
-                    <input type="hidden" name="uitgaven[`+j+`][id]" value="">
-                    <td><input type="text" class="form-control" id="soort" name="uitgaven[`+j+`][soort]" value="" placeholder="soort"></td>
-                    <td>
-                        <div class="input-group mb-3">
-                            <div class="input-group-prepend">
-                                <div class="input-group-text">&euro;</div>
-                            </div>
-                            <input type="number" class="form-control" id="budget" name="uitgaven[`+j+`][budget]" step=".01" value="" min="0" max="99999999" placeholder="budget">
-                        </div>
-                    </td>
-                    <td></td>
-                    <td><button id="remove_rij" class="btn btn-link" type="button">X</button></td>
-                </tr>` );
-            j++;
-        });
-
-        $("form").on("click","#remove_rij",function(e){
-            $(this).closest('tr').remove();
-        });
-
-
-    </script>
 @endsection

@@ -33,11 +33,10 @@ class UitgavenController extends Controller
             'categorie' => 'required',
             'omschrijving' => 'required|max:100000'
         ]);
-
-
         $deelnemers = request()->validate([
             'deelnemers' => 'required']
         );
+        dd(request());
         $uitgave = Uitgave::create($data);
 
         $this->add_uitgave_deelname($deelnemers['deelnemers'], $uitgave);

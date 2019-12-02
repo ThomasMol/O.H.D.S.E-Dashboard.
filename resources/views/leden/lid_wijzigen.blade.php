@@ -40,8 +40,11 @@
                 <label for="rekeningnummer">Rekeningnummer {{$loop->index + 1}}</label>
                 <input type="text" class="form-control mb-3" id="rekeningnummer" name="rekeningnummers[]" data-id="{{$loop->index + 1}}" required value="{{$rekeningnummer->rekeningnummer}}">
             @else
-                <div id="extra_rekeningnummer" data-id="{{$loop->index + 1}}"><label for="rekeningnummer">Rekeningnummer {{$loop->index + 1}}</label><button data-button="{{$loop->index + 1}}" type="button" class="btn btn-link" id="remove_rekeningnummer">verwijder</button>
-                <input type="text" class="form-control mb-3" id="rekeningnummer" name="rekeningnummers[]" value="{{$rekeningnummer->rekeningnummer}}"></div>
+                <div id="extra_rekeningnummer">
+                    <label for="rekeningnummer">Rekeningnummer {{$loop->index + 1}}</label>
+                    <button  type="button" class="btn btn-link" id="remove_rekeningnummer">verwijder</button>
+                    <input type="text" class="form-control mb-3" id="rekeningnummer" name="rekeningnummers[]" value="{{$rekeningnummer->rekeningnummer}}">
+                </div>
             @endif
         @endforeach
 

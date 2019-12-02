@@ -78,7 +78,7 @@ class BorrelsController extends Controller
             'naheffing_leden_aantal' => 'required|gte:0|lt:9999999|numeric',
             'aanwezigheid' => 'required'
         ]);
-
+        dd(request());
         $borrel->update($data);
         $this->remove_borrel_aanwezigheid($borrel);
         $aanwezigheid = request()->aanwezigheid;
@@ -94,7 +94,7 @@ class BorrelsController extends Controller
         return redirect('/borrels');
     }
 
-    //Nice hack :)
+    //hack//
     public function add_borrel_aanwezigheid($borrel,$aanwezigheid,$naheffing_leden_aantal){
         if($naheffing_leden_aantal > 0){
             $bedragen = divide_money($borrel->naheffing,$naheffing_leden_aantal);
