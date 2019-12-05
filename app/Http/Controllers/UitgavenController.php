@@ -38,9 +38,8 @@ class UitgavenController extends Controller
         ]);
         // dd(request());
         $uitgave = Uitgave::create($data);
+        add_uitgaven_realisatie($uitgave->uitgaven_id, $uitgave->budget);
         $this->add_uitgave_deelname($uitgave, $deelnemers['aanwezigheid']);
-
-
         return redirect('/uitgave/' . $uitgave->uitgave_id);
     }
 
@@ -81,13 +80,19 @@ class UitgavenController extends Controller
         $deelnemers = request()->validate([
                 'aanwezigheid' => '']
         );
+        subtract_uitgaven_realisatie($uitgave->uitgaven_id, $uitgave->budget);
         $this->remove_uitgave_deelname($uitgave);
+
         $uitgave->update($data);
+
+        add_uitgaven_realisatie($uitgave->uitgaven_id, $uitgave->budget);
         $this->add_uitgave_deelname($uitgave,$deelnemers['aanwezigheid']);
+
         return redirect('/uitgave/' . $uitgave->uitgave_id);
     }
 
     public function destroy(Uitgave $uitgave){
+        subtract_uitgaven_realisatie($uitgave->uitgaven_id, $uitgave->budget);
         $this->remove_uitgave_deelname($uitgave);
         $uitgave->delete();
         return redirect('/uitgaven');

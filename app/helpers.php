@@ -79,6 +79,18 @@ function divide_money($total, $divisor)
         $lid->save();
     }
 
+    function add_uitgaven_realisatie($uitgaven_id,$bedrag){
+        $uitgaven = App\Uitgaven::find($uitgaven_id);
+        $uitgaven->realisatie = $uitgaven->realisatie + $bedrag;
+        $uitgaven->save();
+    }
+
+    function subtract_uitgaven_realisatie($uitgaven_id,$bedrag){
+        $uitgaven = App\Uitgaven::find($uitgaven_id);
+        $uitgaven->realisatie = $uitgaven->realisatie - $bedrag;
+        $uitgaven->save();
+    }
+
     function verschuldigd($lid_id){
         $boetes = App\Boete::where('boete.lid_id',$lid_id)->sum('bedrag');
         $borrels = App\BorrelAanwezigheid::where('borrel_aanwezigheid.lid_id',$lid_id)->sum('naheffing');
