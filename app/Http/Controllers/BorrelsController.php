@@ -36,7 +36,7 @@ class BorrelsController extends Controller
             'aanwezigheid' => 'required'
         ]);
 
-        //dd(request());
+        dd(request());
         $borrel = Borrel::create($data);
         $aanwezigheid = request()->aanwezigheid;
         $naheffing_leden_aantal = request()->naheffing_leden_aantal;

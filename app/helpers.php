@@ -117,7 +117,7 @@ function divide_money($total, $divisor)
         return $total;
     }
 
-    //todo put in scope
+    //TODO put in scope
     function cumulatief_af(){
         $transacties = App\Transactie::where('transactie.af_bij','af')
             ->where('transactie.spaarplan', 1)

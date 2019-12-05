@@ -67,11 +67,11 @@
                     </a>
                 </li>
             @endif
-            <li class="nav-item">
+            {{-- <li class="nav-item">
                 <a class="nav-link {{ Request::is('borrel*') ? 'active' : '' }}" href="/borrels">
                     Borrels
                 </a>
-            </li>
+            </li> --}}
             <li class="nav-item">
                 <a class="nav-link {{ Request::is('contributie*') ? 'active' : '' }}" href="/contributies">
                     Contributies

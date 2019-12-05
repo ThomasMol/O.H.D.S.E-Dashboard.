@@ -14,9 +14,11 @@ Route::middleware(['auth'])->group(function (){
     Route::get('/gegevens/wijzig','GegevensController@edit');
     Route::patch('/gegevens','GegevensController@update');
 
-    // todo password reset, email change
+    // TODO password reset, email change
     Route::post('/gegevens/wijziglogin','GegevensController@wijziglogin');
 
+
+    // begroting
     Route::get('/begrotingen','BegrotingController@index')->middleware('admin');
     Route::get('/begroting/toevoegen','BegrotingController@create')->middleware('admin');
     Route::post('/begroting','BegrotingController@store')->middleware('admin');

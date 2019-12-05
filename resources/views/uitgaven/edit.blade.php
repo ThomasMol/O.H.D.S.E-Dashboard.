@@ -41,11 +41,10 @@
             </div>
         </div>
         <label for="categorie">Categorie:</label>
-        <select class="form-control mb-3"id="categorie" name="categorie" required>
-            <option selected value="{{ $uitgave->categorie }}">{{ $uitgave->categorie }}</option>
-            <option value="Overig">Overig</option>
-            <option value="Weekend 1">Weekend 1</option>
-            <option value="Weekend 2">Weekend 2</option>
+        <select class="form-control mb-3"id="categorie" name="uitgaven_id" required>
+            @foreach($categorieen as $categorie)
+                <option @if($categorie->uitgaven_id == $uitgave->categorie) checked @endif value="{{$categorie->uitgaven_id}}">{{$categorie->soort}}</option>
+            @endforeach
         </select>
         <label for="omschrijving">Omschrijving</label>
         <textarea type="text" class="form-control mb-3" id="omschrijving" name="omschrijving" required>{{ $uitgave->omschrijving }}</textarea>
@@ -56,13 +55,19 @@
             <tr>
                 <th scope="col">Naam</th>
                 <th scope="col">Aanwezig</th>
+                <th scope="col">Naheffing</th>
+                <th scope="col">Afgemeld</th>
+                <th scope="col">Boete</th>
             </tr>
             </thead>
             <tbody>
             @foreach($leden_deelname as $lid)
                 <tr>
                     <th scope="row">{{ $lid->roepnaam }} {{ $lid->achternaam }}</th>
-                    <td><input type="checkbox" name="deelnemers[]" value="{{$lid->lid_id}}" @if(isset( $lid->deelname)) checked @endif></td>
+                    <td><input class="form-control" type="checkbox" name="aanwezigheid[{{$lid->lid_id}}][aanwezig]" value="1" @if(isset($lid->aanwezig)) checked @endif></td>
+                    <td><input class="form-control" type="checkbox" name="aanwezigheid[{{$lid->lid_id}}][naheffing]" value="1" @if(isset($lid->naheffing)) checked @endif></td>
+                    <td><input class="form-control" type="checkbox" name="aanwezigheid[{{$lid->lid_id}}][afgemeld]" value="1" @if(isset($lid->afgemeld)) checked @endif></td>
+                    <td><input class="form-control" type="checkbox" name="aanwezigheid[{{$lid->lid_id}}][boete]" value="1" @if(isset($lid->boete_id)) checked @endif></td>
                 </tr>
             @endforeach
             </tbody>
@@ -71,11 +76,4 @@
         <button type="submit" class="btn btn-primary btn-lg btn-block mb-3 mt-3 floating">Wijzig uitgave</button>
     </form>
 
-    <script>
-        $('form').on("change paste keyup click blur focus submit",function(){
-            var budget  = Number($('#budget').val());
-            var uitgave = Number($('#uitgave').val());
-            document.getElementById('naheffing').value = (uitgave - budget).toFixed(2);
-        });
-    </script>
 @endsection

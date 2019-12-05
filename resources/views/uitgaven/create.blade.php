@@ -4,7 +4,7 @@
     <h2 class="mb-4">Uitgave toevoegen</h2>
     <div class="dropdown">
         <button class="btn btn-outline-primary dropdown-toggle" type="button" id="dropdownJaar" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            Jaar:
+            Begroting van jaargang:
         </button>
         <div class="dropdown-menu" aria-labelledby="dropdownJaar">
 
@@ -51,7 +51,7 @@
         </div>
 
         <label for="categorie">Categorie:</label>
-                <select class="form-control mb-3"id="categorie" name="categorie" required>
+                <select class="form-control mb-3"id="categorie" name="uitgaven_id" required>
                     @foreach($categorieen as $categorie)
                         <option value="{{$categorie->uitgaven_id}}">{{$categorie->soort}}</option>
                     @endforeach
@@ -67,13 +67,20 @@
             <tr>
                 <th scope="col">Naam</th>
                 <th scope="col">Aanwezig</th>
+                <th scope="col">Naheffing</th>
+                <th scope="col">Afgemeld</th>
+                <th scope="col">Boete</th>
             </tr>
             </thead>
             <tbody>
             @foreach($leden as $lid)
                 <tr>
                     <th scope="row">{{ $lid->roepnaam }} {{ $lid->achternaam }}</th>
-                    <td><input type="checkbox" name="deelnemers[]" value="{{$lid->lid_id}}"></td>
+                    {{-- <td><input type="checkbox" name="deelnemers[]" value="{{$lid->lid_id}}"></td> --}}
+                    <td><input class="form-control" type="checkbox" name="aanwezigheid[{{$lid->lid_id}}][aanwezig]" value="1"></td>
+                    <td><input class="form-control" type="checkbox" name="aanwezigheid[{{$lid->lid_id}}][naheffing]" value="1"></td>
+                    <td><input class="form-control" type="checkbox" name="aanwezigheid[{{$lid->lid_id}}][afgemeld]" value="1"></td>
+                    <td><input class="form-control" type="checkbox" name="aanwezigheid[{{$lid->lid_id}}][boete]" value="1"></td>
                 </tr>
             @endforeach
             </tbody>
@@ -81,13 +88,4 @@
 
         <button type="submit" class="btn btn-primary btn-lg btn-block mb-3 mt-3 floating">Voeg uitgave toe</button>
     </form>
-
-    <script>
-        $('form').on("change paste keyup click blur focus submit",function(){
-            var budget  = Number($('#budget').val());
-            var uitgave = Number($('#uitgave').val());
-            $('#naheffing').val((uitgave - budget).toFixed(2));
-        });
-
-    </script>
 @endsection

@@ -8,20 +8,20 @@ use Illuminate\Http\Request;
 use App\Uitgave;
 use App\UitgaveDeelname;
 use App\Lid;
-use DB;
 
 class UitgavenController extends Controller
 {
     public function index(){
-        $uitgaven = Uitgave::orderBy('datum','desc')->paginate(10);
-        return view('uitgaven/uitgaven',compact('uitgaven'));
+        $uitgaven = Uitgave::select('*','uitgave.budget as budget','uitgaven.budget as uitgaven_budget')->join('uitgaven','uitgave.uitgaven_id','=','uitgaven.uitgaven_id')->
+        orderBy('datum','desc')->paginate(10);
+        return view('uitgaven/index',compact('uitgaven'));
     }
 
     public function create(Bestuursjaar $bestuursjaar){
         $leden = Lid::ledenGesorteerd()->get();
         $bestuursjaren = Bestuursjaar::all();
         $categorieen = Uitgaven::where('jaargang',$bestuursjaar->jaargang)->get();
-        return view('uitgaven/uitgave_toevoegen',compact('leden', 'bestuursjaren', 'categorieen'));
+        return view('uitgaven/create',compact('leden', 'bestuursjaren', 'categorieen'));
     }
 
     public function store(){
@@ -30,16 +30,15 @@ class UitgavenController extends Controller
             'budget' => 'required|numeric|gte:0|lt:99999999',
             'uitgave' => 'required|numeric|gte:0|lt:99999999',
             'naheffing' => 'required|numeric',
-            'categorie' => 'required',
+            'uitgaven_id' => 'required',
             'omschrijving' => 'required|max:100000'
         ]);
         $deelnemers = request()->validate([
-            'deelnemers' => 'required']
-        );
-        dd(request());
+            'aanwezigheid' => ''
+        ]);
+        // dd(request());
         $uitgave = Uitgave::create($data);
-
-        $this->add_uitgave_deelname($deelnemers['deelnemers'], $uitgave);
+        $this->add_uitgave_deelname($uitgave, $deelnemers['aanwezigheid']);
 
 
         return redirect('/uitgave/' . $uitgave->uitgave_id);
@@ -47,19 +46,27 @@ class UitgavenController extends Controller
 
     public function show(Uitgave $uitgave){
         $leden_deelname = Lid::join('uitgave_deelname','lid.lid_id','=','uitgave_deelname.lid_id')->where('uitgave_deelname.uitgave_id',$uitgave->uitgave_id)->get();
-
-        return view('uitgaven/uitgave',compact('uitgave' , 'leden_deelname'));
+        $uitgave = Uitgave::select('*','uitgave.budget as budget','uitgaven.budget as uitgaven_budget')->join('uitgaven','uitgave.uitgaven_id','=','uitgaven.uitgaven_id')->where('uitgave.uitgave_id',$uitgave->uitgave_id)->first();
+        return view('uitgaven/show',compact('uitgave' , 'leden_deelname'));
     }
 
-    public function edit(Uitgave $uitgave){
+    public function edit(Uitgave $uitgave, Bestuursjaar $bestuursjaar){
         $id = $uitgave->uitgave_id;
-        $leden = Lid::select('lid_id', 'roepnaam', 'achternaam')->where('type_lid', '!=', 'Geen')->orderBy('type_lid', 'asc')->get();
+        $leden = Lid::ledenGesorteerd()->get();
+        $bestuursjaren = Bestuursjaar::all();
+        $categorieen = Uitgaven::where('jaargang',$bestuursjaar->jaargang)->get();
 
-        $leden_deelname = Lid::select('lid.lid_id', 'roepnaam', 'achternaam','uitgave_deelname.lid_id as deelname','type_lid')->leftJoin('uitgave_deelname', function($join) use ($id){
+        $leden_deelname = Lid::select('lid.lid_id', 'roepnaam', 'achternaam',
+        'uitgave_deelname.lid_id as deelname',
+        'uitgave_deelname.aanwezig as aanwezig',
+        'uitgave_deelname.afgemeld as afgemeld',
+        'uitgave_deelname.naheffing as naheffing',
+        'uitgave_deelname.boete_id as boete_id',
+        'type_lid')->leftJoin('uitgave_deelname', function($join) use ($id){
             $join->on('lid.lid_id','uitgave_deelname.lid_id');
             $join->where('uitgave_deelname.uitgave_id',$id);
         })->where('type_lid','!=','Geen')->orderBy('type_lid','asc')->get();
-        return view('uitgaven/uitgave_wijzigen', compact('uitgave', 'leden_deelname' , 'leden'));
+        return view('uitgaven/edit', compact('uitgave', 'leden_deelname' , 'leden','bestuursjaren','categorieen'));
     }
 
     public function update(Uitgave $uitgave){
@@ -68,15 +75,15 @@ class UitgavenController extends Controller
             'budget' => 'required|numeric|gte:0|lt:99999999',
             'uitgave' => 'required|numeric|gte:0|lt:99999999',
             'naheffing' => 'required|numeric|lt:99999999',
-            'categorie' => 'required',
+            'uitgaven_id' => 'required',
             'omschrijving' => 'required|max:100000'
         ]);
         $deelnemers = request()->validate([
-                'deelnemers' => 'required']
+                'aanwezigheid' => '']
         );
         $this->remove_uitgave_deelname($uitgave);
         $uitgave->update($data);
-        $this->add_uitgave_deelname($deelnemers['deelnemers'], $uitgave);
+        $this->add_uitgave_deelname($uitgave,$deelnemers['aanwezigheid']);
         return redirect('/uitgave/' . $uitgave->uitgave_id);
     }
 
@@ -86,28 +93,53 @@ class UitgavenController extends Controller
         return redirect('/uitgaven');
     }
 
-    public function add_uitgave_deelname($deelnemers, $uitgave){
-        $bedragen = divide_money($uitgave->naheffing, count($deelnemers));
+
+    //hack//
+    public function add_uitgave_deelname($uitgave, $deelnemers){
+        $count_naheffingen = 0;
+        foreach($deelnemers as $deelnemer){
+            if(isset($deelnemer['naheffing'])){
+                $count_naheffingen++;
+            }
+        }
+        if($count_naheffingen > 0){
+            $bedragen = divide_money($uitgave->naheffing, $count_naheffingen);
+        }
+
         $i = 1;
-        foreach ($deelnemers as $lid) {
-            add_verschuldigd($lid, $bedragen[$i]);
+        foreach ($deelnemers as $key => $lid) {
             $uitgave_deelname = new UitgaveDeelname();
-            $uitgave_deelname->lid_id = $lid;
+            $uitgave_deelname->lid_id = $key;
             $uitgave_deelname->uitgave_id = $uitgave->uitgave_id;
-            $uitgave_deelname->naheffing = $bedragen[$i];
+            $uitgave_deelname->aanwezig = isset($lid['aanwezig']);
+            $uitgave_deelname->afgemeld = isset($lid['afgemeld']);
+            if(isset($lid['boete'])){
+                $uitgave_deelname->boete_id = add_boete($key,10.00, "Te laat/niet aanwezig en niet afgemeld voor activiteit.",$uitgave->datum);
+            }
+            if(isset($lid['naheffing'])){
+                $uitgave_deelname->naheffing = $bedragen[$i];
+                add_verschuldigd($key,$bedragen[$i]);
+                $i++;
+            }
             $uitgave_deelname->save();
-            $i++;
+
         }
     }
 
     public function remove_uitgave_deelname($uitgave){
         $uitgave_id = $uitgave->uitgave_id;
-        $deelnemers = Lid::select('lid.lid_id','uitgave_deelname.naheffing as naheffing')->join('uitgave_deelname', function($join) use ($uitgave_id){
+        $deelnemers = Lid::select('lid.lid_id','uitgave_deelname.naheffing as naheffing','uitgave_deelname.boete_id as boete_id')->join('uitgave_deelname', function($join) use ($uitgave_id){
             $join->on('lid.lid_id','uitgave_deelname.lid_id');
             $join->where('uitgave_deelname.uitgave_id',$uitgave_id);
         })->get();
         foreach ($deelnemers as $deelnemer){
-            subtract_verschuldigd($deelnemer->lid_id, $deelnemer->naheffing);
+            if(isset($deelnemer->naheffing)){
+                subtract_verschuldigd($deelnemer->lid_id, $deelnemer->naheffing);
+            }
+            if(isset($deelnemer->boete_id)){
+                remove_boete($deelnemer->boete_id);
+            }
+
             UitgaveDeelname::where('lid_id',$deelnemer->lid_id)->where('uitgave_id',$uitgave_id)->delete();
         }
     }

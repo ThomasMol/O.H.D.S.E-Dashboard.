@@ -20,7 +20,7 @@
         <tbody>
             <tr>
                 <td>{{ $uitgave->datum }}</td>
-                <td>{{ $uitgave->categorie }}</td>
+                <td>{{ $uitgave->soort }}</td>
                 <td>{{ $uitgave->omschrijving }}</td>
                 <td>&euro; {{ format_currency($uitgave->budget) }}</td>
                 <td>&euro; {{ format_currency($uitgave->uitgave) }}</td>

@@ -1,7 +1,15 @@
 $(document).ready(function () {
 
+    //Mobile navigatino menu toggler
     $("#menu").click(function(){
         $(".sidebar").toggleClass("show-sidebar");
+    });
+
+    //update naheffing
+    $('form').on("change paste keyup click blur focus submit",function(){
+        var budget  = Number($('#budget').val());
+        var uitgave = Number($('#uitgave').val());
+        $('#naheffing').val((uitgave - budget).toFixed(2));
     });
 
     //Add and remove rekeningnummer input field
