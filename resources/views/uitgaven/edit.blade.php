@@ -64,9 +64,9 @@
             @foreach($leden_deelname as $lid)
                 <tr>
                     <th scope="row">{{ $lid->roepnaam }} {{ $lid->achternaam }}</th>
-                    <td><input class="form-control" type="checkbox" name="aanwezigheid[{{$lid->lid_id}}][aanwezig]" value="1" @if(isset($lid->aanwezig)) checked @endif></td>
+                    <td><input class="form-control" type="checkbox" name="aanwezigheid[{{$lid->lid_id}}][aanwezig]" value="1" @if(!empty($lid->aanwezig)) checked @endif></td>
                     <td><input class="form-control" type="checkbox" name="aanwezigheid[{{$lid->lid_id}}][naheffing]" value="1" @if(isset($lid->naheffing)) checked @endif></td>
-                    <td><input class="form-control" type="checkbox" name="aanwezigheid[{{$lid->lid_id}}][afgemeld]" value="1" @if(isset($lid->afgemeld)) checked @endif></td>
+                    <td><input class="form-control" type="checkbox" name="aanwezigheid[{{$lid->lid_id}}][afgemeld]" value="1" @if(!empty($lid->afgemeld)) checked @endif></td>
                     <td><input class="form-control" type="checkbox" name="aanwezigheid[{{$lid->lid_id}}][boete]" value="1" @if(isset($lid->boete_id)) checked @endif></td>
                 </tr>
             @endforeach

@@ -36,7 +36,6 @@ class UitgavenController extends Controller
         $deelnemers = request()->validate([
             'aanwezigheid' => ''
         ]);
-        // dd(request());
         $uitgave = Uitgave::create($data);
         add_uitgaven_realisatie($uitgave->uitgaven_id, $uitgave->budget);
         $this->add_uitgave_deelname($uitgave, $deelnemers['aanwezigheid']);
@@ -87,7 +86,6 @@ class UitgavenController extends Controller
 
         add_uitgaven_realisatie($uitgave->uitgaven_id, $uitgave->budget);
         $this->add_uitgave_deelname($uitgave,$deelnemers['aanwezigheid']);
-
         return redirect('/uitgave/' . $uitgave->uitgave_id);
     }
 
