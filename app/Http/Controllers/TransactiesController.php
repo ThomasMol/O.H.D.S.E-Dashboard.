@@ -10,7 +10,7 @@ use App\Transactie;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
 use Carbon\Carbon;
-
+use PDO;
 
 class TransactiesController extends Controller
 {
@@ -24,7 +24,8 @@ class TransactiesController extends Controller
     public function create()
     {
         $leden = Lid::ledenGesorteerd()->get();
-        return view('transacties/create', compact('leden'));
+        $transactie = new Transactie();
+        return view('transacties/create', compact('leden','transactie'));
     }
 
     public function store(Request $request)
@@ -71,7 +72,7 @@ class TransactiesController extends Controller
     {
         $leden = Lid::ledenGesorteerd()->get();
         $lid = Lid::find($transactie->lid_id);
-        return view('transacties/create', compact('transactie','leden','lid'));
+        return view('transacties/create', compact('transactie','leden','lid',));
     }
 
     public function update(Request $request, Transactie $transactie)
@@ -90,6 +91,9 @@ class TransactiesController extends Controller
     }
 
     public function parse(Request $request){
+        $transactie_model = new Transactie();
+        $leden = Lid::ledenGesorteerd()->get();
+
         if ($request->file('csv_file')->isValid()) {
             $file = $request->file('csv_file');
             $transacties = Excel::toArray(null,$file)[0];
@@ -97,12 +101,11 @@ class TransactiesController extends Controller
             foreach($transacties as $key => $transactie){
                 $transacties[$key][0] = Carbon::parse(strval($transactie[0]))->format("Y-m-d");
                 $transacties[$key][6] = str_replace(',','.',$transactie[6]);
-                $transacties[$key][9] = $this->getLid($transactie[3]);
-                $transacties[$key][10] = "lid naam en achternaam";
-                $transacties[$key][11] = "spaarplan 1 of 0";
+                $transacties[$key][9] = $this->getLidId($transactie[3]);
+                $transacties[$key][11] = $this->getSpaarplan($transactie[8],$transacties[$key][9]);
             }
         }
-        return view('/transacties/check',compact('transacties'));
+        return view('/transacties/check',compact('transacties','transactie_model','leden'));
     }
 
 
@@ -126,12 +129,22 @@ class TransactiesController extends Controller
         return redirect('/transacties');
     }
 
-    public function getLid($tegenrekening){
+    public function getLidId($tegenrekening){
         $rekeningnummer = Rekeningnummer::where('rekeningnummer',$tegenrekening)->first();
         if(isset($rekeningnummer)){
             return $rekeningnummer->lid_id;
         }else{
             return null;
+        }
+    }
+
+    public function getSpaarplan($mededeling,$lid_id){
+        if (strpos(strtolower($mededeling), 'spaarplan') !== false) {
+            return '1';
+        }elseif(isset($lid_id)){
+            return '0';
+        }else{
+            return '';
         }
     }
 

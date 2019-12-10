@@ -15,27 +15,18 @@
                 <label for="af_bij">Af/Bij (op de dispuutsrekening)</label>
                 <select class="form-control mb-3" id="af_bij" name="af_bij" required>
                     <option selected disabled value="">Selecteer af/bij</option>
-                    <option value="Af">Af</option>
-                    <option value="Bij">Bij</option>
+                    @foreach($transactie->afbijOptions() as $key => $afbij)
+                        <option value="{{ $key }}" >{{ $afbij }}</option>
+                    @endforeach
                 </select>
             </div>
             <div class="col-md">
                 <label for="mutatie_soort">Type</label>
                 <select class="form-control mb-3" id="mutatie_soort" name="mutatie_soort" required>
                     <option selected disabled value="">Selecteer type</option>
-                    <option value="Acceptgiro (AC)">Acceptgiro (AC)</option>
-                    <option value="Betaalautomaat (BA)">Betaalautomaat (BA)</option>
-                    <option value="Diversen (DV)">Diversen (DV)</option>
-                    <option value="Filiaalboeking (FL)">Filiaalboeking (FL)</option>
-                    <option value="Telefonisch bankieren (GF)">Telefonisch bankieren (GF)</option>
-                    <option value="Geldautomaat (GM)">Geldautomaat (GM)</option>
-                    <option value="Online bankieren (GT)">Online bankieren (GT)</option>
-                    <option value="Incasso (IC)">Incasso (IC)</option>
-                    <option value="Overschrijving (OV)">Overschrijving (OV)</option>
-                    <option value="Opname kantoor (PK)">Opname kantoor (PK)</option>
-                    <option value="Periodieke overschrijving (PO)">Periodieke overschrijving (PO)</option>
-                    <option value="Storting (ST)">Storting (ST)</option>
-                    <option value="Verzamelbetaling (VZ)">Verzamelbetaling (VZ)</option>
+                    @foreach($transactie->mutatieOptions() as $key => $mutatie)
+                        <option value="{{ $key }}" >{{ $mutatie }}</option>
+                    @endforeach
                 </select>
             </div>
 
