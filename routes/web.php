@@ -80,6 +80,11 @@ Route::middleware(['auth'])->group(function (){
     Route::get('/transacties/{transactie}/wijzig','TransactiesController@edit')->middleware('admin');
     Route::patch('/transacties/{transactie}','TransactiesController@update')->middleware('admin');
     Route::delete('/transacties/{transactie}', 'TransactiesController@destroy')->middleware('admin');
+    Route::get('/transacties/upload','TransactiesController@upload')->middleware('admin');
+    Route::post('/transacties/upload','TransactiesController@parse')->middleware('admin');
+    Route::post('/transacties/process','TransactiesController@process')->middleware('admin');
+
+
 
     /*uitgaven*/
     Route::get('/uitgaven','UitgavenController@index');

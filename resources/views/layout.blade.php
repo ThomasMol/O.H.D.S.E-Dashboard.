@@ -25,39 +25,42 @@
 <nav>
     <div class="mobile-nav">
         <a href="/"><img src="/images/sadas.png" class="logo-mobile" width="40px"></a>
-        <button id="menu" class="btn menu navbar-toggler" data-target="#sidebarCollapse" data-toggle="collapse">
+        <button id="menu" class="btn menu navbar-toggler" data-target="#sidebar-collapse" data-toggle="collapse">
             <span data-feather="menu"></span></button>
     </div>
-    <div class="sidebar collapse" id="sidebarCollapse">
+    <div class="sidebar collapse" id="sidebar-collapse">
 
         <ul class="nav flex-column ">
             <li class="nav-item">
                 <img src="/images/sadas.png" class="logo" width="50px">
             </li>
-            <li class="nav-item category">
+            <li class="nav-item category dropdown-toggle" data-toggle="collapse" data-target="#algemeen-collapse">
                 Algemeen
             </li>
-            <li class="nav-item">
-                <a class="nav-link {{ Request::is('/') ? 'active' : '' }}" href="/">
-                    Overzicht
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link {{ Request::is('gegevens*') ? 'active' : '' }}" href="/gegevens">
-                    Mijn gegevens
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link {{ Request::is('leden*') ? 'active' : '' }}" href="/leden">
-                    Leden
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link {{ Request::is('boet*') ? 'active' : '' }}" href="/boetes">
-                    Boetes
-                </a>
-            </li>
-            <li class="nav-item category">
+            <div id="algemeen-collapse" class="collapse show" >
+                <li class="nav-item">
+                    <a class="nav-link {{ Request::is('/') ? 'active' : '' }}" href="/">
+                        Overzicht
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link {{ Request::is('gegevens*') ? 'active' : '' }}" href="/gegevens">
+                        Mijn gegevens
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link {{ Request::is('leden*') ? 'active' : '' }}" href="/leden">
+                        Leden
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link {{ Request::is('boet*') ? 'active' : '' }}" href="/boetes">
+                        Boetes
+                    </a>
+                </li>
+            </div>
+
+            <li class="nav-item category dropdown-toggle">
                 Financi&euml;n
             </li>
             @if(Auth::user()->admin == 1)
@@ -109,7 +112,7 @@
               </li>
   --}}
             @if(Auth::user()->admin == 1)
-            <li class="nav-item category">
+            <li class="nav-item category dropdown-toggle">
                 Bestuur
             </li>
 

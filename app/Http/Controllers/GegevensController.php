@@ -6,10 +6,8 @@ use App\Financien;
 use App\Lid;
 use App\LidGegevens;
 use App\Rekeningnummer;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
+use Carbon\Carbon;
 
 
 class GegevensController extends Controller

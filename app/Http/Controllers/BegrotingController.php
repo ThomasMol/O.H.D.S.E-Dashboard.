@@ -53,32 +53,36 @@ class BegrotingController extends Controller
             'uitgaven.*.budget' => 'required|numeric|gte:0|lt:99999999'
         ]);
 
+        if(isset($inkomsten["inkomsten"])){
+            foreach($inkomsten["inkomsten"] as $rij){
+                $inkomsten_rij = Inkomsten::find($rij['id']);
+                if($inkomsten_rij != null){
+                    $inkomsten_rij->update(['soort'=>$rij['soort'],'bedrag'=>$rij['bedrag']]);
+                }else{
+                    $new = new Inkomsten;
+                    $new->jaargang = $bestuursjaar->jaargang;
+                    $new->soort = $rij['soort'];
+                    $new->bedrag = $rij['bedrag'];
+                    $new->save();
+                }
+            }
+        }
+        if(isset($uitgaven["uitgaven"])){
+            foreach($uitgaven["uitgaven"] as $rij){
+                $uitgaven_rij = Uitgaven::find($rij['id']);
+                if($uitgaven_rij != null){
+                    $uitgaven_rij->update(['soort'=>$rij['soort'],'budget'=>$rij['budget']]);
+                }else{
+                    $new = new Uitgaven();
+                    $new->jaargang = $bestuursjaar->jaargang;
+                    $new->soort = $rij['soort'];
+                    $new->budget = $rij['budget'];
+                    $new->realisatie = 0;
+                    $new->save();
+                }
+            }
+        }
 
-        foreach($inkomsten["inkomsten"] as $rij){
-            $inkomsten_rij = Inkomsten::find($rij['id']);
-            if($inkomsten_rij != null){
-                $inkomsten_rij->update(['soort'=>$rij['soort'],'bedrag'=>$rij['bedrag']]);
-            }else{
-                $new = new Inkomsten;
-                $new->jaargang = $bestuursjaar->jaargang;
-                $new->soort = $rij['soort'];
-                $new->bedrag = $rij['bedrag'];
-                $new->save();
-            }
-        }
-        foreach($uitgaven["uitgaven"] as $rij){
-            $uitgaven_rij = Uitgaven::find($rij['id']);
-            if($uitgaven_rij != null){
-                $uitgaven_rij->update(['soort'=>$rij['soort'],'budget'=>$rij['budget']]);
-            }else{
-                $new = new Uitgaven();
-                $new->jaargang = $bestuursjaar->jaargang;
-                $new->soort = $rij['soort'];
-                $new->budget = $rij['budget'];
-                $new->realisatie = 0;
-                $new->save();
-            }
-        }
         return redirect('/begroting/'. $bestuursjaar->jaargang);
     }
 
