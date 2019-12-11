@@ -103,6 +103,7 @@ class TransactiesController extends Controller
                 $transacties[$key][6] = str_replace(',','.',$transactie[6]);
                 $transacties[$key][9] = $this->getLidId($transactie[3]);
                 $transacties[$key][11] = $this->getSpaarplan($transactie[8],$transacties[$key][9]);
+                $transacties[$key][12] = $this->checkBetaalverzoek($transactie[1]);
             }
         }
         return view('/transacties/check',compact('transacties','transactie_model','leden'));
@@ -110,21 +111,28 @@ class TransactiesController extends Controller
 
 
     public function process(Request $request){
+        //dd($request);
         $data = $request->validate([
-            'datum' => 'required|date',
-            'naam' => 'required',
-            'lid_id' => 'required_without:tegenrekening',
-            'tegenrekening' => 'required_without:lid_id',
-            'bedrag' => 'required|numeric|gte:0|lt:99999999',
-            'mutatie_soort' => 'required',
-            'af_bij' => 'required',
-            'mededelingen' => 'required',
-            'spaarplan' => 'required_with:lid_id'
+            'transacties.*.datum' => 'required|date',
+            'transacties.*.naam' => 'required',
+            'transacties.*.lid_id' => 'required_without:transacties.*.tegenrekening',
+            'transacties.*.tegenrekening' => 'required_without:transacties.*.lid_id',
+            'transacties.*.bedrag' => 'required|numeric|gte:0|lt:99999999',
+            'transacties.*.mutatie_soort' => 'required',
+            'transacties.*.af_bij' => 'required',
+            'transacties.*.mededelingen' => 'required',
+            'transacties.*.spaarplan' => 'required_with:transacties.*.lid_id'
         ]);
-        $afbij = $data['af_bij'];
-        $lid_id = $data['lid_id'];
-        $bedrag = $data['bedrag'];
-        $spaarplan = $data['spaarplan'];
+        //dd($data);
+
+        foreach($data['transacties'] as $key => $transactie){
+            if($transactie['af_bij'] == "Af"){
+                $this->af($transactie['bedrag'],$transactie['lid_id'],$transactie['spaarplan']);
+            }elseif($$transactie['af_bij'] == "Bij"){
+                $this->bij($transactie['bedrag'],$transactie['lid_id'],$transactie['spaarplan']);
+            }
+            Transactie::create($transactie);
+        }
 
         return redirect('/transacties');
     }
@@ -145,6 +153,14 @@ class TransactiesController extends Controller
             return '0';
         }else{
             return '';
+        }
+    }
+
+    public function checkBetaalverzoek($naam){
+        if(strpos(strtolower($naam), 'betaalverzoek') !== false || strpos(strtolower($naam), 'amro') !== false ){
+            return 1;
+        }else{
+            return null;
         }
     }
 
