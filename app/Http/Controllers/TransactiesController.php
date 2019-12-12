@@ -39,18 +39,19 @@ class TransactiesController extends Controller
             'mutatie_soort' => 'required',
             'af_bij' => 'required',
             'mededelingen' => 'required',
-            'spaarplan' => 'required_with:lid_id'
+            'spaarplan' => 'required_with:lid_id|numeric|gte:-1|lte:1'
         ]);
         $afbij = $data['af_bij'];
         $lid_id = $data['lid_id'];
         $bedrag = $data['bedrag'];
         $spaarplan = $data['spaarplan'];
         if (isset($lid_id)) {
-            $rekeningnummer = Rekeningnummer::find($lid_id)->first();
+            $rekeningnummer = Rekeningnummer::find($lid_id);
             $data['tegenrekening'] = $rekeningnummer->rekeningnummer;
         }
         $this->checkAfBij($afbij, $bedrag, $lid_id, $spaarplan);
         $transactie = Transactie::create($data);
+
         return redirect('/transactie/' . $transactie->transactie_id);
     }
 
@@ -77,7 +78,7 @@ class TransactiesController extends Controller
             'mutatie_soort' => 'required',
             'af_bij' => 'required',
             'mededelingen' => 'required',
-            'spaarplan' => 'required_with:lid_id'
+            'spaarplan' => 'required_with:lid_id|numeric|gte:-1|lte:1'
         ]);
         $this->removeTransactie($transactie);
 
@@ -86,7 +87,7 @@ class TransactiesController extends Controller
         $bedrag = $data['bedrag'];
         $spaarplan = $data['spaarplan'];
         if (isset($lid_id)) {
-            $rekeningnummer = Rekeningnummer::find($lid_id)->first();
+            $rekeningnummer = Rekeningnummer::find($lid_id);
             $data['tegenrekening'] = $rekeningnummer->rekeningnummer;
         }
         $this->checkAfBij($afbij, $bedrag, $lid_id, $spaarplan);
@@ -135,8 +136,8 @@ class TransactiesController extends Controller
         $data = $request->validate([
             'transacties.*.datum' => 'required|date',
             'transacties.*.naam' => 'required',
-            'transacties.*.lid_id' => 'required_without:transacties.*.tegenrekening',
-            'transacties.*.tegenrekening' => 'required_without:transacties.*.lid_id',
+            'transacties.*.lid_id' => '',
+            'transacties.*.tegenrekening' => '',
             'transacties.*.bedrag' => 'required|numeric|gte:0|lt:99999999',
             'transacties.*.mutatie_soort' => 'required',
             'transacties.*.af_bij' => 'required',
@@ -188,6 +189,7 @@ class TransactiesController extends Controller
     //Check if transaction is Af or Bij, handle addition or substraction from lid financien and SE rekening afterwards
     public function checkAfBij($afbij, $bedrag, $lid_id, $spaarplan)
     {
+
         if ($afbij == "Af") {
             $this->af($bedrag, $lid_id, $spaarplan);
         } elseif ($afbij == "Bij") {
@@ -203,7 +205,7 @@ class TransactiesController extends Controller
         if (isset($lid_id) && $spaarplan == 1) {
             subtract_gespaard($lid_id, $bedrag);
             return;
-        } elseif (isset($lid_id) && $spaarplan === 0) {
+        } elseif (isset($lid_id) && $spaarplan == 0) {
             add_verschuldigd($lid_id, $bedrag);
             return;
         } else {
@@ -219,7 +221,7 @@ class TransactiesController extends Controller
         if (isset($lid_id) && $spaarplan == 1) {
             add_gespaard($lid_id, $bedrag);
             return;
-        } elseif (isset($lid_id) && $spaarplan === 0) {
+        } elseif (isset($lid_id) && $spaarplan == 0) {
             add_overgemaakt($lid_id, $bedrag);
             return;
         } else {
@@ -236,7 +238,7 @@ class TransactiesController extends Controller
             if (isset($transactie->lid_id) && $transactie->spaarplan == 1) {
                 add_gespaard($transactie->lid_id, $transactie->bedrag);
                 return;
-            } elseif (isset($transactie->lid_id) && $transactie->spaarplan === 0) {
+            } elseif (isset($transactie->lid_id) && $transactie->spaarplan == 0) {
                 subtract_verschuldigd($transactie->lid_id, $transactie->bedrag);
                 return;
             } else {
@@ -248,7 +250,7 @@ class TransactiesController extends Controller
             if (isset($transactie->lid_id) && $transactie->spaarplan == 1) {
                 subtract_gespaard($transactie->lid_id, $transactie->bedrag);
                 return;
-            } elseif (isset($transactie->lid_id) && $transactie->spaarplan === 0) {
+            } elseif (isset($transactie->lid_id) && $transactie->spaarplan == 0) {
                 subtract_overgemaakt($transactie->lid_id, $transactie->bedrag);
                 return;
             } else {
