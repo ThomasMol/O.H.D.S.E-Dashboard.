@@ -57,9 +57,9 @@
             <div class="col-md">
                 <label for="spaarplan">Spaarplan (bij wel lid)</label>
                 <select class="form-control mb-3"id="spaarplan" name="spaarplan">
-                    <option selected value="">Niet van toepassing</option>
-                    <option value="1">Wel spaarplan</option>
-                    <option value="0">Geen spaarplan</option>
+                    @foreach($transactie->spaarplanOptions() as $key => $spaarplan)
+                        <option value="{{ $key }}" >{{ $spaarplan }}</option>
+                    @endforeach
                 </select>
 
             </div>

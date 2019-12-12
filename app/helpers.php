@@ -91,6 +91,18 @@ function divide_money($total, $divisor)
         $uitgaven->save();
     }
 
+    function add_to_se_rekening($bedrag){
+        $rekening = App\SErekening::find(1);
+        $rekening->saldo = $rekening->saldo + $bedrag;
+        $rekening->save();
+    }
+
+    function subtract_from_se_rekening($bedrag){
+        $rekening = App\SErekening::find(1);
+        $rekening->saldo = $rekening->saldo - $bedrag;
+        $rekening->save();
+    }
+
     function verschuldigd($lid_id){
         $boetes = App\Boete::where('boete.lid_id',$lid_id)->sum('bedrag');
         $borrels = App\BorrelAanwezigheid::where('borrel_aanwezigheid.lid_id',$lid_id)->sum('naheffing');

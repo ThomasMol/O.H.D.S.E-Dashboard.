@@ -61,7 +61,7 @@
                             <select class="form-control mb-3" id="lid_id" name="transacties[{{$loop->iteration}}][lid_id]">
                                 <option selected value="">Geen lid</option>
                                 @foreach($leden as $lid)
-                                <option value="{{$lid->lid_id}}" {{$transactie[9] == $lid->lid_id ? 'selected' : '' }}>
+                                <option value="{{$lid->lid_id}}" {{$transactie[9] === $lid->lid_id ? 'selected' : '' }}>
                                     {{$lid->roepnaam}} {{$lid->achternaam}}</option>
                                 @endforeach
                             </select>
@@ -70,7 +70,7 @@
                             <label for="spaarplan">Spaarplan (bij wel lid)</label>
                             <select class="form-control mb-3" id="spaarplan" name="transacties[{{$loop->iteration}}][spaarplan]">
                                 @foreach($transactie_model->spaarplanOptions() as $key => $spaarplan)
-                                <option value="{{ $key }}" {{ $transactie[11] == $key ? 'selected' : '' }}>
+                                <option value="{{ $key }}" {{ $transactie[11] === $key ? 'selected' : '' }}>
                                     {{ $spaarplan }}</option>
                                 @endforeach
                             </select>

@@ -41,10 +41,9 @@ class Transactie extends Model
     public function spaarplanOptions()
     {
         return [
-            '1' => 'Wel spaarplan',
-            '0' => 'Geen spaarplan',
-            ''  => 'Niet van toepassing'
+            1 => 'Wel spaarplan',
+            0 => 'Geen spaarplan',
+            -1  => 'Niet van toepassing'
         ];
     }
-
 }
