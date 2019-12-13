@@ -56,8 +56,15 @@ main {
     text-transform: uppercase;
     color: #a9a9a9;
     margin: 20px 0 10px 5px;
+    font-weight: 800;
 }
-.collapse:not(.show){
+.sidebar .category:hover{
+    text-transform: uppercase;
+    color: #333;
+    margin: 20px 0 10px 5px;
+    cursor: pointer;
+}
+.sidebar.collapse:not(.show){
     display: block;
 }
 
@@ -98,7 +105,9 @@ main {
 .logout {
     bottom: 0;
 }
-
+.logout{
+    bottom:0;
+}
 /*icons*/
 .feather {
 
