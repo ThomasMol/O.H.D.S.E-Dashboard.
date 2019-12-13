@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Bestuursjaar;
 use App\Inkomsten;
+use App\SErekening;
+use App\Transactie;
+use App\Uitgave;
 use App\Uitgaven;
 use Illuminate\Http\Request;
 
@@ -30,7 +33,11 @@ class BegrotingController extends Controller
     {
         $inkomsten_list = Inkomsten::where('jaargang', $bestuursjaar->jaargang)->get();
         $uitgaven_list = Uitgaven::where('jaargang', $bestuursjaar->jaargang)->get();
-        return view('begroting/show',compact('inkomsten_list','uitgaven_list','bestuursjaar'));
+        $se_rekening = SErekening::find(1);
+        $transacties_af_aggregate = Transactie::where('af_bij','Af')->where('datum','>=',$bestuursjaar->van)->where('datum','<=',$bestuursjaar->tot)->sum('bedrag');
+        $uitgaven_aggregate = Uitgave::where('datum','>=',$bestuursjaar->van)->where('datum','<=',$bestuursjaar->tot)->sum('uitgave');
+
+        return view('begroting/show',compact('inkomsten_list','uitgaven_list','bestuursjaar','se_rekening','transacties_af_aggregate','uitgaven_aggregate'));
     }
 
     public function edit(Bestuursjaar $bestuursjaar)

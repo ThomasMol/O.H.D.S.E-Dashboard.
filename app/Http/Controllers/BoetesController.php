@@ -18,7 +18,7 @@ class BoetesController extends Controller
 
     public function create()
     {
-        $leden = Lid::where('type_lid','!=','Geen')->orderBy('type_lid','asc')->get();
+        $leden = Lid::ledenGesorteerd()->get();
         return view('boetes/create',compact('leden'));
     }
 
@@ -46,7 +46,7 @@ class BoetesController extends Controller
 
     public function edit(Boete $boete)
     {
-        $leden = Lid::where('type_lid','!=','Geen')->orderBy('type_lid','asc')->get();
+        $leden = Lid::ledenGesorteerd()->get();
         return view('boetes/edit',compact('boete','leden'));
     }
 

@@ -16,7 +16,7 @@ class ContributieController extends Controller
     }
 
     public function create(){
-        $leden = Lid::where('type_lid','!=','Geen')->orderBy('type_lid','asc')->get();
+        $leden = Lid::ledenGesorteerd()->get();
         return view('contributies/contributie_toevoegen',compact('leden'));
     }
 
@@ -41,12 +41,12 @@ class ContributieController extends Controller
 
     public function edit(Contributie $contributie){
         $id = $contributie->contributie_id;
-        $leden = Lid::select('lid_id', 'roepnaam', 'achternaam')->where('type_lid', '!=', 'Geen')->orderBy('type_lid', 'asc')->get();
+        $leden = Lid::ledenGesorteerd()->get();
 
         $leden_deelname = Lid::select('lid.lid_id', 'roepnaam', 'achternaam','contributie_deelname.lid_id as deelname','type_lid')->leftJoin('contributie_deelname', function($join) use ($id){
             $join->on('lid.lid_id','contributie_deelname.lid_id');
             $join->where('contributie_deelname.contributie_id',$id);
-        })->where('type_lid','!=','Geen')->orderBy('type_lid','asc')->get();
+        })->ledenGesorteerd()->get();
         return view('contributies/contributie_wijzigen', compact('contributie','leden_deelname','leden'));
     }
 

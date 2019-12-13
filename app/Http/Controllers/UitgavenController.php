@@ -63,7 +63,7 @@ class UitgavenController extends Controller
         'type_lid')->leftJoin('uitgave_deelname', function($join) use ($id){
             $join->on('lid.lid_id','uitgave_deelname.lid_id');
             $join->where('uitgave_deelname.uitgave_id',$id);
-        })->where('type_lid','!=','Geen')->orderBy('type_lid','asc')->get();
+        })->ledenGesorteerd()->get();
         return view('uitgaven/edit', compact('uitgave', 'leden_deelname' , 'leden','bestuursjaren','categorieen'));
     }
 

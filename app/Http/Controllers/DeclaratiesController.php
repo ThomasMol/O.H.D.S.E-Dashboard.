@@ -30,7 +30,7 @@ class DeclaratiesController extends Controller
 
     public function create()
     {
-        $leden = Lid::select('lid_id', 'roepnaam', 'achternaam')->where('type_lid', '!=', 'Geen')->orderBy('type_lid', 'asc')->get();
+        $leden = Lid::ledenGesorteerd()->get();
         return view('declaraties/declaratie_toevoegen', compact('leden'));
     }
 
@@ -65,7 +65,7 @@ class DeclaratiesController extends Controller
     public function edit(Declaratie $declaratie)
     {
         $id = $declaratie->declaratie_id;
-        $leden = Lid::select('lid_id', 'roepnaam', 'achternaam')->where('type_lid', '!=', 'Geen')->orderBy('type_lid', 'asc')->get();
+        $leden = Lid::ledenGesorteerd()->get();
 
         $leden_deelname = Lid::select('lid.lid_id', 'roepnaam', 'achternaam','declaratie_deelname.lid_id as deelname','type_lid')->leftJoin('declaratie_deelname', function($join) use ($id){
             $join->on('lid.lid_id','declaratie_deelname.lid_id');

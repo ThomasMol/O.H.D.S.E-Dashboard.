@@ -14,6 +14,6 @@ class Lid extends Model
     protected $primaryKey = 'lid_id';
 
     public function scopeLedenGesorteerd($query){
-        return $query->where('type_lid','!=','Geen')->orderBy('type_lid','asc');
+        return $query->where('type_lid','!=','Geen')->orderBy('type_lid','asc')->orderBy('roepnaam','asc');
     }
 }
