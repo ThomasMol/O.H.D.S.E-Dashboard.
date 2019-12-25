@@ -1,11 +1,10 @@
 @extends('layout')
-@section('title','Boete')
+@section('title','Overige kosten')
 @section('content')
-    <h2 class="mb-4">Boete toevoegen</h2>
+    <h2 class="mb-4">Overige kosten toevoegen</h2>
 
-    <form class="card" method="POST" action="/boetes">
+    <form class="card" method="POST" action="/kosten">
         @csrf
-        <h3>Boete</h3>
         <label for="datum">Datum</label>
         <input type="date" class="form-control mb-3" id="datum" name="datum" value="{{ old('datum') ?? date('Y-m-d') }}" required>
 
@@ -19,8 +18,15 @@
                 </div>
         </div>
 
-        <label for="omschrijving">Reden</label>
-        <input type="text" class="form-control mb-3" id="reden" name="reden" value="{{ old('reden')}}" required>
+        <label for="omschrijving">Omschrijving</label>
+        <input type="text" class="form-control mb-3" id="reden" name="omschrijving" value="{{ old('omschrijving')}}" required>
+
+        <label for="soort">Soort</label>
+        <select class="form-control mb-3" id="soort" name="soort" required>
+            @foreach($kosten->kostenOptions() as $key => $soort)
+                <option value="{{$key}}">{{ $soort }}</option>
+            @endforeach
+        </select>
 
         <label for="lid_id">Wie</label>
         <select class="form-control mb-3"id="lid_id" name="lid_id" required>

@@ -1,9 +1,9 @@
 @extends('layout')
-@section('title','Boetes')
+@section('title','Overige kosten')
 @section('content')
-    <h3>Boetes</h3>
+    <h3>Overige kosten</h3>
     @if(Auth::user()->admin == 1)
-        <a class="btn btn-primary" href="/boetes/toevoegen">Boete toevoegen</a>
+        <a class="btn btn-primary" href="/kosten/toevoegen">Kosten toevoegen</a>
     @endif
     <table class="table table-hover table-sm table-responsive ">
         <thead>
@@ -19,19 +19,19 @@
         </tr>
         </thead>
         <tbody>
-        @foreach($boetes as $boete)
+        @foreach($kosten as $koste)
         <tr>
-            <td>{{ $boete->datum }}</td>
-            <td>&euro; {{ format_currency($boete->bedrag) }}</td>
-            <td>{{ $boete->reden }}</td>
-            <td>{{ $boete->roepnaam }} {{ $boete->achternaam }}</td>
+            <td>{{ $koste->datum }}</td>
+            <td>&euro; {{ format_currency($koste->bedrag) }}</td>
+            <td>{{ $koste->reden }}</td>
+            <td>{{ $koste->roepnaam }} {{ $koste->achternaam }}</td>
 
             @if(Auth::user()->admin == 1 )
                 <td>
-                    <a class="btn btn-light" href="/boetes/{{$boete->boete_id}}/wijzig">wijzig</a>
+                    <a class="btn btn-light" href="/kosten/{{$koste->kosten_id}}/wijzig">wijzig</a>
                 </td>
                 <td>
-                    <form action="/boetes/{{$boete->boete_id}}" method="POST">
+                    <form action="/kosten/{{$koste->kosten_id}}" method="POST">
                         @csrf
                         @method('DELETE')
                         <button class="btn btn-outline-danger" type="submit">Verwijder</button>

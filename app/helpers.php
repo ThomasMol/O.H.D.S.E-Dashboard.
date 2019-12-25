@@ -24,19 +24,19 @@ function divide_money($total, $divisor)
     return $splitTotals;
 }
 
-    function add_boete($lid_id, $bedrag, $reden, $datum){
-        $boete = new App\Boete;
+    function add_boete($lid_id, $bedrag, $soort, $datum){
+        $boete = new App\Kosten;
         $boete->lid_id = $lid_id;
         $boete->datum = $datum;
         $boete->bedrag = $bedrag;
-        $boete->reden = $reden;
+        $boete->soort = $soort;
         $boete->save();
         add_verschuldigd($lid_id, $bedrag);
         return $boete->boete_id;
     }
 
     function remove_boete($boete_id){
-        $boete = App\Boete::find($boete_id);
+        $boete = App\Kosten::find($boete_id);
         if(isset($boete)){
             subtract_verschuldigd($boete->lid_id,$boete->bedrag);
             $boete->delete();

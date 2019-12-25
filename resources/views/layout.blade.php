@@ -55,11 +55,7 @@
                                 Leden
                             </a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link {{ Request::is('boet*') ? 'active' : '' }}" href="/boetes">
-                                Boetes
-                            </a>
-                        </li>
+
                     </div>
 
                     <li class="nav-item category dropdown-toggle" data-toggle="collapse" data-target="#collapseTwo">
@@ -87,6 +83,11 @@
                         <li class="nav-item">
                             <a class="nav-link {{ Request::is('declaratie*') ? 'active' : '' }}" href="/declaraties">
                                 Declaraties
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link {{ Request::is('kost*') ? 'active' : '' }}" href="/kosten">
+                                Overige kosten
                             </a>
                         </li>
                         <li class="nav-item">

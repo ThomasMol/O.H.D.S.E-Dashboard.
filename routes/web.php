@@ -27,15 +27,6 @@ Route::middleware(['auth'])->group(function () {
     Route::patch('/begroting/{bestuursjaar}', 'BegrotingController@update')->middleware('admin');
     Route::delete('/begroting/{bestuursjaar}', 'BegrotingController@destroy')->middleware('admin');
 
-    /*boetes*/
-    Route::get('/boetes', 'BoetesController@index');
-    Route::get('/boetes/toevoegen', 'BoetesController@create')->middleware('admin');
-    Route::post('/boetes', 'BoetesController@store')->middleware('admin');
-    Route::get('/boete/{boete}', 'BoetesController@show');
-    Route::get('/boetes/{boete}/wijzig', 'BoetesController@edit')->middleware('admin');
-    Route::patch('/boetes/{boete}', 'BoetesController@update')->middleware('admin');
-    Route::delete('/boetes/{boete}', 'BoetesController@destroy')->middleware('admin');
-
     /*borrels*/
     Route::get('/borrels', 'BorrelsController@index');
     Route::get('/borrels/toevoegen', 'BorrelsController@create')->middleware('admin');
@@ -62,6 +53,15 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/declaraties/{declaratie}/wijzig', 'DeclaratiesController@edit');
     Route::patch('/declaraties/{declaratie}', 'DeclaratiesController@update');
     Route::delete('/declaraties/{declaratie}', 'DeclaratiesController@destroy');
+
+    /*overige kosten*/
+    Route::get('/kosten', 'KostenController@index');
+    Route::get('/kosten/toevoegen', 'KostenController@create')->middleware('admin');
+    Route::post('/kosten', 'KostenController@store')->middleware('admin');
+    Route::get('/kosten/{kosten}', 'KostenController@show');
+    Route::get('/kosten/{kosten}/wijzig', 'KostenController@edit')->middleware('admin');
+    Route::patch('/kosten/{kosten}', 'KostenController@update')->middleware('admin');
+    Route::delete('/kosten/{kosten}', 'KostenController@destroy')->middleware('admin');
 
     /*leden*/
     Route::get('/leden', 'LedenController@index');
