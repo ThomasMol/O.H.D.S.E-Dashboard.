@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use PDO;
 
 class Contributie extends Model
 {
@@ -10,4 +11,18 @@ class Contributie extends Model
     protected $table = 'contributie';
     protected $primaryKey = 'contributie_id';
 
+    public function contributieSoortOptions(){
+        return [
+            'Maandcontributie' => 'Maandcontributie',
+            'Half jaars contributie' => 'Half jaars contributie',
+            'Kerstdiner' => 'Kerstdiner',
+            '1e Weekend' => '1e Weekend',
+            '2e Weekend' => '2e Weekend',
+            'Overig' => 'Overig'
+        ];
+    }
+
 }
+
+
+

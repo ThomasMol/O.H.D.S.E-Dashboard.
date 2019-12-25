@@ -12,12 +12,13 @@ class ContributieController extends Controller
 {
     public function index(){
         $contributies = Contributie::all();
-        return view('contributies/contributies',compact('contributies'));
+        return view('contributies/index',compact('contributies'));
     }
 
     public function create(){
         $leden = Lid::ledenGesorteerd()->get();
-        return view('contributies/contributie_toevoegen',compact('leden'));
+        $contributie = new Contributie();
+        return view('contributies/create',compact('leden','contributie'));
     }
 
     public function store(){
@@ -36,7 +37,7 @@ class ContributieController extends Controller
 
     public function show(Contributie $contributie){
         $leden_deelname = Lid::join('contributie_deelname','lid.lid_id','=','contributie_deelname.lid_id')->where('contributie_deelname.contributie_id','=',$contributie->contributie_id)->get();
-        return view('contributies/contributie',compact('contributie','leden_deelname'));
+        return view('contributies/show',compact('contributie','leden_deelname'));
     }
 
     public function edit(Contributie $contributie){
@@ -47,7 +48,7 @@ class ContributieController extends Controller
             $join->on('lid.lid_id','contributie_deelname.lid_id');
             $join->where('contributie_deelname.contributie_id',$id);
         })->ledenGesorteerd()->get();
-        return view('contributies/contributie_wijzigen', compact('contributie','leden_deelname','leden'));
+        return view('contributies/edit', compact('contributie','leden_deelname','leden'));
     }
 
     public function update(Contributie $contributie){

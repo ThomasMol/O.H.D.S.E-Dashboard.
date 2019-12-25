@@ -15,11 +15,11 @@ class LedenController extends Controller
             ->leftJoin('financien', 'lid.lid_id','financien.lid_id')
             ->leftJoin('lid_gegevens', 'lid.lid_id','lid_gegevens.lid_id')
             ->where('type_lid','!=','Geen')->orderBy('type_lid','asc')->paginate(20);
-        return view('leden/leden',compact('leden'));
+        return view('leden/index',compact('leden'));
     }
 
     public function create(){
-        return view('leden/lid_toevoegen');
+        return view('leden/create');
     }
 
     public function store(){
@@ -91,7 +91,7 @@ class LedenController extends Controller
             ->where('lid.lid_id',$id)->first();
         $rekeningnummers = Rekeningnummer::findMany($id);
 
-        return view('leden/lid',compact('lid','rekeningnummers'));
+        return view('leden/show',compact('lid','rekeningnummers'));
     }
 
     public function edit(Lid $lid){
@@ -101,7 +101,7 @@ class LedenController extends Controller
             ->leftJoin('lid_gegevens', 'lid.lid_id','lid_gegevens.lid_id')
             ->where('lid.lid_id',$id)->first();
         $rekeningnummers = Rekeningnummer::findMany($id);
-        return view('leden/lid_wijzigen', compact('lid','rekeningnummers' ));
+        return view('leden/edit', compact('lid','rekeningnummers' ));
     }
 
     public function update(Lid $lid){

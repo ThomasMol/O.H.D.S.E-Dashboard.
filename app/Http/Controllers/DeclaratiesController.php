@@ -25,13 +25,13 @@ class DeclaratiesController extends Controller
             ->orWhere('declaratie_deelname.lid_id', '=', $user_id);
         })->groupBy('declaratie.declaratie_id')->orderBy('datum', 'desc')->paginate(10);
 
-        return view('declaraties/declaraties', compact('declaraties'));
+        return view('declaraties/index', compact('declaraties'));
     }
 
     public function create()
     {
         $leden = Lid::ledenGesorteerd()->get();
-        return view('declaraties/declaratie_toevoegen', compact('leden'));
+        return view('declaraties/create', compact('leden'));
     }
 
     public function store()
@@ -59,7 +59,7 @@ class DeclaratiesController extends Controller
     public function show(Declaratie $declaratie)    {
         $leden_deelname = Lid::join('declaratie_deelname', 'lid.lid_id', '=', 'declaratie_deelname.lid_id')->where('declaratie_deelname.declaratie_id', $declaratie->declaratie_id)->get();
 
-        return view('declaraties/declaratie', compact('declaratie' , 'leden_deelname'));
+        return view('declaraties/show', compact('declaratie' , 'leden_deelname'));
     }
 
     public function edit(Declaratie $declaratie)
@@ -71,7 +71,7 @@ class DeclaratiesController extends Controller
             $join->on('lid.lid_id','declaratie_deelname.lid_id');
             $join->where('declaratie_deelname.declaratie_id',$id);
         })->where('type_lid','!=','Geen')->orderBy('type_lid','asc')->get();
-        return view('declaraties/declaratie_wijzigen', compact('declaratie' , 'leden_deelname', 'leden'));
+        return view('declaraties/edit', compact('declaratie' , 'leden_deelname', 'leden'));
     }
 
     public function update(Declaratie $declaratie)    {

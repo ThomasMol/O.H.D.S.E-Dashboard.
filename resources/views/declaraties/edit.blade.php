@@ -1,17 +1,21 @@
 @extends('layout')
 @section('title','Declaratie wijzigen')
 @section('content')
-    <h2 class="mb-4">Declaratie wijzgien</h2>
+    <h2 class="mb-4">Declaratie wijzigen</h2>
 
     <form class="card" method="POST" action="/declaraties/{{$declaratie->declaratie_id}}">
         @csrf
         @method('PATCH')
         <input type="hidden" name="created_by_id" value="{{$declaratie->created_by_id}}">
-        <h3>Declaratie</h3>
         <label for="datum">Datum</label>
         <input type="date" class="form-control mb-3" id="datum" name="datum" value="{{ $declaratie->datum }}"required>
         <label for="bedrag">Totaal bedrag</label>
-        <input type="number" class="form-control mb-3" id="bedrag" name="bedrag" step=".01" min="0" max="99999999" value="{{$declaratie->bedrag}}" required>
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <div class="input-group-text">&euro;</div>
+            </div>
+            <input type="number" class="form-control" id="bedrag" name="bedrag" step=".01" value="{{ $declaratie->bedrag}}" min="0" max="99999999" placeholder="0.00" required>
+        </div>
         <label for="betaald_door">Betaald door:</label>
         <select class="form-control mb-3"id="betaald_door" name="betaald_door_id" >
             @foreach($leden as $lid)

@@ -19,12 +19,12 @@ class GegevensController extends Controller
         $verschuldigd = verschuldigd(Auth::user()->lid_id);
         $overgemaakt = overgemaakt(Auth::user()->lid_id);
         $gespaard = gespaard(Auth::user()->lid_id);
-        return view('gegevens/gegevens',compact('financien','rekeningnummers' ,'lid_gegevens'));
+        return view('gegevens/show',compact('financien','rekeningnummers' ,'lid_gegevens'));
     }
     public function edit(){
         $rekeningnummers = Rekeningnummer::findMany( Auth::user()->lid_id);
         $lid_gegevens = LidGegevens::find(Auth::user()->lid_id);
-        return view('gegevens/wijzig_gegevens',compact('rekeningnummers','lid_gegevens'));
+        return view('gegevens/edit',compact('rekeningnummers','lid_gegevens'));
     }
 
     public function update(){
