@@ -2,28 +2,43 @@
 @section('title','Contributie')
 @section('content')
 <h2 class="mb-4">Contributie toevoegen</h2>
+<div class="dropdown">
+    <button class="btn btn-outline-primary dropdown-toggle" type="button" id="dropdownJaar" data-toggle="dropdown"
+        aria-haspopup="true" aria-expanded="false">
+        Begroting van jaargang:
+    </button>
+    <div class="dropdown-menu" aria-labelledby="dropdownJaar">
 
+        @foreach($bestuursjaren as $bestuursjaar)
+        <a class="dropdown-item" href="/contributie/toevoegen/{{$bestuursjaar->jaargang}}">Jaar
+            {{$bestuursjaar->jaargang}}
+            @if($bestuursjaar->jaargang == $huidig_jaar->jaargang) <i>Huidig jaar</i>@endif</a>
+        @endforeach
+    </div>
+</div>
 <form class="card" method="POST" action="/contributies">
     @csrf
     <div class="form-row">
         <div class="col-md-4">
             <label for="datum">Datum</label>
-            <input type="date" class="form-control mb-3" id="datum" name="datum" value="{{ old('datum') ?? date('Y-m-d') }}" required>
+            <input type="date" class="form-control mb-3" id="datum" name="datum"
+                value="{{ old('datum') ?? date('Y-m-d') }}" required>
         </div>
         <div class="col-md-4">
-            <label for="budget">Bedrag</label>
+            <label for="bedrag">Bedrag</label>
             <div class="input-group mb-3">
                 <div class="input-group-prepend">
                     <div class="input-group-text">&euro;</div>
                 </div>
-                <input type="number" class="form-control" id="budget" name="budget" step=".01" value="{{ old('budget') }}" min="0" max="99999999" placeholder="Vul bedrag in" required>
+                <input type="number" class="form-control" id="bedrag" name="bedrag" step=".01"
+                    value="{{ old('budget') }}" min="0" max="99999999" placeholder="Vul bedrag in" required>
             </div>
         </div>
         <div class="col-md-4">
-            <label for="contributie_soort">Contributie soort</label>
-            <select class="form-control mb-3" id="contributie_soort" name="contributie_soort" required>
-                @foreach($contributie->contributieSoortOptions() as $key => $soort)
-                    <option value="{{ $key }}" >{{ $soort }}</option>
+            <label for="inkomsten_id">Contributie soort</label>
+            <select class="form-control mb-3" id="inkomsten_id" name="inkomsten_id" required>
+                @foreach($categorieen as $categorie)
+                <option value="{{$categorie->inkomsten_id}}">{{$categorie->soort}}</option>
                 @endforeach
             </select>
         </div>

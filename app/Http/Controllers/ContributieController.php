@@ -2,53 +2,59 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Contributie;
 use App\ContributieDeelname;
 use App\Lid;
-use App\SErekening;
+use App\Bestuursjaar;
+use App\Inkomsten;
+
 
 class ContributieController extends Controller
 {
     public function index(){
-        $contributies = Contributie::all();
+        $contributies = Contributie::select('*','contributie.bedrag as bedrag','inkomsten.bedrag as inkomsten_bedrag')->join('inkomsten','inkomsten.inkomsten_id','=','contributie.inkomsten_id')->
+        orderBy('datum','desc')->paginate(10);
         return view('contributies/index',compact('contributies'));
     }
 
-    public function create(){
+    public function create(Bestuursjaar $bestuursjaar){
         $leden = Lid::ledenGesorteerd()->get();
         $contributie = new Contributie();
-        return view('contributies/create',compact('leden','contributie'));
+        $bestuursjaren = Bestuursjaar::all();
+        $categorieen = Inkomsten::where('jaargang',$bestuursjaar->jaargang)->get();
+        return view('contributies/create',compact('leden','contributie','bestuursjaren','categorieen'));
     }
 
     public function store(){
         $data = request()->validate([
             'datum' => 'required|date',
             'bedrag' => 'required|numeric|gt:0|lt:99999999',
-            'contributie_soort' => 'required|max:255'
-
+            'inkomsten_id' => 'required|max:255'
         ]);
         $deelnemers = request()->validate(['deelnemers'=>'required']);
         $contributie = Contributie::create($data);
+        add_inkomsten_realisatie($contributie->inkomsten_id,$contributie->bedrag * count($deelnemers['deelnemers']));
         $this->add_contributie_deelname($deelnemers['deelnemers'], $contributie);
         return redirect('/contributie/' . $contributie->contributie_id);
-
     }
 
     public function show(Contributie $contributie){
         $leden_deelname = Lid::join('contributie_deelname','lid.lid_id','=','contributie_deelname.lid_id')->where('contributie_deelname.contributie_id','=',$contributie->contributie_id)->get();
+        $contributie = Contributie::select('*','contributie.bedrag as bedrag','inkomsten.bedrag as inkomsten_bedrag')->join('inkomsten','inkomsten.inkomsten_id','=','contributie.inkomsten_id')->where('contributie.contributie_id',$contributie->contributie_id)->first();
+
         return view('contributies/show',compact('contributie','leden_deelname'));
     }
 
-    public function edit(Contributie $contributie){
+    public function edit(Contributie $contributie, Bestuursjaar $bestuursjaar){
         $id = $contributie->contributie_id;
         $leden = Lid::ledenGesorteerd()->get();
+        $categorieen = Inkomsten::where('jaargang',$bestuursjaar->jaargang)->get();
 
         $leden_deelname = Lid::select('lid.lid_id', 'roepnaam', 'achternaam','contributie_deelname.lid_id as deelname','type_lid')->leftJoin('contributie_deelname', function($join) use ($id){
             $join->on('lid.lid_id','contributie_deelname.lid_id');
             $join->where('contributie_deelname.contributie_id',$id);
         })->ledenGesorteerd()->get();
-        return view('contributies/edit', compact('contributie','leden_deelname','leden'));
+        return view('contributies/edit', compact('contributie','leden_deelname','leden','categorieen'));
     }
 
     public function update(Contributie $contributie){
@@ -56,14 +62,13 @@ class ContributieController extends Controller
         $data = request()->validate([
             'datum' => 'required|date',
             'bedrag' => 'required|numeric|gt:0|lt:99999999',
-            'contributie_soort' => 'required|max:255'
-
+            'inkomsten_id' => 'required|max:255'
         ]);
         $deelnemers = request()->validate(['deelnemers'=>'required']);
-
         $this->remove_contributie_deelname($contributie);
         $contributie->update($data);
         $this->add_contributie_deelname($deelnemers['deelnemers'],$contributie);
+        add_inkomsten_realisatie($contributie->inkomsten_id, $contributie->bedrag * count($deelnemers['deelnemers']));
         return redirect('/contributie/' . $id);
 
     }
@@ -90,6 +95,8 @@ class ContributieController extends Controller
             $join->on('lid.lid_id', 'contributie_deelname.lid_id');
             $join->where('contributie_deelname.contributie_id', $contributie_id);
         })->get();
+        subtract_inkomsten_realisatie($contributie->inkomsten_id, $contributie->bedrag * count($deelnemers));
+
         foreach($deelnemers as $deelnemer){
             subtract_verschuldigd($deelnemer->lid_id, $contributie->bedrag);
             ContributieDeelname::where('lid_id', $deelnemer->lid_id)->where('contributie_id', $contributie_id)->delete();

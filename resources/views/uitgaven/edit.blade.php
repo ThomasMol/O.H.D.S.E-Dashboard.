@@ -43,7 +43,7 @@
         <label for="categorie">Categorie:</label>
         <select class="form-control mb-3"id="categorie" name="uitgaven_id" required>
             @foreach($categorieen as $categorie)
-                <option @if($categorie->uitgaven_id == $uitgave->categorie) checked @endif value="{{$categorie->uitgaven_id}}">{{$categorie->soort}}</option>
+                <option @if($categorie->uitgaven_id == $uitgave->uitgaven_id) selected @endif value="{{$categorie->uitgaven_id}}">{{$categorie->soort}}</option>
             @endforeach
         </select>
         <label for="omschrijving">Omschrijving</label>

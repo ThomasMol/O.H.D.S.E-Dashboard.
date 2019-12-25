@@ -11,6 +11,9 @@
                 <tr>
                     <th scope="col">Soort</th>
                     <th scope="col">Bedrag</th>
+                    <th scope="col">Realisatie</th>
+                    <th scope="col">Verschil</th>
+
                 </tr>
             </thead>
             <tbody>
@@ -18,11 +21,15 @@
                 <tr>
                     <td>{{$inkomsten->soort}}</td>
                     <td>&euro; {{ format_currency($inkomsten->bedrag) }}</td>
+                    <td>&euro; {{ format_currency($inkomsten->realisatie) }}</td>
+                    <td>&euro; {{ format_currency($inkomsten->verschild) }}</td>
                 </tr>
                 @endforeach
                 <tr>
                     <td><strong>Totaal:</strong></td>
                     <td><strong>&euro; {{ format_currency($inkomsten_list->sum('bedrag')) }}</strong></td>
+                    <td><strong>&euro; {{ format_currency($inkomsten_list->sum('realisatie')) }}</strong></td>
+                    <td><strong>&euro; {{ format_currency($inkomsten_list->sum('verschil')) }}</strong></td>
                 </tr>
             </tbody>
         </table>

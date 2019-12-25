@@ -3,7 +3,7 @@
 @section('content')
     <h3>Contributie</h3>
     @if(Auth::user()->admin == 1)
-        <a class="btn btn-primary" href="/contributies/{{$contributie->contributie_id}}/wijzig">Contributie wijzigen</a>
+<a class="btn btn-primary" href="/contributies/{{$contributie->contributie_id}}/wijzig/{{$contributie->jaargang}}">Contributie wijzigen</a>
     @endif
     <table class="table table-hover table-sm table-responsive ">
         <thead>

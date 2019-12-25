@@ -3,7 +3,7 @@
 @section('content')
     <h3>Contributies</h3>
     @if(Auth::user()->admin == 1)
-        <a class="btn btn-primary" href="/contributies/toevoegen">Contributie toevoegen</a>
+<a class="btn btn-primary" href="/contributies/toevoegen/{{$huidig_jaar->jaargang}}">Contributie toevoegen</a>
     @endif
     <table class="table table-hover table-sm table-responsive ">
         <thead>
@@ -25,7 +25,7 @@
                 <td>&euro; {{ format_currency($contributie->bedrag) }}</td>
                 <td><a class="btn btn-light" href="/contributie/{{$contributie->contributie_id}}">Bekijk</a>
                 @if(Auth::user()->admin == 1)
-                    <a class="btn btn-light" href="/contributies/{{$contributie->contributie_id}}/wijzig">Wijzig</a>
+                <a class="btn btn-light" href="/contributies/{{$contributie->contributie_id}}/wijzig/{{$contributie->jaargang}}">Wijzig</a>
                     </td>
                     <td>
                     <form action="/contributies/{{$contributie->contributie_id}}" method="POST">

@@ -14,7 +14,7 @@ class LedenController extends Controller
         $leden = Lid::select('lid.lid_id', 'roepnaam', 'achternaam','email','telefoonnummer','type_lid','schuld','gespaard','financien.lid_id')
             ->leftJoin('financien', 'lid.lid_id','financien.lid_id')
             ->leftJoin('lid_gegevens', 'lid.lid_id','lid_gegevens.lid_id')
-            ->where('type_lid','!=','Geen')->orderBy('type_lid','asc')->paginate(20);
+            ->where('type_lid','!=','Geen')->orderBy('type_lid','asc')->orderBy('roepnaam','asc')->paginate(20);
         return view('leden/index',compact('leden'));
     }
 

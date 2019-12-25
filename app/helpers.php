@@ -90,6 +90,17 @@ function divide_money($total, $divisor)
         $uitgaven->realisatie = $uitgaven->realisatie - $bedrag;
         $uitgaven->save();
     }
+    function add_inkomsten_realisatie($inkomsten_id,$bedrag){
+        $inkomsten = App\Inkomsten::find($inkomsten_id);
+        $inkomsten->realisatie = $inkomsten->realisatie + $bedrag;
+        $inkomsten->save();
+    }
+
+    function subtract_inkomsten_realisatie($inkomsten_id,$bedrag){
+        $inkomsten = App\Inkomsten::find($inkomsten_id);
+        $inkomsten->realisatie = $inkomsten->realisatie - $bedrag;
+        $inkomsten->save();
+    }
 
     function add_to_se_rekening($bedrag){
         $rekening = App\SErekening::find(1);
