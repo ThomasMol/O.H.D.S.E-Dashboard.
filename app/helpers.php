@@ -25,6 +25,7 @@ function divide_money($total, $divisor)
 }
 
     function add_kosten($lid_id, $bedrag, $soort, $datum, $omschrijving){
+        $kosten = new App\Kosten;
         $kosten->lid_id = $lid_id;
         $kosten->datum = $datum;
         $kosten->bedrag = $bedrag;
