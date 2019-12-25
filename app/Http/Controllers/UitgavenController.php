@@ -117,7 +117,7 @@ class UitgavenController extends Controller
             $uitgave_deelname->aanwezig = isset($lid['aanwezig']);
             $uitgave_deelname->afgemeld = isset($lid['afgemeld']);
             if(isset($lid['boete'])){
-                $uitgave_deelname->boete_id = add_boete($key,10.00, "Te laat/niet aanwezig en niet afgemeld voor activiteit.",$uitgave->datum);
+                $uitgave_deelname->boete_id = add_kosten($key,10.00,'boete', $uitgave->datum,'Te laat of niet afgemeld.');
             }
             if(isset($lid['naheffing'])){
                 $uitgave_deelname->naheffing = $bedragen[$i];
@@ -140,7 +140,7 @@ class UitgavenController extends Controller
                 subtract_verschuldigd($deelnemer->lid_id, $deelnemer->naheffing);
             }
             if(isset($deelnemer->boete_id)){
-                remove_boete($deelnemer->boete_id);
+                remove_kosten($deelnemer->boete_id);
             }
 
             UitgaveDeelname::where('lid_id',$deelnemer->lid_id)->where('uitgave_id',$uitgave_id)->delete();

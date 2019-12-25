@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Kosten;
 use App\Lid;
+use App\UitgaveDeelname;
 use Illuminate\Http\Request;
 
 class KostenController extends Controller
@@ -72,6 +73,9 @@ class KostenController extends Controller
     public function destroy(Kosten $kosten)
     {
         subtract_verschuldigd($kosten->lid_id, $kosten->bedrag);
+        $deelname = UitgaveDeelname::where('boete_id',$kosten->kosten_id)->first();
+        $deelname->boete_id = null;
+        $deelname->save();
         $kosten->delete();
         return redirect('/kosten');
     }

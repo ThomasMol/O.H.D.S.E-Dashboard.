@@ -24,22 +24,22 @@ function divide_money($total, $divisor)
     return $splitTotals;
 }
 
-    function add_boete($lid_id, $bedrag, $soort, $datum){
-        $boete = new App\Kosten;
-        $boete->lid_id = $lid_id;
-        $boete->datum = $datum;
-        $boete->bedrag = $bedrag;
-        $boete->soort = $soort;
-        $boete->save();
+    function add_kosten($lid_id, $bedrag, $soort, $datum, $omschrijving){
+        $kosten->lid_id = $lid_id;
+        $kosten->datum = $datum;
+        $kosten->bedrag = $bedrag;
+        $kosten->soort = $soort;
+        $kosten->omschrijving = $omschrijving;
+        $kosten->save();
         add_verschuldigd($lid_id, $bedrag);
-        return $boete->boete_id;
+        return $kosten->kosten_id;
     }
 
-    function remove_boete($boete_id){
-        $boete = App\Kosten::find($boete_id);
-        if(isset($boete)){
-            subtract_verschuldigd($boete->lid_id,$boete->bedrag);
-            $boete->delete();
+    function remove_kosten($kosten_id){
+        $kosten = App\Kosten::find($kosten_id);
+        if(isset($kosten)){
+            subtract_verschuldigd($kosten->lid_id,$kosten->bedrag);
+            $kosten->delete();
         }
 
     }
