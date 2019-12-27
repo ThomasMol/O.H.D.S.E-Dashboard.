@@ -22,127 +22,86 @@
 </head>
 
 <body>
-    <nav>
-        <div class="mobile-nav">
-            <a href="/"><img src="/images/sadas.png" class="logo-mobile" width="40px"></a>
-            <button id="menu" class="btn menu navbar-toggler" data-target="#sidebar-collapse" data-toggle="collapse">
-                <span data-feather="menu"></span>
+    <nav class="navbar fixed-top navbar-expand-lg navbar-light">
+        <div class="container">
+            <a class="navbar-brand" href="/"><img src="/images/sadas.png" class="logo" width="38px"> Dashboard</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarMenuItems"
+                aria-controls="navbarMenuItems" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
             </button>
-        </div>
-        <div class="sidebar collapse" id="sidebar-collapse">
-            <div class="1accordion" id="accordion">
+            <div class="collapse navbar-collapse" id="navbarMenuItems">
+                <ul class="navbar-nav mr-auto">
 
-                <ul class="nav flex-column ">
                     <li class="nav-item">
-                        <img src="/images/sadas.png" class="logo" width="50px">
+                        <a class="nav-link {{ Request::is('/') ? 'active' : '' }}" href="/">
+                            Overzicht
+                        </a>
                     </li>
-                    <li class="nav-item category dropdown-toggle" data-toggle="collapse" data-target="#collapseOne">
-                        Algemeen
+                    <li class="nav-item">
+                        <a class="nav-link {{ Request::is('gegevens*') ? 'active' : '' }}" href="/gegevens">
+                            Mijn gegevens
+                        </a>
                     </li>
-                    <div id="collapseOne" class="collapse show" 1data-parent="#accordion">
-                        <li class="nav-item">
-                            <a class="nav-link {{ Request::is('/') ? 'active' : '' }}" href="/">
-                                Overzicht
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link {{ Request::is('gegevens*') ? 'active' : '' }}" href="/gegevens">
-                                Mijn gegevens
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link {{ Request::is('leden*') ? 'active' : '' }}" href="/leden">
-                                Leden
-                            </a>
-                        </li>
+                    <li class="nav-item">
+                        <a class="nav-link {{ Request::is('leden*') ? 'active' : '' }}" href="/leden">
+                            Alle leden
+                        </a>
+                    </li>
 
-                    </div>
-
-                    <li class="nav-item category dropdown-toggle" data-toggle="collapse" data-target="#collapseTwo">
-                        Financi&euml;n
-                    </li>
-                    <div id="collapseTwo" class="collapse" 1data-parent="#accordion">
-                        @if(Auth::user()->admin == 1)
-                        <li class="nav-item">
-                            <a class="nav-link {{ Request::is('begroting*') ? 'active' : '' }}"
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="financienDropdown" role="button"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Financi&euml;n
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="financienDropdown">
+                            @if(Auth::user()->admin == 1)
+                            <a class="dropdown-item {{ Request::is('begroting*') ? 'active' : '' }}"
                                 href="/begroting/{{$huidig_jaar->jaargang}}">
                                 Begroting
                             </a>
-                        </li>
-                        @endif
-                        {{-- <li class="nav-item">
-                <a class="nav-link {{ Request::is('borrel*') ? 'active' : '' }}" href="/borrels">
-                        Borrels
-                        </a>
-                        </li> --}}
-                        <li class="nav-item">
-                            <a class="nav-link {{ Request::is('contributie*') ? 'active' : '' }}" href="/contributies">
+                            @endif
+                            <a class="dropdown-item {{ Request::is('contributie*') ? 'active' : '' }}" href="/contributies">
                                 Contributies
                             </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link {{ Request::is('declaratie*') ? 'active' : '' }}" href="/declaraties">
+                            <a class="dropdown-item {{ Request::is('declaratie*') ? 'active' : '' }}" href="/declaraties">
                                 Declaraties
                             </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link {{ Request::is('kost*') ? 'active' : '' }}" href="/kosten">
+                            <a class="dropdown-item {{ Request::is('kost*') ? 'active' : '' }}" href="/kosten">
                                 Overige kosten
                             </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link {{ Request::is('transacties*') ? 'active' : '' }}" href="/transacties">
+                            <a class="dropdown-item {{ Request::is('transacties*') ? 'active' : '' }}" href="/transacties">
                                 Transacties
                             </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link {{ Request::is('uitgave*') ? 'active' : '' }}" href="/uitgaven">
+                            <a class="dropdown-item {{ Request::is('uitgave*') ? 'active' : '' }}" href="/uitgaven">
                                 Uitgaven
                             </a>
-                        </li>
-                    </div>
 
-                    {{--  <li class="nav-item category">
-                  Dispuut
-              </li>
-              <li class="nav-item">
-                  <a class="nav-link {{ Request::is('bestu*') ? 'active' : '' }}" href="/besturen">
-                    Besturen
-                    </a>
+                        </div>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link {{ Request::is('commissie*') ? 'active' : '' }}" href="/commissies">
-                            Commissies
+                </ul>
+                <ul class="navbar-nav">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="accountDropdown" role="button"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            {{Auth::user()->roepnaam}}
                         </a>
-                    </li>
-                    --}}
-                    @if(Auth::user()->admin == 1)
-
-                    <li class="nav-item category dropdown-toggle" data-toggle="collapse" data-target="#collapseThree">
-                        Bestuur
-                    </li>
-                    <div id="collapseThree" class="collapse" 1data-parent="#accordion">
-                        <li class="nav-item">
-                            <a class="nav-link {{ Request::is('instelling*') ? 'active' : '' }}" href="/instellingen">
+                        <div class="dropdown-menu" aria-labelledby="accountDropdown">
+                            <a class="dropdown-item {{ Request::is('instelling*') ? 'active' : '' }}" href="/instellingen">
                                 Instellingen
                             </a>
-                        </li>
-                        @endif
+                            <a class="dropdown-item " href="/loguit">
+                                Log uit
+                            </a>
 
-                    </div>
+                        </div>
+                    </li>
                 </ul>
             </div>
-            @if(Auth::check())
-            <a class="nav-link logout" href="/loguit">
-                <span data-feather="log-out"></span>
-                Log uit
-            </a>
-            @endif
         </div>
 
     </nav>
 
-    <main class="main">
+    <main>
         @if ($errors->any())
         @foreach ($errors->all() as $error)
         <div class="alert alert-danger">
