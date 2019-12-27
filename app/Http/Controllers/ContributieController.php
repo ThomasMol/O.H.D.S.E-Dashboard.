@@ -22,7 +22,7 @@ class ContributieController extends Controller
         $contributie = new Contributie();
         $bestuursjaren = Bestuursjaar::all();
         $categorieen = Inkomsten::where('jaargang',$bestuursjaar->jaargang)->get();
-        return view('contributies/create',compact('leden','contributie','bestuursjaren','categorieen'));
+        return view('contributies/create',compact('leden','contributie','bestuursjaren','categorieen','bestuursjaar'));
     }
 
     public function store(){

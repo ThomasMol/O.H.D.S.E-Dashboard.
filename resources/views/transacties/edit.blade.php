@@ -6,7 +6,6 @@
 <form class="card" method="POST" action="/transacties/{{$transactie->transactie_id}}">
         @csrf
         @method('PATCH')
-        <h3>Transactie</h3>
         <div class="form-row">
             <div class="col-md">
                 <label for="datum">Datum</label>

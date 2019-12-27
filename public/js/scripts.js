@@ -18,7 +18,7 @@ $(document).ready(function () {
         <div id="extra_rekeningnummer">
             <label for=\"rekeningnummer\">Extra Rekeningnummer</label>
             <button type="button" class="btn btn-link" id="remove_rekeningnummer">verwijder</button>
-            <input type=\"text\" class=\"form-control mb-3\" id=\"rekeningnummer\" name=\"rekeningnummers[]\">
+            <input type=\"text\" class=\"form-control mb-3\" id=\"rekeningnummer\" name=\"rekeningnummers[]\" required>
         </div>` );
     });
 
@@ -31,13 +31,13 @@ $(document).ready(function () {
     $("form").on("click","#add_inkomsten",function () {
         $("#inkomsten").after(`<tr>
             <input type="hidden" name="inkomsten[`+i+`][id]" value="">
-            <td><input type=\"text\" class="form-control" id="soort" name="inkomsten[`+i+`][soort]" value="" placeholder="soort"></td>
+            <td><input type=\"text\" class="form-control" id="soort" name="inkomsten[`+i+`][soort]" value="" placeholder="soort" required></td>
             <td>
             <div class="input-group mb-3">
             <div class="input-group-prepend">
             <div class="input-group-text">&euro;</div>
         </div>
-        <input type="number" class="form-control" id="budget" name="inkomsten[`+i+`][bedrag]" step=".01" value="" min="0" max="99999999" placeholder="bedrag">
+        <input type="number" class="form-control" id="budget" name="inkomsten[`+i+`][bedrag]" step=".01" value="" min="0" max="99999999" placeholder="bedrag" required>
             <button id="remove_rij" class="btn btn-link" type="button">X</button>
 
             </div>
@@ -50,13 +50,13 @@ $(document).ready(function () {
     $("form").on("click","#add_uitgave",function () {
     $("#uitgaven").before(`<tr>
             <input type="hidden" name="uitgaven[`+j+`][id]" value="">
-            <td><input type="text" class="form-control" id="soort" name="uitgaven[`+j+`][soort]" value="" placeholder="soort"></td>
+            <td><input type="text" class="form-control" id="soort" name="uitgaven[`+j+`][soort]" value="" placeholder="soort" required></td>
             <td>
                 <div class="input-group mb-3">
                     <div class="input-group-prepend">
                         <div class="input-group-text">&euro;</div>
                     </div>
-                    <input type="number" class="form-control" id="budget" name="uitgaven[`+j+`][budget]" step=".01" value="" min="0" max="99999999" placeholder="budget">
+                    <input type="number" class="form-control" id="budget" name="uitgaven[`+j+`][budget]" step=".01" value="" min="0" max="99999999" placeholder="budget" required>
                 </div>
             </td>
             <td></td>

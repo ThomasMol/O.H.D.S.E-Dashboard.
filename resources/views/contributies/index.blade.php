@@ -1,10 +1,12 @@
 @extends('layout')
 @section('title','Contributies')
 @section('content')
-    <h3>Contributies</h3>
+<div class="mb-4">
+    <h3 class="d-inline">Contributies</h3>
     @if(Auth::user()->admin == 1)
-<a class="btn btn-primary" href="/contributies/toevoegen/{{$huidig_jaar->jaargang}}">Contributie toevoegen</a>
+        <a href="/contributies/toevoegen/{{$huidig_jaar->jaargang}}" class="btn btn-outline-primary float-right"><span data-feather="plus-circle"></span> Contributie toevoegen</a>
     @endif
+</div>
     <table class="table table-hover table-sm table-responsive ">
         <thead>
         <tr>

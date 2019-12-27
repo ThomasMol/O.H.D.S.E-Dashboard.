@@ -15,7 +15,6 @@
     </div>
     <form class="card" method="POST" action="/uitgaven">
         @csrf
-        <h3>Uitgave</h3>
         <div class="form-row">
             <div class="col-md-3">
                 <label for="datum">Datum</label>
@@ -64,23 +63,38 @@
         <h3>Aanwezigheid</h3>
         <table class="table table-hover table-sm table-responsive ">
             <thead>
-            <tr>
+           {{--  <tr>
                 <th scope="col">Naam</th>
                 <th scope="col">Aanwezig</th>
                 <th scope="col">Naheffing</th>
                 <th scope="col">Afgemeld</th>
                 <th scope="col">Boete</th>
-            </tr>
+            </tr> --}}
             </thead>
             <tbody>
             @foreach($leden as $lid)
                 <tr>
                     <th scope="row">{{ $lid->roepnaam }} {{ $lid->achternaam }}</th>
-                    {{-- <td><input type="checkbox" name="deelnemers[]" value="{{$lid->lid_id}}"></td> --}}
-                    <td><input class="form-control" type="checkbox" name="aanwezigheid[{{$lid->lid_id}}][aanwezig]" value="1"></td>
+                    <td>
+                        <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                        <label class="btn btn-outline-secondary">
+                            <input class="form-control" type="checkbox" name="aanwezigheid[{{$lid->lid_id}}][aanwezig]" value="1"> Aanwezig
+                        </label>
+                        <label class="btn btn-outline-secondary">
+                            <input class="form-control" type="checkbox" name="aanwezigheid[{{$lid->lid_id}}][naheffing]" value="1"> Naheffing
+                        </label>
+                        <label class="btn btn-outline-secondary">
+                            <input class="form-control" type="checkbox" name="aanwezigheid[{{$lid->lid_id}}][afgemeld]" value="1"> Afgemeld
+                        </label>
+                        <label class="btn btn-outline-secondary">
+                            <input class="form-control" type="checkbox" name="aanwezigheid[{{$lid->lid_id}}][boete]" value="1"> Boete
+                        </label>
+                      </div>
+                    </td>
+                  {{--   <td><input class="form-control" type="checkbox" name="aanwezigheid[{{$lid->lid_id}}][aanwezig]" value="1"></td>
                     <td><input class="form-control" type="checkbox" name="aanwezigheid[{{$lid->lid_id}}][naheffing]" value="1"></td>
                     <td><input class="form-control" type="checkbox" name="aanwezigheid[{{$lid->lid_id}}][afgemeld]" value="1"></td>
-                    <td><input class="form-control" type="checkbox" name="aanwezigheid[{{$lid->lid_id}}][boete]" value="1"></td>
+                    <td><input class="form-control" type="checkbox" name="aanwezigheid[{{$lid->lid_id}}][boete]" value="1"></td> --}}
                 </tr>
             @endforeach
             </tbody>

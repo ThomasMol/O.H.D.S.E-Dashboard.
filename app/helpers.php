@@ -1,7 +1,5 @@
 <?php
 
-
-
 function divide_money($total, $divisor)
 {
     $total = (float)round($total, 2);
@@ -116,13 +114,13 @@ function divide_money($total, $divisor)
     }
 
     function verschuldigd($lid_id){
-        $boetes = App\Boete::where('boete.lid_id',$lid_id)->sum('bedrag');
-        $borrels = App\BorrelAanwezigheid::where('borrel_aanwezigheid.lid_id',$lid_id)->sum('naheffing');
+        $kosten = App\Kosten::where('kosten.lid_id',$lid_id)->sum('bedrag');
+        //$borrels = App\BorrelAanwezigheid::where('borrel_aanwezigheid.lid_id',$lid_id)->sum('naheffing');
         //$contributies = App\ContributieDeelname::where('contributie_deelname.lid_id',$lid_id)->sum('bedrag');
         $declaraties = App\DeclaratieDeelname::where('declaratie_deelname.lid_id',$lid_id)->sum('bedrag');
         $declaraties_betaald = App\Declaratie::where('declaratie.betaald_door_id',$lid_id)->sum('bedrag');
         $uitgaven = App\UitgaveDeelname::where('uitgave_deelname.lid_id',$lid_id)->sum('naheffing');
-        $total = $boetes + $borrels + /*$contributies +*/ $declaraties - $declaraties_betaald + $uitgaven;
+        $total = $kosten + /*$contributies +*/ $declaraties - $declaraties_betaald + $uitgaven;
         return $total;
     }
 

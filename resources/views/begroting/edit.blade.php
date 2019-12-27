@@ -35,7 +35,7 @@
 
                 </tbody>
             </table>
-            <button id="add_inkomsten" class="btn btn-light btn-block" type="button">Nieuwe inkomsten rij</button>
+            <button id="add_inkomsten" class="btn btn-outline-secondary btn-block" type="button">Nieuwe inkomsten rij</button>
         </div>
         <div class="col md-6">
             <h4>Uitgaven</h4>
@@ -67,7 +67,7 @@
                 <tr id="uitgaven"></tr>
                 </tbody>
             </table>
-            <button id="add_uitgave" class="btn btn-light btn-block" type="button">Nieuwe uitgave rij</button>
+            <button id="add_uitgave" class="btn btn-outline-secondary btn-block" type="button">Nieuwe uitgave rij</button>
         </div>
     </div>
     <button type="submit" class="btn btn-primary btn-lg btn-block mb-3 mt-3 floating">Opslaan</button>

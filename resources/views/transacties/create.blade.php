@@ -5,7 +5,6 @@
 
     <form class="card" method="POST" action="/transacties">
         @csrf
-        <h3>Transactie</h3>
         <div class="form-row">
             <div class="col-md">
                 <label for="datum">Datum</label>

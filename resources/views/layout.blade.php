@@ -83,14 +83,14 @@
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="accountDropdown" role="button"
                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            {{Auth::user()->roepnaam}}
+                            <span data-feather="user"></span> {{Auth::user()->roepnaam}}
                         </a>
                         <div class="dropdown-menu" aria-labelledby="accountDropdown">
                             <a class="dropdown-item {{ Request::is('instelling*') ? 'active' : '' }}" href="/instellingen">
-                                Instellingen
+                                <span data-feather="settings"></span> Instellingen
                             </a>
                             <a class="dropdown-item " href="/loguit">
-                                Log uit
+                                <span data-feather="log-out"></span> Log uit
                             </a>
 
                         </div>
@@ -120,9 +120,6 @@
     <script src="/js/bootstrap.js" type="text/javascript"></script>
     <script src="https://unpkg.com/feather-icons"></script>
     <script src="/js/scripts.js" type="text/javascript"></script>
-
-
-
     <script>
         feather.replace();
     </script>

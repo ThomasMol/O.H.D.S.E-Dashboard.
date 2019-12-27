@@ -1,10 +1,13 @@
 @extends('layout')
 @section('title','Contributie')
 @section('content')
-    <h3>Contributie</h3>
+<div class="mb-4">
+    <h3 class="d-inline">Contributie</h3>
     @if(Auth::user()->admin == 1)
-<a class="btn btn-primary" href="/contributies/{{$contributie->contributie_id}}/wijzig/{{$contributie->jaargang}}">Contributie wijzigen</a>
+    <a href="/contributies/{{$contributie->contributie_id}}/wijzig/{{$contributie->jaargang}}" class="btn btn-link float-right"><span data-feather="edit"></span> Wijzig</a>
     @endif
+</div>
+
     <table class="table table-hover table-sm table-responsive ">
         <thead>
         <tr>

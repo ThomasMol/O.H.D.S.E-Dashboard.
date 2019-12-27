@@ -52,22 +52,38 @@
         <h3>Aanwezigheid</h3>
         <table class="table table-hover table-sm table-responsive ">
             <thead>
-            <tr>
+            {{-- <tr>
                 <th scope="col">Naam</th>
                 <th scope="col">Aanwezig</th>
                 <th scope="col">Naheffing</th>
                 <th scope="col">Afgemeld</th>
                 <th scope="col">Boete</th>
-            </tr>
+            </tr> --}}
             </thead>
             <tbody>
             @foreach($leden_deelname as $lid)
                 <tr>
                     <th scope="row">{{ $lid->roepnaam }} {{ $lid->achternaam }}</th>
-                    <td><input class="form-control" type="checkbox" name="aanwezigheid[{{$lid->lid_id}}][aanwezig]" value="1" @if(!empty($lid->aanwezig)) checked @endif></td>
+                    <td>
+                            <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                            <label class="btn btn-outline-secondary @if(!empty($lid->aanwezig)) active @endif">
+                                <input class="form-control" type="checkbox" name="aanwezigheid[{{$lid->lid_id}}][aanwezig]" value="1" @if(!empty($lid->aanwezig)) checked @endif> Aanwezig
+                            </label>
+                            <label class="btn btn-outline-secondary @if(isset($lid->naheffing)) active @endif">
+                                <input class="form-control" type="checkbox" name="aanwezigheid[{{$lid->lid_id}}][naheffing]" value="1" @if(isset($lid->naheffing)) checked @endif> Naheffing
+                            </label>
+                            <label class="btn btn-outline-secondary @if(!empty($lid->afgemeld)) active @endif">
+                                <input class="form-control" type="checkbox" name="aanwezigheid[{{$lid->lid_id}}][afgemeld]" value="1" @if(!empty($lid->afgemeld)) checked @endif> Afgemeld
+                            </label>
+                            <label class="btn btn-outline-secondary @if(isset($lid->boete_id)) active @endif">
+                                <input class="form-control" type="checkbox" name="aanwezigheid[{{$lid->lid_id}}][boete]" value="1" @if(isset($lid->boete_id)) checked @endif> Boete
+                            </label>
+                          </div>
+                        </td>
+                    {{-- <td><input class="form-control" type="checkbox" name="aanwezigheid[{{$lid->lid_id}}][aanwezig]" value="1" @if(!empty($lid->aanwezig)) checked @endif></td>
                     <td><input class="form-control" type="checkbox" name="aanwezigheid[{{$lid->lid_id}}][naheffing]" value="1" @if(isset($lid->naheffing)) checked @endif></td>
                     <td><input class="form-control" type="checkbox" name="aanwezigheid[{{$lid->lid_id}}][afgemeld]" value="1" @if(!empty($lid->afgemeld)) checked @endif></td>
-                    <td><input class="form-control" type="checkbox" name="aanwezigheid[{{$lid->lid_id}}][boete]" value="1" @if(isset($lid->boete_id)) checked @endif></td>
+                    <td><input class="form-control" type="checkbox" name="aanwezigheid[{{$lid->lid_id}}][boete]" value="1" @if(isset($lid->boete_id)) checked @endif></td> --}}
                 </tr>
             @endforeach
             </tbody>
