@@ -1,18 +1,21 @@
 @extends('layout')
 @section('title','Uitgave')
 @section('content')
-    <h2 class="mb-4">Uitgave toevoegen</h2>
-    <div class="dropdown">
-        <button class="btn btn-outline-primary dropdown-toggle" type="button" id="dropdownJaar" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            Begroting van jaargang:
-        </button>
-        <div class="dropdown-menu" aria-labelledby="dropdownJaar">
+<header>
+        <h2 class="d-inline">Uitgave toevoegen</h2>
+        <div class="dropdown float-right">
+            <button class="btn btn-outline-primary dropdown-toggle" type="button" id="dropdownJaar" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Begroting van jaargang {{$bestuursjaar->jaargang}}
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownJaar">
 
-            @foreach($bestuursjaren as $bestuursjaar)
-                <a class="dropdown-item" href="/uitgaven/toevoegen/{{$bestuursjaar->jaargang}}">Jaar {{$bestuursjaar->jaargang}} @if($bestuursjaar->jaargang == $huidig_jaar->jaargang) <i>Huidig jaar</i>@endif</a>
-            @endforeach
+                @foreach($bestuursjaren as $bestuursjaar_value)
+                    <a class="dropdown-item @if($bestuursjaar->jaargang == $bestuursjaar_value->jaargang) active @endif " href="/uitgaven/toevoegen/{{$bestuursjaar_value->jaargang}}">Jaar {{$bestuursjaar_value->jaargang}} @if($bestuursjaar_value->jaargang == $huidig_jaar->jaargang) <i>Huidig jaar</i>@endif</a>
+                @endforeach
+            </div>
         </div>
-    </div>
+</header>
+
     <form class="card" method="POST" action="/uitgaven">
         @csrf
         <div class="form-row">

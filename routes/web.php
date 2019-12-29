@@ -54,6 +54,11 @@ Route::middleware(['auth'])->group(function () {
     Route::patch('/declaraties/{declaratie}', 'DeclaratiesController@update');
     Route::delete('/declaraties/{declaratie}', 'DeclaratiesController@destroy');
 
+    /* instellingen */
+    Route::get('/instellingen', 'InstellingenController@index');
+    Route::get('/instellingen/onverwijderlid/{lid}', 'InstellingenController@undeleteLid')->middleware('admin');
+    Route::get('/instellingen/nieuwebegroting', 'InstellingenController@maakBegroting')->middleware('admin');
+
     /*overige kosten*/
     Route::get('/kosten', 'KostenController@index');
     Route::get('/kosten/toevoegen', 'KostenController@create')->middleware('admin');

@@ -1,10 +1,13 @@
 @extends('layout')
 @section('title','Uitgaven')
 @section('content')
-    <h3>Uitgaven</h3>
-    @if(Auth::user()->admin == 1)
-        <a class="btn btn-primary" href="/uitgaven/toevoegen/{{$huidig_jaar->jaargang}}">Uitgave toevoegen</a>
-    @endif
+<header>
+        <h3 class="d-inline">Uitgaven</h3>
+        @if(Auth::user()->admin == 1)
+            <a class="btn btn-outline-primary float-right" href="/uitgaven/toevoegen/{{$huidig_jaar->jaargang}}"><span data-feather="plus-circle"></span> Uitgave toevoegen</a>
+        @endif
+</header>
+
     <table class="table table-hover table-sm table-responsive ">
         <thead>
         <tr>
@@ -30,15 +33,11 @@
                 <td>&euro; {{ format_currency($uitgave->budget) }}</td>
                 <td>&euro; {{ format_currency($uitgave->uitgave) }}</td>
                 <td>&euro; {{ format_currency($uitgave->naheffing) }}</td>
-                <td><a class="btn btn-light" href="/uitgave/{{$uitgave->uitgave_id}}">Bekijk</a>
+                <td><a class="btn btn-link" href="/uitgave/{{$uitgave->uitgave_id}}"><span data-feather="eye"></span> Bekijk</a>
                     @if(Auth::user()->admin == 1)
-                <a class="btn btn-light" href="/uitgaven/{{$uitgave->uitgave_id}}/wijzig/{{$uitgave->jaargang}}">Wijzig</a>
-                </td><td>
-                    <form action="/uitgaven/{{$uitgave->uitgave_id}}" method="POST">
-                        @csrf
-                        @method('DELETE')
-                        <button class="btn btn-outline-danger" type="submit">Verwijder</button>
-                    </form>
+                <a class="btn btn-link" href="/uitgaven/{{$uitgave->uitgave_id}}/wijzig/{{$uitgave->jaargang}}"><span data-feather="edit"></span> Wijzig</a>
+                </td>
+
                     @endif
                 </td>
 

@@ -1,7 +1,7 @@
 @extends('layout')
 @section('title','Contributie')
 @section('content')
-<div class="mb-4">
+<header>
     <h3 class="d-inline">Contributie toevoegen</h3>
     <div class="dropdown float-right">
         <button class="btn btn-outline-primary dropdown-toggle" type="button" id="dropdownJaar" data-toggle="dropdown"
@@ -17,7 +17,7 @@
             @endforeach
         </div>
     </div>
-</div>
+</header>
 
 <form class="card" method="POST" action="/contributies">
     @csrf

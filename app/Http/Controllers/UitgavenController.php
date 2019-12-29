@@ -21,7 +21,7 @@ class UitgavenController extends Controller
         $leden = Lid::ledenGesorteerd()->get();
         $bestuursjaren = Bestuursjaar::all();
         $categorieen = Uitgaven::where('jaargang',$bestuursjaar->jaargang)->get();
-        return view('uitgaven/create',compact('leden', 'bestuursjaren', 'categorieen'));
+        return view('uitgaven/create',compact('leden', 'bestuursjaren', 'categorieen','bestuursjaar'));
     }
 
     public function store(){

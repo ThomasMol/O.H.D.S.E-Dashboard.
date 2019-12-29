@@ -18,9 +18,9 @@
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png">
     <link rel="manifest" href="/favicon/site.webmanifest">
-    <link rel="mask-icon" href="/favicon/safari-pinned-tab.svg" color="#e9ab3e">
-    <meta name="msapplication-TileColor" content="#367bde">
-    <meta name="theme-color" content="#e9ab3e">
+    <link rel="mask-icon" href="/favicon/safari-pinned-tab.svg" color="#050914">
+    <meta name="msapplication-TileColor" content="#050914">
+    <meta name="theme-color" content="#050914">
 
 </head>
 <body>

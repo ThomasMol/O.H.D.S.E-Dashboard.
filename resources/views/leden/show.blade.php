@@ -1,7 +1,15 @@
 @extends('layout')
 @section('title','Gegevens')
 @section('content')
-    <h3 class="mb-4">Gegevens van: {{$lid->roepnaam}}</h3>
+<header>
+    <h3 class="d-inline">Gegevens van {{$lid->roepnaam}}</h3>
+    @if(Auth::user()->admin == 1)
+    <button class="btn btn-outline-danger float-right" data-href="/leden/{{$lid->lid_id}}" data-toggle="modal" data-target="#confirm-delete"><span data-feather="trash"></span> Verwijder</button>
+
+    <a href="/leden/{{$lid->lid_id}}/wijzig" class="btn btn-outline-primary float-right mr-2"><span data-feather="edit"></span> Wijzig</a>
+    @endif
+</header>
+
     <div class="row">
         <div class="col-md-4 card">
             <h3>Accountgegevens</h3>
@@ -77,4 +85,6 @@
             <img/>
         </div>
     </div>
+    @include('confirm_dialog')
+
 @endsection

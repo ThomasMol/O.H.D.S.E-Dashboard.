@@ -9,6 +9,7 @@ class Bestuursjaar extends Model
     protected $table = 'bestuursjaar';
     protected $primaryKey = 'jaargang';
     protected $guarded = [];
+    protected $dates = ['created_at', 'updated_at', 'van','tot'];
 
     public function scopeHuidigJaar($query){
         $date = date('Y-m-d');

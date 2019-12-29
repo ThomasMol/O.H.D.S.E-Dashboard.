@@ -1,13 +1,16 @@
 @extends('layout')
 @section('title','Boetes')
 @section('content')
-<div class="mb-4">
+<header>
     <h3 class="d-inline">Overige kosten</h3>
     @if(Auth::user()->admin == 1)
+    <button class="btn btn-outline-danger float-right" data-href="/kosten/{{$kosten->kosten_id}}" data-toggle="modal"
+        data-target="#confirm-delete"><span data-feather="trash"></span> Verwijder</button>
+
     <a href="/boetes/{{$kosten->kosten_id}}/wijzig" class="btn btn-outline-primary float-right"><span
             data-feather="edit"></span> Wijzig</a>
     @endif
-</div>
+</header>
 <table class="table table-hover table-sm table-responsive ">
     <thead>
         <tr>
@@ -26,5 +29,5 @@
         </tr>
     </tbody>
 </table>
-
+@include('confirm_dialog')
 @endsection

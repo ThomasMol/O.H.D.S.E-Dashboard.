@@ -15,14 +15,13 @@
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png">
     <link rel="manifest" href="/favicon/site.webmanifest">
-    <link rel="mask-icon" href="/favicon/safari-pinned-tab.svg" color="#e9ab3e">
-    <meta name="msapplication-TileColor" content="#367bde">
-    <meta name="theme-color" content="#e9ab3e">
-
+    <link rel="mask-icon" href="/favicon/safari-pinned-tab.svg" color="#050914">
+    <meta name="msapplication-TileColor" content="#050914">
+    <meta name="theme-color" content="#050914">
 </head>
 
 <body>
-    <nav class="navbar fixed-top navbar-expand-lg navbar-light">
+    <nav class="navbar fixed-top navbar-expand-lg navbar-dark">
         <div class="container">
             <a class="navbar-brand" href="/"><img src="/images/sadas.png" class="logo" width="38px"> Dashboard</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarMenuItems"
@@ -35,11 +34,6 @@
                     <li class="nav-item">
                         <a class="nav-link {{ Request::is('/') ? 'active' : '' }}" href="/">
                             Overzicht
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link {{ Request::is('gegevens*') ? 'active' : '' }}" href="/gegevens">
-                            Mijn gegevens
                         </a>
                     </li>
                     <li class="nav-item">
@@ -56,7 +50,7 @@
                         <div class="dropdown-menu" aria-labelledby="financienDropdown">
                             @if(Auth::user()->admin == 1)
                             <a class="dropdown-item {{ Request::is('begroting*') ? 'active' : '' }}"
-                                href="/begroting/{{$huidig_jaar->jaargang}}">
+                                href="/begroting/{{$huidig_jaar->jaargang}}" >
                                 Begroting
                             </a>
                             @endif
@@ -86,6 +80,9 @@
                             <span data-feather="user"></span> {{Auth::user()->roepnaam}}
                         </a>
                         <div class="dropdown-menu" aria-labelledby="accountDropdown">
+                            <a class="dropdown-item {{ Request::is('gegevens*') ? 'active' : '' }}" href="/gegevens">
+                                <span data-feather="user"></span> Mijn gegevens
+                            </a>
                             <a class="dropdown-item {{ Request::is('instelling*') ? 'active' : '' }}" href="/instellingen">
                                 <span data-feather="settings"></span> Instellingen
                             </a>
@@ -101,7 +98,7 @@
 
     </nav>
 
-    <main>
+    <main class="container">
         @if ($errors->any())
         @foreach ($errors->all() as $error)
         <div class="alert alert-danger">

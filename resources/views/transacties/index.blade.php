@@ -1,9 +1,7 @@
 @extends('layout')
 @section('title','Transacties')
 @section('content')
-
-
-<div class="mb-4">
+<header>
     <h3 class="d-inline">Transacties</h3>
     @if(Auth::user()->admin == 1)
     <a class="btn btn-outline-secondary float-right" href="/transacties/upload"><span
@@ -11,7 +9,7 @@
     <a class="btn btn-outline-primary float-right mr-2" href="/transacties/toevoegen"><span
             data-feather="plus-circle"></span> Transactie toevoegen</a>
     @endif
-</div>
+</header>
 
 <table class="table table-responsive table-sm table-hover">
     <thead>
@@ -43,17 +41,9 @@
             <td>{{ $transactie->mededelingen }}</td>
 
             <td>
-                <a class="btn btn-light" href="/transactie/{{$transactie->transactie_id}}">Bekijk</a>
+                <a class="btn btn-link" href="/transactie/{{$transactie->transactie_id}}"><span data-feather="eye"></span> Bekijk</a>
                 @if(Auth::user()->admin == 1)
-                <a class="btn btn-light" href="/transacties/{{$transactie->transactie_id}}/wijzig">Wijzig</a>
-
-            </td>
-            <td>
-                <form action="/transacties/{{$transactie->transactie_id}}" method="POST">
-                    @csrf
-                    @method('DELETE')
-                    <button class="btn btn-outline-danger" type="submit">Verwijder</button>
-                </form>
+                <a class="btn btn-link" href="/transacties/{{$transactie->transactie_id}}/wijzig"><span data-feather="edit"></span> Wijzig</a>
                 @endif
             </td>
         </tr>

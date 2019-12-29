@@ -1,8 +1,9 @@
 @extends('layout')
 @section('title','Uitgave')
 @section('content')
-    <h2 class="mb-4">Uitgave wijzigen</h2>
-
+<header>
+    <h2>Uitgave wijzigen</h2>
+</header>
     <form class="card" method="POST" action="/uitgaven/{{$uitgave->uitgave_id}}">
         @csrf
         @method('PATCH')

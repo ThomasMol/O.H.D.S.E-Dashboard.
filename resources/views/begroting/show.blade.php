@@ -24,7 +24,7 @@
                     <td>{{$inkomsten->soort}}</td>
                     <td>&euro; {{ format_currency($inkomsten->bedrag) }}</td>
                     <td>&euro; {{ format_currency($inkomsten->realisatie) }}</td>
-                    <td>&euro; {{ format_currency($inkomsten->verschild) }}</td>
+                    <td>&euro; {{ format_currency($inkomsten->verschil) }}</td>
                 </tr>
                 @endforeach
                 <tr>

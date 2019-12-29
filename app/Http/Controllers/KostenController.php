@@ -74,8 +74,10 @@ class KostenController extends Controller
     {
         subtract_verschuldigd($kosten->lid_id, $kosten->bedrag);
         $deelname = UitgaveDeelname::where('boete_id',$kosten->kosten_id)->first();
-        $deelname->boete_id = null;
-        $deelname->save();
+        if(isset($deelname)){
+            $deelname->boete_id = null;
+            $deelname->save();
+        }
         $kosten->delete();
         return redirect('/kosten');
     }

@@ -5,7 +5,7 @@ $(document).ready(function () {
         $(".sidebar").toggleClass("show-sidebar");
     });
 
-    //update naheffing
+    //update naheffing value
     $('form').on("change paste keyup click blur focus submit",function(){
         var budget  = Number($('#budget').val());
         var uitgave = Number($('#uitgave').val());
@@ -21,7 +21,7 @@ $(document).ready(function () {
             <input type=\"text\" class=\"form-control mb-3\" id=\"rekeningnummer\" name=\"rekeningnummers[]\" required>
         </div>` );
     });
-
+    //remove rekeningnummer input field
     $("form").on("click","#remove_rekeningnummer",function(){
         $(this).closest('div').remove();
     });
@@ -64,9 +64,17 @@ $(document).ready(function () {
         </tr>` );
     j++;
     });
-
+    //remove rij from inkomsten/uitgaven list
     $("form").on("click","#remove_rij",function(e){
         $(this).closest('tr').remove();
+    });
+
+
+
+    //confirm modal for deleting
+    $('#confirm-delete').on('show.bs.modal', function(e) {
+        console.log("test");
+        $(this).find('.delete-form').attr('action', $(e.relatedTarget).data('href'));
     });
 
 });

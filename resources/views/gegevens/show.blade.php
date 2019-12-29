@@ -1,10 +1,10 @@
 @extends('layout')
 @section('title','Mijn gegevens')
 @section('content')
-<div class="mb-4">
+<header>
     <h3 class="d-inline">Mijn gegevens</h3>
-    <a href="/gegevens/wijzig" class="btn btn-link float-right"><span data-feather="edit"></span> Wijzig</a>
-</div>
+    <a href="/gegevens/wijzig" class="btn btn-outline-primary float-right"><span data-feather="edit"></span> Wijzig</a>
+</header>
 <div class="row">
     <div class="col-md-4 card">
         <h3>Accountgegevens</h3>
