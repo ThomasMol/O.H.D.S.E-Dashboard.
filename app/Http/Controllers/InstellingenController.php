@@ -18,26 +18,35 @@ class InstellingenController extends Controller
 
     public function maakBegroting(){
         $last_bestuursjaar = Bestuursjaar::latest('tot')->first();
-        $bestuursjaar = new Bestuursjaar();
-        $bestuursjaar->jaargang =  $last_bestuursjaar->jaargang + 1;
-        $bestuursjaar->van = $last_bestuursjaar->van->addYears(1);
-        $bestuursjaar->tot = $last_bestuursjaar->tot->addYears(1);
-        $bestuursjaar->save();
 
-        Inkomsten::create([
-            'jaargang' => $bestuursjaar->jaargang,
-            'soort' => 'Boetes'
+        $bestuursjaar = Bestuursjaar::create([
+            'jaargang' => $last_bestuursjaar->jaargang + 1,
+            'van' =>  $last_bestuursjaar->van->addYears(1),
+            'tot' => $last_bestuursjaar->tot->addYears(1)
+
         ]);
         Inkomsten::create([
             'jaargang' => $bestuursjaar->jaargang,
-            'soort' => 'Borrel kosten reunisten/passief'
+            'soort' => 'Maandcontributie',
+            'readonly' => 1
+        ]);
+        Inkomsten::create([
+            'jaargang' => $bestuursjaar->jaargang,
+            'soort' => 'Boetes',
+            'readonly' => 1
+        ]);
+        Inkomsten::create([
+            'jaargang' => $bestuursjaar->jaargang,
+            'soort' => 'Borrel kosten reunisten/passief',
+            'readonly' => 1
         ]);
         Uitgaven::create([
             'jaargang' => $bestuursjaar->jaargang,
-            'soort' => 'Dinsdagborrel'
+            'soort' => 'Dinsdagborrel',
+            'readonly' => 1
         ]);
 
-        return redirect('/instellingen');
+        return redirect('/begroting/' . $bestuursjaar->jaargang);
     }
 
     public function undeleteLid($lid){

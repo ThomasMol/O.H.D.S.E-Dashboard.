@@ -5,9 +5,15 @@ Route::get('/login', ['as' => 'login', 'uses' => 'Auth\LoginController@index']);
 Route::get('/loguit', ['as' => 'logout', 'uses' => 'Auth\LoginController@logout']);
 Route::post('/login', 'Auth\LoginController@authenticate');
 
+Route::get('password/reset', 'Auth\ForgotPasswordController@showLinkRequestForm')->name('password.request');
+Route::post('password/email', 'Auth\ForgotPasswordController@sendResetLinkEmail')->name('password.email');
+Route::get('password/reset/{token}', 'Auth\ResetPasswordController@showResetForm')->name('password.reset');
+Route::post('password/reset', 'Auth\ResetPasswordController@reset')->name('password.update');
+
 Route::middleware(['auth'])->group(function () {
 
     Route::get('/', 'HomeController@index');
+
 
     /*eigen gegevens */
     Route::get('/gegevens', 'GegevensController@index');
@@ -15,7 +21,7 @@ Route::middleware(['auth'])->group(function () {
     Route::patch('/gegevens', 'GegevensController@update');
 
     // TODO password reset, email change
-    Route::post('/gegevens/wijziglogin', 'GegevensController@wijziglogin');
+    //Route::post('/gegevens/wijziglogin', 'GegevensController@wijziglogin');
 
 
     // begroting
@@ -98,3 +104,5 @@ Route::middleware(['auth'])->group(function () {
     Route::patch('/uitgaven/{uitgave}', 'UitgavenController@update')->middleware('admin');
     Route::delete('/uitgaven/{uitgave}', 'UitgavenController@destroy')->middleware('admin');
 });
+
+

@@ -25,6 +25,6 @@
 
             <button class="btn btn-lg btn-primary btn-block" type="submit">Log in</button>
         </form>
-        <a class="btn btn-lg btn-link btn-block" href="#">Wachtwoord vergeten?</a>
+        <a class="btn btn-lg btn-link btn-block" href="/password/reset">Wachtwoord vergeten?</a>
     </div>
 @endsection

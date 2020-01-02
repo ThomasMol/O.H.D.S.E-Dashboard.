@@ -13,6 +13,8 @@ class Bestuursjaar extends Model
 
     public function scopeHuidigJaar($query){
         $date = date('Y-m-d');
-        return $query->where('tot','>=',$date)->where('van','<=',$date)->first();
+        return $query->where('tot','>=',$date)->where('van','<=',$date)->firstOr(function(){
+            return $last_bestuursjaar = Bestuursjaar::latest('tot')->firstOrFail();
+        });
     }
 }
