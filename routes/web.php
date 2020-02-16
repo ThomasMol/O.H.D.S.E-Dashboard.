@@ -67,10 +67,10 @@ Route::middleware(['auth'])->group(function () {
 
     /*overige kosten*/
     Route::get('/kosten', 'KostenController@index');
-    Route::get('/kosten/toevoegen', 'KostenController@create')->middleware('admin');
+    Route::get('/kosten/toevoegen/{bestuursjaar}', 'KostenController@create')->middleware('admin');
     Route::post('/kosten', 'KostenController@store')->middleware('admin');
     Route::get('/kosten/{kosten}', 'KostenController@show');
-    Route::get('/kosten/{kosten}/wijzig', 'KostenController@edit')->middleware('admin');
+    Route::get('/kosten/{kosten}/wijzig/{bestuursjaar}', 'KostenController@edit')->middleware('admin');
     Route::patch('/kosten/{kosten}', 'KostenController@update')->middleware('admin');
     Route::delete('/kosten/{kosten}', 'KostenController@destroy')->middleware('admin');
 

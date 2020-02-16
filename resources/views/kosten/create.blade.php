@@ -18,13 +18,13 @@
                 </div>
         </div>
 
-        <label for="omschrijving">Omschrijving</label>
-        <input type="text" class="form-control mb-3" id="reden" name="omschrijving" value="{{ old('omschrijving')}}" required>
+        {{-- <label for="omschrijving">Omschrijving</label>
+        <input type="text" class="form-control mb-3" id="reden" name="omschrijving" value="{{ old('omschrijving')}}" required> --}}
 
-        <label for="soort">Soort</label>
-        <select class="form-control mb-3" id="soort" name="soort" required>
-            @foreach($kosten->kostenOptions() as $key => $soort)
-                <option value="{{$key}}">{{ $soort }}</option>
+        <label for="inkomsten_id">Soort</label>
+        <select class="form-control mb-3" id="inkomsten_id" name="inkomsten_id" required>
+            @foreach($categorieen as $categorie)
+                <option value="{{$categorie->inkomsten_id}}">{{ $categorie->soort }}</option>
             @endforeach
         </select>
 

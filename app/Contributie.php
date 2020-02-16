@@ -11,6 +11,8 @@ class Contributie extends Model
     protected $table = 'contributie';
     protected $primaryKey = 'contributie_id';
 
+
+    //Not used
     public function contributieSoortOptions(){
         return [
             'Maandcontributie' => 'Maandcontributie',

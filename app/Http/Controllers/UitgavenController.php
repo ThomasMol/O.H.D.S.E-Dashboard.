@@ -3,11 +3,14 @@
 namespace App\Http\Controllers;
 
 use App\Bestuursjaar;
+use App\Inkomsten;
 use App\Uitgaven;
 use Illuminate\Http\Request;
 use App\Uitgave;
 use App\UitgaveDeelname;
 use App\Lid;
+use App\Kosten;
+use Illuminate\Support\Facades\DB;
 
 class UitgavenController extends Controller
 {
@@ -21,11 +24,14 @@ class UitgavenController extends Controller
         $leden = Lid::ledenGesorteerd()->get();
         $bestuursjaren = Bestuursjaar::all();
         $categorieen = Uitgaven::where('jaargang',$bestuursjaar->jaargang)->get();
-        return view('uitgaven/create',compact('leden', 'bestuursjaren', 'categorieen','bestuursjaar'));
+        $inkomsten_boete_id = Inkomsten::select('inkomsten_id')->where('jaargang', $bestuursjaar->jaargang)->where(DB::raw('upper(soort)'),'like','%BOETE%')->firstOrFail()['inkomsten_id'];
+        $inkomsten_extra_kosten_id = Inkomsten::select('inkomsten_id')->where('jaargang', $bestuursjaar->jaargang)->where(DB::raw('upper(soort)'),'like','%EXTRA%')->firstOrFail()['inkomsten_id'];
+        #dd($inkomsten_extra_kosten_id);
+        return view('uitgaven/create',compact('leden', 'bestuursjaren', 'categorieen','bestuursjaar','inkomsten_boete_id','inkomsten_extra_kosten_id'));
     }
 
-    public function store(){
-        $data = request()->validate([
+    public function store(Request $request){
+        $data = $request->validate([
             'datum' => 'required|date',
             'budget' => 'required|numeric|gte:0|lt:99999999',
             'uitgave' => 'required|numeric|gte:0|lt:99999999',
@@ -33,7 +39,7 @@ class UitgavenController extends Controller
             'uitgaven_id' => 'required',
             'omschrijving' => 'required|max:100000'
         ]);
-        $deelnemers = request()->validate([
+        $deelnemers = $request->validate([
             'aanwezigheid' => ''
         ]);
         $uitgave = Uitgave::create($data);
@@ -60,11 +66,15 @@ class UitgavenController extends Controller
         'uitgave_deelname.afgemeld as afgemeld',
         'uitgave_deelname.naheffing as naheffing',
         'uitgave_deelname.boete_id as boete_id',
+        'uitgave_deelname.extra_kosten_id as extra_kosten_id',
         'type_lid')->leftJoin('uitgave_deelname', function($join) use ($id){
             $join->on('lid.lid_id','uitgave_deelname.lid_id');
             $join->where('uitgave_deelname.uitgave_id',$id);
         })->ledenGesorteerd()->get();
-        return view('uitgaven/edit', compact('uitgave', 'leden_deelname' , 'leden','bestuursjaren','categorieen'));
+        $inkomsten_boete_id = Inkomsten::select('inkomsten_id')->where('jaargang', $bestuursjaar->jaargang)->where(DB::raw('upper(soort)'),'like','%BOETE%')->firstOrFail()['inkomsten_id'];
+        $inkomsten_extra_kosten_id = Inkomsten::select('inkomsten_id')->where('jaargang', $bestuursjaar->jaargang)->where(DB::raw('upper(soort)'),'like','%EXTRA%')->firstOrFail()['inkomsten_id'];
+
+        return view('uitgaven/edit', compact('uitgave', 'leden_deelname' , 'leden','bestuursjaren','categorieen','inkomsten_boete_id','inkomsten_extra_kosten_id'));
     }
 
     public function update(Uitgave $uitgave){
@@ -117,7 +127,10 @@ class UitgavenController extends Controller
             $uitgave_deelname->aanwezig = isset($lid['aanwezig']);
             $uitgave_deelname->afgemeld = isset($lid['afgemeld']);
             if(isset($lid['boete'])){
-                $uitgave_deelname->boete_id = add_kosten($key,10.00,'boete', $uitgave->datum,'Te laat of niet afgemeld.');
+                $uitgave_deelname->boete_id = add_kosten($key, 10.00, $uitgave->datum, $lid['boete']);
+            }
+            if(isset($lid['extra_kosten'])){
+                $uitgave_deelname->extra_kosten_id = add_kosten($key, 10.00, $uitgave->datum, $lid['extra_kosten']);
             }
             if(isset($lid['naheffing'])){
                 $uitgave_deelname->naheffing = $bedragen[$i];
@@ -131,7 +144,7 @@ class UitgavenController extends Controller
 
     public function remove_uitgave_deelname($uitgave){
         $uitgave_id = $uitgave->uitgave_id;
-        $deelnemers = Lid::select('lid.lid_id','uitgave_deelname.naheffing as naheffing','uitgave_deelname.boete_id as boete_id')->join('uitgave_deelname', function($join) use ($uitgave_id){
+        $deelnemers = Lid::select('lid.lid_id','uitgave_deelname.naheffing as naheffing','uitgave_deelname.boete_id as boete_id','uitgave_deelname.extra_kosten_id as extra_kosten_id')->join('uitgave_deelname', function($join) use ($uitgave_id){
             $join->on('lid.lid_id','uitgave_deelname.lid_id');
             $join->where('uitgave_deelname.uitgave_id',$uitgave_id);
         })->get();
@@ -141,6 +154,9 @@ class UitgavenController extends Controller
             }
             if(isset($deelnemer->boete_id)){
                 remove_kosten($deelnemer->boete_id);
+            }
+            if(isset($deelnemer->extra_kosten_id)){
+                remove_kosten($deelnemer->extra_kosten_id);
             }
 
             UitgaveDeelname::where('lid_id',$deelnemer->lid_id)->where('uitgave_id',$uitgave_id)->delete();

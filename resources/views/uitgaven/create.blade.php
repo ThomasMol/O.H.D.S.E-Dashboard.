@@ -16,7 +16,7 @@
         </div>
 </header>
 
-    <form class="card" method="POST" action="/uitgaven">
+<form class="card" method="POST" action="/uitgaven">
         @csrf
         <div class="form-row">
             <div class="col-md-3">
@@ -90,7 +90,10 @@
                             <input class="form-control" type="checkbox" name="aanwezigheid[{{$lid->lid_id}}][afgemeld]" value="1"> Afgemeld
                         </label>
                         <label class="btn btn-outline-secondary">
-                            <input class="form-control" type="checkbox" name="aanwezigheid[{{$lid->lid_id}}][boete]" value="1"> Boete
+                            <input class="form-control" type="checkbox" name="aanwezigheid[{{$lid->lid_id}}][boete]" value="{{$inkomsten_boete_id}}"> Boete
+                        </label>
+                        <label class="btn btn-outline-secondary">
+                            <input class="form-control" type="checkbox" name="aanwezigheid[{{$lid->lid_id}}][extra_kosten]" value="{{$inkomsten_extra_kosten_id}}"> Extra kosten
                         </label>
                       </div>
                     </td>

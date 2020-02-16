@@ -4,7 +4,7 @@
 <header>
         <h3 class="d-inline">Uitgaven</h3>
         @if(Auth::user()->admin == 1)
-            <a class="btn btn-outline-primary float-right" href="/uitgaven/toevoegen/{{$huidig_jaar->jaargang}}"><span data-feather="plus-circle"></span> Uitgave toevoegen</a>
+<a class="btn btn-outline-primary float-right" href="/uitgaven/toevoegen/{{$huidig_jaar->jaargang}}"><span data-feather="plus-circle"></span> Uitgave toevoegen</a>
         @endif
 </header>
 

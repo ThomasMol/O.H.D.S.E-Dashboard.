@@ -17,7 +17,9 @@
                 @endforeach
             </div>
         </div>
-    <a href="/instellingen/nieuwebegroting" class="btn btn-secondary" onclick="confirm('Weet je het zeker?')">Maak begroting aan van jaargang {{$bestuursjaren->last()->jaargang + 1}}.</a>
+        <form action="/instellingen/nieuwebegroting" method="GET">
+            <button type="submit" class="btn btn-secondary" onclick="return confirm('Weet je het zeker?')">Maak begroting aan van jaargang {{$bestuursjaren->last()->jaargang + 1}}.</button>
+        </form>
     <hr>
     <h5>Standaardwaarde</h5>
         <ul>

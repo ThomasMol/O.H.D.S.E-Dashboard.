@@ -77,7 +77,10 @@
                                 <input class="form-control" type="checkbox" name="aanwezigheid[{{$lid->lid_id}}][afgemeld]" value="1" @if(!empty($lid->afgemeld)) checked @endif> Afgemeld
                             </label>
                             <label class="btn btn-outline-secondary @if(isset($lid->boete_id)) active @endif">
-                                <input class="form-control" type="checkbox" name="aanwezigheid[{{$lid->lid_id}}][boete]" value="1" @if(isset($lid->boete_id)) checked @endif> Boete
+                                <input class="form-control" type="checkbox" name="aanwezigheid[{{$lid->lid_id}}][boete]" value="{{$inkomsten_boete_id}}" @if(isset($lid->boete_id)) checked @endif> Boete
+                            </label>
+                            <label class="btn btn-outline-secondary @if(isset($lid->extra_kosten_id)) active @endif">
+                                <input class="form-control" type="checkbox" name="aanwezigheid[{{$lid->lid_id}}][extra_kosten]" value="{{$inkomsten_extra_kosten_id}}"  @if(isset($lid->extra_kosten_id)) checked @endif> Extra kosten
                             </label>
                           </div>
                         </td>

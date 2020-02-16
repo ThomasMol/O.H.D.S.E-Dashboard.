@@ -68,7 +68,7 @@
                             value="{{$uitgaven->uitgaven_id}}">
                         <td><input type="text" class="form-control" id="soort"
                                 name="uitgaven[{{$loop->iteration}}][soort]" value="{{$uitgaven->soort}}" required
-                                @if($inkomsten->readonly) readonly @endif></td>
+                                @if($uitgaven->readonly) readonly @endif></td>
                         <td>
                             <div class="input-group mb-3">
                                 <div class="input-group-prepend">

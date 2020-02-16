@@ -7,7 +7,7 @@
     <button class="btn btn-outline-danger float-right" data-href="/kosten/{{$kosten->kosten_id}}" data-toggle="modal"
         data-target="#confirm-delete"><span data-feather="trash"></span> Verwijder</button>
 
-    <a href="/boetes/{{$kosten->kosten_id}}/wijzig" class="btn btn-outline-primary float-right"><span
+    <a href="/boetes/{{$kosten->kosten_id}}/wijzig/{{$bestuursjaar->jaargang}}" class="btn btn-outline-primary float-right"><span
             data-feather="edit"></span> Wijzig</a>
     @endif
 </header>

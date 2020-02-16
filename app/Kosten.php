@@ -13,7 +13,7 @@ class Kosten extends Model
     public function kostenOptions(){
         return [
             'boete'=>'Boete',
-            'kosten_niet_lid' => 'Extra kosten niet actief lid',
+            'extra_kosten' => 'Extra kosten niet actief lid',
             'overig' => 'Overig'
         ];
     }

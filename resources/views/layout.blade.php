@@ -86,6 +86,7 @@
                             <a class="dropdown-item {{ Request::is('instelling*') ? 'active' : '' }}" href="/instellingen">
                                 <span data-feather="settings"></span> Instellingen
                             </a>
+                            <div class="dropdown-divider"></div>
                             <a class="dropdown-item " href="/loguit">
                                 <span data-feather="log-out"></span> Log uit
                             </a>

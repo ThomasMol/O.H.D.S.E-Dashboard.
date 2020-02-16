@@ -19,13 +19,12 @@
             </div>
         </div>
 
-        <label for="omschrijving">omschrijving</label>
-        <input type="text" class="form-control mb-3" id="omschrijving" name="omschrijving" value="{{ $kosten->omschrijving }}" required>
-
-        <label for="soort">Soort</label>
-        <select class="form-control mb-3" id="soort" name="soort" required>
-            @foreach($kosten->kostenOptions() as $key => $soort)
-                <option @if($key == $kosten->soort) selected @endif value="{{$key}}">{{ $soort }}</option>
+        {{-- <label for="omschrijving">omschrijving</label>
+        <input type="text" class="form-control mb-3" id="omschrijving" name="omschrijving" value="{{ $kosten->omschrijving }}" required> --}}
+        <label for="inkomsten_id">Soort</label>
+        <select class="form-control mb-3" id="inkomsten_id" name="inkomsten_id" required>
+            @foreach($categorieen as $categorie)
+                <option @if($categorie->inkomsten_id == $kosten->inkomsten_id) selected @endif value="{{$categorie->inkomsten_id}}">{{ $categorie->soort }}</option>
             @endforeach
         </select>
 

@@ -6,6 +6,7 @@ use App\Bestuursjaar;
 use App\Inkomsten;
 use App\Lid;
 use App\Uitgaven;
+use App\Kosten;
 
 class InstellingenController extends Controller
 {
@@ -25,21 +26,20 @@ class InstellingenController extends Controller
             'tot' => $last_bestuursjaar->tot->addYears(1)
 
         ]);
+        $kosten = new Kosten();
+        foreach($kosten->kostenOptions() as $optie){
+            Inkomsten::create([
+                'jaargang' => $bestuursjaar->jaargang,
+                'soort' => $optie,
+                'readonly' => 1
+            ]);
+        }
         Inkomsten::create([
             'jaargang' => $bestuursjaar->jaargang,
             'soort' => 'Maandcontributie',
             'readonly' => 1
         ]);
-        Inkomsten::create([
-            'jaargang' => $bestuursjaar->jaargang,
-            'soort' => 'Boetes',
-            'readonly' => 1
-        ]);
-        Inkomsten::create([
-            'jaargang' => $bestuursjaar->jaargang,
-            'soort' => 'Borrel kosten reunisten/passief',
-            'readonly' => 1
-        ]);
+
         Uitgaven::create([
             'jaargang' => $bestuursjaar->jaargang,
             'soort' => 'Dinsdagborrel',

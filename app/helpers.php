@@ -22,13 +22,12 @@ function divide_money($total, $divisor)
     return $splitTotals;
 }
 
-    function add_kosten($lid_id, $bedrag, $soort, $datum, $omschrijving){
+    function add_kosten($lid_id, $bedrag, $datum, $inkomsten_id){
         $kosten = new App\Kosten;
         $kosten->lid_id = $lid_id;
         $kosten->datum = $datum;
         $kosten->bedrag = $bedrag;
-        $kosten->soort = $soort;
-        $kosten->omschrijving = $omschrijving;
+        $kosten->inkomsten_id = $inkomsten_id;
         $kosten->save();
         add_verschuldigd($lid_id, $bedrag);
         return $kosten->kosten_id;
