@@ -27,9 +27,9 @@ $(document).ready(function () {
     });
 
     //Add and remove uitgaven/inkomsten list
-    var i = 0;
+    var i = -1;
     $("form").on("click","#add_inkomsten",function () {
-        $("#inkomsten").after(`<tr>
+        $("#inkomsten").before(`<tr>
             <input type="hidden" name="inkomsten[`+i+`][id]" value="">
             <td><input type=\"text\" class="form-control" id="soort" name="inkomsten[`+i+`][soort]" value="" placeholder="soort" required></td>
             <td>
@@ -43,10 +43,10 @@ $(document).ready(function () {
             </div>
             </td>
             </tr>` );
-        i++;
+        i--;
     });
 
-    var j = 0;
+    var j = -1;
     $("form").on("click","#add_uitgave",function () {
     $("#uitgaven").before(`<tr>
             <input type="hidden" name="uitgaven[`+j+`][id]" value="">
@@ -62,7 +62,7 @@ $(document).ready(function () {
             <td></td>
             <td><button id="remove_rij" class="btn btn-link" type="button">X</button></td>
         </tr>` );
-    j++;
+    j--;
     });
     //remove rij from inkomsten/uitgaven list
     $("form").on("click","#remove_rij",function(e){

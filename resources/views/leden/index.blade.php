@@ -15,7 +15,6 @@
         <tr>
             <th scope="col">Naam</th>
             <th scope="col">Email</th>
-            <th scope="col">Telefoonnummer</th>
             <th scope="col">Schuld</th>
             <th scope="col">Gespaard</th>
             <th scope="col"></th>
@@ -29,7 +28,6 @@
         <tr>
             <th scope="row">{{ $lid->roepnaam }} {{ $lid->achternaam }}</th>
             <td>{{ $lid->email }}</td>
-            <td>{{ $lid->telefoonnummer }}</td>
             <td>&euro; {{ format_currency($lid->schuld) }}</td>
             <td>&euro; {{ format_currency($lid->gespaard) }}</td>
             <td scope="col">

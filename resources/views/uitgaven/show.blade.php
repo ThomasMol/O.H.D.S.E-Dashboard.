@@ -26,7 +26,7 @@
     </thead>
     <tbody>
         <tr>
-            <td>{{ $uitgave->datum }}</td>
+            <td>{{date('d F Y - l', strtotime($uitgave->datum)) }}</td>
             <td>{{ $uitgave->soort }}</td>
             <td>{{ $uitgave->omschrijving }}</td>
             <td>&euro; {{ format_currency($uitgave->budget) }}</td>
@@ -38,9 +38,9 @@
     </tbody>
 </table>
 
-<ul>
+<ul class="list-group">
     @foreach($leden_deelname as $lid)
-    <li>{{$lid->roepnaam}} aanwezig: ja </li>
+    <li class="list-group-item"><strong>{{$lid->roepnaam}} {{$lid->achternaam}}</strong> @if($lid->aanwezig) Aanwezig @endif @if($lid->naheffing)Naheffing: {{format_currency($lid->naheffing)}} @endif @if($lid->boete_id) Boete @endif</li>
     @endforeach
 </ul>
 @include('confirm_dialog')

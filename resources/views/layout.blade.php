@@ -118,6 +118,7 @@
     <script src="/js/bootstrap.js" type="text/javascript"></script>
     <script src="https://unpkg.com/feather-icons"></script>
     <script src="/js/scripts.js" type="text/javascript"></script>
+    
     <script>
         feather.replace();
     </script>

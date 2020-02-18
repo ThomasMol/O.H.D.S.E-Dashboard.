@@ -31,8 +31,8 @@ class BegrotingController extends Controller
 
     public function show(Bestuursjaar $bestuursjaar)
     {
-        $inkomsten_list = Inkomsten::where('jaargang', $bestuursjaar->jaargang)->get();
-        $uitgaven_list = Uitgaven::where('jaargang', $bestuursjaar->jaargang)->get();
+        $inkomsten_list = Inkomsten::where('jaargang', $bestuursjaar->jaargang)->orderBy('soort', 'asc')->get();
+        $uitgaven_list = Uitgaven::where('jaargang', $bestuursjaar->jaargang)->orderBy('soort', 'asc')->get();
         $se_rekening = SErekening::find(1);
         $transacties_af_aggregate = Transactie::where('af_bij','Af')->where('datum','>=',$bestuursjaar->van)->where('datum','<=',$bestuursjaar->tot)->sum('bedrag');
         $uitgaven_aggregate = Uitgave::where('datum','>=',$bestuursjaar->van)->where('datum','<=',$bestuursjaar->tot)->sum('uitgave');
@@ -42,8 +42,8 @@ class BegrotingController extends Controller
 
     public function edit(Bestuursjaar $bestuursjaar)
     {
-        $inkomsten_list = Inkomsten::where('jaargang', $bestuursjaar->jaargang)->get();
-        $uitgaven_list = Uitgaven::where('jaargang', $bestuursjaar->jaargang)->get();
+        $inkomsten_list = Inkomsten::where('jaargang', $bestuursjaar->jaargang)->orderBy('soort', 'asc')->get();
+        $uitgaven_list = Uitgaven::where('jaargang', $bestuursjaar->jaargang)->orderBy('soort', 'asc')->get();
         return view('begroting/edit',compact('inkomsten_list','uitgaven_list','bestuursjaar'));
     }
 

@@ -18,6 +18,7 @@ class HomeController extends Controller
     public function index (){
         $financien = Financien::find(Auth::user()->lid_id);
         $lid_gegevens = LidGegevens::find(Auth::user()->lid_id);
+       
         return view('index',compact('financien','lid_gegevens'));
     }
 
