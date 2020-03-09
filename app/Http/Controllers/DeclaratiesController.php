@@ -2,28 +2,26 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Declaratie;
 use App\DeclaratieDeelname;
 use App\Lid;
-use App\Boete;
-use App\SErekening;
-use DB;
-use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 
 class DeclaratiesController extends Controller
 {
     public function index()
     {
-        $user_id = Auth::user()->lid_id;
-        $declaraties = Declaratie::select('declaratie.declaratie_id','betaald_door_id','datum','declaratie.bedrag','omschrijving','created_by_id')->join('declaratie_deelname', function($join) use ($user_id){
+        //$user_id = Auth::user()->lid_id;
+
+        $declaraties = Declaratie::select('*')->leftJoin('lid','lid.lid_id','declaratie.created_by_id')->groupBy('declaratie.declaratie_id')->orderBy('datum', 'desc')->paginate(10);
+        /* $declaraties = Declaratie::select('declaratie.declaratie_id','betaald_door_id','datum','declaratie.bedrag','omschrijving','created_by_id')->join('declaratie_deelname', function($join) use ($user_id){
             $join->on('declaratie.declaratie_id','declaratie_deelname.declaratie_id');
         })->orWhere(function ($query) use ($user_id){
         $query->orWhere('declaratie.created_by_id', '=', $user_id)
             ->orWhere('declaratie.betaald_door_id', '=', $user_id)
             ->orWhere('declaratie_deelname.lid_id', '=', $user_id);
-        })->groupBy('declaratie.declaratie_id')->orderBy('datum', 'desc')->paginate(10);
+        })->groupBy('declaratie.declaratie_id')->orderBy('datum', 'desc')->paginate(10); */
 
         return view('declaraties/index', compact('declaraties'));
     }
@@ -57,8 +55,12 @@ class DeclaratiesController extends Controller
     }
 
     public function show(Declaratie $declaratie)    {
-        $leden_deelname = Lid::join('declaratie_deelname', 'lid.lid_id', '=', 'declaratie_deelname.lid_id')->where('declaratie_deelname.declaratie_id', $declaratie->declaratie_id)->get();
-
+        $leden_deelname = Lid::join('declaratie_deelname', 'lid.lid_id', '=', 'declaratie_deelname.lid_id')->where('declaratie_deelname.declaratie_id', $declaratie->declaratie_id)->ledenGesorteerd()->get();
+        $declaratie = Declaratie::select('declaratie_id','betaald_door_id','created_by_id','bedrag','datum','omschrijving','lid1.roepnaam as lid1_roepnaam','lid1.achternaam as lid1_achternaam','lid2.roepnaam as lid2_roepnaam','lid2.achternaam as lid2_achternaam')
+        ->leftJoin('lid as lid1','lid1.lid_id','declaratie.betaald_door_id')
+        ->leftJoin('lid as lid2','lid2.lid_id','declaratie.created_by_id')
+        ->where('declaratie.declaratie_id', $declaratie->declaratie_id)->first();
+        //dd($declaratie);
         return view('declaraties/show', compact('declaratie' , 'leden_deelname'));
     }
 
@@ -70,7 +72,7 @@ class DeclaratiesController extends Controller
         $leden_deelname = Lid::select('lid.lid_id', 'roepnaam', 'achternaam','declaratie_deelname.lid_id as deelname','type_lid')->leftJoin('declaratie_deelname', function($join) use ($id){
             $join->on('lid.lid_id','declaratie_deelname.lid_id');
             $join->where('declaratie_deelname.declaratie_id',$id);
-        })->where('type_lid','!=','Geen')->orderBy('type_lid','asc')->get();
+        })->ledenGesorteerd()->get();
         return view('declaraties/edit', compact('declaratie' , 'leden_deelname', 'leden'));
     }
 

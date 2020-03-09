@@ -17,7 +17,7 @@ class TransactiesController extends Controller
 
     public function index()
     {
-        $transacties = Transactie::leftJoin('lid','lid.lid_id','transactie.lid_id')->get();
+        $transacties = Transactie::leftJoin('lid','lid.lid_id','transactie.lid_id')->orderBy('transactie.datum','desc')->get();
         return view('transacties/index', compact('transacties'));
     }
 
@@ -189,7 +189,6 @@ class TransactiesController extends Controller
     //Check if transaction is Af or Bij, handle addition or substraction from lid financien and SE rekening afterwards
     public function checkAfBij($afbij, $bedrag, $lid_id, $spaarplan)
     {
-
         if ($afbij == "Af") {
             $this->af($bedrag, $lid_id, $spaarplan);
         } elseif ($afbij == "Bij") {

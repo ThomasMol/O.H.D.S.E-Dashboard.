@@ -23,7 +23,7 @@ class UitgavenController extends Controller
     public function create(Bestuursjaar $bestuursjaar){
         $leden = Lid::ledenGesorteerd()->get();
         $bestuursjaren = Bestuursjaar::all();
-        $categorieen = Uitgaven::where('jaargang',$bestuursjaar->jaargang)->get();
+        $categorieen = Uitgaven::where('jaargang',$bestuursjaar->jaargang)->orderBy('soort','asc')->get();
         $inkomsten_boete_id = Inkomsten::select('inkomsten_id')->where('jaargang', $bestuursjaar->jaargang)->where(DB::raw('upper(soort)'),'like','%BOETE%')->firstOrFail()['inkomsten_id'];
         $inkomsten_extra_kosten_id = Inkomsten::select('inkomsten_id')->where('jaargang', $bestuursjaar->jaargang)->where(DB::raw('upper(soort)'),'like','%EXTRA%')->firstOrFail()['inkomsten_id'];
         #dd($inkomsten_extra_kosten_id);
@@ -44,7 +44,9 @@ class UitgavenController extends Controller
         ]);
         $uitgave = Uitgave::create($data);
         add_uitgaven_realisatie($uitgave->uitgaven_id, $uitgave->budget);
-        $this->add_uitgave_deelname($uitgave, $deelnemers['aanwezigheid']);
+        if(count($deelnemers) > 0){
+            $this->add_uitgave_deelname($uitgave, $deelnemers['aanwezigheid']);
+        }
         return redirect('/uitgave/' . $uitgave->uitgave_id);
     }
 
@@ -58,7 +60,7 @@ class UitgavenController extends Controller
         $id = $uitgave->uitgave_id;
         $leden = Lid::ledenGesorteerd()->get();
         $bestuursjaren = Bestuursjaar::all();
-        $categorieen = Uitgaven::where('jaargang',$bestuursjaar->jaargang)->get();
+        $categorieen = Uitgaven::where('jaargang',$bestuursjaar->jaargang)->orderBy('soort','asc')->get();
 
         $leden_deelname = Lid::select('lid.lid_id', 'roepnaam', 'achternaam',
         'uitgave_deelname.lid_id as deelname',
@@ -95,7 +97,9 @@ class UitgavenController extends Controller
         $uitgave->update($data);
 
         add_uitgaven_realisatie($uitgave->uitgaven_id, $uitgave->budget);
-        $this->add_uitgave_deelname($uitgave,$deelnemers['aanwezigheid']);
+        if(count($deelnemers) > 0){
+            $this->add_uitgave_deelname($uitgave,$deelnemers['aanwezigheid']);
+        }
         return redirect('/uitgave/' . $uitgave->uitgave_id);
     }
 

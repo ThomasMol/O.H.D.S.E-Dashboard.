@@ -15,7 +15,6 @@
             <th scope="col">Datum</th>
             <th scope="col">Omschrijving</th>
             <th scope="col">(Totaal) Bedrag</th>
-            <th scope="col">Betaald door</th>
             <th scope="col">Aangemaakt door</th>
             <th scope="col"></th>
             <th scope="col"></th>
@@ -28,8 +27,7 @@
             <th>{{ date('d F Y - l', strtotime($declaratie->datum)) }}</th>
             <td>{{ $declaratie->omschrijving }}</td>
             <td>&euro; {{ format_currency($declaratie->bedrag) }}</td>
-            <td>{{ $declaratie->betaald_door_id }}</td>
-            <td>{{ $declaratie->created_by_id }}</td>
+            <td>{{ $declaratie->roepnaam }} {{ $declaratie->achternaam }}</td>
             <td>
                 <a class="btn btn-link" href="/declaratie/{{$declaratie->declaratie_id}}"><span data-feather="eye"></span> Bekijk</a>
                 @if(Auth::user()->admin == 1)

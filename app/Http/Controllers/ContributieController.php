@@ -21,7 +21,7 @@ class ContributieController extends Controller
         $leden = Lid::ledenGesorteerd()->get();
         $contributie = new Contributie();
         $bestuursjaren = Bestuursjaar::all();
-        $categorieen = Inkomsten::where('jaargang',$bestuursjaar->jaargang)->get();
+        $categorieen = Inkomsten::where('jaargang',$bestuursjaar->jaargang)->orderBy('soort','asc')->get();
         return view('contributies/create',compact('leden','contributie','bestuursjaren','categorieen','bestuursjaar'));
     }
 
@@ -48,7 +48,7 @@ class ContributieController extends Controller
     public function edit(Contributie $contributie, Bestuursjaar $bestuursjaar){
         $id = $contributie->contributie_id;
         $leden = Lid::ledenGesorteerd()->get();
-        $categorieen = Inkomsten::where('jaargang',$bestuursjaar->jaargang)->get();
+        $categorieen = Inkomsten::where('jaargang',$bestuursjaar->jaargang)->orderBy('soort','asc')->get();
 
         $leden_deelname = Lid::select('lid.lid_id', 'roepnaam', 'achternaam','contributie_deelname.lid_id as deelname','type_lid')->leftJoin('contributie_deelname', function($join) use ($id){
             $join->on('lid.lid_id','contributie_deelname.lid_id');

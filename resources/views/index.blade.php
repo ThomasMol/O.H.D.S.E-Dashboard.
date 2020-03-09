@@ -81,7 +81,7 @@
                                 calendarRows.push(`<tr><td>${date}</td><td>${entry.summary}</td></tr>`);
                             }else if(entry.start.date !== undefined){
                                 var startDate = moment(entry.start.date).format('dddd D MMMM');
-                                var endDate = moment(entry.end.date).format('dddd D MMMM');
+                                var endDate = moment(entry.end.date).add(-1, 'days').format('dddd D MMMM');
                                 calendarRows.push(`<tr><td>${startDate} - ${endDate}</td><td>${entry.summary}</td></tr>`);
                             }else if(moment(entry.start.dateTime).format('ll') == moment(entry.end.dateTime).format('ll')){
                                 var startDateTime = moment(entry.start.dateTime).format('dddd D MMMM kk:mm');

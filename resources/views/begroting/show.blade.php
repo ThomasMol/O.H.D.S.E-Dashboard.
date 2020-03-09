@@ -1,10 +1,10 @@
 @extends('layout')
 @section('title','Begroting')
 @section('content')
-<div class="mb-4">
+<header>
     <h3 class="d-inline">Begroting van het {{$bestuursjaar->jaargang}}e bestuursjaar</h3>
-    <a href="/begroting/{{$bestuursjaar->jaargang}}/wijzig" class="btn btn-link float-right"><span data-feather="edit"></span> Wijzig</a>
-</div>
+    <a href="/begroting/{{$bestuursjaar->jaargang}}/wijzig" class="btn btn-outline-primary float-right"><span data-feather="edit"></span> Wijzig</a>
+</header>
 <div class="row">
     <div class="col-md-6">
         <h4>Inkomsten</h4>

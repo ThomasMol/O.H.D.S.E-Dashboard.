@@ -1,7 +1,9 @@
 @extends('layout')
 @section('title','Transactie')
 @section('content')
-<h2 class="mb-4">Transacties check</h2>
+<header>
+    <h2>Transacties check</h2>
+</header>
 <form class="card" method="POST" action="/transacties/process">
     @csrf
     <table class="table table-striped">
@@ -18,12 +20,14 @@
                     <div class="form-row">
                         <div class="col-md">
                             <label for="datum">Datum</label>
-                            <input type="date" class="form-control mb-3" id="datum" name="transacties[{{$loop->iteration}}][datum]"
+                            <input type="date" class="form-control mb-3" id="datum"
+                                name="transacties[{{$loop->iteration}}][datum]"
                                 value="{{ $transactie[0] ?? date('Y-m-d') }}" required>
                         </div>
                         <div class="col-md">
                             <label for="af_bij">Af/Bij </label>
-                            <select class="form-control mb-3" id="af_bij" name="transacties[{{$loop->iteration}}][af_bij]" required>
+                            <select class="form-control mb-3" id="af_bij"
+                                name="transacties[{{$loop->iteration}}][af_bij]" required>
                                 @foreach($transactie_model->afbijOptions() as $key => $afbij)
                                 <option value="{{ $key }}" {{ $transactie[5] == $key ? 'selected' : '' }}>{{ $afbij }}
                                 </option>
@@ -47,18 +51,19 @@
                                     <div class="input-group-text">&euro;</div>
                                 </div>
                                 <input type="number" class="form-control" id="bedrag"
-                                    name="transacties[{{$loop->iteration}}][bedrag]" step=".01" value="{{ $transactie[6] }}" min="0"
-                                    max="99999999" placeholder="0.00" required>
+                                    name="transacties[{{$loop->iteration}}][bedrag]" step=".01"
+                                    value="{{ $transactie[6] }}" min="0" max="99999999" placeholder="0.00" required>
                             </div>
                         </div>
                         <div class="col-md">
                             <label for="naam">Naam/Omschrijving</label>
-                            <input type="text" class="form-control mb-3" id="naam" name="transacties[{{$loop->iteration}}][naam]"
-                                value="{{ $transactie[1] }}" required>
+                            <input type="text" class="form-control mb-3" id="naam"
+                                name="transacties[{{$loop->iteration}}][naam]" value="{{ $transactie[1] }}" required>
                         </div>
                         <div class="col-md">
                             <label for="lid_id">Lid </label>
-                            <select class="form-control mb-3" id="lid_id" name="transacties[{{$loop->iteration}}][lid_id]">
+                            <select class="form-control mb-3" id="lid_id"
+                                name="transacties[{{$loop->iteration}}][lid_id]">
                                 <option selected value="">Geen lid</option>
                                 @foreach($leden as $lid)
                                 <option value="{{$lid->lid_id}}" {{$transactie[9] === $lid->lid_id ? 'selected' : '' }}>
@@ -68,7 +73,8 @@
                         </div>
                         <div class="col-md">
                             <label for="spaarplan">Spaarplan (bij wel lid)</label>
-                            <select class="form-control mb-3" id="spaarplan" name="transacties[{{$loop->iteration}}][spaarplan]">
+                            <select class="form-control mb-3" id="spaarplan"
+                                name="transacties[{{$loop->iteration}}][spaarplan]">
                                 @foreach($transactie_model->spaarplanOptions() as $key => $spaarplan)
                                 <option value="{{ $key }}" {{ $transactie[11] === $key ? 'selected' : '' }}>
                                     {{ $spaarplan }}</option>
@@ -85,7 +91,8 @@
                         <div class="col-md-9">
                             <label for="mededelingen">Mededelingen</label>
                             <textarea type="text" class="form-control mb-3" id="mededelingen"
-                                name="transacties[{{$loop->iteration}}][mededelingen]" required>{{ $transactie[8] }}</textarea>
+                                name="transacties[{{$loop->iteration}}][mededelingen]"
+                                required>{{ $transactie[8] }}</textarea>
                         </div>
                     </div>
                 </td>

@@ -1,8 +1,9 @@
 @extends('layout')
 @section('title','Contributies')
 @section('content')
-<h2 class="mb-4">Contributie wijzigen</h2>
-
+<header>
+    <h2>Contributie wijzigen</h2>
+</header>
 <form class="card" method="POST" action="/contributies/{{$contributie->contributie_id}}">
     @csrf
     @method('PATCH')

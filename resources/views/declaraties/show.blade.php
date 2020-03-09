@@ -28,11 +28,11 @@
     </thead>
     <tbody>
         <tr>
-            <td>{{ $declaratie->datum }}</td>
+            <td>{{ date('l - d F Y', strtotime($declaratie->datum))  }}</td>
             <td>{{ $declaratie->omschrijving }}</td>
             <td>&euro; {{ format_currency($declaratie->bedrag) }}</td>
-            <td>{{ $declaratie->betaald_door_id }}</td>
-            <td>{{ $declaratie->created_by_id }}</td>
+            <td>{{ $declaratie->lid1_roepnaam }} {{ $declaratie->lid1_achternaam }}</td>
+            <td>{{ $declaratie->lid2_roepnaam }} {{ $declaratie->lid2_achternaam }}</td>
         </tr>
 
     </tbody>

@@ -36,7 +36,7 @@
             <td>{{ $transactie->af_bij }}</td>
             <td>&euro; {{ format_currency($transactie->bedrag) }}</td>
             <td>{{ $transactie->mutatieOptions()[$transactie->mutatie_soort] }}</td>
-            <td>{{ $transactie->roepnaam . $transactie->achternaam }}</td>
+            <td>{{ $transactie->roepnaam . ' ' . $transactie->achternaam }}</td>
             <td>{{ $transactie->spaarplanOptions()[$transactie->spaarplan] }}</td>
             <td>{{ $transactie->mededelingen }}</td>
 
