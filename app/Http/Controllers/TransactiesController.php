@@ -34,12 +34,12 @@ class TransactiesController extends Controller
             'datum' => 'required|date',
             'naam' => 'required',
             'lid_id' => 'required_without:tegenrekening',
-            'tegenrekening' => 'required_without:lid_id',
+            'tegenrekening' => '',
             'bedrag' => 'required|numeric|gte:0|lt:99999999',
             'mutatie_soort' => 'required',
             'af_bij' => 'required',
             'mededelingen' => 'required',
-            'spaarplan' => 'required_with:lid_id|numeric|gte:-1|lte:1'
+            'spaarplan' => 'required|numeric|gte:-1|lte:1'
         ]);
         $afbij = $data['af_bij'];
         $lid_id = $data['lid_id'];
@@ -86,7 +86,7 @@ class TransactiesController extends Controller
         $lid_id = $data['lid_id'];
         $bedrag = $data['bedrag'];
         $spaarplan = $data['spaarplan'];
-        if (isset($lid_id)) {
+        if (isset($lid_id) && !isset($data['tegenrekening'])) {
             $rekeningnummer = Rekeningnummer::find($lid_id);
             $data['tegenrekening'] = $rekeningnummer->rekeningnummer;
         }
@@ -231,7 +231,7 @@ class TransactiesController extends Controller
     //Revert transactie transactions: subtract/add to rekening, lid, spaarplan
     public function removeTransactie($transactie)
     {
-        if ($transactie->afbij == "Af") {
+        if ($transactie->af_bij == "Af") {
             add_to_se_rekening($transactie->bedrag);
 
             if (isset($transactie->lid_id) && $transactie->spaarplan == 1) {
@@ -243,7 +243,7 @@ class TransactiesController extends Controller
             } else {
                 return;
             }
-        } elseif ($transactie->afbij == "Bij") {
+        } elseif ($transactie->af_bij == "Bij") {
             subtract_from_se_rekening($transactie->bedrag);
 
             if (isset($transactie->lid_id) && $transactie->spaarplan == 1) {

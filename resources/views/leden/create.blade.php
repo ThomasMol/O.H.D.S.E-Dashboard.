@@ -61,15 +61,17 @@
     <h3>Overige gegevens</h3>
     <label for="admin">Admin?</label>
     <select class="form-control mb-3" id="admin" name="admin" required>
-        <option value="1">Ja</option>
-        <option selected value="0">Nee</option>
+            @foreach($lid->adminOptions() as $key => $admin)
+            <option value="{{ $key }}">{{ $admin }}
+            </option>
+            @endforeach
     </select>
     <label for="type_lid">Type lid</label>
     <select class="form-control mb-3" id="type_lid" name="type_lid" required>
-        <option selected value="Actief">Actief</option>
-        <option value="Passief">Passief</option>
-        <option value="Reünist">Re&uuml;nist</option>
-        <option value="Geen">Geen</option>
+            @foreach($lid->lidTypeOptions() as $key => $lid_type)
+            <option value="{{ $key }}">{{ $lid_type }}
+            </option>
+            @endforeach
     </select>
 
     <label for="lichting">Lichting</label>

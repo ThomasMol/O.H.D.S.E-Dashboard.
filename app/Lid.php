@@ -16,4 +16,19 @@ class Lid extends Model
     public function scopeLedenGesorteerd($query){
         return $query->where('type_lid','!=','Geen')->orderBy('type_lid','asc')->orderBy('roepnaam','asc');
     }
+
+    public function lidTypeOptions(){
+        return [
+            'Actief' => 'Actief',
+            'Passief' => 'Passief',
+            'Reünist' => 'Reünist',
+            'Geen' => 'Geen',
+        ];
+    }
+    public function adminOptions(){
+        return [
+            0 => 'Nee',
+            1 => 'Ja'
+        ];
+    }
 }

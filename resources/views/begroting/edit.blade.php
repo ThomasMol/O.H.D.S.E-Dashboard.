@@ -14,7 +14,7 @@
                 <thead>
                     <tr>
                         <th scope="col">Soort</th>
-                        <th scope="col">Bedrag</th>
+                        <th scope="col">Budget</th>
                         <th scope="col">Realisatie</th>
                         <th scope="col">Verschil</th>
                     </tr>
@@ -34,8 +34,8 @@
                                 <div class="input-group-prepend">
                                     <div class="input-group-text">&euro;</div>
                                 </div><input type="number" class="form-control" id="bedrag"
-                                    name="inkomsten[{{$loop->iteration}}][bedrag]" step=".01"
-                                    value="{{$inkomsten->bedrag}}" min="0" max="99999999" required>
+                                    name="inkomsten[{{$loop->iteration}}][budget]" step=".01"
+                                    value="{{$inkomsten->budget}}" min="0" max="99999999" required>
                             </div>
                         </td>
                         <td>&euro; {{ format_currency($inkomsten->realisatie) }}</td>

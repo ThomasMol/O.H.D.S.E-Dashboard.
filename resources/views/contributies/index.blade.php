@@ -13,6 +13,7 @@
         <tr>
             <th scope="col">Datum</th>
             <th scope="col">Bedrag</th>
+            <th scope="col">Soort</th>
             <th scope="col"></th>
             @if(Auth::user()->admin == 1)
             <th scope="col"></th>
@@ -22,8 +23,9 @@
     <tbody>
         @foreach($contributies as $contributie)
         <tr>
-            <th scope="row">{{ date('d F Y - l', strtotime($contributie->datum))  }}</th>
+            <th scope="row">{{ Carbon\Carbon::parse($contributie->datum)->translatedFormat('d F Y - \(l\)') }}</th>
             <td>&euro; {{ format_currency($contributie->bedrag) }}</td>
+            <td>{{ $contributie->soort }}</td>
             <td><a class="btn btn-link" href="/contributie/{{$contributie->contributie_id}}"><span
                         data-feather="eye"></span> Bekijk</a>
                 @if(Auth::user()->admin == 1)

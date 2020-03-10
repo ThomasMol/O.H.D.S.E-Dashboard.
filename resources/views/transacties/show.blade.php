@@ -21,7 +21,7 @@
     </thead>
     <tbody>
         <tr>
-            <th>{{ date('d F Y - l', strtotime($transactie->datum)) }}</th>
+            <th>{{ Carbon\Carbon::parse($transactie->datum)->translatedFormat('d F Y - \(l\)') }}</th>
             <td>{{ $transactie->naam }}</td>
             <td>{{ $transactie->tegenrekening }}</td>
             <td>{{ $transactie->af_bij }}</td>

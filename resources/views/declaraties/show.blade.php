@@ -28,7 +28,7 @@
     </thead>
     <tbody>
         <tr>
-            <td>{{ date('l - d F Y', strtotime($declaratie->datum))  }}</td>
+            <td>{{ Carbon\Carbon::parse($declaratie->datum)->translatedFormat('d F Y - \(l\)') }}</td>
             <td>{{ $declaratie->omschrijving }}</td>
             <td>&euro; {{ format_currency($declaratie->bedrag) }}</td>
             <td>{{ $declaratie->lid1_roepnaam }} {{ $declaratie->lid1_achternaam }}</td>

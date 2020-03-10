@@ -20,8 +20,8 @@
         </thead>
         <tbody>
             <tr>
-                <th scope="row">{{ $contributie->datum }}</th>
-                <td>{{ $contributie->contributie_soort }}</td>
+                <th scope="row">{{ Carbon\Carbon::parse($contributie->datum)->translatedFormat('d F Y - \(l\)') }}</th>
+                <td>{{ $contributie->soort }}</td>
                 <td>{{ format_currency($contributie->bedrag) }}</td>
             </tr>
         </tbody>

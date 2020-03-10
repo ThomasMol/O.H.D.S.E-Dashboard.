@@ -21,7 +21,7 @@
         <tbody>
         @foreach($borrels as $borrel)
             <tr>
-                <th>{{ date('d F Y - l', strtotime($borrel->datum)) }}</th>
+                <th>{{ Carbon\Carbon::parse($borrel->datum)->translatedFormat('d F Y - l') }}</th>
                 <td>&euro; {{ format_currency($borrel->budget) }}</td>
                 <td>&euro; {{ format_currency($borrel->uitgave) }}</td>
                 <td>&euro; {{ format_currency($borrel->naheffing) }}</td>

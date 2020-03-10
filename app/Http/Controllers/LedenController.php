@@ -19,7 +19,8 @@ class LedenController extends Controller
     }
 
     public function create(){
-        return view('leden/create');
+        $lid = new Lid();
+        return view('leden/create', compact('lid'));
     }
 
     public function store(){

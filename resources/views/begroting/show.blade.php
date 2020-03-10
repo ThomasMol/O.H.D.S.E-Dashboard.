@@ -12,7 +12,7 @@
             <thead>
                 <tr>
                     <th scope="col">Soort</th>
-                    <th scope="col">Bedrag</th>
+                    <th scope="col">Budget</th>
                     <th scope="col">Realisatie</th>
                     <th scope="col">Verschil</th>
 
@@ -22,14 +22,14 @@
                 @foreach($inkomsten_list as $inkomsten)
                 <tr>
                     <td>{{$inkomsten->soort}}</td>
-                    <td>&euro; {{ format_currency($inkomsten->bedrag) }}</td>
+                    <td>&euro; {{ format_currency($inkomsten->budget) }}</td>
                     <td>&euro; {{ format_currency($inkomsten->realisatie) }}</td>
                     <td>&euro; {{ format_currency($inkomsten->verschil) }}</td>
                 </tr>
                 @endforeach
                 <tr>
                     <td><strong>Totaal:</strong></td>
-                    <td><strong>&euro; {{ format_currency($inkomsten_list->sum('bedrag')) }}</strong></td>
+                    <td><strong>&euro; {{ format_currency($inkomsten_list->sum('budget')) }}</strong></td>
                     <td><strong>&euro; {{ format_currency($inkomsten_list->sum('realisatie')) }}</strong></td>
                     <td><strong>&euro; {{ format_currency($inkomsten_list->sum('verschil')) }}</strong></td>
                 </tr>
@@ -67,7 +67,7 @@
     </div>
     <div class="col-md-12">
         <p>Verschil tussen inkomsten en uitgaven:
-            {{format_currency($inkomsten_list->sum('bedrag') - $uitgaven_list->sum('budget'))}}
+            {{format_currency($inkomsten_list->sum('budget') - $uitgaven_list->sum('budget'))}}
         </p>
 
         <p>Geld op de rekening: {{$se_rekening->saldo}}</p>

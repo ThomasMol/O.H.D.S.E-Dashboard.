@@ -52,7 +52,7 @@ class BegrotingController extends Controller
         $inkomsten = $request->validate([
             'inkomsten.*.id' => '',
             'inkomsten.*.soort' => 'required',
-            'inkomsten.*.bedrag' => 'required|numeric|gte:0|lt:99999999'
+            'inkomsten.*.budget' => 'required|numeric|gte:0|lt:99999999'
         ]);
         $uitgaven = $request->validate([
             'uitgaven.*.id' => '',
@@ -64,12 +64,12 @@ class BegrotingController extends Controller
             foreach($inkomsten["inkomsten"] as $rij){
                 $inkomsten_rij = Inkomsten::find($rij['id']);
                 if($inkomsten_rij != null){
-                    $inkomsten_rij->update(['soort'=>$rij['soort'],'bedrag'=>$rij['bedrag']]);
+                    $inkomsten_rij->update(['soort'=>$rij['soort'],'budget'=>$rij['budget']]);
                 }else{
                     $new = new Inkomsten;
                     $new->jaargang = $bestuursjaar->jaargang;
                     $new->soort = $rij['soort'];
-                    $new->bedrag = $rij['bedrag'];
+                    $new->budget = $rij['budget'];
                     $new->save();
                 }
             }

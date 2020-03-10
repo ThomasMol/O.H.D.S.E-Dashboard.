@@ -26,7 +26,7 @@
     </thead>
     <tbody>
         <tr>
-            <td>{{date('d F Y - l', strtotime($uitgave->datum)) }}</td>
+            <td>{{Carbon\Carbon::parse($uitgave->datum)->translatedFormat('d F Y - \(l\)')}}</td>
             <td>{{ $uitgave->soort }}</td>
             <td>{{ $uitgave->omschrijving }}</td>
             <td>&euro; {{ format_currency($uitgave->budget) }}</td>

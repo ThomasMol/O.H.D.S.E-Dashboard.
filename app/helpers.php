@@ -30,6 +30,8 @@ function divide_money($total, $divisor)
         $kosten->inkomsten_id = $inkomsten_id;
         $kosten->save();
         add_verschuldigd($lid_id, $bedrag);
+        add_inkomsten_budget($lid_id, $bedrag);
+        add_inkomsten_realisatie($lid_id, $bedrag);
         return $kosten->kosten_id;
     }
 
@@ -37,6 +39,8 @@ function divide_money($total, $divisor)
         $kosten = App\Kosten::find($kosten_id);
         if(isset($kosten)){
             subtract_verschuldigd($kosten->lid_id,$kosten->bedrag);
+            subtract_inkomsten_budget($kosten->inkomsten_id, $kosten->bedrag);
+            subtract_inkomsten_realisatie($kosten->inkomsten_id, $kosten->bedrag);
             $kosten->delete();
         }
 
@@ -97,6 +101,18 @@ function divide_money($total, $divisor)
     function subtract_inkomsten_realisatie($inkomsten_id,$bedrag){
         $inkomsten = App\Inkomsten::find($inkomsten_id);
         $inkomsten->realisatie = $inkomsten->realisatie - $bedrag;
+        $inkomsten->save();
+    }
+
+    function add_inkomsten_budget($inkomsten_id,$bedrag){
+        $inkomsten = App\Inkomsten::find($inkomsten_id);
+        $inkomsten->budget = $inkomsten->budget - $bedrag;
+        $inkomsten->save();
+    }
+
+    function subtract_inkomsten_budget($inkomsten_id,$bedrag){
+        $inkomsten = App\Inkomsten::find($inkomsten_id);
+        $inkomsten->budget = $inkomsten->budget - $bedrag;
         $inkomsten->save();
     }
 

@@ -48,7 +48,8 @@ class KostenController extends Controller
         ]);
         $kosten = Kosten::create($data);
         add_verschuldigd($kosten->lid_id, $kosten->bedrag);
-
+        add_inkomsten_budget($kosten->inkomsten_id, $kosten->bedrag);
+        add_inkomsten_realisatie($kosten->inkomsten_id, $kosten->bedrag);
         return redirect('/kosten');
     }
 
@@ -77,8 +78,12 @@ class KostenController extends Controller
             'lid_id' => 'required',
         ]);
         subtract_verschuldigd($kosten->lid_id,$kosten->bedrag);
+        subtract_inkomsten_budget($kosten->inkomsten_id, $kosten->bedrag);
+        subtract_inkomsten_realisatie($kosten->inkomsten_id, $kosten->bedrag);
         $kosten->update($data);
         add_verschuldigd($kosten->lid_id, $kosten->bedrag);
+        add_inkomsten_budget($kosten->inkomsten_id, $kosten->bedrag);
+        add_inkomsten_realisatie($kosten->inkomsten_id, $kosten->bedrag);
         return redirect('/kosten');
     }
 
@@ -86,6 +91,8 @@ class KostenController extends Controller
     public function destroy(Kosten $kosten)
     {
         subtract_verschuldigd($kosten->lid_id, $kosten->bedrag);
+        subtract_inkomsten_budget($kosten->inkomsten_id, $kosten->bedrag);
+        subtract_inkomsten_realisatie($kosten->inkomsten_id, $kosten->bedrag);
         $boete_deelname = UitgaveDeelname::where('boete_id',$kosten->kosten_id)->first();
         if(isset($boete_deelname)){
             $boete_deelname->boete_id = null;

@@ -5,7 +5,7 @@
     <ul>
         @foreach($begrotingen as $begroting)
             <li>
-                Jaar {{$begroting->jaargang}}, van {{date('d F Y', strtotime($begroting->van))}} tot {{date('d F Y', strtotime($begroting->tot))}}. <a class="btn btn-link" href="/begroting/{{$begroting->jaargang}}">Bekijk</a> of <a class="btn btn-link" href="/begroting/{{$begroting->jaargang}}/wijzig">Wijzig</a>
+                Jaar {{$begroting->jaargang}}, van {{Carbon\Carbon::parse($begroting->van)->translatedFormat('d F Y')}} tot {{Carbon\Carbon::parse($begroting->tot)->translatedFormat('d F Y')}}. <a class="btn btn-link" href="/begroting/{{$begroting->jaargang}}">Bekijk</a> of <a class="btn btn-link" href="/begroting/{{$begroting->jaargang}}/wijzig">Wijzig</a>
             </li>
         @endforeach
     </ul>

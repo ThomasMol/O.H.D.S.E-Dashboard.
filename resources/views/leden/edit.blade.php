@@ -74,17 +74,17 @@
     <h3>Overige gegevens</h3>
     <label for="admin">Admin?</label>
     <select class="form-control mb-3" id="admin" name="admin" required>
-        <option selected value="{{$lid->admin}}">{{$lid->admin}}</option>
-        <option value="1">Ja</option>
-        <option value="0">Nee</option>
+            @foreach($lid->adminOptions() as $key => $admin)
+            <option {{$lid->admin == $key ? 'selected' : ''}} value="{{ $key }}">{{ $admin }}
+            </option>
+            @endforeach
     </select>
     <label for="type_lid">Type lid</label>
     <select class="form-control mb-3" id="type_lid" name="type_lid" required>
-        <option selected value="{{$lid->type_lid}}">{{$lid->type_lid}}</option>
-        <option value="Actief">Actief</option>
-        <option value="Passief">Passief</option>
-        <option value="Reünist">Re&uuml;nist</option>
-        <option value="Geen">Geen</option>
+        @foreach($lid->lidTypeOptions() as $key => $lid_type)
+        <option {{$lid->type_lid == $key ? 'selected' : ''}} value="{{ $key }}">{{ $lid_type }}
+        </option>
+        @endforeach
     </select>
 
     <label for="lichting">Lichting</label>

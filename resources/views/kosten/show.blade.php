@@ -22,7 +22,7 @@
     </thead>
     <tbody>
         <tr>
-            <td>{{ $borrel->datum }}</td>
+            <td>{{ Carbon\Carbon::parse($kosten->datum)->translatedFormat('d F Y - \(l\)') }}</td>
             <td>&euro; {{ format_currency($borrel->bedrag) }}</td>
             <td>{{ $borrel->reden }}</td>
             <td>{{ $lid->roepnaam }} {{ $lid->achternaam }}</td>

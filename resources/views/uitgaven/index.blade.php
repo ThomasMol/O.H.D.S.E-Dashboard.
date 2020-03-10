@@ -27,7 +27,7 @@
         <tbody>
         @foreach($uitgaven as $uitgave)
             <tr>
-                <th>{{ date('d F Y - l', strtotime($uitgave->datum))}}</th>
+                <th>{{ Carbon\Carbon::parse($uitgave->datum)->translatedFormat('d F Y - \(l\)')}}</th>
                 <td>{{ $uitgave->soort }}</td>
                 <td>{{ $uitgave->omschrijving }}</td>
                 <td>&euro; {{ format_currency($uitgave->budget) }}</td>

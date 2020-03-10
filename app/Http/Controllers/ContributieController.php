@@ -12,7 +12,7 @@ use App\Inkomsten;
 class ContributieController extends Controller
 {
     public function index(){
-        $contributies = Contributie::select('*','contributie.bedrag as bedrag','inkomsten.bedrag as inkomsten_bedrag')->join('inkomsten','inkomsten.inkomsten_id','=','contributie.inkomsten_id')->
+        $contributies = Contributie::select('*','contributie.bedrag as bedrag')->join('inkomsten','inkomsten.inkomsten_id','=','contributie.inkomsten_id')->
         orderBy('datum','desc')->paginate(10);
         return view('contributies/index',compact('contributies'));
     }
@@ -40,7 +40,7 @@ class ContributieController extends Controller
 
     public function show(Contributie $contributie){
         $leden_deelname = Lid::join('contributie_deelname','lid.lid_id','=','contributie_deelname.lid_id')->where('contributie_deelname.contributie_id','=',$contributie->contributie_id)->get();
-        $contributie = Contributie::select('*','contributie.bedrag as bedrag','inkomsten.bedrag as inkomsten_bedrag')->join('inkomsten','inkomsten.inkomsten_id','=','contributie.inkomsten_id')->where('contributie.contributie_id',$contributie->contributie_id)->first();
+        $contributie = Contributie::select('*','contributie.bedrag as bedrag')->join('inkomsten','inkomsten.inkomsten_id','=','contributie.inkomsten_id')->where('contributie.contributie_id',$contributie->contributie_id)->first();
 
         return view('contributies/show',compact('contributie','leden_deelname'));
     }
