@@ -4,26 +4,30 @@
 <!-- For google calendar integration -->
 <script src="https://momentjs.com/downloads/moment-with-locales.min.js"></script>
 <script src="https://apis.google.com/js/api.js"></script>
+<header>
+    <h1>Overzicht</h1>
+</header>
 <div class="row">
-
-
-    <div class="col-md-6">
+    <div class="col-md-4">
         <div class="card">
-            <h2>Financi&euml;n:</h2>
-            <hr>
-            <h6>Verschuldigd</h6>
-            <h3>&euro; {{format_currency($financien->verschuldigd)}}</h3>
-            <hr>
-            <h6>Overgemaakt</h6>
-            <h3>&euro; {{format_currency($financien->overgemaakt)}}</h3>
-            <hr>
-            <h4>Actuele schuld</h4>
-            <h2>&euro; {{format_currency($financien->schuld)}}</h2>
+            <div class="card-header"><span data-feather="dollar-sign"></span> Financi&euml;n</div>
+            <div class="card-body">
+                <h6>Gespaard:</h6>
+                <h3>&euro; {{format_currency($financien->gespaard)}}</h3>
+                <h4>Actuele schuld:</h4>
+                <h2>&euro; {{format_currency($financien->schuld)}}</h2>
+            </div>
+
         </div>
     </div>
-    <div class="col-md-6">
+    <div class="col-md-8">
         <div id="se-calendar" class="card">
-            <h2>Agenda:</h2>
+            <div class="card-header">
+                <span data-feather="calendar"></span> Agenda
+            </div>
+            <div class="card-body">
+
+            </div>
         </div>
     </div>
 </div>
@@ -71,7 +75,7 @@
                     });
                 }).then(function (response) {
                     if (response.result.items) {
-                        var calendarRows = [`<table class="table table-responsive table-hover">
+                        var calendarRows = [`<div class="table-responsive"><table class="table table-hover table-fixed">
                                                 <thead><tr><th>Datum</th><th>Activiteit</th></tr></thead>
                                             <tbody>`];
                         response.result.items.forEach(function(entry) {
@@ -94,8 +98,8 @@
                             }
 
                         });
-                        calendarRows.push('</tbody></table>');
-                        $('#se-calendar').after(calendarRows.join(""));
+                        calendarRows.push('</tbody></table></div>');
+                        $('#se-calendar .card-body').append(calendarRows.join(""));
                     }
                 }, function (reason) {
                     console.log('Error: ' + reason.result.error.message);

@@ -7,23 +7,25 @@
         <h4 class="text-center p-3">O.H.D. Semper Excelsius dashboard</h4>
         <form class="form-login card" method="POST" action="/login">
             @csrf
-            <h2 class="h3 mb-3 font-weight-normal">Log in</h2>
+            <div class="card-header"><h2>Log in</h2></div>
+            <div class="card-body">
+                    <label for="inputEmail" class="">Email addres</label>
+                    <input type="email" id="inputEmail" class="form-control" placeholder="email" name="email" required autofocus>
+                    <label for="inputPassword" class="">Wachtwoord</label>
+                    <input type="password" id="inputPassword" class="form-control mb-4" placeholder="wachtwoord" name="password" required>
+                    @if ($errors->any())
+                        <div class="alert alert-danger">
+                            <ul>
+                                @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
 
-            <label for="inputEmail" class="">Email addres</label>
-            <input type="email" id="inputEmail" class="form-control" placeholder="email" name="email" required autofocus>
-            <label for="inputPassword" class="">Wachtwoord</label>
-            <input type="password" id="inputPassword" class="form-control mb-4" placeholder="wachtwoord" name="password" required>
-            @if ($errors->any())
-                <div class="alert alert-danger">
-                    <ul>
-                        @foreach ($errors->all() as $error)
-                            <li>{{ $error }}</li>
-                        @endforeach
-                    </ul>
-                </div>
-            @endif
+                    <button class="btn btn-lg btn-primary btn-block" type="submit">Log in</button>
+            </div>
 
-            <button class="btn btn-lg btn-primary btn-block" type="submit">Log in</button>
         </form>
         <a class="btn btn-lg btn-link btn-block" href="/password/reset">Wachtwoord vergeten?</a>
     </div>
