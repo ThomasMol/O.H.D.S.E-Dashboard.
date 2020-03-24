@@ -49,33 +49,36 @@
         </div>
 
         <h3>Aanwezigheid</h3>
-        <table class="table table-hover table-sm table-responsive">
-            <thead>
+        <div class="table-responsive">
+            <table class="table table-hover table-sm">
+                {{-- <thead>
                 <tr>
                     <th scope="col">Naam</th>
                     <th scope="col">Aanwezig</th>
                 </tr>
-            </thead>
-            <tbody>
-                @foreach($leden as $lid)
+            </thead> --}}
+                <tbody>
+                    @foreach($leden as $lid)
 
-                @if($loop->index >= 1)
-                @if($leden[$loop->index - 1]->type_lid != $lid->type_lid)
-                <tr class="thead-light">
-                    <th scope="row">{{ $lid->type_lid }}</th>
-                </tr>
-                @endif
-                @endif
+                    @if($loop->index >= 1)
+                    @if($leden[$loop->index - 1]->type_lid != $lid->type_lid)
+                    <tr class="thead-light">
+                        <th scope="row">{{ $lid->type_lid }}</th>
+                    </tr>
+                    @endif
+                    @endif
 
-                <tr>
-                    <th scope="row">{{ $lid->roepnaam }} {{ $lid->achternaam }}</th>
-                    <td><input type="checkbox" name="deelnemers[]" value="{{$lid->lid_id}}"></td>
-                </tr>
-                @endforeach
+                    <tr>
+                        <td scope="row">{{ $lid->roepnaam }} {{ $lid->achternaam }}</td>
+                        <td>
+                            <input type="checkbox" name="deelnemers[]" value="{{$lid->lid_id}}">
+                        </td>
+                    </tr>
+                    @endforeach
 
-            </tbody>
-        </table>
-
+                </tbody>
+            </table>
+        </div>
         <button type="submit" class="btn btn-primary btn-lg btn-block mb-3 mt-3">Voeg contributie toe</button>
     </form>
 </div>

@@ -15,29 +15,29 @@
 
 </header>
 
+<div class="table-responsive">
+    <table class="table table-hover table-sm">
+        <thead>
+            <tr>
+                <th scope="col">Datum</th>
+                <th scope="col">Omschrijving</th>
+                <th scope="col">Bedrag</th>
+                <th scope="col">Betaald door</th>
+                <th scope="col">Aangemaakt door</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>{{ Carbon\Carbon::parse($declaratie->datum)->translatedFormat('d F Y - \(l\)') }}</td>
+                <td>{{ $declaratie->omschrijving }}</td>
+                <td>&euro; {{ format_currency($declaratie->bedrag) }}</td>
+                <td>{{ $declaratie->lid1_roepnaam }} {{ $declaratie->lid1_achternaam }}</td>
+                <td>{{ $declaratie->lid2_roepnaam }} {{ $declaratie->lid2_achternaam }}</td>
+            </tr>
 
-<table class="table table-hover table-sm table-responsive ">
-    <thead>
-        <tr>
-            <th scope="col">Datum</th>
-            <th scope="col">Omschrijving</th>
-            <th scope="col">Bedrag</th>
-            <th scope="col">Betaald door</th>
-            <th scope="col">Aangemaakt door</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td>{{ Carbon\Carbon::parse($declaratie->datum)->translatedFormat('d F Y - \(l\)') }}</td>
-            <td>{{ $declaratie->omschrijving }}</td>
-            <td>&euro; {{ format_currency($declaratie->bedrag) }}</td>
-            <td>{{ $declaratie->lid1_roepnaam }} {{ $declaratie->lid1_achternaam }}</td>
-            <td>{{ $declaratie->lid2_roepnaam }} {{ $declaratie->lid2_achternaam }}</td>
-        </tr>
-
-    </tbody>
-</table>
-
+        </tbody>
+    </table>
+</div>
 <ul>
     @foreach($leden_deelname as $lid)
     <li>{{$lid->roepnaam}} kosten: &euro; {{format_currency($lid->bedrag)}}</li>

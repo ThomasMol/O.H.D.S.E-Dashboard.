@@ -31,25 +31,27 @@
             required>{{ $declaratie->omschrijving }}</textarea>
 
         <h3>Deelnemers</h3>
-        <table class="table table-hover table-sm table-responsive ">
-            <thead>
-                <tr>
-                    <th scope="col">Naam</th>
-                    <th scope="col">Deelname</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach($leden_deelname as $lid)
-                <tr>
-                    <th scope="row">{{ $lid->roepnaam }} {{ $lid->achternaam }}</th>
-                    <td><input type="checkbox" name="deelnemers[]" value="{{$lid->lid_id}}" @if(isset($lid->deelname))
-                        checked @endif ></td>
-                </tr>
-                @endforeach
+        <div class="table-responsive">
+            <table class="table table-hover table-sm">
+                <thead>
+                    <tr>
+                        <th scope="col">Naam</th>
+                        <th scope="col">Deelname</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach($leden_deelname as $lid)
+                    <tr>
+                        <th scope="row">{{ $lid->roepnaam }} {{ $lid->achternaam }}</th>
+                        <td><input type="checkbox" name="deelnemers[]" value="{{$lid->lid_id}}"
+                                @if(isset($lid->deelname))
+                            checked @endif ></td>
+                    </tr>
+                    @endforeach
 
-            </tbody>
-        </table>
-
+                </tbody>
+            </table>
+        </div>
 
         <button type="submit" class="btn btn-primary btn-lg btn-block mb-3 mt-3 floating">Wijzig declaratie</button>
     </form>

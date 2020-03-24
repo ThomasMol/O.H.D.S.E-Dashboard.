@@ -45,7 +45,8 @@
         <textarea type="text" class="form-control mb-3" id="omschrijving" name="omschrijving">{{ old('omschrijving')}}</textarea>
 
         <h3>Aanwezigheid</h3>
-        <table class="table table-hover table-sm table-responsive ">
+        <div class="table-responsive">
+        <table class="table table-hover table-sm">
             <thead>
             <tr>
                 <th scope="col">Naam</th>
@@ -67,6 +68,7 @@
             @endforeach
             </tbody>
         </table>
+    </div>
         <input class="form-control" type="number" id="naheffing_leden_aantal" name="naheffing_leden_aantal" value="0" readonly hidden>
 
         <button type="submit" class="btn btn-primary btn-lg btn-block mb-3 mt-3 floating">Voeg borrel toe</button>

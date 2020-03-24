@@ -6,32 +6,45 @@
     <a href="/gegevens/wijzig" class="btn btn-outline-primary float-right"><span data-feather="edit"></span> Wijzig</a>
 </header>
 <div class="row">
-    <div class="col-md-4 card">
-        <h3>Accountgegevens</h3>
-        <label for="email">Email (en inlogcode)</label>
-        <h4>{{Auth::user()->email}}</h4>
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-header">
+                Accountgegevens
+            </div>
+            <div class="card-body">
+                <label for="email">Email (en inlogcode)</label>
+                <h4>{{Auth::user()->email}}</h4>
+            </div>
+        </div>
     </div>
 
-    <div class="col-md-4 card">
-        <h3>Persoonlijke gegevens</h3>
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-header">
+                Persoonlijke gegevens
+            </div>
+            <div class="card-body">
+                <label for="roepnaam">Roepnaam</label>
+                <h4>{{Auth::user()->roepnaam}}</h4>
 
-        <label for="roepnaam">Roepnaam</label>
-        <h4>{{Auth::user()->roepnaam}}</h4>
+                <label for="voornamen">Voornamen</label>
+                <h4>{{Auth::user()->voornamen}}</h4>
 
-        <label for="voornamen">Voornamen</label>
-        <h4>{{Auth::user()->voornamen}}</h4>
+                <label for="achternaam">Achternaam</label>
+                <h4>{{Auth::user()->achternaam}}</h4>
 
-        <label for="achternaam">Achternaam</label>
-        <h4>{{Auth::user()->achternaam}}</h4>
+                <label for="telefoonnummer">Telefoonnummer</label>
+                <h4>{{$lid_gegevens->telefoonnummer}}</h4>
 
-        <label for="telefoonnummer">Telefoonnummer</label>
-        <h4>{{$lid_gegevens->telefoonnummer}}</h4>
+                <label for="geboorteplaats">Geboorteplaats</label>
+                <h4>{{$lid_gegevens->geboorteplaats}}</h4>
 
-        <label for="geboorteplaats">Geboorteplaats</label>
-        <h4>{{$lid_gegevens->geboorteplaats}}</h4>
+                <label for="geboortedatum">Geboortedatum</label>
+                <h4>{{$lid_gegevens->geboortedatum}}</h4>
 
-        <label for="geboortedatum">Geboortedatum</label>
-        <h4>{{$lid_gegevens->geboortedatum}}</h4>
+            </div>
+        </div>
+
 
     </div>
     <div class="col-md-4 card">

@@ -1,25 +1,26 @@
 @extends('layout')
 @section('title','Borrels')
 @section('content')
-    <h3>Borrels</h3>
-    @if(Auth::user()->admin == 1)
-        <a class="btn btn-primary" href="/borrels/toevoegen">Borrel toevoegen</a>
-    @endif
-    <table class="table table-hover table-sm table-responsive ">
+<h3>Borrels</h3>
+@if(Auth::user()->admin == 1)
+<a class="btn btn-primary" href="/borrels/toevoegen">Borrel toevoegen</a>
+@endif
+<div class="table-responsive">
+    <table class="table table-hover table-sm">
         <thead>
-        <tr>
-            <th scope="col">Datum</th>
-            <th scope="col">Budget</th>
-            <th scope="col">Uitgave</th>
-            <th scope="col">(Totale) Naheffing</th>
-            <th scope="col">Omschrijving</th>
-            <th scope="col"></th>
-            <th scope="col"></th>
+            <tr>
+                <th scope="col">Datum</th>
+                <th scope="col">Budget</th>
+                <th scope="col">Uitgave</th>
+                <th scope="col">(Totale) Naheffing</th>
+                <th scope="col">Omschrijving</th>
+                <th scope="col"></th>
+                <th scope="col"></th>
 
-        </tr>
+            </tr>
         </thead>
         <tbody>
-        @foreach($borrels as $borrel)
+            @foreach($borrels as $borrel)
             <tr>
                 <th>{{ Carbon\Carbon::parse($borrel->datum)->translatedFormat('d F Y - l') }}</th>
                 <td>&euro; {{ format_currency($borrel->budget) }}</td>
@@ -30,7 +31,7 @@
                 <td>
                     <a class="btn btn-light" href="/borrel/{{$borrel->borrel_id}}">Bekijk</a>
                     @if(Auth::user()->admin == 1)
-                        <a class="btn btn-light" href="/borrels/{{$borrel->borrel_id}}/wijzig">Wijzig</a>
+                    <a class="btn btn-light" href="/borrels/{{$borrel->borrel_id}}/wijzig">Wijzig</a>
                     @endif
                 </td>
                 <td>
@@ -41,11 +42,12 @@
                     </form>
                 </td>
             </tr>
-        @endforeach
+            @endforeach
 
         </tbody>
     </table>
-    <div class="text-center">
+</div>
+<div class="text-center">
 
-    </div>
+</div>
 @endsection

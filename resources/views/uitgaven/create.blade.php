@@ -72,58 +72,60 @@
             required>{{ old('omschrijving')}}</textarea>
 
         <h3>Aanwezigheid</h3>
-        <table class="table table-hover table-sm table-responsive ">
-            <thead>
-                {{--  <tr>
+        <div class="table-responsive">
+            <table class="table table-hover table-sm">
+                <thead>
+                    {{--  <tr>
                 <th scope="col">Naam</th>
                 <th scope="col">Aanwezig</th>
                 <th scope="col">Naheffing</th>
                 <th scope="col">Afgemeld</th>
                 <th scope="col">Boete</th>
             </tr> --}}
-            </thead>
-            <tbody>
-                @foreach($leden as $lid)
-                <tr>
-                    <th scope="row">{{ $lid->roepnaam }} {{ $lid->achternaam }}</th>
-                    <td>
-                        <div class="btn-group btn-group-toggle" data-toggle="buttons">
-                            <label class="btn btn-outline-secondary">
-                                <input class="form-control" type="checkbox"
-                                    name="aanwezigheid[{{$lid->lid_id}}][aanwezig]" value="1"> Aanwezig
-                            </label>
-                            <label class="btn btn-outline-secondary">
-                                <input class="form-control" type="checkbox"
-                                    name="aanwezigheid[{{$lid->lid_id}}][naheffing]" value="1"> Naheffing
-                            </label>
-                            <label class="btn btn-outline-secondary">
-                                <input class="form-control" type="checkbox"
-                                    name="aanwezigheid[{{$lid->lid_id}}][afgemeld]" value="1"> Afgemeld
-                            </label>
-                            <label class="btn btn-outline-secondary">
-                                <input class="form-control" type="checkbox" name="aanwezigheid[{{$lid->lid_id}}][boete]"
-                                    value="{{$inkomsten_boete_id}}"> Boete
-                            </label>
-                            <label class="btn btn-outline-secondary">
-                                <input class="form-control" type="checkbox"
-                                    name="aanwezigheid[{{$lid->lid_id}}][extra_kosten]"
-                                    value="{{$inkomsten_extra_kosten_id}}"> Extra kosten
-                            </label>
-                        </div>
-                    </td>
-                    {{--   <td><input class="form-control" type="checkbox" name="aanwezigheid[{{$lid->lid_id}}][aanwezig]"
-                    value="1"></td>
-                    <td><input class="form-control" type="checkbox" name="aanwezigheid[{{$lid->lid_id}}][naheffing]"
-                            value="1"></td>
-                    <td><input class="form-control" type="checkbox" name="aanwezigheid[{{$lid->lid_id}}][afgemeld]"
-                            value="1"></td>
-                    <td><input class="form-control" type="checkbox" name="aanwezigheid[{{$lid->lid_id}}][boete]"
-                            value="1"></td> --}}
-                </tr>
-                @endforeach
-            </tbody>
-        </table>
-
+                </thead>
+                <tbody>
+                    @foreach($leden as $lid)
+                    <tr>
+                        <th scope="row">{{ $lid->roepnaam }} {{ $lid->achternaam }}</th>
+                        <td>
+                            <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                                <label class="btn btn-outline-secondary">
+                                    <input class="form-control" type="checkbox"
+                                        name="aanwezigheid[{{$lid->lid_id}}][aanwezig]" value="1"> Aanwezig
+                                </label>
+                                <label class="btn btn-outline-secondary">
+                                    <input class="form-control" type="checkbox"
+                                        name="aanwezigheid[{{$lid->lid_id}}][naheffing]" value="1"> Naheffing
+                                </label>
+                                <label class="btn btn-outline-secondary">
+                                    <input class="form-control" type="checkbox"
+                                        name="aanwezigheid[{{$lid->lid_id}}][afgemeld]" value="1"> Afgemeld
+                                </label>
+                                <label class="btn btn-outline-secondary">
+                                    <input class="form-control" type="checkbox"
+                                        name="aanwezigheid[{{$lid->lid_id}}][boete]" value="{{$inkomsten_boete_id}}">
+                                    Boete
+                                </label>
+                                <label class="btn btn-outline-secondary">
+                                    <input class="form-control" type="checkbox"
+                                        name="aanwezigheid[{{$lid->lid_id}}][extra_kosten]"
+                                        value="{{$inkomsten_extra_kosten_id}}"> Extra kosten
+                                </label>
+                            </div>
+                        </td>
+                        {{--   <td><input class="form-control" type="checkbox" name="aanwezigheid[{{$lid->lid_id}}][aanwezig]"
+                        value="1"></td>
+                        <td><input class="form-control" type="checkbox" name="aanwezigheid[{{$lid->lid_id}}][naheffing]"
+                                value="1"></td>
+                        <td><input class="form-control" type="checkbox" name="aanwezigheid[{{$lid->lid_id}}][afgemeld]"
+                                value="1"></td>
+                        <td><input class="form-control" type="checkbox" name="aanwezigheid[{{$lid->lid_id}}][boete]"
+                                value="1"></td> --}}
+                    </tr>
+                    @endforeach
+                </tbody>
+            </table>
+        </div>
         <button type="submit" class="btn btn-primary btn-lg btn-block mb-3 mt-3 floating">Voeg uitgave toe</button>
     </form>
 </div>
