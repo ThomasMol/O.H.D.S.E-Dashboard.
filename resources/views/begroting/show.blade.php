@@ -2,7 +2,7 @@
 @section('title','Begroting')
 @section('content')
 <header>
-    <h3 class="d-inline">Begroting van het {{$bestuursjaar->jaargang}}e bestuursjaar</h3>
+    <h1 class="d-inline">Begroting van het {{$bestuursjaar->jaargang}}e bestuursjaar</h3>
     <a href="/begroting/{{$bestuursjaar->jaargang}}/wijzig" class="btn btn-outline-primary float-right"><span data-feather="edit"></span> Wijzig</a>
 </header>
 <div class="row">

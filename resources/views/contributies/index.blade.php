@@ -2,7 +2,7 @@
 @section('title','Contributies')
 @section('content')
 <header>
-    <h3 class="d-inline">Contributies</h3>
+    <h1 class="d-inline">Contributies</h1>
     @if(Auth::user()->admin == 1)
     <a href="/contributies/toevoegen/{{$huidig_jaar->jaargang}}" class="btn btn-outline-primary float-right"><span
             data-feather="plus-circle"></span> Contributie toevoegen</a>

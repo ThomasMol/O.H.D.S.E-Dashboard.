@@ -4,7 +4,7 @@
 
 
 <header>
-    <h3 class="d-inline">Declaratie</h3>
+    <h1 class="d-inline">Declaratie</h1>
     @if(Auth::user()->lid_id == $declaratie->betaald_door_id || Auth::user()->lid_id == $declaratie->created_by_id )
     <button data-href="/declaraties/{{$declaratie->declaratie_id}}" data-toggle="modal" data-target="#confirm-delete"
         class="btn btn-outline-danger float-right"><span data-feather="trash"></span> Verwijder</button>

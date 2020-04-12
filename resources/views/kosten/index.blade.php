@@ -2,7 +2,7 @@
 @section('title','Overige kosten')
 @section('content')
 <header>
-    <h3 class="d-inline">Overige kosten</h3>
+    <h1 class="d-inline">Overige kosten</h1>
     @if(Auth::user()->admin == 1)
     <a href="/kosten/toevoegen/{{$huidig_jaar->jaargang}}" class="btn btn-outline-primary float-right"><span
             data-feather="plus-circle"></span>

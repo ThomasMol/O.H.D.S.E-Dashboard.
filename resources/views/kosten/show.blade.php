@@ -2,7 +2,7 @@
 @section('title','Boetes')
 @section('content')
 <header>
-    <h3 class="d-inline">Overige kosten</h3>
+    <h1 class="d-inline">Overige kosten</h1>
     @if(Auth::user()->admin == 1)
     <button class="btn btn-outline-danger float-right" data-href="/kosten/{{$kosten->kosten_id}}" data-toggle="modal"
         data-target="#confirm-delete"><span data-feather="trash"></span> Verwijder</button>

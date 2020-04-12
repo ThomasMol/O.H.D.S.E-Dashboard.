@@ -2,7 +2,7 @@
 @section('title','Contributie')
 @section('content')
 <header>
-    <h3 class="d-inline">Contributie toevoegen</h3>
+    <h1 class="d-inline">Contributie toevoegen</h3>
     <div class="dropdown float-right">
         <button class="btn btn-outline-primary dropdown-toggle" type="button" id="dropdownJaar" data-toggle="dropdown"
             aria-haspopup="true" aria-expanded="false">

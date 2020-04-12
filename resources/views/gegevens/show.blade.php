@@ -2,7 +2,7 @@
 @section('title','Mijn gegevens')
 @section('content')
 <header>
-    <h3 class="d-inline">Mijn gegevens</h3>
+    <h1 class="d-inline">Mijn gegevens</h1>
     <a href="/gegevens/wijzig" class="btn btn-outline-primary float-right"><span data-feather="edit"></span> Wijzig</a>
 </header>
 <div class="row">

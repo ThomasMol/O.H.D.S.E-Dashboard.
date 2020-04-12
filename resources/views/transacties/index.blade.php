@@ -2,7 +2,7 @@
 @section('title','Transacties')
 @section('content')
 <header>
-    <h3 class="d-inline">Transacties</h3>
+    <h1 class="d-inline">Transacties</h1>
     @if(Auth::user()->admin == 1)
     <a class="btn btn-outline-secondary float-right" href="/transacties/upload"><span
             data-feather="upload"></span>Upload transacties</a>

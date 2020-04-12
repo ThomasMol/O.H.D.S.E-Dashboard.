@@ -6,7 +6,7 @@
     <title>OHD SE - @yield('title')</title>
 
     {{-- Stylesheets --}}
-    <link href="/css/bootstrap.css" rel="stylesheet" type="text/css">
+    <link href="{{asset('css/app.css')}}" rel="stylesheet" type="text/css">
     <link href="/css/stylesheet.css" rel="stylesheet" type="text/css">
 
     {{-- Scripts --}}

@@ -3,7 +3,7 @@
 @section('content')
 
 <header>
-    <h3 class="d-inline">Declaraties</h3>
+    <h1 class="d-inline">Declaraties</h1>
     <a href="/declaraties/toevoegen" class="btn btn-outline-primary float-right"><span
             data-feather="plus-circle"></span>
         Declaratie toevoegen</a>

@@ -2,7 +2,7 @@
 @section('title','Contributie')
 @section('content')
 <header>
-    <h3 class="d-inline">Contributie</h3>
+    <h1 class="d-inline">Contributie</h1>
     @if(Auth::user()->admin == 1)
     <button class="btn btn-outline-danger float-right" data-href="/contributies/{{$contributie->contributie_id}}"
         data-toggle="modal" data-target="#confirm-delete"><span data-feather="trash"></span> Verwijder</button>

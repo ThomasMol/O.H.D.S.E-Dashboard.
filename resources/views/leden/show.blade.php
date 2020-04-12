@@ -2,7 +2,7 @@
 @section('title','Gegevens')
 @section('content')
 <header>
-    <h3 class="d-inline">Gegevens van {{$lid->roepnaam}}</h3>
+    <h1 class="d-inline">Gegevens van {{$lid->roepnaam}}</h3>
     @if(Auth::user()->admin == 1)
     <button class="btn btn-outline-danger float-right" data-href="/leden/{{$lid->lid_id}}" data-toggle="modal" data-target="#confirm-delete"><span data-feather="trash"></span> Verwijder</button>
 

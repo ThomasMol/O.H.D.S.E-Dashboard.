@@ -8,10 +8,10 @@
     <h1>Overzicht</h1>
 </header>
 
-<div class="row">
-    <div class="col-md-auto">
+<div class="row row-cols-2">
+    <div class="col mb-4">
         <div class="card">
-            <div class="card-header"><span data-feather="dollar-sign"></span> Financi&euml;n</div>
+            <div class="card-header">Financi&euml;n</div>
             <div class="card-body">
                 <h3>&euro; {{format_currency($financien->gespaard)}} <small class="text-muted"> gespaard</small></h3>
                 <hr>
@@ -20,18 +20,18 @@
 
         </div>
     </div>
-    <div class="col-md-auto">
+    <div class="col mb-4">
         <div id="se-calendar" class="card">
             <div class="card-header">
-                <span data-feather="calendar"></span> Agenda
+                Agenda
             </div>
-            <div class="card-body p-0">
+            <div class="card-body">
 
             </div>
         </div>
     </div>
 
-    <div class="col-md-auto">
+    <div class="col mb-4">
         <div class="card">
             <div class="card-header">
                 Laatste declaraties
@@ -116,7 +116,7 @@
                 }).then(function (response) {
                     if (response.result.items) {
                         var calendarRows = [`<div class="table-responsive"><table class="table table-hover table-fixed">
-                                                <thead><tr><th>Datum</th><th>Activiteit</th></tr></thead>
+
                                             <tbody>`];
                         response.result.items.forEach(function(entry) {
                             //console.log(entry.start.date);

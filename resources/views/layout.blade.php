@@ -7,7 +7,7 @@
     <title>@yield('title')</title>
 
     {{-- Stylesheets --}}
-    <link href="/css/bootstrap.css" rel="stylesheet" type="text/css">
+    <link href="{{asset('css/app.css')}}" rel="stylesheet" type="text/css">
     <link href="/css/stylesheet.css" rel="stylesheet" type="text/css">
 
     {{-- Favicon --}}
@@ -21,7 +21,7 @@
 </head>
 
 <body>
-    <nav class="navbar fixed-top navbar-expand-lg navbar-dark">
+    <nav class="navbar fixed-top navbar-expand-lg navbar-light">
         <div class="container">
             <a class="navbar-brand" href="/"><img src="/images/sadas.png" class="logo" width="38px"> Dashboard</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarMenuItems"
@@ -50,20 +50,23 @@
                         <div class="dropdown-menu" aria-labelledby="financienDropdown">
                             @if(Auth::user()->admin == 1)
                             <a class="dropdown-item {{ Request::is('begroting*') ? 'active' : '' }}"
-                                href="/begroting/{{$huidig_jaar->jaargang}}" >
+                                href="/begroting/{{$huidig_jaar->jaargang}}">
                                 Begroting
                             </a>
                             @endif
-                            <a class="dropdown-item {{ Request::is('contributie*') ? 'active' : '' }}" href="/contributies">
+                            <a class="dropdown-item {{ Request::is('contributie*') ? 'active' : '' }}"
+                                href="/contributies">
                                 Contributies
                             </a>
-                            <a class="dropdown-item {{ Request::is('declaratie*') ? 'active' : '' }}" href="/declaraties">
+                            <a class="dropdown-item {{ Request::is('declaratie*') ? 'active' : '' }}"
+                                href="/declaraties">
                                 Declaraties
                             </a>
                             <a class="dropdown-item {{ Request::is('kost*') ? 'active' : '' }}" href="/kosten">
                                 Overige kosten
                             </a>
-                            <a class="dropdown-item {{ Request::is('transacties*') ? 'active' : '' }}" href="/transacties">
+                            <a class="dropdown-item {{ Request::is('transacties*') ? 'active' : '' }}"
+                                href="/transacties">
                                 Transacties
                             </a>
                             <a class="dropdown-item {{ Request::is('uitgave*') ? 'active' : '' }}" href="/uitgaven">
@@ -83,7 +86,8 @@
                             <a class="dropdown-item {{ Request::is('gegevens*') ? 'active' : '' }}" href="/gegevens">
                                 <span data-feather="user"></span> Mijn gegevens
                             </a>
-                            <a class="dropdown-item {{ Request::is('instelling*') ? 'active' : '' }}" href="/instellingen">
+                            <a class="dropdown-item {{ Request::is('instelling*') ? 'active' : '' }}"
+                                href="/instellingen">
                                 <span data-feather="settings"></span> Instellingen
                             </a>
                             <div class="dropdown-divider"></div>
@@ -96,9 +100,7 @@
                 </ul>
             </div>
         </div>
-
     </nav>
-
     <main class="container">
         @if ($errors->any())
         @foreach ($errors->all() as $error)
@@ -110,6 +112,7 @@
         @endif
         @yield('content')
     </main>
+
     {{-- Scripts --}}
     <script src="/js/jquery.js" type="text/javascript"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
@@ -118,7 +121,7 @@
     <script src="/js/bootstrap.js" type="text/javascript"></script>
     <script src="https://unpkg.com/feather-icons"></script>
     <script src="/js/scripts.js" type="text/javascript"></script>
-    
+
     <script>
         feather.replace();
     </script>
