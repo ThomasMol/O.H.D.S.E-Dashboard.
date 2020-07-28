@@ -49,36 +49,29 @@
         </div>
 
         <h3>Aanwezigheid</h3>
-        <div class="table-responsive">
-            <table class="table table-hover table-sm">
-                {{-- <thead>
-                <tr>
-                    <th scope="col">Naam</th>
-                    <th scope="col">Aanwezig</th>
-                </tr>
-            </thead> --}}
-                <tbody>
-                    @foreach($leden as $lid)
+        <div class="row">
+            <div class="col-md-6">
+                <div class="table-responsive">
+                    <table class="table table-hover table-sm">
+                        <tbody>
+                            @foreach($actieve_leden as $lid)
+                            <tr>
+                                <td scope="row">{{ $lid->roepnaam }} {{ $lid->achternaam }}</td>
+                                <td>
+                                    <input type="checkbox" name="deelnemers[]" value="{{$lid->lid_id}}">
+                                </td>
+                            </tr>
+                            @endforeach
 
-                    @if($loop->index >= 1)
-                    @if($leden[$loop->index - 1]->type_lid != $lid->type_lid)
-                    <tr class="thead-light">
-                        <th scope="row">{{ $lid->type_lid }}</th>
-                    </tr>
-                    @endif
-                    @endif
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="col-md-6">
 
-                    <tr>
-                        <td scope="row">{{ $lid->roepnaam }} {{ $lid->achternaam }}</td>
-                        <td>
-                            <input type="checkbox" name="deelnemers[]" value="{{$lid->lid_id}}">
-                        </td>
-                    </tr>
-                    @endforeach
-
-                </tbody>
-            </table>
+            </div>
         </div>
+
         <button type="submit" class="btn btn-primary btn-lg btn-block mb-3 mt-3">Voeg contributie toe</button>
     </form>
 </div>

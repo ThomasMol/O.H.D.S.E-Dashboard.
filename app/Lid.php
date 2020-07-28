@@ -17,6 +17,19 @@ class Lid extends Model
         return $query->where('type_lid','!=','Geen')->orderBy('type_lid','asc')->orderBy('roepnaam','asc');
     }
 
+    public function scopeActieveLeden($query){
+        return $query->where('type_lid','Actief')->orderBy('roepnaam','asc');
+    }
+    public function scopePassieveLeden($query){
+        return $query->where('type_lid','Passief')->orderBy('roepnaam','asc');
+    }
+    public function scopeReunisten($query){
+        return $query->where('type_lid','Reünist')->orderBy('roepnaam','asc');
+    }
+    public function scopeGeenLeden($query){
+        return $query->where('type_lid','Geen')->orderBy('roepnaam','asc');
+    }
+
     public function lidTypeOptions(){
         return [
             'Actief' => 'Actief',

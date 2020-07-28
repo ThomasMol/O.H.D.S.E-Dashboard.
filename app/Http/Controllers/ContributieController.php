@@ -19,10 +19,11 @@ class ContributieController extends Controller
 
     public function create(Bestuursjaar $bestuursjaar){
         $leden = Lid::ledenGesorteerd()->get();
+        $actieve_leden = Lid::actieveLeden()->get();
         $contributie = new Contributie();
         $bestuursjaren = Bestuursjaar::all();
         $categorieen = Inkomsten::where('jaargang',$bestuursjaar->jaargang)->orderBy('soort','asc')->get();
-        return view('contributies/create',compact('leden','contributie','bestuursjaren','categorieen','bestuursjaar'));
+        return view('contributies/create',compact('leden','contributie','bestuursjaren','categorieen','bestuursjaar','actieve_leden'));
     }
 
     public function store(){
