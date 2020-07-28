@@ -8,7 +8,7 @@
     <h1>Overzicht</h1>
 </header>
 
-<div class="row row-cols-2">
+<div class="row">
     <div class="col mb-4">
         <div class="card">
             <div class="card-header">Financi&euml;n</div>

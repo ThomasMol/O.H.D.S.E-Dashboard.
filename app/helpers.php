@@ -30,8 +30,8 @@ function divide_money($total, $divisor)
         $kosten->inkomsten_id = $inkomsten_id;
         $kosten->save();
         add_verschuldigd($lid_id, $bedrag);
-        add_inkomsten_budget($lid_id, $bedrag);
-        add_inkomsten_realisatie($lid_id, $bedrag);
+        add_inkomsten_budget($inkomsten_id, $bedrag);
+        add_inkomsten_realisatie($inkomsten_id, $bedrag);
         return $kosten->kosten_id;
     }
 
@@ -46,6 +46,7 @@ function divide_money($total, $divisor)
 
     }
 
+    // Verschuldigd
     function add_verschuldigd($lid_id, $bedrag){
         $lid = App\Financien::find($lid_id);
         $lid->verschuldigd = $lid->verschuldigd + $bedrag;
@@ -58,6 +59,7 @@ function divide_money($total, $divisor)
         $lid->save();
     }
 
+    // Overgemaakt
     function add_overgemaakt($lid_id, $bedrag){
         $lid = App\Financien::find($lid_id);
         $lid->overgemaakt = $lid->overgemaakt + $bedrag;
@@ -69,6 +71,8 @@ function divide_money($total, $divisor)
         $lid->overgemaakt = $lid->overgemaakt - $bedrag;
         $lid->save();
     }
+
+    // Gespaard
     function add_gespaard($lid_id, $bedrag){
         $lid = App\Financien::find($lid_id);
         $lid->gespaard = $lid->gespaard + $bedrag;
@@ -81,6 +85,7 @@ function divide_money($total, $divisor)
         $lid->save();
     }
 
+    // Uitgaven balans realisatie
     function add_uitgaven_realisatie($uitgaven_id,$bedrag){
         $uitgaven = App\Uitgaven::find($uitgaven_id);
         $uitgaven->realisatie = $uitgaven->realisatie + $bedrag;
@@ -92,6 +97,8 @@ function divide_money($total, $divisor)
         $uitgaven->realisatie = $uitgaven->realisatie - $bedrag;
         $uitgaven->save();
     }
+
+    // Inkomsten balans realisatie
     function add_inkomsten_realisatie($inkomsten_id,$bedrag){
         $inkomsten = App\Inkomsten::find($inkomsten_id);
         $inkomsten->realisatie = $inkomsten->realisatie + $bedrag;
@@ -104,9 +111,10 @@ function divide_money($total, $divisor)
         $inkomsten->save();
     }
 
+    // Inkomsten balans budget
     function add_inkomsten_budget($inkomsten_id,$bedrag){
         $inkomsten = App\Inkomsten::find($inkomsten_id);
-        $inkomsten->budget = $inkomsten->budget - $bedrag;
+        $inkomsten->budget = $inkomsten->budget + $bedrag;
         $inkomsten->save();
     }
 
@@ -116,6 +124,7 @@ function divide_money($total, $divisor)
         $inkomsten->save();
     }
 
+    // SE rekening
     function add_to_se_rekening($bedrag){
         $rekening = App\SErekening::find(1);
         $rekening->saldo = $rekening->saldo + $bedrag;
@@ -128,6 +137,7 @@ function divide_money($total, $divisor)
         $rekening->save();
     }
 
+    // Totale verschuldigd van lid
     function verschuldigd($lid_id){
         $kosten = App\Kosten::where('kosten.lid_id',$lid_id)->sum('bedrag');
         //$borrels = App\BorrelAanwezigheid::where('borrel_aanwezigheid.lid_id',$lid_id)->sum('naheffing');
@@ -139,6 +149,7 @@ function divide_money($total, $divisor)
         return $total;
     }
 
+    // Totale overgemaakt van lid
     function overgemaakt($lid_id){
         $transacties_bij = App\Transactie::where('transactie.lid_id',$lid_id)
             ->where('transactie.af_bij','bij')
@@ -153,6 +164,7 @@ function divide_money($total, $divisor)
 
     }
 
+    // Totale gespaard van lid
     function gespaard($lid_id){
         $transacties_bij = App\Transactie::where('transactie.lid_id',$lid_id)
             ->where('transactie.af_bij','bij')
@@ -174,6 +186,7 @@ function divide_money($total, $divisor)
         return $transacties;
     }
 
+    // Format currency
     function format_currency($number){
         return number_format($number, 2, ',', '.');
     }

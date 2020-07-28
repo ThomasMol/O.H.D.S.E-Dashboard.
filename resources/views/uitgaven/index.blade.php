@@ -8,7 +8,7 @@
             data-feather="plus-circle"></span> Uitgave toevoegen</a>
     @endif
 </header>
-<div class="table-responsive">
+<div class="table-responsive card">
     <table class="table table-hover table-sm">
         <thead>
             <tr>

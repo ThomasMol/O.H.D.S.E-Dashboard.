@@ -32,7 +32,7 @@
                         <div class="input-group-text">&euro;</div>
                     </div>
                     <input type="number" class="form-control " id="uitgave" name="uitgave" step=".01"
-                        value="{{ $uitgave->uitgave }}" min="0" max="99999999" placeholder="Vul bedrag in" required>
+                        value="{{ $uitgave->uitgave }}" min="-99999999" max="99999999" placeholder="Vul bedrag in" required>
                 </div>
             </div>
             <div class="col-md-3">

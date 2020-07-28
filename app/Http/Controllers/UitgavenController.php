@@ -34,7 +34,7 @@ class UitgavenController extends Controller
         $data = $request->validate([
             'datum' => 'required|date',
             'budget' => 'required|numeric|gte:0|lt:99999999',
-            'uitgave' => 'required|numeric|gte:0|lt:99999999',
+            'uitgave' => 'required|numeric|gte:-99999999|lt:99999999',
             'naheffing' => 'required|numeric',
             'uitgaven_id' => 'required',
             'omschrijving' => 'required|max:100000'
@@ -83,7 +83,7 @@ class UitgavenController extends Controller
         $data = request()->validate([
             'datum' => 'required|date',
             'budget' => 'required|numeric|gte:0|lt:99999999',
-            'uitgave' => 'required|numeric|gte:0|lt:99999999',
+            'uitgave' => 'required|numeric|gte:-99999999|lt:99999999',
             'naheffing' => 'required|numeric|lt:99999999',
             'uitgaven_id' => 'required',
             'omschrijving' => 'required|max:100000'

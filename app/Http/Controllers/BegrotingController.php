@@ -51,12 +51,12 @@ class BegrotingController extends Controller
     {
         $inkomsten = $request->validate([
             'inkomsten.*.id' => '',
-            'inkomsten.*.soort' => 'required',
+            'inkomsten.*.soort' => 'required|distinct',
             'inkomsten.*.budget' => 'required|numeric|gte:0|lt:99999999'
         ]);
         $uitgaven = $request->validate([
             'uitgaven.*.id' => '',
-            'uitgaven.*.soort' => 'required',
+            'uitgaven.*.soort' => 'required|distinct',
             'uitgaven.*.budget' => 'required|numeric|gte:0|lt:99999999'
         ]);
 

@@ -5,7 +5,7 @@
     <h2>Declaratie toevoegen</h2>
 </header>
 <div class="card">
-    <" method="POST" action="/declaraties">
+    <form class="card-body" method="POST" action="/declaraties">
         @csrf
         <input type="hidden" name="created_by_id" value="{{Auth::user()->lid_id}}">
         <label for="datum">Datum</label>

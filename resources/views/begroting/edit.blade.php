@@ -33,7 +33,7 @@
                             <div class="input-group mb-3">
                                 <div class="input-group-prepend">
                                     <div class="input-group-text">&euro;</div>
-                                </div><input type="number" class="form-control" id="bedrag"
+                                </div><input type="number" class="form-control" id="budget"
                                     name="inkomsten[{{$loop->iteration}}][budget]" step=".01"
                                     value="{{$inkomsten->budget}}" min="0" max="99999999" required>
                             </div>

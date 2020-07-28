@@ -8,7 +8,7 @@
             </div>
 
             <div class="modal-body">
-                <p>You are about to delete one track, this procedure is irreversible.</p>
+                <p></p>
                 <p>Do you want to proceed?</p>
                 <p class="debug-url"></p>
             </div>
