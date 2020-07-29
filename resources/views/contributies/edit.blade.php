@@ -4,12 +4,11 @@
 <header>
     <h2>Contributie wijzigen</h2>
 </header>
-<div class="card">
-    <form class="card-body" method="POST" action="/contributies/{{$contributie->contributie_id}}">
+    <form method="POST" action="/contributies/{{$contributie->contributie_id}}">
         @csrf
         @method('PATCH')
-
-        <div class="form-row">
+        @include('contributies.form')
+       {{--  <div class="form-row">
             <div class="col-md-4">
                 <label for="datum">Datum</label>
                 <input type="date" class="form-control mb-3" id="datum" name="datum" value="{{ $contributie->datum }}"
@@ -57,6 +56,6 @@
                 </tbody>
             </table>
         </div>
-        <button type="submit" class="btn btn-primary btn-lg btn-block mb-3 mt-3">Wijzig contributie</button>
+        <button type="submit" class="btn btn-primary btn-lg btn-block mb-3 mt-3">Wijzig contributie</button> --}}
     </form>
-</div @endsection
+@endsection

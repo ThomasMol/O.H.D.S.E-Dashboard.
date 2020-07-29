@@ -113,6 +113,12 @@ form .btn-group-toggle .btn:hover {
     border-radius: 8px;
 }
 
+.card-sticky{
+    height: auto;
+    position: sticky;
+    top:80px;
+}
+
 /* Buttons */
 .btn{
     border-radius: 6px;

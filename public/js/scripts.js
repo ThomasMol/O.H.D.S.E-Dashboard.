@@ -67,17 +67,21 @@ $(document).ready(function () {
         </tr>` );
     j--;
     });
+
     //remove rij from inkomsten/uitgaven list
     $("form").on("click","#remove_rij",function(e){
         $(this).closest('tr').remove();
     });
 
-
-
     //confirm modal for deleting
     $('#confirm-delete').on('show.bs.modal', function(e) {
-        console.log("test");
         $(this).find('.delete-form').attr('action', $(e.relatedTarget).data('href'));
+    });
+
+    // Select all leden
+    $('.select-all').on("change",function(e){
+        var lid_type = $(this).data('select-lid-type');
+        $('*[data-lid-type='+ lid_type +']').prop("checked",$(this).prop("checked"));
     });
 
 });
