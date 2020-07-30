@@ -84,4 +84,9 @@ $(document).ready(function () {
         $('*[data-lid-type='+ lid_type +']').prop("checked",$(this).prop("checked"));
     });
 
+    // Enable bootstrap tooltips
+    $(function () {
+        $('[data-toggle="tooltip"]').tooltip()
+    });
+
 });

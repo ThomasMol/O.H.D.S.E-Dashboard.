@@ -52,18 +52,14 @@ class ContributieController extends Controller
     public function edit(Contributie $contributie, Bestuursjaar $bestuursjaar){
         $id = $contributie->contributie_id;
 
-        $actieve_leden = Lid::actieveLeden()->get();
-        $passieve_leden = Lid::passieveLeden()->get();
-        $reunisten = Lid::reunisten()->get();
-        $geen_lid = Lid::geenLeden()->get();
-        
+        $actieve_leden = Lid::lidDeelname('contributie_deelname',$id)->actieveLeden()->get();
+        $passieve_leden = Lid::lidDeelname('contributie_deelname',$id)->passieveLeden()->get();
+        $reunisten = Lid::lidDeelname('contributie_deelname',$id)->reunisten()->get();
+        $geen_lid = Lid::lidDeelname('contributie_deelname',$id)->geenLeden()->get();
+
         $categorieen = Inkomsten::where('jaargang',$bestuursjaar->jaargang)->orderBy('soort','asc')->get();
 
-        $leden_deelname = Lid::select('lid.lid_id', 'roepnaam', 'achternaam','contributie_deelname.lid_id as deelname','type_lid')->leftJoin('contributie_deelname', function($join) use ($id){
-            $join->on('lid.lid_id','contributie_deelname.lid_id');
-            $join->where('contributie_deelname.contributie_id',$id);
-        })->ledenGesorteerd()->get();
-        return view('contributies/edit', compact('contributie','leden_deelname','categorieen','actieve_leden','passieve_leden','reunisten','geen_lid'));
+        return view('contributies/edit', compact('contributie','categorieen','actieve_leden','passieve_leden','reunisten','geen_lid'));
     }
 
     public function update(Contributie $contributie){

@@ -16,7 +16,6 @@ class Lid extends Model
     public function scopeLedenGesorteerd($query){
         return $query->orderBy('type_lid','asc')->orderBy('roepnaam','asc');
     }
-
     public function scopeActieveLeden($query){
         return $query->where('type_lid','Actief')->orderBy('roepnaam','asc');
     }
@@ -28,6 +27,13 @@ class Lid extends Model
     }
     public function scopeGeenLeden($query){
         return $query->where('type_lid','Geen')->orderBy('roepnaam','asc');
+    }
+
+    public function scopeLidDeelname($query,$table,$id){
+        return $query->select('lid.lid_id', 'roepnaam', 'achternaam',$table.'.lid_id as deelname','type_lid')->leftJoin($table, function($join) use ($id, $table){
+            $join->on('lid.lid_id', $table . '.lid_id');
+            $join->where($table . '.contributie_id',$id);
+        });
     }
 
     public function lidTypeOptions(){

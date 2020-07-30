@@ -21,13 +21,13 @@
                         <option @if($categorie->inkomsten_id == $contributie->inkomsten_id || $categorie->inkomsten_id == old('inkomsten_id')) selected @endif value="{{$categorie->inkomsten_id}}">{{$categorie->soort}}</option>
                         @endforeach
                     </select>
-                    <button type="submit" class="btn btn-primary btn-lg btn-block mb-3 mt-3">Voeg contributie toe</button>
+                    <button type="submit" class="btn btn-primary btn-lg btn-block mb-3 mt-3">Opslaan</button>
                 </div>
             </div>
         </div>
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header"></div>
+                <div class="card-body">
                 <ul class="list-group list-group-flush">
                     <li
                         class="list-group-item d-flex justify-content-between align-items-center ">
@@ -37,18 +37,31 @@
                     @foreach($actieve_leden as $lid)
                     <li class="list-group-item d-flex justify-content-between align-items-center">
                         {{ $lid->roepnaam }} {{ $lid->achternaam }}
-                        <span><input data-lid-type="actief" type="checkbox" name="deelnemers[]"
+                        <input data-lid-type="actief" type="checkbox" name="deelnemers[]"
                                 value="{{$lid->lid_id}}" @if(isset($lid->deelname))
-                                checked @endif></span>
+                                checked @endif>
                     </li>
                     @endforeach
-                </ul>
-                <ul class="list-group list-group-flush">
+
+                    <li
+                        class="list-group-item d-flex justify-content-between align-items-center ">
+                        <h4>Passieve leden</h4>
+                        <span><input type="checkbox" class="select-all" data-select-lid-type="passief"></span>
+                    </li>
+                    @foreach($passieve_leden as $lid)
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                        {{ $lid->roepnaam }} {{ $lid->achternaam }}
+                        <input data-lid-type="passief" type="checkbox" name="deelnemers[]"
+                                value="{{$lid->lid_id}}" @if(isset($lid->deelname))
+                                checked @endif>
+                    </li>
+                    @endforeach
+
                     <li class="list-group-item d-flex justify-content-between align-items-center" data-toggle="collapse"
                         href="#collapse-reunisten" role="button" aria-expanded="false"
                         aria-controls="collapse-reunisten">
                         <strong>Re&uuml;nisten</strong>
-                        <span><input type="checkbox" class="select-all" data-select-lid-type="reunist"></span>
+                        <span><input type="checkbox" class="select-all" data-select-lid-type="reunist"  data-toggle="tooltip" data-placement="bottom" title="Selecteer alles"></span>
                     </li>
                     <div class="collapse" id="collapse-reunisten">
                         @foreach($reunisten as $lid)
@@ -61,6 +74,7 @@
                         @endforeach
                     </div>
                 </ul>
+            </div>
             </div>
         </div>
     </div>
