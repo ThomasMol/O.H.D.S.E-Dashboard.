@@ -18,7 +18,11 @@
         </div>
     </div>
 </header>
-<div class="card">
+<form class="card-body" method="POST" action="/uitgaven">
+@csrf
+@include('uitgaven.form')
+</form>
+{{-- <div class="card">
     <form class="card-body" method="POST" action="/uitgaven">
         @csrf
         <div class="form-row">
@@ -75,13 +79,7 @@
         <div class="table-responsive">
             <table class="table table-hover table-sm">
                 <thead>
-                    {{--  <tr>
-                <th scope="col">Naam</th>
-                <th scope="col">Aanwezig</th>
-                <th scope="col">Naheffing</th>
-                <th scope="col">Afgemeld</th>
-                <th scope="col">Boete</th>
-            </tr> --}}
+
                 </thead>
                 <tbody>
                     @foreach($leden as $lid)
@@ -113,14 +111,7 @@
                                 </label>
                             </div>
                         </td>
-                        {{--   <td><input class="form-control" type="checkbox" name="aanwezigheid[{{$lid->lid_id}}][aanwezig]"
-                        value="1"></td>
-                        <td><input class="form-control" type="checkbox" name="aanwezigheid[{{$lid->lid_id}}][naheffing]"
-                                value="1"></td>
-                        <td><input class="form-control" type="checkbox" name="aanwezigheid[{{$lid->lid_id}}][afgemeld]"
-                                value="1"></td>
-                        <td><input class="form-control" type="checkbox" name="aanwezigheid[{{$lid->lid_id}}][boete]"
-                                value="1"></td> --}}
+
                     </tr>
                     @endforeach
                 </tbody>
@@ -128,5 +119,5 @@
         </div>
         <button type="submit" class="btn btn-primary btn-lg btn-block mb-3 mt-3 floating">Voeg uitgave toe</button>
     </form>
-</div>
+</div> --}}
 @endsection

@@ -29,10 +29,10 @@ class Lid extends Model
         return $query->where('type_lid','Geen')->orderBy('roepnaam','asc');
     }
 
-    public function scopeLidDeelname($query,$table,$id){
-        return $query->select('lid.lid_id', 'roepnaam', 'achternaam',$table.'.lid_id as deelname','type_lid')->leftJoin($table, function($join) use ($id, $table){
-            $join->on('lid.lid_id', $table . '.lid_id');
-            $join->where($table . '.contributie_id',$id);
+    public function scopeLidDeelname($query,$table_deelname,$model_id,$id){
+        return $query->select('lid.lid_id', 'roepnaam', 'achternaam',$table_deelname.'.lid_id as deelname','type_lid')->leftJoin($table_deelname, function($join) use ($id, $table_deelname, $model_id){
+            $join->on('lid.lid_id', $table_deelname . '.lid_id');
+            $join->where($table_deelname . '.' . $model_id,$id);
         });
     }
 

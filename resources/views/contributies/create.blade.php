@@ -22,8 +22,8 @@
 
 
 <form method="POST" action="/contributies">
+    @csrf
     @include('contributies.form')
-     @csrf
 </form>
 
 @endsection

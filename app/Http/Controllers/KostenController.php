@@ -33,8 +33,8 @@ class KostenController extends Controller
         $leden = Lid::ledenGesorteerd()->get();
         $bestuursjaren = Bestuursjaar::all();
         $categorieen = Inkomsten::where('jaargang',$bestuursjaar->jaargang)->orderBy('soort','asc')->get();
-
-        return view('kosten/create',compact('leden','bestuursjaren','bestuursjaar','categorieen'));
+        $kosten = new Kosten();
+        return view('kosten/create',compact('leden','bestuursjaren','bestuursjaar','categorieen','kosten'));
     }
 
 

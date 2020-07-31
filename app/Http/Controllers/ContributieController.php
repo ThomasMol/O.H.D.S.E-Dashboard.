@@ -52,10 +52,10 @@ class ContributieController extends Controller
     public function edit(Contributie $contributie, Bestuursjaar $bestuursjaar){
         $id = $contributie->contributie_id;
 
-        $actieve_leden = Lid::lidDeelname('contributie_deelname',$id)->actieveLeden()->get();
-        $passieve_leden = Lid::lidDeelname('contributie_deelname',$id)->passieveLeden()->get();
-        $reunisten = Lid::lidDeelname('contributie_deelname',$id)->reunisten()->get();
-        $geen_lid = Lid::lidDeelname('contributie_deelname',$id)->geenLeden()->get();
+        $actieve_leden = Lid::lidDeelname('contributie_deelname','contributie_id',$id)->actieveLeden()->get();
+        $passieve_leden = Lid::lidDeelname('contributie_deelname','contributie_id',$id)->passieveLeden()->get();
+        $reunisten = Lid::lidDeelname('contributie_deelname','contributie_id',$id)->reunisten()->get();
+        $geen_lid = Lid::lidDeelname('contributie_deelname','contributie_id',$id)->geenLeden()->get();
 
         $categorieen = Inkomsten::where('jaargang',$bestuursjaar->jaargang)->orderBy('soort','asc')->get();
 
