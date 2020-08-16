@@ -18,7 +18,7 @@
         </div>
     </div>
 </header>
-<form class="card-body" method="POST" action="/uitgaven">
+<form method="POST" action="/uitgaven">
 @csrf
 @include('uitgaven.form')
 </form>

@@ -36,6 +36,19 @@ class Lid extends Model
         });
     }
 
+    public function scopeLidDeelnameUitgave($query,$table_deelname,$model_id,$id){
+        return $query->select('lid.lid_id', 'roepnaam', 'achternaam',
+        $table_deelname.'.lid_id as aanwezig',
+        $table_deelname.'.afgemeld as afgemeld',
+        $table_deelname.'.naheffing as naheffing',
+        $table_deelname.'.boete_id as boete_id',
+        $table_deelname.'.extra_kosten_id as extra_kosten_id',
+        'type_lid')->leftJoin($table_deelname, function($join) use ($id, $table_deelname, $model_id){
+            $join->on('lid.lid_id', $table_deelname . '.lid_id');
+            $join->where($table_deelname . '.' . $model_id,$id);
+        });
+    }
+
     public function lidTypeOptions(){
         return [
             'Actief' => 'Actief',

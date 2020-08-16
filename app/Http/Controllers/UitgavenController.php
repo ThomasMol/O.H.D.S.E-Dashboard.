@@ -21,13 +21,21 @@ class UitgavenController extends Controller
     }
 
     public function create(Bestuursjaar $bestuursjaar){
-        $leden = Lid::ledenGesorteerd()->get();
+
+        $actieve_leden = Lid::actieveLeden()->get();
+        $passieve_leden = Lid::passieveLeden()->get();
+        $reunisten = Lid::reunisten()->get();
+        $geen_lid = Lid::geenLeden()->get();
+
+        $uitgave = new Uitgave();
         $bestuursjaren = Bestuursjaar::all();
+
         $categorieen = Uitgaven::where('jaargang',$bestuursjaar->jaargang)->orderBy('soort','asc')->get();
+
         $inkomsten_boete_id = Inkomsten::select('inkomsten_id')->where('jaargang', $bestuursjaar->jaargang)->where(DB::raw('upper(soort)'),'like','%BOETE%')->firstOrFail()['inkomsten_id'];
         $inkomsten_extra_kosten_id = Inkomsten::select('inkomsten_id')->where('jaargang', $bestuursjaar->jaargang)->where(DB::raw('upper(soort)'),'like','%EXTRA%')->firstOrFail()['inkomsten_id'];
-        #dd($inkomsten_extra_kosten_id);
-        return view('uitgaven/create',compact('leden', 'bestuursjaren', 'categorieen','bestuursjaar','inkomsten_boete_id','inkomsten_extra_kosten_id'));
+
+        return view('uitgaven/create',compact('bestuursjaren', 'categorieen','bestuursjaar','inkomsten_boete_id','inkomsten_extra_kosten_id','uitgave','actieve_leden','passieve_leden','reunisten','geen_lid'));
     }
 
     public function store(Request $request){
@@ -62,6 +70,12 @@ class UitgavenController extends Controller
         $bestuursjaren = Bestuursjaar::all();
         $categorieen = Uitgaven::where('jaargang',$bestuursjaar->jaargang)->orderBy('soort','asc')->get();
 
+        $actieve_leden = Lid::lidDeelnameUitgave('uitgave_deelname','uitgave_id',$id)->actieveLeden()->get();
+        $passieve_leden = Lid::lidDeelnameUitgave('uitgave_deelname','uitgave_id',$id)->passieveLeden()->get();
+        $reunisten = Lid::lidDeelnameUitgave('uitgave_deelname','uitgave_id',$id)->reunisten()->get();
+        $geen_lid = Lid::lidDeelnameUitgave('uitgave_deelname','uitgave_id',$id)->geenLeden()->get();
+
+
         $leden_deelname = Lid::select('lid.lid_id', 'roepnaam', 'achternaam',
         'uitgave_deelname.lid_id as deelname',
         'uitgave_deelname.aanwezig as aanwezig',
@@ -73,10 +87,13 @@ class UitgavenController extends Controller
             $join->on('lid.lid_id','uitgave_deelname.lid_id');
             $join->where('uitgave_deelname.uitgave_id',$id);
         })->ledenGesorteerd()->get();
+
+        //$leden_test = array('actief'=>$actieve_leden,$passieve_leden,$reunisten, $geen_lid);
+
         $inkomsten_boete_id = Inkomsten::select('inkomsten_id')->where('jaargang', $bestuursjaar->jaargang)->where(DB::raw('upper(soort)'),'like','%BOETE%')->firstOrFail()['inkomsten_id'];
         $inkomsten_extra_kosten_id = Inkomsten::select('inkomsten_id')->where('jaargang', $bestuursjaar->jaargang)->where(DB::raw('upper(soort)'),'like','%EXTRA%')->firstOrFail()['inkomsten_id'];
 
-        return view('uitgaven/edit', compact('uitgave', 'leden_deelname' , 'leden','bestuursjaren','categorieen','inkomsten_boete_id','inkomsten_extra_kosten_id'));
+        return view('uitgaven/edit', compact('uitgave', 'leden_deelname' , 'leden','bestuursjaren','categorieen','inkomsten_boete_id','inkomsten_extra_kosten_id','actieve_leden','passieve_leden','reunisten','geen_lid'));
     }
 
     public function update(Uitgave $uitgave){
