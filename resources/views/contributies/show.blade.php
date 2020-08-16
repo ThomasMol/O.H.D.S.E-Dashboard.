@@ -2,13 +2,13 @@
 @section('title','Contributie')
 @section('content')
 <header>
-    <h1 class="d-inline">Contributie</h1>
+    <h1 class="d-lg-inline">Contributie</h1>
     @if(Auth::user()->admin == 1)
-    <button class="btn btn-outline-danger float-right" data-href="/contributies/{{$contributie->contributie_id}}"
+    <button class="btn btn-outline-danger float-lg-right" data-href="/contributies/{{$contributie->contributie_id}}"
         data-toggle="modal" data-target="#confirm-delete"><span data-feather="trash"></span> Verwijder</button>
 
     <a href="/contributies/{{$contributie->contributie_id}}/wijzig/{{$contributie->jaargang}}"
-        class="btn btn-outline-primary float-right mr-2"><span data-feather="edit"></span> Wijzig</a>
+        class="btn btn-outline-primary float-lg-right mr-2"><span data-feather="edit"></span> Wijzig</a>
     @endif
 </header>
 <div class="table-responsive">

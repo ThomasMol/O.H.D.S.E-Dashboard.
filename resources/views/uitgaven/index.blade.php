@@ -2,9 +2,9 @@
 @section('title','Uitgaven')
 @section('content')
 <header>
-    <h1 class="d-inline">Uitgaven</h1>
+    <h1 class="d-lg-inline">Uitgaven</h1>
     @if(Auth::user()->admin == 1)
-    <a class="btn btn-outline-primary float-right" href="/uitgaven/toevoegen/{{$huidig_jaar->jaargang}}"><span
+    <a class="btn btn-outline-primary float-lg-right" href="/uitgaven/toevoegen/{{$huidig_jaar->jaargang}}"><span
             data-feather="plus-circle"></span> Uitgave toevoegen</a>
     @endif
 </header>

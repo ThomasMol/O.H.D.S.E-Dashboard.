@@ -4,11 +4,11 @@
 
 
 <header>
-    <h1 class="d-inline">Declaratie</h1>
+    <h1 class="d-lg-inline">Declaratie</h1>
     @if(Auth::user()->lid_id == $declaratie->betaald_door_id || Auth::user()->lid_id == $declaratie->created_by_id )
     <button data-href="/declaraties/{{$declaratie->declaratie_id}}" data-toggle="modal" data-target="#confirm-delete"
-        class="btn btn-outline-danger float-right"><span data-feather="trash"></span> Verwijder</button>
-    <a href="/declaraties/{{$declaratie->declaratie_id}}/wijzig" class="btn btn-outline-primary float-right mr-2"><span
+        class="btn btn-outline-danger float-lg-right"><span data-feather="trash"></span> Verwijder</button>
+    <a href="/declaraties/{{$declaratie->declaratie_id}}/wijzig" class="btn btn-outline-primary float-lg-right mr-2"><span
             data-feather="edit"></span> Wijzig</a>
 
     @endif

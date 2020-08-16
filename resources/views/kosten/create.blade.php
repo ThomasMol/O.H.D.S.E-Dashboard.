@@ -2,8 +2,8 @@
 @section('title','Overige kosten')
 @section('content')
 <header>
-    <h1 class="d-inline">Overige kosten toevoegen</h3>
-        <div class="dropdown float-right">
+    <h1 class="d-lg-inline">Overige kosten toevoegen</h3>
+        <div class="dropdown float-lg-right">
             <button class="btn btn-outline-primary dropdown-toggle" type="button" id="dropdownJaar"
                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 Begroting van jaargang {{$bestuursjaar->jaargang}}

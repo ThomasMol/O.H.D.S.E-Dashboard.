@@ -2,11 +2,11 @@
 @section('title','Transacties')
 @section('content')
 <header>
-    <h1 class="d-inline">Transacties</h1>
+    <h1 class="d-lg-inline">Transacties</h1>
     @if(Auth::user()->admin == 1)
-    <a class="btn btn-outline-secondary float-right" href="/transacties/upload"><span
+    <a class="btn btn-outline-secondary float-lg-right" href="/transacties/upload"><span
             data-feather="upload"></span>Upload transacties</a>
-    <a class="btn btn-outline-primary float-right mr-2" href="/transacties/toevoegen"><span
+    <a class="btn btn-outline-primary float-lg-right mr-2" href="/transacties/toevoegen"><span
             data-feather="plus-circle"></span> Transactie toevoegen</a>
     @endif
 </header>

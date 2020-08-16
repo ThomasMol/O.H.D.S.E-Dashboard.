@@ -2,8 +2,8 @@
 @section('title','Uitgave')
 @section('content')
 <header>
-    <h2 class="d-inline">Uitgave toevoegen</h2>
-    <div class="dropdown float-right">
+    <h2 class="d-lg-inline">Uitgave toevoegen</h2>
+    <div class="dropdown float-lg-right">
         <button class="btn btn-outline-primary dropdown-toggle" type="button" id="dropdownJaar" data-toggle="dropdown"
             aria-haspopup="true" aria-expanded="false">
             Begroting van jaargang {{$bestuursjaar->jaargang}}

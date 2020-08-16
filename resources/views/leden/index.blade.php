@@ -3,9 +3,9 @@
 @section('content')
 
 <header>
-    <h1 class="d-inline">Leden</h1>
+    <h1 class="d-lg-inline">Leden</h1>
     @if(Auth::user()->admin == 1)
-    <a href="/leden/toevoegen" class="btn btn-outline-primary float-right"><span data-feather="plus-circle"></span> Lid
+    <a href="/leden/toevoegen" class="btn btn-outline-primary float-lg-right"><span data-feather="plus-circle"></span> Lid
         toevoegen</a>
     @endif
 </header>

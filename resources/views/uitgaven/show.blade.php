@@ -2,12 +2,12 @@
 @section('title','Uitgave')
 @section('content')
 <header>
-    <h1 class="d-inline">Uitgave</h1>
+    <h1 class="d-lg-inline">Uitgave</h1>
     @if(Auth::user()->admin == 1)
-    <button class="btn btn-outline-danger float-right" data-href="/uitgaven/{{$uitgave->uitgave_id}}"
+    <button class="btn btn-outline-danger float-lg-right" data-href="/uitgaven/{{$uitgave->uitgave_id}}"
         data-toggle="modal" data-target="#confirm-delete"><span data-feather="trash"></span> Verwijder</button>
 
-    <a class="btn btn-outline-primary float-right mr-2"
+    <a class="btn btn-outline-primary float-lg-right mr-2"
         href="/uitgaven/{{$uitgave->uitgave_id}}/wijzig/{{$uitgave->jaargang}}"><span data-feather="edit"></span>
         Wijzig</a>
     @endif
