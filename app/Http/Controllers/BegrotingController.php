@@ -34,8 +34,11 @@ class BegrotingController extends Controller
         $inkomsten_list = Inkomsten::where('jaargang', $bestuursjaar->jaargang)->orderBy('soort', 'asc')->get();
         $uitgaven_list = Uitgaven::where('jaargang', $bestuursjaar->jaargang)->orderBy('soort', 'asc')->get();
         $se_rekening = SErekening::find(1);
-        $transacties_af_aggregate = Transactie::where('af_bij','Af')->where('datum','>=',$bestuursjaar->van)->where('datum','<=',$bestuursjaar->tot)->sum('bedrag');
-        $uitgaven_aggregate = Uitgave::where('datum','>=',$bestuursjaar->van)->where('datum','<=',$bestuursjaar->tot)->sum('uitgave');
+/*         $transacties_af_aggregate = Transactie::where('af_bij','Af')->where('datum','>=',$bestuursjaar->van)->where('datum','<=',$bestuursjaar->tot)->sum('bedrag');
+        $uitgaven_aggregate = Uitgave::where('datum','>=',$bestuursjaar->van)->where('datum','<=',$bestuursjaar->tot)->sum('uitgave'); */
+        $transacties_af_aggregate = Transactie::where('af_bij','Af')->sum('bedrag');
+        $uitgaven_aggregate = Uitgave::where('uitgave','>=',0)->sum('uitgave');
+
 
         return view('begroting/show',compact('inkomsten_list','uitgaven_list','bestuursjaar','se_rekening','transacties_af_aggregate','uitgaven_aggregate'));
     }

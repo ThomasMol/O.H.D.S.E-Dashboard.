@@ -8,18 +8,21 @@
 </header>
 
 <div class="card">
-    <div class="card-header">
-        <h3>Saldo SE rekening: <span class="badge badge-success">&euro;
-                {{format_currency($se_rekening->saldo)}}</span></h3>
-    </div>
     <div class="card-body">
-        <p>Verschil tussen inkomsten en uitgaven:
-            {{format_currency($inkomsten_list->sum('budget') - $uitgaven_list->sum('budget'))}}
-        </p>
+        <div class="d-inline">
+        <h3>Saldo rekening: <span class="badge badge-success">&euro;
+                {{format_currency($se_rekening->saldo)}}</span></h3>
 
+        <h4>Verschil tussen inkomsten en uitgaven in begroting budget:
+        <span class="badge @if($inkomsten_list->sum('budget') - $uitgaven_list->sum('budget') == 0) badge-success @else badge-warning @endif">&euro; {{format_currency($inkomsten_list->sum('budget') - $uitgaven_list->sum('budget'))}}</span>
+        </h4>
 
-        <p>Totaal AF transacties: {{format_currency($transacties_af_aggregate)}}</p>
-        <p>Totaal Uitgaven: {{format_currency($uitgaven_aggregate)}}</p>
+        <p>Totaal AF <a href="/transacties">transacties</a> : {{format_currency($transacties_af_aggregate)}}</p>
+        <p>Totaal <a href="/uitgaven">Uitgaven</a>: {{format_currency($uitgaven_aggregate)}}</p>
+        <h4>Verschil tussen transacteis en uitgaven:
+        <span class="badge @if($transacties_af_aggregate - $uitgaven_aggregate == 0) badge-success @else badge-warning @endif">&euro; {{format_currency($transacties_af_aggregate - $uitgaven_aggregate)}}</span>
+        </h4>
+    </div>
     </div>
 </div>
 
