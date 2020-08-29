@@ -22,7 +22,6 @@
                         <th scope="col">Naam/Omschrijving</th>
                         <th scope="col">Bedrag</th>
                         <th scope="col">Lid</th>
-                        <th scope="col">Spaarplan</th>
                         <th scope="col"></th>
                         <th scope="col"></th>
                     </tr>
@@ -35,7 +34,6 @@
                         <td>{{ $transactie->naam }}</td>
                         <td>&euro;{{ format_currency($transactie->bedrag) }}</td>
                         <td>{{ $transactie->roepnaam . ' ' . $transactie->achternaam }}</td>
-                        <td>{{ $transactie->spaarplanOptions()[$transactie->spaarplan] }}</td>
                         <td>
                             <button data-target="#transactie-id-{{$transactie->transactie_id}}" class="btn btn-link"
                                 data-toggle="collapse" role="button" aria-expanded="false"
@@ -52,7 +50,8 @@
                     </tr>
                     <tr class="collapse" id="transactie-id-{{$transactie->transactie_id}}">
                         <td></td>
-                        <td colspan=7>
+                        <td colspan=6>
+                            <strong>Spaarplan: </strong>{{ $transactie->spaarplanOptions()[$transactie->spaarplan]  }}<br>
                             <strong>Tegenrekening: </strong>{{ $transactie->tegenrekening }}<br>
                             <strong>Mutatie: </strong>{{ $transactie->mutatieOptions()[$transactie->mutatie_soort] }}<br>
                             <strong>Mededelingen: </strong>{{ $transactie->mededelingen }}

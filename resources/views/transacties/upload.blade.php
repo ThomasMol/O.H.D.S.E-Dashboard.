@@ -15,14 +15,7 @@
 
                     <div class="form-group{{ $errors->has('csv_file') ? ' has-error' : '' }}">
                         <label for="csv_file" class="ontrol-label">Transactie CSV bestand om te importeren</label>
-                        <div>
-                            <input id="csv_file" type="file" class="form-control" name="csv_file" required>
-                            @if ($errors->has('csv_file'))
-                            <span class="help-block">
-                                <strong>{{ $errors->first('csv_file') }}</strong>
-                            </span>
-                            @endif
-                        </div>
+                        <input id="csv_file" type="file" class="form-control" name="csv_file" required>
                         <label for="delimiter">Scheidingsteken</label>
                         <select class="form-control mb-3" id="delimiter" name="delimiter" required>
                             <option disabled selected value> - selecteer - </option>

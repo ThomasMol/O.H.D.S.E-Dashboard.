@@ -118,26 +118,29 @@ class TransactiesController extends Controller
     {
         $data = $request->validate([
             'delimiter' => 'required',
-            'csv_file' => 'required|file'
+            'csv_file' => 'required|file|mimes:csv,txt'
         ]);
         Config::set('excel.imports.csv.delimiter',$request->delimiter);
         $transactie_model = new Transactie();
         $leden = Lid::ledenGesorteerd()->get();
 
-        if ($request->file('csv_file')->isValid()) {
-            $file = $request->file('csv_file');
-            $transacties = Excel::toArray(null, $file, null, \Maatwebsite\Excel\Excel::CSV)[0];
-            //dd($transacties);
-            array_shift($transacties);
-            foreach ($transacties as $key => $transactie) {
-                $transacties[$key][0] = Carbon::parse(strval($transactie[0]))->format("Y-m-d");
-                $transacties[$key][6] = str_replace(',', '.', $transactie[6]);
-                $transacties[$key][9] = $this->getLidId($transactie[3]);
-                $transacties[$key][11] = $this->getSpaarplan($transactie[8], $transacties[$key][9]);
-                $transacties[$key][12] = $this->checkBetaalverzoek($transactie[1]);
+        $betaalverzoek_count = 0;
+
+        $file = $request->file('csv_file');
+        $transacties = Excel::toArray(null, $file, null, \Maatwebsite\Excel\Excel::CSV)[0];
+        array_shift($transacties);
+        foreach ($transacties as $key => $transactie) {
+            $transacties[$key][0] = Carbon::parse(strval($transactie[0]))->format("Y-m-d");
+            $transacties[$key][6] = str_replace(',', '.', $transactie[6]);
+            $transacties[$key][9] = $this->getLidId($transactie[3]);
+            $transacties[$key][11] = $this->getSpaarplan($transactie[8], $transacties[$key][9]);
+            $transacties[$key][12] = $this->checkBetaalverzoek($transactie[1]);
+            if($transacties[$key][12] && $transacties[$key][5] == "Bij"){
+                $betaalverzoek_count++;
             }
+
         }
-        return view('/transacties/check', compact('transacties', 'transactie_model', 'leden'));
+        return view('/transacties/check', compact('transacties', 'transactie_model', 'leden','betaalverzoek_count'));
     }
 
     //Post function, processes imported csv sheet
@@ -190,9 +193,9 @@ class TransactiesController extends Controller
     public function checkBetaalverzoek($naam)
     {
         if (strpos(strtolower($naam), 'betaalverzoek') !== false || strpos(strtolower($naam), 'amro') !== false) {
-            return 1;
+            return true;
         } else {
-            return null;
+            return false;
         }
     }
 
