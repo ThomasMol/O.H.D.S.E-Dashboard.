@@ -20,10 +20,8 @@ class KostenController extends Controller
         ->leftJoin('inkomsten', 'kosten.inkomsten_id', '=', 'inkomsten.inkomsten_id')
         ->leftJoin('uitgave_deelname as ud_1','ud_1.boete_id','=','kosten.kosten_id')
         ->leftJoin('uitgave_deelname as ud_2','ud_2.extra_kosten_id','=','kosten.kosten_id')
-        ->orderBy('datum','desc')->get();
+        ->orderBy('datum','desc')->paginate(10);
 
-
-        //dd($kosten);
         return view('kosten/index',compact('kosten'));
     }
 

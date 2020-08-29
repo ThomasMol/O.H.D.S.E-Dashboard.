@@ -68,10 +68,10 @@
                         <span data-feather="chevron-down"></span>
                     </a>
                     <div class="collapse show" id="collapse-actief">
-                        <li class="list-group-item d-flex justify-content-between align-items-center ">
+                        {{-- <li class="list-group-item d-flex justify-content-between align-items-center ">
                             <strong>Selecteer alles</strong>
                             <input type="checkbox" class="select-all" data-select-lid-type="actief">
-                        </li>
+                        </li> --}}
                         @foreach($actieve_leden as $lid)
                         <li class="list-group-item d-flex justify-content-between align-items-center">
                             {{ $lid->roepnaam }} {{ $lid->achternaam }}
@@ -79,29 +79,29 @@
                                 <label class="btn btn-outline-secondary @if(!empty($lid->aanwezig)) active @endif">
                                     <input class="form-control" type="checkbox"
                                         name="aanwezigheid[{{$lid->lid_id}}][aanwezig]" value="1"
-                                        @if(!empty($lid->aanwezig)) checked @endif> Aanwezig
+                                        @if(!empty($lid->aanwezig)) checked @endif> Aan
                                 </label>
                                 <label class="btn btn-outline-secondary @if(isset($lid->naheffing)) active @endif">
                                     <input class="form-control" type="checkbox"
                                         name="aanwezigheid[{{$lid->lid_id}}][naheffing]" value="1"
-                                        @if(isset($lid->naheffing)) checked @endif> Naheffing
+                                        @if(isset($lid->naheffing)) checked @endif> Nah
                                 </label>
                                 <label class="btn btn-outline-secondary @if(!empty($lid->afgemeld)) active @endif">
                                     <input class="form-control" type="checkbox"
                                         name="aanwezigheid[{{$lid->lid_id}}][afgemeld]" value="1"
-                                        @if(!empty($lid->afgemeld)) checked @endif> Afgemeld
+                                        @if(!empty($lid->afgemeld)) checked @endif> Afg
                                 </label>
                                 <label class="btn btn-outline-secondary @if(isset($lid->boete_id)) active @endif">
                                     <input class="form-control" type="checkbox"
                                         name="aanwezigheid[{{$lid->lid_id}}][boete]" value="{{$inkomsten_boete_id}}"
-                                        @if(isset($lid->boete_id)) checked @endif> Boete
+                                        @if(isset($lid->boete_id)) checked @endif> B
                                 </label>
                                 <label
                                     class="btn btn-outline-secondary @if(isset($lid->extra_kosten_id)) active @endif">
                                     <input class="form-control" type="checkbox"
                                         name="aanwezigheid[{{$lid->lid_id}}][extra_kosten]"
                                         value="{{$inkomsten_extra_kosten_id}}" @if(isset($lid->extra_kosten_id)) checked
-                                    @endif> Extra kosten
+                                    @endif> Extra k
                                 </label>
                             </div>
                         </li>
@@ -116,10 +116,10 @@
                         <span data-feather="chevron-down"></span>
                     </a>
                     <div class="collapse show" id="collapse-passief">
-                        <li class="list-group-item d-flex justify-content-between align-items-center ">
+                        {{-- <li class="list-group-item d-flex justify-content-between align-items-center ">
                             <strong>Selecteer alles</strong>
                             <input type="checkbox" class="select-all" data-select-lid-type="passief">
-                        </li>
+                        </li> --}}
                         @foreach($passieve_leden as $lid)
                         <li class="list-group-item d-flex justify-content-between align-items-center">
                             {{ $lid->roepnaam }} {{ $lid->achternaam }}
@@ -164,10 +164,10 @@
                         <span data-feather="chevron-down"></span>
                     </a>
                     <div class="collapse" id="collapse-reunisten">
-                        <li class="list-group-item d-flex justify-content-between align-items-center ">
+                        {{-- <li class="list-group-item d-flex justify-content-between align-items-center ">
                             <strong>Selecteer alles</strong>
                             <input type="checkbox" class="select-all" data-select-lid-type="reunisten">
-                        </li>
+                        </li> --}}
                         @foreach($reunisten as $lid)
                         <li class="list-group-item d-flex justify-content-between align-items-center">
                             {{ $lid->roepnaam }} {{ $lid->achternaam }}
@@ -211,10 +211,10 @@
                         <span data-feather="chevron-down"></span>
                     </a>
                     <div class="collapse" id="collapse-geen">
-                        <li class="list-group-item d-flex justify-content-between align-items-center ">
+                        {{-- <li class="list-group-item d-flex justify-content-between align-items-center ">
                             <strong>Selecteer alles</strong>
                             <input type="checkbox" class="select-all" data-select-lid-type="geen">
-                        </li>
+                        </li> --}}
                         @foreach($geen_lid as $lid)
                         <li class="list-group-item d-flex justify-content-between align-items-center">
                             {{ $lid->roepnaam }} {{ $lid->achternaam }}

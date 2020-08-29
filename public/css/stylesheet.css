@@ -67,6 +67,14 @@ main{
     display: inline-block;
 }
 
+/* transactie page */
+#transacties tr.collapsing{
+    transition-duration: 0s;
+}
+#transacties .show td{
+    border-top:none;
+}
+
 /* ? */
 .fade {
     transition: opacity .1s linear;

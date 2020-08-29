@@ -46,4 +46,16 @@ class Transactie extends Model
             -1  => 'Niet van toepassing'
         ];
     }
+    public function delimiterOptions()
+    {
+        return [
+            "," => 'Komma (,)',
+            ";" => 'Puntkomma (;)',
+            "\t" => 'Tab (  )',
+            "|" => 'Bar (|)',
+            ":" => 'Dubbelepunt  (:)',
+            " " => 'Spatie ( )',
+            "^" => 'Caret (^)'
+        ];
+    }
 }

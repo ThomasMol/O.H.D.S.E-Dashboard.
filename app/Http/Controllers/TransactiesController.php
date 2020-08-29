@@ -2,22 +2,20 @@
 
 namespace App\Http\Controllers;
 
-use App\Imports\TransactieImport;
 use App\Lid;
 use App\Rekeningnummer;
-use App\SErekening;
 use App\Transactie;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
+use Illuminate\Support\Facades\Config;
 use Carbon\Carbon;
-use PDO;
 
 class TransactiesController extends Controller
 {
 
     public function index()
     {
-        $transacties = Transactie::leftJoin('lid','lid.lid_id','transactie.lid_id')->orderBy('transactie.datum','desc')->get();
+        $transacties = Transactie::leftJoin('lid','lid.lid_id','transactie.lid_id')->orderBy('transactie.datum','desc')->paginate(10);
         return view('transacties/index', compact('transacties'));
     }
 
@@ -106,18 +104,30 @@ class TransactiesController extends Controller
     //Get function, showing view of upload csv screen
     public function upload()
     {
-        return view('transacties/upload');
+        $transactie = new Transactie();
+
+        return view('transacties/upload',compact('transactie'));
     }
+
+    public function getCsvSettings(): array { return [ 'delimiter' => ";" ]; }
+
+
 
     //Post function, parses csv sheet and returns values to user to check and make changes if needed
     public function parse(Request $request)
     {
+        $data = $request->validate([
+            'delimiter' => 'required',
+            'csv_file' => 'required|file'
+        ]);
+        Config::set('excel.imports.csv.delimiter',$request->delimiter);
         $transactie_model = new Transactie();
         $leden = Lid::ledenGesorteerd()->get();
 
         if ($request->file('csv_file')->isValid()) {
             $file = $request->file('csv_file');
-            $transacties = Excel::toArray(null, $file)[0];
+            $transacties = Excel::toArray(null, $file, null, \Maatwebsite\Excel\Excel::CSV)[0];
+            //dd($transacties);
             array_shift($transacties);
             foreach ($transacties as $key => $transactie) {
                 $transacties[$key][0] = Carbon::parse(strval($transactie[0]))->format("Y-m-d");

@@ -13,40 +13,40 @@
     @endif
 </header>
 
-<div class="table-responsive">
-    <table class="table table-hover table-sm">
-        <thead>
-            <tr>
-                <th scope="col">Datum</th>
-                <th scope="col">Categorie</th>
-                <th scope="col">Omschrijving</th>
-                <th scope="col">Budget</th>
-                <th scope="col">Uitgave</th>
-                <th scope="col">(Totale) Naheffing</th>
-
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>{{Carbon\Carbon::parse($uitgave->datum)->translatedFormat('d F Y - \(l\)')}}</td>
-                <td>{{ $uitgave->soort }}</td>
-                <td>{{ $uitgave->omschrijving }}</td>
-                <td>&euro; {{ format_currency($uitgave->budget) }}</td>
-                <td>&euro; {{ format_currency($uitgave->uitgave) }}</td>
-                <td>&euro; {{ format_currency($uitgave->naheffing) }}</td>
-
-            </tr>
-
-        </tbody>
-    </table>
+<div class="row">
+    <div class="col-lg-4">
+        <div class="card card-sticky">
+            <div class="card-body">
+                <h5>{{Carbon\Carbon::parse($uitgave->datum)->translatedFormat('l d F Y')}}</h5>
+                <p>{{ $uitgave->soort }}<br>
+                    &euro; {{ format_currency($uitgave->budget) }}<br>
+                    &euro; {{ format_currency($uitgave->uitgave) }}<br>
+                    &euro; {{ format_currency($uitgave->naheffing) }}<br>
+                </p>
+                <p>
+                    {{ $uitgave->omschrijving }}
+                </p>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-8">
+        <div class="card">
+            <div class="card-header">
+                <h4>Leden:</h4>
+            </div>
+            <div class="card-body">
+                <ul class="list-group list-group-flush">
+                    @foreach($leden_deelname as $lid)
+                    <li class="list-group-item"><strong>{{$lid->roepnaam}} {{$lid->achternaam}}</strong> @if($lid->aanwezig) Aanwezig
+                        @endif @if($lid->naheffing)Naheffing: {{format_currency($lid->naheffing)}} @endif @if($lid->boete_id) Boete
+                        @endif</li>
+                    @endforeach
+                </ul>
+            </div>
+        </div>
+    </div>
 </div>
-<ul class="list-group">
-    @foreach($leden_deelname as $lid)
-    <li class="list-group-item"><strong>{{$lid->roepnaam}} {{$lid->achternaam}}</strong> @if($lid->aanwezig) Aanwezig
-        @endif @if($lid->naheffing)Naheffing: {{format_currency($lid->naheffing)}} @endif @if($lid->boete_id) Boete
-        @endif</li>
-    @endforeach
-</ul>
+
 @include('confirm_dialog')
 
 @endsection
