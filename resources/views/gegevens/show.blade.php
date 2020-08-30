@@ -13,8 +13,24 @@
                 Accountgegevens
             </div>
             <div class="card-body">
-                <small class="text-muted">(en inlogcode)</small>
+                <small class="text-muted">Emailadres</small>
                 <p>{{Auth::user()->email}}</p>
+
+                <hr>
+                <h4>Wachtwoord veranderen</h4>
+                <form action="" method="post">
+                    @csrf
+                    <input id="email" type="email" name="email" value="{{ Auth::user()->email }}" required hidden>
+                    <label for="inputPassword" class="">Huidig wachtwoord</label>
+                    <input type="password" id="inputPassword" class="form-control mb-4" placeholder="wachtwoord"
+                        name="password" required>
+                    <label for="inputPassword" class="">Nieuw wachtwoord</label>
+                    <input type="password" id="inputPassword" class="form-control mb-4" placeholder="nieuw wachtwoord"
+                        name="new_password" required>
+                    <button class="btn btn-outline-primary btn-block" type="submit"
+                        onclick="return confirm('Weet je zeker dat je je wachtwoord wilt veranderen?')">Verander
+                        wachtwoord</a>
+                </form>
             </div>
         </div>
     </div>
