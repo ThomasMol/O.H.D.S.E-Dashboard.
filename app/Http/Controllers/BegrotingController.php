@@ -9,6 +9,9 @@ use App\Transactie;
 use App\Uitgave;
 use App\Uitgaven;
 use Illuminate\Http\Request;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Exports\FinancienExport;
+use Illuminate\Support\Carbon;
 
 class BegrotingController extends Controller
 {
@@ -100,4 +103,9 @@ class BegrotingController extends Controller
     {
         //
     }
+
+    public function download_financien(){
+        return Excel::download(new FinancienExport, 'ohd_se_financien_'. Carbon::now()->format('d_m_Y') .'.xlsx');
+    }
+
 }

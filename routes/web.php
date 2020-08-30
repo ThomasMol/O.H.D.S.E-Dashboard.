@@ -33,6 +33,9 @@ Route::middleware(['auth'])->group(function () {
     Route::patch('/begroting/{bestuursjaar}', 'BegrotingController@update')->middleware('admin');
     Route::delete('/begroting/{bestuursjaar}', 'BegrotingController@destroy')->middleware('admin');
 
+    Route::get('/begroting/downdload/financien', 'BegrotingController@download_financien');
+
+
     /*borrels*/
     Route::get('/borrels', 'BorrelsController@index');
     Route::get('/borrels/toevoegen', 'BorrelsController@create')->middleware('admin');
@@ -82,6 +85,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/leden/{lid}/wijzig', 'LedenController@edit')->middleware('admin');
     Route::patch('/leden/{lid}', 'LedenController@update')->middleware('admin');
     Route::delete('/leden/{lid}', 'LedenController@destroy')->middleware('admin');
+
     Route::get('/leden/leden_bestand', 'LedenController@download_ledenbestand');
 
     /*transacties */

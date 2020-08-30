@@ -3,8 +3,10 @@
 @section('content')
 <header>
     <h1 class="d-lg-inline">Begroting van het {{$bestuursjaar->jaargang}}e bestuursjaar</h1>
-    <a href="/begroting/{{$bestuursjaar->jaargang}}/wijzig" class="btn btn-outline-primary float-lg-right"><span
+
+    <a href="/begroting/{{$bestuursjaar->jaargang}}/wijzig" class="btn btn-outline-primary float-lg-right ml-2"><span
             data-feather="edit"></span> Wijzig</a>
+    <a href="/begroting/downdload/financien" class="btn btn-outline-secondary float-lg-right"><span data-feather="download"></span> Download finianci&euml;n</a>
 </header>
 
 <div class="card">
