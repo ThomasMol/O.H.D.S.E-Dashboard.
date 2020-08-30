@@ -17,7 +17,7 @@
                 <th scope="col">Omschrijving</th>
                 <th scope="col">Budget</th>
                 <th scope="col">Uitgave</th>
-                <th scope="col">(Totale) Naheffing</th>
+                <th scope="col">Naheffing</th>
                 <th scope="col"></th>
                 @if(Auth::user()->admin == 1)
                 <th scope="col"></th>
@@ -28,15 +28,16 @@
         <tbody>
             @foreach($uitgaven as $uitgave)
             <tr>
-                <th>{{ Carbon\Carbon::parse($uitgave->datum)->translatedFormat('d F Y - \(l\)')}}</th>
+                <th>{{ Carbon\Carbon::parse($uitgave->datum)->translatedFormat('d F Y')}}</th>
                 <td>{{ $uitgave->soort }}</td>
                 <td>{{ $uitgave->omschrijving }}</td>
-                <td>&euro; {{ format_currency($uitgave->budget) }}</td>
-                <td>&euro; {{ format_currency($uitgave->uitgave) }}</td>
-                <td>&euro; {{ format_currency($uitgave->naheffing) }}</td>
+                <td>&euro;{{ format_currency($uitgave->budget) }}</td>
+                <td>&euro;{{ format_currency($uitgave->uitgave) }}</td>
+                <td>&euro;{{ format_currency($uitgave->naheffing) }}</td>
                 <td><a class="btn btn-link" href="/uitgave/{{$uitgave->uitgave_id}}"><span data-feather="eye"></span>
                         Bekijk</a>
                     @if(Auth::user()->admin == 1)
+                    <td>
                     <a class="btn btn-link"
                         href="/uitgaven/{{$uitgave->uitgave_id}}/wijzig/{{$uitgave->jaargang}}"><span
                             data-feather="edit"></span> Wijzig</a>

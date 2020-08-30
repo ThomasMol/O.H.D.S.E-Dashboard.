@@ -17,31 +17,67 @@
     <div class="col-lg-4">
         <div class="card card-sticky">
             <div class="card-body">
-                <h5>{{Carbon\Carbon::parse($uitgave->datum)->translatedFormat('l d F Y')}}</h5>
-                <p>{{ $uitgave->soort }}<br>
-                    &euro; {{ format_currency($uitgave->budget) }}<br>
-                    &euro; {{ format_currency($uitgave->uitgave) }}<br>
-                    &euro; {{ format_currency($uitgave->naheffing) }}<br>
-                </p>
-                <p>
-                    {{ $uitgave->omschrijving }}
-                </p>
+                <div class="row">
+                    <div class="col-sm-12">
+                        <small class="text-muted">Datum</small>
+                        <h4>{{Carbon\Carbon::parse($uitgave->datum)->translatedFormat('d F Y - l')}}</h4>
+                    </div>
+                    <div class="col-lg-12">
+                        <small class="text-muted">Soort</small>
+                        <p>{{ $uitgave->soort }}</p>
+                    </div>
+                    <div class="col-sm-4">
+                        <small class="text-muted">Budget</small>
+                        <p>&euro;{{ format_currency($uitgave->budget) }}</p>
+                    </div>
+                    <div class="col-sm-4">
+                        <small class="text-muted">Uitgave</small>
+                        <p>&euro;{{ format_currency($uitgave->uitgave) }}</p>
+                    </div>
+                    <div class="col-sm-4">
+                        <small class="text-muted">Naheffing</small>
+                        <p>&euro;{{ format_currency($uitgave->naheffing) }}</p>
+                    </div>
+                    <div class="col-sm-12">
+                        <small class="text-muted">Omschrijving</small>
+                        <p>{{ $uitgave->omschrijving }}</p>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
     <div class="col-lg-8">
         <div class="card">
             <div class="card-header">
-                <h4>Leden:</h4>
+                <h4>Leden</h4>
             </div>
             <div class="card-body">
-                <ul class="list-group list-group-flush">
-                    @foreach($leden_deelname as $lid)
-                    <li class="list-group-item"><strong>{{$lid->roepnaam}} {{$lid->achternaam}}</strong> @if($lid->aanwezig) Aanwezig
-                        @endif @if($lid->naheffing)Naheffing: {{format_currency($lid->naheffing)}} @endif @if($lid->boete_id) Boete
-                        @endif</li>
-                    @endforeach
-                </ul>
+                <table class="table table-hover table-sm">
+                    <thead>
+                        <tr>
+                            <th scope="col">Naam</th>
+                            <th scope="col">Aanwezig</th>
+                            <th scope="col">Afgemeld</th>
+                            <th scope="col">Naheffing</th>
+                            <th scope="col">Boete</th>
+                            <th scope="col">Extra kosten</th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach($leden_deelname as $lid)
+                        <tr>
+                            <th><strong>{{$lid->roepnaam}} {{$lid->achternaam}}</strong></th>
+                            <td>@if($lid->aanwezig)<span data-feather="check"></span>@endif</td>
+                            <td>@if($lid->afgemeld)<span data-feather="check"></span>@endif</td>
+                            <td>@if($lid->naheffing)&euro;{{format_currency($lid->naheffing)}}@endif</td>
+                            <td>@if($lid->boete)<span data-feather="check"></span>@endif</td>
+                            <td>@if($lid->extra_kosten)<span data-feather="check"></span>@endif</td>
+                        </tr>
+                        @endforeach
+
+                    </tbody>
+                </table>
             </div>
         </div>
     </div>

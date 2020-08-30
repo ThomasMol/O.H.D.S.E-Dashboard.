@@ -11,29 +11,55 @@
         class="btn btn-outline-primary float-lg-right mr-2"><span data-feather="edit"></span> Wijzig</a>
     @endif
 </header>
-<div class="table-responsive">
-    <table class="table table-hover table-sm">
-        <thead>
-            <tr>
-                <th scope="col">Datum</th>
-                <th scope="col">Omschrijving</th>
-                <th scope="col">Bedrag</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <th scope="row">{{ Carbon\Carbon::parse($contributie->datum)->translatedFormat('d F Y - \(l\)') }}</th>
-                <td>{{ $contributie->soort }}</td>
-                <td>{{ format_currency($contributie->bedrag) }}</td>
-            </tr>
-        </tbody>
-    </table>
+<div class="row">
+    <div class="col-lg-4">
+        <div class="card card-sticky">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <small class="text-muted">Datum</small>
+                        <h4>{{Carbon\Carbon::parse($contributie->datum)->translatedFormat('d F Y - l')}}</h4>
+                    </div>
+                    <div class="col-lg-12">
+                        <small class="text-muted">Omschrijving</small>
+                        <p>{{ $contributie->soort }}</p>
+                    </div>
+                    <div class="col-sm-4">
+                        <small class="text-muted">Bedrag</small>
+                        <p><strong>&euro;{{ format_currency($contributie->bedrag) }}</strong></p>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-8">
+        <div class="card">
+            <div class="card-header">
+                <h4>Leden</h4>
+            </div>
+            <div class="card-body">
+                <table class="table table-hover table-sm">
+                    <thead>
+                        <tr>
+                            <th scope="col">Naam</th>
+                            <th scope="col"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach($leden_deelname as $lid)
+                        <tr>
+                            <th><strong>{{$lid->roepnaam}} {{$lid->achternaam}}</strong></th>
+                            <td><span data-feather="check"></span></td>
+                        </tr>
+                        @endforeach
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
 </div>
-<ul>
-    @foreach($leden_deelname as $lid)
-    <li>{{$lid->roepnaam}} </li>
-    @endforeach
-</ul>
 
 @include('confirm_dialog')
 @endsection

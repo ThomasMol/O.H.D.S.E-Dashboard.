@@ -3,7 +3,8 @@
 @section('content')
 <header>
     <h1 class="d-lg-inline">Mijn gegevens</h1>
-    <a href="/gegevens/wijzig" class="btn btn-outline-primary float-lg-right"><span data-feather="edit"></span> Wijzig</a>
+    <a href="/gegevens/wijzig" class="btn btn-outline-primary float-lg-right"><span data-feather="edit"></span>
+        Wijzig</a>
 </header>
 <div class="row">
     <div class="col-md-4">
@@ -12,8 +13,8 @@
                 Accountgegevens
             </div>
             <div class="card-body">
-                <label for="email">Email (en inlogcode)</label>
-                <h4>{{Auth::user()->email}}</h4>
+                <small class="text-muted">(en inlogcode)</small>
+                <p>{{Auth::user()->email}}</p>
             </div>
         </div>
     </div>
@@ -24,74 +25,91 @@
                 Persoonlijke gegevens
             </div>
             <div class="card-body">
-                <label for="roepnaam">Roepnaam</label>
-                <h4>{{Auth::user()->roepnaam}}</h4>
+                <small class="text-muted">Roepnaam</small>
+                <p>{{Auth::user()->roepnaam}}</p>
 
-                <label for="voornamen">Voornamen</label>
-                <h4>{{Auth::user()->voornamen}}</h4>
+                <small class="text-muted">Voornamen</small>
+                <p>{{Auth::user()->voornamen}}</p>
 
-                <label for="achternaam">Achternaam</label>
-                <h4>{{Auth::user()->achternaam}}</h4>
+                <small class="text-muted">Achternaam</small>
+                <p>{{Auth::user()->achternaam}}</p>
 
-                <label for="telefoonnummer">Telefoonnummer</label>
-                <h4>{{$lid_gegevens->telefoonnummer}}</h4>
+                <small class="text-muted">Telefoonnummer</small>
+                <p>{{$lid_gegevens->telefoonnummer}}</p>
 
-                <label for="geboorteplaats">Geboorteplaats</label>
-                <h4>{{$lid_gegevens->geboorteplaats}}</h4>
+                <small class="text-muted">Geboorteplaats</small>
+                <p>{{$lid_gegevens->geboorteplaats}}</p>
 
-                <label for="geboortedatum">Geboortedatum</label>
-                <h4>{{$lid_gegevens->geboortedatum}}</h4>
+                <small class="text-muted">Geboortedatum</small>
+                <p>{{$lid_gegevens->geboortedatum}}</p>
 
             </div>
         </div>
 
 
     </div>
-    <div class="col-md-4 card">
-        <h3>Adres</h3>
-        <label for="straatnaam">Straatnaam, nummer en toevoeging</label>
-        <h4>{{$lid_gegevens->straatnaam}}</h4>
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-header">
+                Adres
+            </div>
+            <div class="card-body">
+                <small class="text-muted">Straatnaam, nummer en toevoeging</small>
+                <p>{{$lid_gegevens->straatnaam}}</p>
 
-        <label for="postcode">Postcode</label>
-        <h4>{{$lid_gegevens->postcode}}</h4>
+                <small class="text-muted">Postcode</small>
+                <p>{{$lid_gegevens->postcode}}</p>
 
-        <label for="stad">Stad</label>
-        <h4>{{$lid_gegevens->stad}}</h4>
+                <small class="text-muted">Stad</small>
+                <p>{{$lid_gegevens->stad}}</p>
 
-        <label for="land">Land</label>
-        <h4>{{$lid_gegevens->land}}</h4>
-
+                <small class="text-muted">Land</small>
+                <p>{{$lid_gegevens->land}}</p>
+            </div>
+        </div>
     </div>
 
-    <div class="col-md-4 card">
-        <h3>Finance</h3>
-        @foreach($rekeningnummers as $rekeningnummer)
-        <label for="rekeningnummer">Rekeningnummer {{$loop->index + 1}}</label>
-        <h4>{{$rekeningnummer->rekeningnummer}}</h4>
-        @endforeach
-        <label for="verschuldigd">Verschuldigd</label>
-        <h4>&euro; {{ format_currency($financien->verschuldigd)}}</h4>
-        <label for="overgemaakt">Overgemaakt</label>
-        <h4>&euro; {{format_currency($financien->overgemaakt)}}</h4>
-        <label for="gespaard">Gespaard</label>
-        <h4>&euro; {{format_currency($financien->gespaard)}}</h4>
-        <label for="gespaard">Schuld</label>
-        <h4>&euro; {{format_currency($financien->schuld)}}</h4>
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-header">
+                Finance
+            </div>
+            <div class="card-body">
+                @foreach($rekeningnummers as $rekeningnummer)
+                <small class="text-muted">Rekeningnummer {{$loop->index + 1}}</small>
+                <p>{{$rekeningnummer->rekeningnummer}}</p>
+                @endforeach
+                <small class="text-muted">Verschuldigd</small>
+                <p>&euro; {{ format_currency($financien->verschuldigd)}}</p>
+                <small class="text-muted">Overgemaakt</small>
+                <p>&euro; {{format_currency($financien->overgemaakt)}}</p>
+                <small class="text-muted">Gespaard</small>
+                <p>&euro; {{format_currency($financien->gespaard)}}</p>
+                <small class="text-muted">Schuld</small>
+                <p>&euro; {{format_currency($financien->schuld)}}</p>
+            </div>
+        </div>
     </div>
 
-    <div class="col-md-4 card">
-        <h3>Overige gegevens</h3>
-        <label for="admin">Admin?</label>
-        <h4>{{Auth::user()->admin}}</h4>
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-header">
+                Overige gegevens
+            </div>
+            <div class="card-body">
+                <small class="text-muted">Admin?</small>
+                <p>{{Auth::user()->admin}}</p>
 
-        <label for="type_lid">Type lid</label>
-        <h4>{{Auth::user()->type_lid}}</h4>
+                <small class="text-muted">Type lid</small>
+                <p>{{Auth::user()->type_lid}}</p>
 
-        <label for="lichting">Lichting</label>
-        <h4>{{Auth::user()->lichting}}</h4>
+                <small class="text-muted">Lichting</small>
+                <p>{{Auth::user()->lichting}}</p>
 
-        <label for="profiel_foto">Profiel foto</label>
-        <img />
+                <small class="text-muted">Profiel foto</small>
+                <img />
+            </div>
+        </div>
     </div>
 </div>
 @endsection

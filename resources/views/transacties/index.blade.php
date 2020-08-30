@@ -21,7 +21,6 @@
                         <th scope="col">Datum</th>
                         <th scope="col">Naam/Omschrijving</th>
                         <th scope="col">Bedrag</th>
-                        <th scope="col">Lid</th>
                         <th scope="col"></th>
                         <th scope="col"></th>
                     </tr>
@@ -33,7 +32,6 @@
                         <th>{{ Carbon\Carbon::parse($transactie->datum)->translatedFormat('d F Y') }}</th>
                         <td>{{ $transactie->naam }}</td>
                         <td>&euro;{{ format_currency($transactie->bedrag) }}</td>
-                        <td>{{ $transactie->roepnaam . ' ' . $transactie->achternaam }}</td>
                         <td>
                             <button data-target="#transactie-id-{{$transactie->transactie_id}}" class="btn btn-link"
                                 data-toggle="collapse" role="button" aria-expanded="false"
@@ -49,8 +47,8 @@
                         </td>
                     </tr>
                     <tr class="collapse" id="transactie-id-{{$transactie->transactie_id}}">
-                        <td></td>
                         <td colspan=6>
+                            <strong>Lid: </strong>{{ $transactie->roepnaam . ' ' . $transactie->achternaam }}<br>
                             <strong>Spaarplan: </strong>{{ $transactie->spaarplanOptions()[$transactie->spaarplan]  }}<br>
                             <strong>Tegenrekening: </strong>{{ $transactie->tegenrekening }}<br>
                             <strong>Mutatie: </strong>{{ $transactie->mutatieOptions()[$transactie->mutatie_soort] }}<br>
