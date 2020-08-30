@@ -82,6 +82,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/leden/{lid}/wijzig', 'LedenController@edit')->middleware('admin');
     Route::patch('/leden/{lid}', 'LedenController@update')->middleware('admin');
     Route::delete('/leden/{lid}', 'LedenController@destroy')->middleware('admin');
+    Route::get('/leden/leden_bestand', 'LedenController@download_ledenbestand');
 
     /*transacties */
     Route::get('/transacties', 'TransactiesController@index');

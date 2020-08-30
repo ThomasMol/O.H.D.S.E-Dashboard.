@@ -7,6 +7,9 @@ use App\LidGegevens;
 use App\Rekeningnummer;
 use Illuminate\Support\Facades\Hash;
 use App\Lid;
+use App\Exports\LedenExport;
+use Maatwebsite\Excel\Facades\Excel;
+use Illuminate\Support\Carbon;
 
 class LedenController extends Controller
 {
@@ -14,7 +17,7 @@ class LedenController extends Controller
         $leden = Lid::select('lid.lid_id', 'roepnaam', 'achternaam','email','telefoonnummer','type_lid','schuld','gespaard','financien.lid_id')
             ->leftJoin('financien', 'lid.lid_id','financien.lid_id')
             ->leftJoin('lid_gegevens', 'lid.lid_id','lid_gegevens.lid_id')
-            ->where('type_lid','!=','Geen')->orderBy('type_lid','asc')->orderBy('roepnaam','asc')->paginate(20);
+            ->orderBy('type_lid','asc')->orderBy('roepnaam','asc')->paginate(20);
         return view('leden/index',compact('leden'));
     }
 
@@ -166,6 +169,10 @@ class LedenController extends Controller
     public function destroy(Lid $lid){
         $lid->delete();
         return redirect('/leden');
+    }
+
+    public function download_ledenbestand(){
+        return Excel::download(new LedenExport, 'ohd_se_leden_bestand_'. Carbon::now()->format('d_m_Y') .'.xlsx');
     }
 
     public function remove_rekeningnummers($id){
