@@ -151,6 +151,11 @@ form .list-group-item{
     padding: 0 2px;
 }
 
+/* pagination */
+.pagination{
+    flex-wrap: wrap;
+}
+
 /*MOBILE*/
 @media (max-width: 992px) {
 

@@ -214,7 +214,7 @@ class TransactiesController extends Controller
     {
         subtract_from_se_rekening($bedrag);
 
-        if (isset($lid_id) && $spaarplan == 1) {
+        /* if (isset($lid_id) && $spaarplan == 1) {
             subtract_gespaard($lid_id, $bedrag);
             return;
         } elseif (isset($lid_id) && $spaarplan == 0) {
@@ -222,7 +222,8 @@ class TransactiesController extends Controller
             return;
         } else {
             return;
-        }
+        } */
+        return;
     }
 
     //Handle Bij transaction
