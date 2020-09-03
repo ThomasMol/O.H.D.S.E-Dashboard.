@@ -5,16 +5,6 @@
     <h2>Wijzig je gegevens</h2>
 </header>
 <div class="card">
-    <form class="card-body mb-4" method="POST" action="/gegevens/wijziglogin">
-        @csrf
-        <h3>Inlog gegevens</h3>
-        <label for="email">Email</label>
-        <input type="email" class="form-control mb-3" id="email" name="email" required value="{{Auth::user()->email}}">
-        <label for="wacthwoord">Wachtwoord</label>
-        <input type="text" class="form-control mb-3" id="wacthwoord" name="password" value="">
-        <button class="btn btn-primary btn-lg btn-block" type="submit" disabled>Opslaan</button>
-    </form>
-
     <form class="card-body mb-4" method="POST" action="/gegevens">
         @csrf
         @method('PATCH')

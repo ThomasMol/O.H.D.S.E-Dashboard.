@@ -62,7 +62,7 @@
             value="{{old('gespaard')}}">
 
         <h3>Overige gegevens</h3>
-        <label for="admin">Admin?</label>
+        <label for="admin">Bestuur</label>
         <select class="form-control mb-3" id="admin" name="admin" required>
             @foreach($lid->adminOptions() as $key => $admin)
             <option value="{{ $key }}">{{ $admin }}

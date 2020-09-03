@@ -113,8 +113,8 @@
                 Overige gegevens
             </div>
             <div class="card-body">
-                <small class="text-muted">Admin?</small>
-                <p>{{Auth::user()->admin}}</p>
+                <small class="text-muted">Bestuur</small>
+                <p>{{$lid->adminOptions()[Auth::user()->admin]}}</p>
 
                 <small class="text-muted">Type lid</small>
                 <p>{{Auth::user()->type_lid}}</p>
@@ -122,8 +122,8 @@
                 <small class="text-muted">Lichting</small>
                 <p>{{Auth::user()->lichting}}</p>
 
-                <small class="text-muted">Profiel foto</small>
-                <img />
+                {{-- <small class="text-muted">Profiel foto</small>
+                <img /> --}}
             </div>
         </div>
     </div>

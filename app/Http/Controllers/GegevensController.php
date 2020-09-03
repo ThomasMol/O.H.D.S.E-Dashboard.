@@ -9,7 +9,6 @@ use App\Rekeningnummer;
 use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
 
-
 class GegevensController extends Controller
 {
     public function index(){
@@ -19,7 +18,8 @@ class GegevensController extends Controller
         $verschuldigd = verschuldigd(Auth::user()->lid_id);
         $overgemaakt = overgemaakt(Auth::user()->lid_id);
         $gespaard = gespaard(Auth::user()->lid_id);
-        return view('gegevens/show',compact('financien','rekeningnummers' ,'lid_gegevens'));
+        $lid = new Lid();
+        return view('gegevens/show',compact('financien','rekeningnummers' ,'lid_gegevens','lid'));
     }
     public function edit(){
         $rekeningnummers = Rekeningnummer::findMany( Auth::user()->lid_id);

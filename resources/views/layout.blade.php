@@ -53,15 +53,16 @@
                                 href="/begroting/{{$huidig_jaar->jaargang}}">
                                 Begroting
                             </a>
-                            @endif
                             <a class="dropdown-item {{ Request::is('contributie*') ? 'active' : '' }}"
                                 href="/contributies">
                                 Contributies
                             </a>
+                            @endif
                             <a class="dropdown-item {{ Request::is('declaratie*') ? 'active' : '' }}"
                                 href="/declaraties">
                                 Declaraties
                             </a>
+                            @if(Auth::user()->admin == 1)
                             <a class="dropdown-item {{ Request::is('kost*') ? 'active' : '' }}" href="/kosten">
                                 Overige kosten
                             </a>
@@ -69,6 +70,7 @@
                                 href="/transacties">
                                 Transacties
                             </a>
+                            @endif
                             <a class="dropdown-item {{ Request::is('uitgave*') ? 'active' : '' }}" href="/uitgaven">
                                 Uitgaven
                             </a>

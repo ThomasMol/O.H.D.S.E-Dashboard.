@@ -46,10 +46,10 @@ Route::middleware(['auth'])->group(function () {
     Route::delete('/borrels/{borrel}', 'BorrelsController@destroy')->middleware('admin');
 
     /*contributies*/
-    Route::get('/contributies', 'ContributieController@index');
+    Route::get('/contributies', 'ContributieController@index')->middleware('admin');;
     Route::get('/contributies/toevoegen/{bestuursjaar}', 'ContributieController@create')->middleware('admin');
     Route::post('/contributies', 'ContributieController@store')->middleware('admin');
-    Route::get('/contributie/{contributie}', 'ContributieController@show');
+    Route::get('/contributie/{contributie}', 'ContributieController@show')->middleware('admin');;
     Route::get('/contributies/{contributie}/wijzig/{bestuursjaar}', 'ContributieController@edit')->middleware('admin');
     Route::patch('/contributies/{contributie}', 'ContributieController@update')->middleware('admin');
     Route::delete('/contributies/{contributie}', 'ContributieController@destroy')->middleware('admin');
@@ -89,10 +89,10 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/leden/leden_bestand', 'LedenController@download_ledenbestand');
 
     /*transacties */
-    Route::get('/transacties', 'TransactiesController@index');
+    Route::get('/transacties', 'TransactiesController@index')->middleware('admin');;
     Route::get('/transacties/toevoegen', 'TransactiesController@create')->middleware('admin');
     Route::post('/transacties', 'TransactiesController@store')->middleware('admin');
-    Route::get('/transactie/{transactie}', 'TransactiesController@show');
+    Route::get('/transactie/{transactie}', 'TransactiesController@show')->middleware('admin');;
     Route::get('/transacties/{transactie}/wijzig', 'TransactiesController@edit')->middleware('admin');
     Route::patch('/transacties/{transactie}', 'TransactiesController@update')->middleware('admin');
     Route::delete('/transacties/{transactie}', 'TransactiesController@destroy')->middleware('admin');

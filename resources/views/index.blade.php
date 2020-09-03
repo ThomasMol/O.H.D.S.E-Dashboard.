@@ -9,64 +9,25 @@
 </header>
 
 <div class="row">
-    <div class="col mb-4">
+    <div class="col-md-4 mb-4">
         <div class="card">
             <div class="card-header">Financi&euml;n</div>
             <div class="card-body">
-                <h3>&euro; {{format_currency($financien->gespaard)}} <small class="text-muted"> gespaard</small></h3>
-                <hr>
-                <h2>&euro; {{format_currency($financien->schuld)}} <small class="text-muted"> schuld</small></h2>
+                <small class="text-muted"> gespaard</small>
+                <h3>&euro; {{format_currency($financien->gespaard)}} </h3>
+                <small class="text-muted"> schuld</small>
+                <h2>&euro; {{format_currency($financien->schuld)}} </h2>
             </div>
 
         </div>
     </div>
-    <div class="col mb-4">
+    <div class="col-md-8 mb-4">
         <div id="se-calendar" class="card">
             <div class="card-header">
                 Agenda
             </div>
             <div class="card-body">
 
-            </div>
-        </div>
-    </div>
-
-    <div class="col mb-4">
-        <div class="card">
-            <div class="card-header">
-                Laatste declaraties
-            </div>
-            <div class="card-body p-0">
-                <table class="table table-hover">
-                    <thead>
-                        <tr>
-                            <th scope="col">Datum</th>
-                            <th scope="col">Omschrijving</th>
-                            <th scope="col">Bedrag</th>
-                            <th scope="col"></th>
-                            <th scope="col"></th>
-
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach($declaraties as $declaratie)
-                        <tr>
-                            <th>{{ Carbon\Carbon::parse($declaratie->datum)->translatedFormat('d F Y - \(l\)') }}</th>
-                            <td>{{ $declaratie->omschrijving }}</td>
-                            <td>&euro; {{ format_currency($declaratie->bedrag) }}</td>
-                            <td>
-                                <a class="btn btn-link" href="/declaratie/{{$declaratie->declaratie_id}}"><span
-                                        data-feather="eye"></span> Bekijk</a>
-                                @if(Auth::user()->admin == 1)
-                                <a class="btn btn-link" href="/declaraties/{{$declaratie->declaratie_id}}/wijzig"><span
-                                        data-feather="edit"></span> Wijzig</a>
-                                @endif
-                            </td>
-                        </tr>
-                        @endforeach
-
-                    </tbody>
-                </table>
             </div>
         </div>
     </div>

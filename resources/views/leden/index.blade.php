@@ -18,8 +18,8 @@
             <table class="table table-hover table-sm">
                 <thead>
                     <tr>
+                        <th scope="col">Type lid</th>
                         <th scope="col">Naam</th>
-                        <th scope="col">Email</th>
                         <th scope="col">Schuld</th>
                         <th scope="col">Gespaard</th>
                         <th scope="col"></th>
@@ -31,8 +31,8 @@
                 <tbody>
                     @foreach($leden as $lid)
                     <tr>
+                        <td>{{ $lid->type_lid }}</td>
                         <th scope="row">{{ $lid->roepnaam }} {{ $lid->achternaam }}</th>
-                        <td>{{ $lid->email }}</td>
                         <td>&euro; {{ format_currency($lid->schuld) }}</td>
                         <td>&euro; {{ format_currency($lid->gespaard) }}</td>
                         <td scope="col">
