@@ -4,17 +4,17 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateLidGegevensTable extends Migration
+class CreateTransactieTable extends Migration
 {
     /**
      * Schema table name to migrate
      * @var string
      */
-    public $tableName = 'lid_gegevens';
+    public $tableName = 'transactie';
 
     /**
      * Run the migrations.
-     * @table lid_gegevens
+     * @table transactie
      *
      * @return void
      */
@@ -22,14 +22,16 @@ class CreateLidGegevensTable extends Migration
     {
         Schema::create($this->tableName, function (Blueprint $table) {
             $table->engine = 'InnoDB';
-            $table->integer('lid_id');
-            $table->string('straatnaam')->nullable()->default(null);
-            $table->string('postcode')->nullable()->default(null);
-            $table->string('stad')->nullable()->default(null);
-            $table->string('land')->nullable()->default(null);
-            $table->string('telefoonnummer')->nullable()->default(null);
-            $table->date('geboortedatum')->nullable()->default(null);
-            $table->string('geboorteplaats')->nullable()->default(null);
+            $table->increments('transactie_id');
+            $table->integer('lid_id')->nullable()->default(null);
+            $table->date('datum');
+            $table->text('naam');
+            $table->string('tegenrekening', 191)->nullable()->default(null);
+            $table->string('af_bij', 64);
+            $table->decimal('bedrag', 16, 2);
+            $table->string('mutatie_soort', 191);
+            $table->text('mededelingen');
+            $table->tinyInteger('spaarplan')->nullable()->default(null);
 
             $table->index(["lid_id"], 'lid_id');
             $table->nullableTimestamps();

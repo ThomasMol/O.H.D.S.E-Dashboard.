@@ -4,17 +4,17 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateCommissieTable extends Migration
+class CreateLidGegevensTable extends Migration
 {
     /**
      * Schema table name to migrate
      * @var string
      */
-    public $tableName = 'commissie';
+    public $tableName = 'lid_gegevens';
 
     /**
      * Run the migrations.
-     * @table commissie
+     * @table lid_gegevens
      *
      * @return void
      */
@@ -22,10 +22,14 @@ class CreateCommissieTable extends Migration
     {
         Schema::create($this->tableName, function (Blueprint $table) {
             $table->engine = 'InnoDB';
-            $table->increments('commissie_id');
             $table->integer('lid_id');
-            $table->integer('jaar');
-            $table->string('type_commissie');
+            $table->string('straatnaam', 191)->nullable()->default(null);
+            $table->string('postcode', 191)->nullable()->default(null);
+            $table->string('stad', 191)->nullable()->default(null);
+            $table->string('land', 191)->nullable()->default(null);
+            $table->string('telefoonnummer', 191)->nullable()->default(null);
+            $table->date('geboortedatum')->nullable()->default(null);
+            $table->string('geboorteplaats', 191)->nullable()->default(null);
 
             $table->index(["lid_id"], 'lid_id');
             $table->nullableTimestamps();

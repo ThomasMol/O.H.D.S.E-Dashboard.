@@ -4,17 +4,17 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateUitgaveDeelnameTable extends Migration
+class CreateSemperExcelsiusRekeningTable extends Migration
 {
     /**
      * Schema table name to migrate
      * @var string
      */
-    public $tableName = 'uitgave_deelname';
+    public $tableName = 'semper_excelsius_rekening';
 
     /**
      * Run the migrations.
-     * @table uitgave_deelname
+     * @table semper_excelsius_rekening
      *
      * @return void
      */
@@ -22,9 +22,10 @@ class CreateUitgaveDeelnameTable extends Migration
     {
         Schema::create($this->tableName, function (Blueprint $table) {
             $table->engine = 'InnoDB';
-            $table->integer('uitgave_id');
-            $table->integer('lid_id');
-            $table->decimal('naheffing', 10, 2)->nullable()->default(null);
+            $table->increments('rekening_id');
+            $table->string('rekeningnummer', 191);
+            $table->decimal('saldo', 16, 2);
+            $table->string('soort')->nullable()->default(null);
             $table->nullableTimestamps();
         });
     }

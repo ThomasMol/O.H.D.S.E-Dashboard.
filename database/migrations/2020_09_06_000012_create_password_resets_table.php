@@ -4,17 +4,17 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateSemperExcelsiusRekeningTable extends Migration
+class CreatePasswordResetsTable extends Migration
 {
     /**
      * Schema table name to migrate
      * @var string
      */
-    public $tableName = 'semper_excelsius_rekening';
+    public $tableName = 'password_resets';
 
     /**
      * Run the migrations.
-     * @table semper_excelsius_rekening
+     * @table password_resets
      *
      * @return void
      */
@@ -22,9 +22,11 @@ class CreateSemperExcelsiusRekeningTable extends Migration
     {
         Schema::create($this->tableName, function (Blueprint $table) {
             $table->engine = 'InnoDB';
-            $table->string('rekeningnummer');
-            $table->decimal('saldo', 16, 2);
-            $table->nullableTimestamps();
+            $table->string('email', 191);
+            $table->string('token', 191);
+            $table->timestamp('created_at')->nullable()->default(null);
+
+            $table->index(["email"], 'password_resets_email_index');
         });
     }
 

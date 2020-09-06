@@ -4,17 +4,17 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateBorrelTable extends Migration
+class CreateUitgavenTable extends Migration
 {
     /**
      * Schema table name to migrate
      * @var string
      */
-    public $tableName = 'borrel';
+    public $tableName = 'uitgaven';
 
     /**
      * Run the migrations.
-     * @table borrel
+     * @table uitgaven
      *
      * @return void
      */
@@ -22,12 +22,16 @@ class CreateBorrelTable extends Migration
     {
         Schema::create($this->tableName, function (Blueprint $table) {
             $table->engine = 'InnoDB';
-            $table->increments('borrel_id');
-            $table->date('datum');
-            $table->decimal('budget', 10, 2);
-            $table->decimal('uitgave', 10, 2);
-            $table->decimal('naheffing', 10, 2);
-            $table->text('omschrijving')->nullable()->default(null);
+            $table->increments('uitgaven_id');
+            $table->integer('jaargang');
+            $table->string('soort');
+            $table->double('budget')->default('0.00');
+            $table->double('realisatie')->default('0.00');
+            $table->double('verschil')->default('0.00');
+            $table->tinyInteger('readonly')->default('0');
+
+            $table->index(["jaargang"], 'jaargang');
+            $table->softDeletes();
             $table->nullableTimestamps();
         });
     }

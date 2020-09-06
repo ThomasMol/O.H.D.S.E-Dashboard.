@@ -4,17 +4,17 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateBestuurTable extends Migration
+class CreateUitgaveTable extends Migration
 {
     /**
      * Schema table name to migrate
      * @var string
      */
-    public $tableName = 'bestuur';
+    public $tableName = 'uitgave';
 
     /**
      * Run the migrations.
-     * @table bestuur
+     * @table uitgave
      *
      * @return void
      */
@@ -22,12 +22,15 @@ class CreateBestuurTable extends Migration
     {
         Schema::create($this->tableName, function (Blueprint $table) {
             $table->engine = 'InnoDB';
-            $table->increments('bestuur_id');
-            $table->integer('lid_id');
-            $table->integer('jaar');
-            $table->string('positie');
+            $table->increments('uitgave_id');
+            $table->integer('uitgaven_id');
+            $table->date('datum');
+            $table->decimal('budget', 10, 2)->nullable()->default(null);
+            $table->decimal('uitgave', 10, 2);
+            $table->decimal('naheffing', 10, 2)->nullable()->default(null);
+            $table->text('omschrijving')->nullable()->default(null);
 
-            $table->index(["lid_id"], 'lid_id');
+            $table->index(["uitgaven_id"], 'categorie');
             $table->nullableTimestamps();
         });
     }

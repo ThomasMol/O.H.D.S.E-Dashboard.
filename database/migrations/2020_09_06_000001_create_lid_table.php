@@ -24,14 +24,14 @@ class CreateLidTable extends Migration
             $table->engine = 'InnoDB';
             $table->increments('lid_id');
             $table->tinyInteger('admin');
-            $table->string('email');
-            $table->string('password')->nullable()->default(null);
-            $table->string('type_lid')->nullable()->default(null);
-            $table->string('roepnaam')->nullable()->default(null);
-            $table->string('voornamen')->nullable()->default(null);
-            $table->string('achternaam')->nullable()->default(null);
+            $table->string('email', 191);
+            $table->string('password', 191)->nullable()->default(null);
+            $table->string('type_lid', 191)->nullable()->default(null);
+            $table->string('roepnaam', 191)->nullable()->default(null);
+            $table->string('voornamen', 191)->nullable()->default(null);
+            $table->string('achternaam', 191)->nullable()->default(null);
             $table->integer('lichting')->nullable()->default(null);
-            $table->string('profiel_foto')->nullable()->default(null);
+            $table->string('profiel_foto', 191)->nullable()->default(null);
 
             $table->unique(["email"], 'email');
             $table->softDeletes();

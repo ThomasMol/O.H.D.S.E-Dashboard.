@@ -4,17 +4,17 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateFinancienTable extends Migration
+class CreateRekeningnummerTable extends Migration
 {
     /**
      * Schema table name to migrate
      * @var string
      */
-    public $tableName = 'financien';
+    public $tableName = 'rekeningnummer';
 
     /**
      * Run the migrations.
-     * @table financien
+     * @table rekeningnummer
      *
      * @return void
      */
@@ -23,13 +23,10 @@ class CreateFinancienTable extends Migration
         Schema::create($this->tableName, function (Blueprint $table) {
             $table->engine = 'InnoDB';
             $table->integer('lid_id');
-            $table->decimal('overgemaakt', 16, 2);
-            $table->decimal('verschuldigd', 16, 2);
-            $table->decimal('schuld', 16, 2)->nullable()->default(null);
-            $table->decimal('gespaard', 16, 2)->nullable()->default(null);
+            $table->string('rekeningnummer', 191);
 
             $table->index(["lid_id"], 'lid_id');
-            $table->timestamps();
+            $table->nullableTimestamps();
         });
     }
 

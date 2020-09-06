@@ -6,16 +6,12 @@ use App\Financien;
 use App\LidGegevens;
 use App\Declaratie;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\Request;
 
 
 class HomeController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
-
-    public function index (){
+    public function index (Request $request){
         $user_id = Auth::user()->lid_id;
         $financien = Financien::find($user_id);
         $lid_gegevens = LidGegevens::find($user_id);
@@ -26,6 +22,10 @@ class HomeController extends Controller
             ->orWhere('declaratie.betaald_door_id', '=', $user_id)
             ->orWhere('declaratie_deelname.lid_id', '=', $user_id);
         })->groupBy('declaratie.declaratie_id')->orderBy('datum', 'desc')->take(5)->get();
+
+        if ($request->wantsJson()) {
+            return response()->json(['data' => $lid_gegevens]);
+        }
         return view('index',compact('financien','lid_gegevens','declaraties'));
     }
 
