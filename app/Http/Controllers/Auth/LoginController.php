@@ -52,11 +52,20 @@ class LoginController extends Controller
         ]);
         $email = $request->input('email');
         $password = $request->input('password');
-        if(Auth::attempt(['email'=>$email, 'password'=>$password])){
-            //return auth()->user();
-            return redirect('/');
+
+        if($request->wantsJson()){
+            if(Auth::attempt(['email'=>$email, 'password'=>$password])){
+                $accesstoken = Auth::user()->createToken('authToken')->accessToken;
+                return response(['user'=>Auth::user(), 'acces_token'=>$accesstoken]);
+            }else{
+                return response(['message'=>'Invalid login creds']);
+            }
         }else{
-            return redirect('/login')->witherrors('Email of wachtwoord fout, probeer opnieuw.');
+            if(Auth::attempt(['email'=>$email, 'password'=>$password])){
+                return redirect('/');
+            }else{
+                return redirect('/login')->witherrors('Email of wachtwoord fout, probeer opnieuw.');
+            }
         }
 
     }
