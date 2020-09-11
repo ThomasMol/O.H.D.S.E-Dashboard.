@@ -21,7 +21,7 @@
 
         <p>Totaal AF <a href="/transacties">transacties</a> : {{format_currency($transacties_af_aggregate)}}</p>
         <p>Totaal <a href="/uitgaven">Uitgaven</a>: {{format_currency($uitgaven_aggregate)}}</p>
-        <h4>Verschil tussen transacteis en uitgaven:
+        <h4>Verschil tussen transacties en uitgaven:
         <span class="badge @if($transacties_af_aggregate - $uitgaven_aggregate == 0) badge-success @else badge-warning @endif">&euro; {{format_currency($transacties_af_aggregate - $uitgaven_aggregate)}}</span>
         </h4>
     </div>

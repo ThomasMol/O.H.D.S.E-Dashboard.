@@ -9,6 +9,13 @@
         Declaratie toevoegen</a>
 </header>
 
+<div class="alert alert-warning alert-dismissible fade show" role="alert">
+    <span data-feather="alert-circle"></span> Deze pagina is louter bedoeld voor 'wie betaalt wat'-achtige declaraties. Denk aan pr&eacute;-borrel herendiners en dergelijken. Heb je iets betaald voor SE waar budget voor was? Stuur dan een tikkie naar de fiscus.
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+
 <div class="card">
     <div class="card-body">
         <div class="table-responsive">
