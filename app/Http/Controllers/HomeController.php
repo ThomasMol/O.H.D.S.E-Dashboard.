@@ -29,4 +29,12 @@ class HomeController extends Controller
         return view('index',compact('financien','lid_gegevens','declaraties'));
     }
 
+    public function test(Request $request){
+        $lid_gegevens = LidGegevens::find(49);
+        if ($request->wantsJson()) {
+            return response()->json($lid_gegevens);
+        }
+        return redirect('/');
+    }
+
 }

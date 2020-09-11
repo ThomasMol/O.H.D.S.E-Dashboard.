@@ -18,7 +18,7 @@
 
                 <hr>
                 <h4>Wachtwoord veranderen</h4>
-                <form action="" method="post">
+                <form action="/gegevens/wijzig_wachtwoord" method="post">
                     @csrf
                     <input id="email" type="email" name="email" value="{{ Auth::user()->email }}" required hidden>
                     <label for="inputPassword" class="">Huidig wachtwoord</label>

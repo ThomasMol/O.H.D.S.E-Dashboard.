@@ -19,9 +19,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/gegevens', 'GegevensController@index');
     Route::get('/gegevens/wijzig', 'GegevensController@edit');
     Route::patch('/gegevens', 'GegevensController@update');
-
-    // TODO password reset, email change
-    //Route::post('/gegevens/wijziglogin', 'GegevensController@wijziglogin');
+    Route::post('/gegevens/wijzig_wachtwoord', 'GegevensController@wijzig_wachtwoord');
 
 
     // begroting
@@ -37,13 +35,13 @@ Route::middleware(['auth'])->group(function () {
 
 
     /*borrels*/
-    Route::get('/borrels', 'BorrelsController@index');
+    /* Route::get('/borrels', 'BorrelsController@index');
     Route::get('/borrels/toevoegen', 'BorrelsController@create')->middleware('admin');
     Route::post('/borrels', 'BorrelsController@store')->middleware('admin');
     Route::get('/borrel/{borrel}', 'BorrelsController@show');
     Route::get('/borrels/{borrel}/wijzig', 'BorrelsController@edit')->middleware('admin');
     Route::patch('/borrels/{borrel}', 'BorrelsController@update')->middleware('admin');
-    Route::delete('/borrels/{borrel}', 'BorrelsController@destroy')->middleware('admin');
+    Route::delete('/borrels/{borrel}', 'BorrelsController@destroy')->middleware('admin'); */
 
     /*contributies*/
     Route::get('/contributies', 'ContributieController@index')->middleware('admin');;

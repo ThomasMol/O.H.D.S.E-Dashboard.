@@ -4,7 +4,7 @@
 <header>
     <h1 class="d-lg-inline">Gegevens van {{$lid->roepnaam}}</h1>
     @if(Auth::user()->admin == 1)
-    <button class="btn btn-outline-danger float-lg-right" data-href="/leden/{{$lid->lid_id}}" data-toggle="modal" data-target="#confirm-delete"><span data-feather="trash"></span> Verwijder</button>
+    <button class="btn btn-outline-danger float-lg-right" data-href="/leden/{{$lid->lid_id}}" data-toggle="modal" data-target="#confirm-delete"><span data-feather="trash"></span> Royeer {{$lid->roepnaam}}</button>
 
     <a href="/leden/{{$lid->lid_id}}/wijzig" class="btn btn-outline-primary float-lg-right mr-2"><span data-feather="edit"></span> Wijzig</a>
     @endif

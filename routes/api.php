@@ -19,3 +19,5 @@ Route::post('/login','Auth\LoginController@authenticate');
 Route::middleware(['auth:api'])->group(function () {
     Route::get('/', 'HomeController@index');
 });
+
+Route::get('/test','HomeController@test');

@@ -56,7 +56,7 @@ class LoginController extends Controller
         if($request->wantsJson()){
             if(Auth::attempt(['email'=>$email, 'password'=>$password])){
                 $accesstoken = Auth::user()->createToken('authToken')->accessToken;
-                return response(['user'=>Auth::user(), 'acces_token'=>$accesstoken]);
+                return response(['success'=> true, 'user'=>Auth::user(), 'access_token'=>$accesstoken]);
             }else{
                 return response(['message'=>'Invalid login creds']);
             }
