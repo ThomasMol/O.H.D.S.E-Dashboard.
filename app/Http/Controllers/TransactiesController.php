@@ -13,9 +13,13 @@ use Carbon\Carbon;
 class TransactiesController extends Controller
 {
 
-    public function index()
+    public function index($soort = null)
     {
-        $transacties = Transactie::leftJoin('lid','lid.lid_id','transactie.lid_id')->orderBy('transactie.datum','desc')->paginate(10);
+        if($soort){
+            $transacties = Transactie::leftJoin('lid','lid.lid_id','transactie.lid_id')->where('transactie.af_bij',$soort)->orderBy('transactie.datum','desc')->paginate(15);
+        }else{
+            $transacties = Transactie::leftJoin('lid','lid.lid_id','transactie.lid_id')->orderBy('transactie.datum','desc')->paginate(15);
+        }
         return view('transacties/index', compact('transacties'));
     }
 

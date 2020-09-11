@@ -92,7 +92,7 @@ class UitgavenController extends Controller
 
         $inkomsten_boete_id = Inkomsten::select('inkomsten_id')->where('jaargang', $bestuursjaar->jaargang)->where(DB::raw('upper(soort)'),'like','%BOETE%')->firstOrFail()['inkomsten_id'];
         $inkomsten_extra_kosten_id = Inkomsten::select('inkomsten_id')->where('jaargang', $bestuursjaar->jaargang)->where(DB::raw('upper(soort)'),'like','%EXTRA%')->firstOrFail()['inkomsten_id'];
-
+        //dd($actieve_leden);
         return view('uitgaven/edit', compact('uitgave', 'leden_deelname' , 'leden','bestuursjaren','categorieen','inkomsten_boete_id','inkomsten_extra_kosten_id','actieve_leden','passieve_leden','reunisten','geen_lid'));
     }
 

@@ -1,4 +1,6 @@
 <?php
+use Illuminate\Support\Facades\Route;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -90,7 +92,7 @@ Route::middleware(['auth', 'admin'])->group(function () {
 
 
     // Transacties
-    Route::get('/transacties', 'TransactiesController@index');;
+    Route::get('/transacties/{soort?}', 'TransactiesController@index');;
     Route::get('/transacties/toevoegen', 'TransactiesController@create');
     Route::post('/transacties', 'TransactiesController@store');
     Route::get('/transactie/{transactie}', 'TransactiesController@show');;
@@ -106,5 +108,5 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::post('/uitgaven', 'UitgavenController@store');
     Route::get('/uitgaven/{uitgave}/wijzig/{bestuursjaar}', 'UitgavenController@edit');
     Route::patch('/uitgaven/{uitgave}', 'UitgavenController@update');
-    Route::delete('/uitgaven/{uitgave}', 'UitgavenController@destroy')
+    Route::delete('/uitgaven/{uitgave}', 'UitgavenController@destroy');
 });

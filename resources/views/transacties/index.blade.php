@@ -13,6 +13,14 @@
 
 <div class="card">
     <div class="card-body">
+        <div class="mb-4">
+            Filter soort transactie:
+            <div class="btn-group btn-group-sm">
+                <a href="/transacties" class="btn {{ Request::is('transacties') ? 'active' : '' }} btn-outline-primary">Alles</a>
+                <a href="/transacties/af" class="btn {{ Request::is('transacties/af*') ? 'active' : '' }} btn-outline-danger">Af</a>
+                <a href="/transacties/bij" class="btn {{ Request::is('transacties/bij*') ? 'active' : '' }} btn-outline-success">Bij</a>
+            </div>
+        </div>
         <div class="table-responsive">
             <table id="transacties" class="table table-sm table-hover">
                 <thead>
@@ -28,7 +36,8 @@
                 <tbody>
                     @foreach($transacties as $transactie)
                     <tr>
-                        <td><span class="badge @if($transactie->af_bij == "Af")badge-danger @else badge-success @endif">{{ $transactie->af_bij }}</span></td>
+                        <td><span class="badge @if($transactie->af_bij == 'Af') badge-danger @else badge-success
+                                @endif">{{ $transactie->af_bij }}</span></td>
                         <th>{{ Carbon\Carbon::parse($transactie->datum)->translatedFormat('d F Y') }}</th>
                         <td>{{ $transactie->naam }}</td>
                         <td>&euro;{{ format_currency($transactie->bedrag) }}</td>
@@ -49,9 +58,11 @@
                     <tr class="collapse" id="transactie-id-{{$transactie->transactie_id}}">
                         <td colspan=6>
                             <strong>Lid: </strong>{{ $transactie->roepnaam . ' ' . $transactie->achternaam }}<br>
-                            <strong>Spaarplan: </strong>{{ $transactie->spaarplanOptions()[$transactie->spaarplan]  }}<br>
+                            <strong>Spaarplan:
+                            </strong>{{ $transactie->spaarplanOptions()[$transactie->spaarplan]  }}<br>
                             <strong>Tegenrekening: </strong>{{ $transactie->tegenrekening }}<br>
-                            <strong>Mutatie: </strong>{{ $transactie->mutatieOptions()[$transactie->mutatie_soort] }}<br>
+                            <strong>Mutatie:
+                            </strong>{{ $transactie->mutatieOptions()[$transactie->mutatie_soort] }}<br>
                             <strong>Mededelingen: </strong>{{ $transactie->mededelingen }}
                         </td>
                     </tr>

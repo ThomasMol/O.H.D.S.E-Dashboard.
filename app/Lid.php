@@ -38,7 +38,7 @@ class Lid extends Model
 
     public function scopeLidDeelnameUitgave($query,$table_deelname,$model_id,$id){
         return $query->select('lid.lid_id', 'roepnaam', 'achternaam',
-        $table_deelname.'.lid_id as aanwezig',
+        $table_deelname.'.aanwezig as aanwezig',
         $table_deelname.'.afgemeld as afgemeld',
         $table_deelname.'.naheffing as naheffing',
         $table_deelname.'.boete_id as boete_id',
