@@ -36,11 +36,13 @@
                             Overzicht
                         </a>
                     </li>
+                    @if(Auth::user()->admin == 1)
                     <li class="nav-item">
                         <a class="nav-link {{ Request::is('leden*') ? 'active' : '' }}" href="/leden">
                             Alle leden
                         </a>
                     </li>
+                    @endif
 
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="financienDropdown" role="button"
@@ -88,10 +90,12 @@
                             <a class="dropdown-item {{ Request::is('gegevens*') ? 'active' : '' }}" href="/gegevens">
                                 <span data-feather="user"></span> Mijn gegevens
                             </a>
+                            @if(Auth::user()->admin == 1)
                             <a class="dropdown-item {{ Request::is('instelling*') ? 'active' : '' }}"
                                 href="/instellingen">
                                 <span data-feather="settings"></span> Instellingen
                             </a>
+                            @endif
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item " href="/loguit">
                                 <span data-feather="log-out"></span> Log uit
