@@ -1,4 +1,9 @@
 <?php
+/*
+|--------------------------------------------------------------------------
+| Web Routes
+|--------------------------------------------------------------------------
+*/
 
 // Login en logout
 Route::get('/login', ['as' => 'login', 'uses' => 'Auth\LoginController@index']);
@@ -32,13 +37,7 @@ Route::middleware(['auth'])->group(function () {
 
     // Uitgave
     Route::get('/uitgaven', 'UitgavenController@index');
-    Route::get('/uitgaven/toevoegen/{bestuursjaar}', 'UitgavenController@create')->middleware('admin');
-    Route::post('/uitgaven', 'UitgavenController@store')->middleware('admin');
     Route::get('/uitgave/{uitgave}', 'UitgavenController@show');
-    Route::get('/uitgaven/{uitgave}/wijzig/{bestuursjaar}', 'UitgavenController@edit')->middleware('admin');
-    Route::patch('/uitgaven/{uitgave}', 'UitgavenController@update')->middleware('admin');
-    Route::delete('/uitgaven/{uitgave}', 'UitgavenController@destroy')->middleware('admin');
-
 });
 
 // Ingelogd bestuur only
@@ -101,4 +100,11 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::get('/transacties/upload', 'TransactiesController@upload');
     Route::post('/transacties/upload', 'TransactiesController@parse');
     Route::post('/transacties/process', 'TransactiesController@process');
+
+    // Uitgave
+    Route::get('/uitgaven/toevoegen/{bestuursjaar}', 'UitgavenController@create');
+    Route::post('/uitgaven', 'UitgavenController@store');
+    Route::get('/uitgaven/{uitgave}/wijzig/{bestuursjaar}', 'UitgavenController@edit');
+    Route::patch('/uitgaven/{uitgave}', 'UitgavenController@update');
+    Route::delete('/uitgaven/{uitgave}', 'UitgavenController@destroy')
 });
