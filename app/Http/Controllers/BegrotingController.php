@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Bestuursjaar;
-use App\Inkomsten;
-use App\SErekening;
-use App\Transactie;
-use App\Uitgave;
-use App\Uitgaven;
+use App\Models\Bestuursjaar;
+use App\Models\Inkomsten;
+use App\Models\SErekening;
+use App\Models\Transactie;
+use App\Models\Uitgave;
+use App\Models\Uitgaven;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Exports\FinancienExport;

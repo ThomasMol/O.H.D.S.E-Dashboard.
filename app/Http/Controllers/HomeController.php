@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Financien;
-use App\LidGegevens;
+use App\Models\Financien;
+use App\Models\LidGegevens;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 

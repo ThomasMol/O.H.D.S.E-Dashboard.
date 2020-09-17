@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Declaratie;
-use App\DeclaratieDeelname;
-use App\Lid;
+use App\Models\Declaratie;
+use App\Models\DeclaratieDeelname;
+use App\Models\Lid;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 

@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Lid;
-use App\Rekeningnummer;
-use App\Transactie;
+use App\Models\Lid;
+use App\Models\Rekeningnummer;
+use App\Models\Transactie;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Support\Facades\Config;

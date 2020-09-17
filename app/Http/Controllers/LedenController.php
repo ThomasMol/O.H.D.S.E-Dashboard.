@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Financien;
-use App\LidGegevens;
-use App\Rekeningnummer;
+use App\Models\Financien;
+use App\Models\LidGegevens;
+use App\Models\Rekeningnummer;
 use Illuminate\Support\Facades\Hash;
-use App\Lid;
+use App\Models\Lid;
 use App\Exports\LedenExport;
 use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Support\Carbon;

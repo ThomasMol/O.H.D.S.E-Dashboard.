@@ -2,9 +2,9 @@
 
 namespace App\Exports;
 
-use App\User;
+use App\Models\User;
 use Maatwebsite\Excel\Concerns\FromCollection;
-use App\Lid;
+use App\Models\Lid;
 use Maatwebsite\Excel\Concerns\WithHeadings;
 
 class LedenExport implements FromCollection, WithHeadings

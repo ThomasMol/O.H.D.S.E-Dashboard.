@@ -2,7 +2,7 @@
 
 
 namespace App\Http\View;
-use App\Bestuursjaar;
+use App\Models\Bestuursjaar;
 use Illuminate\Contracts\View\View;
 
 

@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Bestuursjaar;
-use App\Inkomsten;
-use App\Lid;
-use App\Uitgaven;
-use App\Kosten;
+use App\Models\Bestuursjaar;
+use App\Models\Inkomsten;
+use App\Models\Lid;
+use App\Models\Uitgaven;
+use App\Models\Kosten;
 
 class InstellingenController extends Controller
 {

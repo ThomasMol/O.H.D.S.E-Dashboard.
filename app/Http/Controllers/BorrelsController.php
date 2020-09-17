@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Borrel;
-use App\BorrelAanwezigheid;
-use App\Lid;
+use App\Models\Borrel;
+use App\Models\BorrelAanwezigheid;
+use App\Models\Lid;
 use Illuminate\Http\Request;
 
 class BorrelsController extends Controller

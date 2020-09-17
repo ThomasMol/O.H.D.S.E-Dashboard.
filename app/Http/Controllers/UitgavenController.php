@@ -2,14 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\Bestuursjaar;
-use App\Inkomsten;
-use App\Uitgaven;
+use App\Models\Bestuursjaar;
+use App\Models\Inkomsten;
+use App\Models\Uitgaven;
 use Illuminate\Http\Request;
-use App\Uitgave;
-use App\UitgaveDeelname;
-use App\Lid;
-use App\Kosten;
+use App\Models\Uitgave;
+use App\Models\UitgaveDeelname;
+use App\Models\Lid;
+use App\Models\Kosten;
 use Illuminate\Support\Facades\DB;
 
 class UitgavenController extends Controller

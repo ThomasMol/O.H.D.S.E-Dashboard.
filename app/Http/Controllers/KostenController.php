@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Bestuursjaar;
-use App\Kosten;
-use App\Lid;
-use App\UitgaveDeelname;
-use App\Inkomsten;
+use App\Models\Bestuursjaar;
+use App\Models\Kosten;
+use App\Models\Lid;
+use App\Models\UitgaveDeelname;
+use App\Models\Inkomsten;
 use Illuminate\Http\Request;
 
 class KostenController extends Controller

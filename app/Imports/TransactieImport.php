@@ -2,7 +2,7 @@
 
 namespace App\Imports;
 
-use App\Transactie;
+use App\Models\Transactie;
 use Illuminate\Support\Collection;
 use Maatwebsite\Excel\Concerns\ToCollection;
 use Carbon\Carbon;
@@ -29,6 +29,6 @@ class TransactieImport implements ToCollection
                 ]);
             }
             $i++;
-        } 
+        }
     }
 }

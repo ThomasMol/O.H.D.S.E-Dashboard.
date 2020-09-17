@@ -4,8 +4,8 @@ namespace App\Exports;
 
 use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Concerns\WithHeadings;
-use App\Financien;
-use App\Lid;
+use App\Models\Financien;
+use App\Models\Lid;
 
 class FinancienExport implements FromCollection, WithHeadings
 {

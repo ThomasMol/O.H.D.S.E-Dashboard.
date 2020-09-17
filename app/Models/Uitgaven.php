@@ -1,16 +1,15 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Inkomsten extends Model
+class Uitgaven extends Model
 {
     use SoftDeletes;
 
-    protected $table = 'inkomsten';
-    protected $primaryKey = 'inkomsten_id';
+    protected $table = 'uitgaven';
+    protected $primaryKey = 'uitgaven_id';
     protected $guarded = [];
-
 }

@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
@@ -9,7 +9,7 @@ class UitgaveDeelname extends Model
 {
     protected $table = 'uitgave_deelname';
     public $incrementing = false;
-    
+
     protected function setKeysForSaveQuery(Builder $query)
     {
         $query

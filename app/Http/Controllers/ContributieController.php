@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Contributie;
-use App\ContributieDeelname;
-use App\Lid;
-use App\Bestuursjaar;
-use App\Inkomsten;
+use App\Models\Contributie;
+use App\Models\ContributieDeelname;
+use App\Models\Lid;
+use App\Models\Bestuursjaar;
+use App\Models\Inkomsten;
 
 
 class ContributieController extends Controller

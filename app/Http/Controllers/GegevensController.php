@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Financien;
-use App\Lid;
-use App\LidGegevens;
-use App\Rekeningnummer;
+use App\Models\Financien;
+use App\Models\Lid;
+use App\Models\LidGegevens;
+use App\Models\Rekeningnummer;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
