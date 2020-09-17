@@ -14,10 +14,15 @@ use Illuminate\Support\Facades\DB;
 
 class UitgavenController extends Controller
 {
-    public function index(){
+    public function index(Request $request){
         $uitgaven = Uitgave::select('*','uitgave.budget as budget','uitgaven.budget as uitgaven_budget')->join('uitgaven','uitgave.uitgaven_id','=','uitgaven.uitgaven_id')->
         orderBy('datum','desc')->paginate(10);
-        return view('uitgaven/index',compact('uitgaven'));
+
+        if($request->wantsJson()){
+            return response()->json(['uitgaven' => $uitgaven]);
+        }else{
+            return view('uitgaven/index',compact('uitgaven'));
+        }
     }
 
     public function create(Bestuursjaar $bestuursjaar){
@@ -58,10 +63,15 @@ class UitgavenController extends Controller
         return redirect('/uitgave/' . $uitgave->uitgave_id);
     }
 
-    public function show(Uitgave $uitgave){
+    public function show(Request $request, Uitgave $uitgave){
         $leden_deelname = Lid::join('uitgave_deelname','lid.lid_id','=','uitgave_deelname.lid_id')->where('uitgave_deelname.uitgave_id',$uitgave->uitgave_id)->get();
         $uitgave = Uitgave::select('*','uitgave.budget as budget','uitgaven.budget as uitgaven_budget')->join('uitgaven','uitgave.uitgaven_id','=','uitgaven.uitgaven_id')->where('uitgave.uitgave_id',$uitgave->uitgave_id)->first();
-        return view('uitgaven/show',compact('uitgave' , 'leden_deelname'));
+
+        if($request->wantsJson()){
+            return response()->json(['uitgave' => $uitgave,'deelname' => $leden_deelname]);
+        }else{
+            return view('uitgaven/show',compact('uitgave' , 'leden_deelname'));
+        }
     }
 
     public function edit(Uitgave $uitgave, Bestuursjaar $bestuursjaar){

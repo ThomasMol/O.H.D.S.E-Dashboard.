@@ -16,7 +16,9 @@ Route::post('/login','Auth\LoginController@authenticate');
 Route::middleware(['auth:api'])->group(function () {
     Route::get('/', 'HomeController@index');
 
-
+     // Uitgave
+     Route::get('/uitgaven', 'UitgavenController@index');
+     Route::get('/uitgave/{uitgave}', 'UitgavenController@show');
 });
 
 // Ingelogd bestuur only
