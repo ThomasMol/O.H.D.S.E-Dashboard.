@@ -27,14 +27,14 @@
                                 <label for="datum">Datum</label>
                                 <input type="date" class="form-control mb-3" id="datum"
                                     name="transacties[{{$loop->iteration}}][datum]"
-                                    value="{{ $transactie[0] ?? date('Y-m-d') }}" required disabled>
+                                    value="{{ $transactie[0] ?? date('Y-m-d') }}" required readonly>
                             </div>
                             <div class="col-md">
                                 <label for="af_bij">Af/Bij </label>
                                 <select class="form-control mb-3" id="af_bij"
-                                    name="transacties[{{$loop->iteration}}][af_bij]" required disabled>
+                                    name="transacties[{{$loop->iteration}}][af_bij]" required>
                                     @foreach($transactie_model->afbijOptions() as $key => $afbij)
-                                    <option value="{{ $key }}" {{ $transactie[5] == $key ? 'selected' : '' }}>
+                                    <option value="{{ $key }}" {{ $transactie[5] == $key ? 'selected' : 'disabled' }}>
                                         {{ $afbij }}
                                     </option>
                                     @endforeach
@@ -43,9 +43,9 @@
                             <div class="col-md">
                                 <label for="mutatie_soort">Type</label>
                                 <select class="form-control mb-3" id="mutatie_soort"
-                                    name="transacties[{{$loop->iteration}}][mutatie_soort]" required disabled>
+                                    name="transacties[{{$loop->iteration}}][mutatie_soort]" required>
                                     @foreach($transactie_model->mutatieOptions() as $key => $mutatie)
-                                    <option value="{{ $key }}" {{ $transactie[4] == $key ? 'selected' : '' }}>
+                                    <option value="{{ $key }}" {{ $transactie[4] == $key ? 'selected' : 'disabled' }}>
                                         {{ $mutatie }}
                                     </option>
                                     @endforeach
@@ -59,14 +59,14 @@
                                     </div>
                                     <input type="number" class="form-control" id="bedrag"
                                         name="transacties[{{$loop->iteration}}][bedrag]" step=".01"
-                                        value="{{ $transactie[6] }}" min="0" max="99999999" placeholder="0.00" required disabled>
+                                        value="{{ $transactie[6] }}" min="0" max="99999999" placeholder="0.00" required readonly>
                                 </div>
                             </div>
                             <div class="col-md">
                                 <label for="tegenrekening">Tegenrekening</label>
                                 <input type="text" class="form-control mb-3" id="tegenrekening"
                                     name="transacties[{{$loop->iteration}}][tegenrekening]"
-                                    value="{{ $transactie[3] }}" disabled>
+                                    value="{{ $transactie[3] }}" readonly>
                             </div>
                         </div>
 

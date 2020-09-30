@@ -92,7 +92,8 @@ Route::middleware(['auth', 'admin'])->group(function () {
 
 
     // Transacties
-    Route::get('/transacties/{soort?}', 'TransactiesController@index');;
+    Route::get('/transacties', 'TransactiesController@index');
+    Route::get('/transacties/filter/{soort?}', 'TransactiesController@index');;
     Route::get('/transacties/toevoegen', 'TransactiesController@create');
     Route::post('/transacties', 'TransactiesController@store');
     Route::get('/transactie/{transactie}', 'TransactiesController@show');;

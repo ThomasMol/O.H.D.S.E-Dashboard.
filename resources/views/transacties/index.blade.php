@@ -17,8 +17,8 @@
             Filter soort transactie:
             <div class="btn-group btn-group-sm">
                 <a href="/transacties" class="btn {{ Request::is('transacties') ? 'active' : '' }} btn-outline-primary">Alles</a>
-                <a href="/transacties/af" class="btn {{ Request::is('transacties/af*') ? 'active' : '' }} btn-outline-danger">Af</a>
-                <a href="/transacties/bij" class="btn {{ Request::is('transacties/bij*') ? 'active' : '' }} btn-outline-success">Bij</a>
+                <a href="/transacties/filter/af" class="btn {{ Request::is('transacties/filter/af*') ? 'active' : '' }} btn-outline-danger">Af</a>
+                <a href="/transacties/filter/bij" class="btn {{ Request::is('transacties/filter/bij*') ? 'active' : '' }} btn-outline-success">Bij</a>
             </div>
         </div>
         <div class="table-responsive">

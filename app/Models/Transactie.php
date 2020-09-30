@@ -21,6 +21,7 @@ class Transactie extends Model
             'GM' => 'Geldautomaat',
             'GT' => 'Online bankieren',
             'IC' => 'Incasso',
+            'ID' => 'iDeal',
             'OV' => 'Overschrijving',
             'PK' => 'Opname kantoor',
             'PO' => 'Periodieke overschrijving',
