@@ -1,1 +1,1 @@
-## OHD Semper Excelsius Dashboar web application
+## OHD Semper Excelsius Dashboard web application
