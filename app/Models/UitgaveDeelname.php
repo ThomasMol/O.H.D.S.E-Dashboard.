@@ -10,7 +10,7 @@ class UitgaveDeelname extends Model
     protected $table = 'uitgave_deelname';
     public $incrementing = false;
 
-    protected function setKeysForSaveQuery(Builder $query)
+    protected function setKeysForSaveQuery($query)
     {
         $query
             ->where('uitgave_id', '=', $this->getAttribute('uitgave_id'))

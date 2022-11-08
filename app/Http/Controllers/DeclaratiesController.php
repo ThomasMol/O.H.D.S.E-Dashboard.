@@ -15,12 +15,12 @@ class DeclaratiesController extends Controller
         $user_id = Auth::user()->lid_id;
 
         //$declaraties = Declaratie::select('*')->leftJoin('lid','lid.lid_id','declaratie.created_by_id')->groupBy('declaratie.declaratie_id')->orderBy('datum', 'desc')->paginate(10);
-        $declaraties = Declaratie::select('declaratie.declaratie_id','betaald_door_id','datum','declaratie.bedrag','omschrijving','created_by_id')->join('declaratie_deelname', function($join) use ($user_id){
-            $join->on('declaratie.declaratie_id','declaratie_deelname.declaratie_id');
-        })->orWhere(function ($query) use ($user_id){
-        $query->orWhere('declaratie.created_by_id', '=', $user_id)
-            ->orWhere('declaratie.betaald_door_id', '=', $user_id)
-            ->orWhere('declaratie_deelname.lid_id', '=', $user_id);
+        $declaraties = Declaratie::select('declaratie.declaratie_id', 'betaald_door_id', 'datum', 'declaratie.bedrag', 'omschrijving', 'created_by_id')->join('declaratie_deelname', function ($join) use ($user_id) {
+            $join->on('declaratie.declaratie_id', 'declaratie_deelname.declaratie_id');
+        })->orWhere(function ($query) use ($user_id) {
+            $query->orWhere('declaratie.created_by_id', '=', $user_id)
+                ->orWhere('declaratie.betaald_door_id', '=', $user_id)
+                ->orWhere('declaratie_deelname.lid_id', '=', $user_id);
         })->groupBy('declaratie.declaratie_id')->orderBy('datum', 'desc')->paginate(10);
 
 
@@ -35,7 +35,7 @@ class DeclaratiesController extends Controller
         $reunisten = Lid::reunisten()->get();
         $geen_lid = Lid::geenLeden()->get();
         $declaratie = new Declaratie();
-        return view('declaraties/create', compact('declaratie','leden','actieve_leden','passieve_leden','reunisten','geen_lid'));
+        return view('declaraties/create', compact('declaratie', 'leden', 'actieve_leden', 'passieve_leden', 'reunisten', 'geen_lid'));
     }
 
     public function store()
@@ -46,10 +46,10 @@ class DeclaratiesController extends Controller
             'betaald_door_id' => 'required|numeric',
             'omschrijving' => 'required|max:100000',
             'created_by_id' => 'required'
-            ]);
+        ]);
 
         $deelnemers = request()->validate([
-            'deelnemers'=> 'required'
+            'deelnemers' => 'required'
         ]);
         $declaratie = Declaratie::create($data);
 
@@ -60,14 +60,15 @@ class DeclaratiesController extends Controller
         return redirect('/declaratie/' . $declaratie->declaratie_id);
     }
 
-    public function show(Declaratie $declaratie)    {
+    public function show(Declaratie $declaratie)
+    {
         $leden_deelname = Lid::join('declaratie_deelname', 'lid.lid_id', '=', 'declaratie_deelname.lid_id')->where('declaratie_deelname.declaratie_id', $declaratie->declaratie_id)->ledenGesorteerd()->get();
-        $declaratie = Declaratie::select('declaratie_id','betaald_door_id','created_by_id','bedrag','datum','omschrijving','lid1.roepnaam as lid1_roepnaam','lid1.achternaam as lid1_achternaam','lid2.roepnaam as lid2_roepnaam','lid2.achternaam as lid2_achternaam')
-        ->leftJoin('lid as lid1','lid1.lid_id','declaratie.betaald_door_id')
-        ->leftJoin('lid as lid2','lid2.lid_id','declaratie.created_by_id')
-        ->where('declaratie.declaratie_id', $declaratie->declaratie_id)->first();
+        $declaratie = Declaratie::select('declaratie_id', 'betaald_door_id', 'created_by_id', 'bedrag', 'datum', 'omschrijving', 'lid1.roepnaam as lid1_roepnaam', 'lid1.achternaam as lid1_achternaam', 'lid2.roepnaam as lid2_roepnaam', 'lid2.achternaam as lid2_achternaam')
+            ->leftJoin('lid as lid1', 'lid1.lid_id', 'declaratie.betaald_door_id')
+            ->leftJoin('lid as lid2', 'lid2.lid_id', 'declaratie.created_by_id')
+            ->where('declaratie.declaratie_id', $declaratie->declaratie_id)->first();
         //dd($declaratie);
-        return view('declaraties/show', compact('declaratie' , 'leden_deelname'));
+        return view('declaraties/show', compact('declaratie', 'leden_deelname'));
     }
 
     public function edit(Declaratie $declaratie)
@@ -75,15 +76,16 @@ class DeclaratiesController extends Controller
         $id = $declaratie->declaratie_id;
         $leden = Lid::ledenGesorteerd()->get();
 
-        $actieve_leden = Lid::lidDeelname('declaratie_deelname','declaratie_id',$id)->actieveLeden()->get();
-        $passieve_leden = Lid::lidDeelname('declaratie_deelname','declaratie_id',$id)->passieveLeden()->get();
-        $reunisten = Lid::lidDeelname('declaratie_deelname','declaratie_id',$id)->reunisten()->get();
-        $geen_lid = Lid::lidDeelname('declaratie_deelname','declaratie_id',$id)->geenLeden()->get();
+        $actieve_leden = Lid::lidDeelname('declaratie_deelname', 'declaratie_id', $id)->actieveLeden()->get();
+        $passieve_leden = Lid::lidDeelname('declaratie_deelname', 'declaratie_id', $id)->passieveLeden()->get();
+        $reunisten = Lid::lidDeelname('declaratie_deelname', 'declaratie_id', $id)->reunisten()->get();
+        $geen_lid = Lid::lidDeelname('declaratie_deelname', 'declaratie_id', $id)->geenLeden()->get();
 
-        return view('declaraties/edit', compact('declaratie', 'leden','actieve_leden','passieve_leden','reunisten','geen_lid'));
+        return view('declaraties/edit', compact('declaratie', 'leden', 'actieve_leden', 'passieve_leden', 'reunisten', 'geen_lid'));
     }
 
-    public function update(Declaratie $declaratie)    {
+    public function update(Declaratie $declaratie)
+    {
         $data = request()->validate([
             'datum' => 'required|date',
             'bedrag' => 'required|numeric|gt:0|lt:99999999',
@@ -92,7 +94,7 @@ class DeclaratiesController extends Controller
             'created_by_id' => 'required'
         ]);
         $deelnemers = request()->validate([
-            'deelnemers'=> 'required'
+            'deelnemers' => 'required'
         ]);
 
         $this->remove_declaratie_deelname($declaratie);
@@ -105,13 +107,15 @@ class DeclaratiesController extends Controller
     }
 
 
-    public function destroy(Declaratie $declaratie){
+    public function destroy(Declaratie $declaratie)
+    {
         $this->remove_declaratie_deelname($declaratie);
         $declaratie->delete();
         return redirect('/declaraties');
     }
 
-    public function add_declaratie_deelname($deelnemers, $declaratie){
+    public function add_declaratie_deelname($deelnemers, $declaratie)
+    {
         $bedragen = divide_money($declaratie->bedrag, count($deelnemers));
         $i = 1;
         foreach ($deelnemers as $lid) {
@@ -125,17 +129,17 @@ class DeclaratiesController extends Controller
         }
     }
 
-    public function remove_declaratie_deelname($declaratie){
+    public function remove_declaratie_deelname($declaratie)
+    {
         add_verschuldigd($declaratie->betaald_door_id, $declaratie->bedrag);
         $declaratie_id = $declaratie->declaratie_id;
-        $deelnemers = Lid::select('lid.lid_id','declaratie_deelname.bedrag as bedrag')->join('declaratie_deelname', function($join) use ($declaratie_id){
-            $join->on('lid.lid_id','declaratie_deelname.lid_id');
-            $join->where('declaratie_deelname.declaratie_id',$declaratie_id);
+        $deelnemers = Lid::select('lid.lid_id', 'declaratie_deelname.bedrag as bedrag')->join('declaratie_deelname', function ($join) use ($declaratie_id) {
+            $join->on('lid.lid_id', 'declaratie_deelname.lid_id');
+            $join->where('declaratie_deelname.declaratie_id', $declaratie_id);
         })->get();
-        foreach ($deelnemers as $deelnemer){
+        foreach ($deelnemers as $deelnemer) {
             subtract_verschuldigd($deelnemer->lid_id, $deelnemer->bedrag);
-            DeclaratieDeelname::where('lid_id',$deelnemer->lid_id)->where('declaratie_id',$declaratie_id)->delete();
+            DeclaratieDeelname::where('lid_id', $deelnemer->lid_id)->where('declaratie_id', $declaratie_id)->delete();
         }
     }
-
 }
