@@ -46,24 +46,6 @@
                 </div>
             </div>
         </div>
-        <div class="card">
-            <div class="card-header">
-                Top 5 naheffingen
-            </div>
-            <div class="card-body">
-                <div class="table-responsive">
-                    <table class="table table-hover table-fixed">
-                        <tbody>
-                            @foreach ($leden_nahef as $index => $lid)
-                                <td>{{ $lid->roepnaam }}</td>
-                                <td>&euro; {{ format_currency($lid->total_amount) }}</td>
-                            </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
 
         <div class="card">
             <div class="card-header">
@@ -102,6 +84,43 @@
                             <tr><td>Vrijdag 15 december</td><td>Kerstdiner</td></tr>
                         </tbody>
                     </table>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-body">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-6" style="padding-left: 0;">
+                            <h4>Top 5 naheffing</h4>
+                            <div class="table-responsive">
+                                <table class="table table-hover table-fixed">
+                                    <tbody>
+                                        @foreach ($leden_nahef as $index => $lid)
+                                            <td>{{ $lid->roepnaam }}</td>
+                                            <td>&euro; {{ format_currency($lid->total_amount) }}</td>
+                                        </tr>
+                                        @endforeach
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="col-md-6" style="padding-right: 0;">
+                            <h4>Top 5 afwezig</h4>
+                            <div class="table-responsive">
+                                <table class="table table-hover table-fixed">
+                                    <tbody>
+                                        @foreach ($leden_afwezig as $index => $lid)
+                                            <td>{{ $lid->roepnaam }}</td>
+                                            <td>{{ $lid->total_afwezig }}</td>
+                                        </tr>
+                                        @endforeach
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
