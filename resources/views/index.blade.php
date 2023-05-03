@@ -20,6 +20,64 @@
             </div>
 
         </div>
+
+        <div class="card">
+            <div class="card-body">
+                <button class="btn btn-outline-primary btn-block" type="submit"
+                onclick="window.open('https://my.hidrive.com/share/2ytxhv263n', '_blank');">SE Gallery</a>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header">
+                Top 5 schulden
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-hover table-fixed">
+                        <tbody>
+                            @foreach ($leden as $index => $lid)
+                                <td>{{ $lid->roepnaam }}</td>
+                                <td>&euro; {{ format_currency($lid->schuld) }}</td>
+                            </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-header">
+                Top 5 naheffingen
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-hover table-fixed">
+                        <tbody>
+                            @foreach ($leden_nahef as $index => $lid)
+                                <td>{{ $lid->roepnaam }}</td>
+                                <td>&euro; {{ format_currency($lid->total_amount) }}</td>
+                            </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header">
+                SE Awards 22-23
+            </div>
+            <div class="card-body" style="padding-top:0px;">
+                <b>SE'er van het jaar:</b> Natsie?<br>
+                <b>Koningsaward:</b> <br>
+                <b>Gouden lul:</b> <br>
+                <b>Gouden haak:</b> <br>
+                <b>Gouden bieb:</b> <br>
+            </div>
+        </div>
+
     </div>
     <div class="col-md-8 mb-4">
         <div id="se-calendar" class="card">
@@ -28,6 +86,23 @@
             </div>
             <div class="card-body">
 
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header">
+                Belangrijke data
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-hover table-fixed">
+                        <tbody>
+                            <tr><td>Vrijdag 9 juni</td><td>Datediner</td></tr>
+                            <tr><td>14 t/m 17 augustus</td><td>UIT-week</td></tr>
+                            <tr><td>Vrijdag 15 december</td><td>Kerstdiner</td></tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
     </div>

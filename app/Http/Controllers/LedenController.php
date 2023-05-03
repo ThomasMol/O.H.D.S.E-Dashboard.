@@ -18,7 +18,8 @@ class LedenController extends Controller
             ->leftJoin('financien', 'lid.lid_id','financien.lid_id')
             ->leftJoin('lid_gegevens', 'lid.lid_id','lid_gegevens.lid_id')
             ->orderBy('type_lid','asc')->orderBy('roepnaam','asc')->paginate(20);
-        return view('leden/index',compact('leden'));
+        $sorted = True;
+        return view('leden/index',compact('leden','sorted'));
     }
 
     public function create(){
@@ -177,6 +178,14 @@ class LedenController extends Controller
 
     public function remove_rekeningnummers($id){
         Rekeningnummer::destroy($id);
+    }
+
+    public function top_5(){
+        $leden = Lid::select('lid.lid_id', 'roepnaam', 'achternaam','email','telefoonnummer','type_lid','schuld','gespaard','financien.lid_id')
+            ->leftJoin('financien', 'lid.lid_id','financien.lid_id')
+            ->leftJoin('lid_gegevens', 'lid.lid_id','lid_gegevens.lid_id')
+            ->orderBy('schuld','desc')->paginate(20);
+        return view('leden/index',compact('leden',False));
     }
 
 }
