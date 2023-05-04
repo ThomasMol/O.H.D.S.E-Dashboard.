@@ -24,7 +24,10 @@ class HomeController extends Controller
             ->orderBy('schuld','desc')->limit(5)->get();
         $leden_nahef = Lid::select('lid.lid_id', 'roepnaam')
                     ->join('uitgave_deelname','lid.lid_id','=','uitgave_deelname.lid_id')
-                    ->selectRaw('uitgave_deelname.lid_id, SUM(naheffing) as total_amount')
+                    ->join('uitgave', 'uitgave_deelname.uitgave_id', '=', 'uitgave.uitgave_id')
+                    ->where('uitgave.uitgaven_id', '=', 64)
+                    ->where('uitgave.budget', '>', 0)
+                    ->selectRaw('uitgave_deelname.lid_id, SUM(uitgave_deelname.naheffing) as total_amount')
                     ->groupBy('uitgave_deelname.lid_id')->orderBy('total_amount','desc')->limit(5)->get();
         $leden_afwezig = Lid::select('lid.lid_id','roepnaam')
             ->join('uitgave_deelname', 'lid.lid_id', '=', 'uitgave_deelname.lid_id')
