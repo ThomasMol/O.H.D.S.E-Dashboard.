@@ -52,11 +52,11 @@
                 SE Awards 22-23
             </div>
             <div class="card-body" style="padding-top:0px;">
-                <b>SE'er van het jaar:</b> Natsie?<br>
-                <b>Koningsaward:</b> <br>
-                <b>Gouden lul:</b> <br>
-                <b>Gouden haak:</b> <br>
-                <b>Gouden bieb:</b> <br>
+                <b>SE'er van het jaar:</b> Paul<br>
+                <b>Koningsaward:</b> Stan<br>
+                <b>Gouden lul:</b> Lucas<br>
+                <b>Gouden haak:</b> Tom<br>
+                <b>Gouden bieb:</b> Ashkan<br>
             </div>
         </div>
 
