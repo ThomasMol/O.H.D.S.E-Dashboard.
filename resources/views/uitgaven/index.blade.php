@@ -26,20 +26,20 @@
             </tr>
         </thead>
         <tbody>
-            @foreach($uitgaven as $uitgave)
+            @for($i = 0; $i < count($uitgaven); $i++)
             <tr>
-                <th>{{ Carbon\Carbon::parse($uitgave->datum)->translatedFormat('d F Y')}}</th>
-                <td>{{ $uitgave->soort }}</td>
-                <td>{{ $uitgave->omschrijving }}</td>
-                <td>&euro;{{ format_currency($uitgave->budget) }}</td>
-                <td>&euro;{{ format_currency($uitgave->uitgave) }}</td>
-                <td>&euro;{{ format_currency($uitgave->naheffing) }}</td>
-                <td><a class="btn btn-link" href="/uitgave/{{$uitgave->uitgave_id}}"><span data-feather="eye"></span>
+                <th>{{ Carbon\Carbon::parse($uitgaven[$i]->datum)->translatedFormat('d F Y')}}</th>
+                <td>{{ $uitgaven[$i]->soort }}</td>
+                <td>{{ $uitgaven[$i]->omschrijving }}</td>
+                <td>&euro;{{ format_currency($uitgaven[$i]->budget) }}</td>
+                <td>&euro;{{ format_currency($uitgaven[$i]->uitgave) }}</td>
+                <td>&euro;{{ $leden_deelname[$i]->naheffing }}</td>
+                <td><a class="btn btn-link" href="/uitgave/{{$uitgaven[$i]->uitgave_id}}"><span data-feather="eye"></span>
                         Bekijk</a>
                     @if(Auth::user()->admin == 1)
                     <td>
                     <a class="btn btn-link"
-                        href="/uitgaven/{{$uitgave->uitgave_id}}/wijzig/{{$uitgave->jaargang}}"><span
+                        href="/uitgaven/{{$uitgaven[$i]->uitgave_id}}/wijzig/{{$uitgaven[$i]->jaargang}}"><span
                             data-feather="edit"></span> Wijzig</a>
                 </td>
 
@@ -47,7 +47,7 @@
                 </td>
 
             </tr>
-            @endforeach
+            @endfor
 
         </tbody>
     </table>

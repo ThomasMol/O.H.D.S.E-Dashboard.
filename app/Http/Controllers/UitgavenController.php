@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Auth;
+
 use App\Models\Bestuursjaar;
 use App\Models\Inkomsten;
 use App\Models\Uitgaven;
@@ -16,12 +18,20 @@ class UitgavenController extends Controller
 {
     public function index(Request $request){
         $uitgaven = Uitgave::select('*','uitgave.budget as budget','uitgaven.budget as uitgaven_budget')->join('uitgaven','uitgave.uitgaven_id','=','uitgaven.uitgaven_id')->
-        orderBy('datum','desc')->paginate(10);
+        orderBy('uitgave.created_at','desc')->paginate(10);
+
+        $leden_deelname = Uitgave::leftJoin('uitgave_deelname', function ($join) {
+            $join->on('uitgave_deelname.uitgave_id', '=', 'uitgave.uitgave_id')
+                ->where('uitgave_deelname.lid_id', Auth::user()->lid_id);
+        })
+        ->select('uitgave.uitgave_id', DB::raw('COALESCE(uitgave_deelname.naheffing, 0) AS naheffing'))
+        ->orderBy('uitgave.created_at', 'desc')
+        ->paginate(10);
 
         if($request->wantsJson()){
             return response()->json(['uitgaven' => $uitgaven]);
         }else{
-            return view('uitgaven/index',compact('uitgaven'));
+            return view('uitgaven/index',compact('uitgaven', 'leden_deelname'));
         }
     }
 
