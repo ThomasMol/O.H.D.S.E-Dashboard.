@@ -15,8 +15,25 @@
             <div class="card-body">
                 <small class="text-muted"> gespaard</small>
                 <h3>&euro; {{format_currency($financien->gespaard)}} </h3>
-                <small class="text-muted"> schuld</small>
-                <h2>&euro; {{format_currency($financien->schuld)}} </h2>
+                <small class="text-muted"> schuld</small><br>
+                @php
+                    $schuld = $financien->schuld;
+                    $colorClass = ($schuld < 0) ? '#24AC3A' : '#F82F28';
+                @endphp
+
+                <h2 class="h2schuld" style="background-color: {{ $colorClass }} ">
+                    &euro; {{ format_currency($financien->schuld) }}
+                </h2>
+                <style>
+                .h2schuld {
+                color: white;
+                padding: 7px 12px;
+                border-radius: 10px;
+                font-size: 20px;
+                width: auto;
+                display: inline-block;
+                }
+                </style>
             </div>
 
         </div>
@@ -71,7 +88,7 @@
             </div>
         </div>
 
-        <div class="card">
+        <!-- <div class="card">
             <div class="card-header">
                 Belangrijke data
             </div>
@@ -86,7 +103,7 @@
                     </table>
                 </div>
             </div>
-        </div>
+        </div> -->
 
         <div class="card">
             <div class="card-body">
