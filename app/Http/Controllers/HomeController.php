@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Financien;
+use App\Models\Transactie;
 use App\Models\LidGegevens;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
@@ -38,7 +39,8 @@ class HomeController extends Controller
             ->selectRaw('lid.lid_id, COUNT(*) as total_afwezig')
             ->groupBy('lid.lid_id')->orderBy('total_afwezig','desc')->limit(5)
             ->get();
-        return view('index',compact('financien','leden','leden_nahef','leden_afwezig'));
+        $transacties = Transactie::orderBy('datum', 'desc')->first()->datum;
+        return view('index',compact('financien','leden','leden_nahef','leden_afwezig','transacties'));
     }
 
     public function test(Request $request){

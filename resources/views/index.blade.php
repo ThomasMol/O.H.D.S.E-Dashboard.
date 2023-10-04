@@ -23,7 +23,8 @@
 
                 <h2 class="h2schuld" style="background-color: {{ $colorClass }} ">
                     &euro; {{ format_currency($financien->schuld) }}
-                </h2>
+                </h2><br>
+                <small class="text-muted">Laatste update: {{$transacties}}</small><br>
                 <style>
                 .h2schuld {
                 color: white;
