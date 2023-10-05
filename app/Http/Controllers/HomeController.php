@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Models\Lid;
 use App\Models\Uitgave;
+use App\Models\Uitgaven;
 
 
 class HomeController extends Controller
@@ -23,13 +24,21 @@ class HomeController extends Controller
             ->leftJoin('financien', 'lid.lid_id','financien.lid_id')
             ->leftJoin('lid_gegevens', 'lid.lid_id','lid_gegevens.lid_id')
             ->orderBy('schuld','desc')->limit(5)->get();
-        $leden_nahef = Lid::select('lid.lid_id', 'roepnaam')
-                    ->join('uitgave_deelname','lid.lid_id','=','uitgave_deelname.lid_id')
-                    ->join('uitgave', 'uitgave_deelname.uitgave_id', '=', 'uitgave.uitgave_id')
-                    ->where('uitgave.uitgaven_id', '=', 64)
-                    ->where('uitgave.budget', '>', 0)
-                    ->selectRaw('uitgave_deelname.lid_id, SUM(uitgave_deelname.naheffing) as total_amount')
-                    ->groupBy('uitgave_deelname.lid_id')->orderBy('total_amount','desc')->limit(5)->get();
+        
+        $maxJaargang = Uitgaven::where('soort', 'Dinsdagborrel')
+            ->orderBy('jaargang', 'desc')
+            ->first()->uitgaven_id;
+        $leden_nahef = Lid::select('lid.lid_id', 'lid.roepnaam')
+            ->join('uitgave_deelname', 'lid.lid_id', '=', 'uitgave_deelname.lid_id')
+            ->join('uitgave', 'uitgave_deelname.uitgave_id', '=', 'uitgave.uitgave_id')
+            ->where('uitgave.uitgaven_id', '=', $maxJaargang) 
+            ->where('uitgave_deelname.naheffing', '>', 0)
+            ->selectRaw('uitgave_deelname.lid_id, SUM(uitgave_deelname.naheffing) as total_amount')
+            ->groupBy('uitgave_deelname.lid_id')
+            ->orderBy('total_amount', 'desc')
+            ->limit(5)
+            ->get();
+
         $leden_afwezig = Lid::select('lid.lid_id','roepnaam')
             ->join('uitgave_deelname', 'lid.lid_id', '=', 'uitgave_deelname.lid_id')
             ->join('uitgave', 'uitgave_deelname.uitgave_id', '=', 'uitgave.uitgave_id')
@@ -39,7 +48,24 @@ class HomeController extends Controller
             ->selectRaw('lid.lid_id, COUNT(*) as total_afwezig')
             ->groupBy('lid.lid_id')->orderBy('total_afwezig','desc')->limit(5)
             ->get();
-        $transacties = Transactie::orderBy('datum', 'desc')->first()->datum;
+        $datum_transact = Transactie::orderBy('datum', 'desc')->first()->datum;
+        $monthTranslations = [
+            'January' => 'januari',
+            'February' => 'februari',
+            'March' => 'maart',
+            'April' => 'april',
+            'May' => 'mei',
+            'June' => 'juni',
+            'July' => 'juli',
+            'August' => 'augustus',
+            'September' => 'september',
+            'October' => 'oktober',
+            'November' => 'november',
+            'December' => 'december',
+        ];
+        $timestamp = strtotime($datum_transact);
+        $formattedDate = date('j F', $timestamp);
+        $transacties = strtr($formattedDate, $monthTranslations);
         return view('index',compact('financien','leden','leden_nahef','leden_afwezig','transacties'));
     }
 

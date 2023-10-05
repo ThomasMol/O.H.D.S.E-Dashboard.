@@ -15,7 +15,7 @@
             <div class="card-body">
                 <small class="text-muted"> gespaard</small>
                 <h3>&euro; {{format_currency($financien->gespaard)}} </h3>
-                <small class="text-muted"> schuld</small><br>
+                <small class="text-muted"> schuld op {{$transacties}}</small><br>
                 @php
                     $schuld = $financien->schuld;
                     $colorClass = ($schuld < 0) ? '#24AC3A' : '#F82F28';
@@ -23,8 +23,7 @@
 
                 <h2 class="h2schuld" style="background-color: {{ $colorClass }} ">
                     &euro; {{ format_currency($financien->schuld) }}
-                </h2><br>
-                <small class="text-muted">Laatste update: {{$transacties}}</small><br>
+                </h2>
                 <style>
                 .h2schuld {
                 color: white;
@@ -45,7 +44,7 @@
                 onclick="window.open('https://my.hidrive.com/share/2ytxhv263n', '_blank');">SE Gallery</a>
             </div>
         </div>
-
+<!-- 
         <div class="card">
             <div class="card-header">
                 Top 5 schulden
@@ -63,7 +62,7 @@
                     </table>
                 </div>
             </div>
-        </div>
+        </div> -->
 
         <div class="card">
             <div class="card-header">
@@ -111,13 +110,13 @@
                 <div class="card-body">
                     <div class="row">
                         <div class="col-md-6" style="padding-left: 0;">
-                            <h4>Top 5 naheffing</h4>
+                            <h4>Top 5 schulden</h4>
                             <div class="table-responsive">
                                 <table class="table table-hover table-fixed">
-                                    <tbody>
-                                        @foreach ($leden_nahef as $index => $lid)
+                                        <tbody>
+                                        @foreach ($leden as $index => $lid)
                                             <td>{{ $lid->roepnaam }}</td>
-                                            <td>&euro; {{ format_currency($lid->total_amount) }}</td>
+                                            <td>&euro; {{ format_currency($lid->schuld) }}</td>
                                         </tr>
                                         @endforeach
                                     </tbody>
@@ -125,13 +124,13 @@
                             </div>
                         </div>
                         <div class="col-md-6" style="padding-right: 0;">
-                            <h4>Top 5 afwezig</h4>
+                            <h4>Top 5 naheffing</h4>
                             <div class="table-responsive">
                                 <table class="table table-hover table-fixed">
                                     <tbody>
-                                        @foreach ($leden_afwezig as $index => $lid)
+                                        @foreach ($leden_nahef as $index => $lid)
                                             <td>{{ $lid->roepnaam }}</td>
-                                            <td>{{ $lid->total_afwezig }}</td>
+                                            <td>&euro; {{ format_currency($lid->total_amount) }}</td>
                                         </tr>
                                         @endforeach
                                     </tbody>
