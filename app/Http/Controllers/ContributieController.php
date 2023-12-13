@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
+
 use App\Models\Contributie;
 use App\Models\ContributieDeelname;
 use App\Models\Lid;
@@ -14,7 +17,18 @@ class ContributieController extends Controller
     public function index(){
         $contributies = Contributie::select('*','contributie.bedrag as bedrag')->join('inkomsten','inkomsten.inkomsten_id','=','contributie.inkomsten_id')->
         orderBy('datum','desc')->paginate(10);
-        return view('contributies/index',compact('contributies'));
+        
+        $deelname = Contributie::leftJoin('contributie_deelname', function ($join) {
+            $join->on('contributie_deelname.contributie_id', '=', 'contributie.contributie_id')
+                ->where('contributie_deelname.lid_id', Auth::user()->lid_id);
+        })
+        ->select('contributie.contributie_id', DB::raw('CASE WHEN contributie_deelname.contributie_id IS NOT NULL THEN contributie.bedrag ELSE 0 END AS naheffing'))
+        ->orderBy('contributie.datum', 'desc')
+        ->paginate(10);
+
+
+
+        return view('contributies/index',compact('contributies', 'deelname'));
     }
 
     public function create(Bestuursjaar $bestuursjaar){

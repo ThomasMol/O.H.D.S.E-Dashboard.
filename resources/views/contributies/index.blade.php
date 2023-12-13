@@ -17,6 +17,7 @@
                         <th scope="col">Datum</th>
                         <th scope="col">Bedrag</th>
                         <th scope="col">Soort</th>
+                        <th scope="col">Kosten</th>
                         <th scope="col"></th>
                         @if(Auth::user()->admin == 1)
                         <th scope="col"></th>
@@ -24,22 +25,23 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach($contributies as $contributie)
+                    @for($i = 0; $i < count($contributies); $i++)
                     <tr>
                         <th scope="row">
-                            {{ Carbon\Carbon::parse($contributie->datum)->translatedFormat('d F Y - \(l\)') }}</th>
-                        <td>&euro; {{ format_currency($contributie->bedrag) }}</td>
-                        <td>{{ $contributie->soort }}</td>
-                        <td><a class="btn btn-link" href="/contributie/{{$contributie->contributie_id}}"><span
+                            {{ Carbon\Carbon::parse($contributies[$i]->datum)->translatedFormat('d F Y - \(l\)') }}</th>
+                        <td>&euro; {{ format_currency($contributies[$i]->bedrag) }}</td>
+                        <td>{{ $contributies[$i]->soort }}</td>
+                        <td>&euro; {{ $deelname[$i]->naheffing }}</td>
+                        <td><a class="btn btn-link" href="/contributie/{{$contributies[$i]->contributie_id}}"><span
                                     data-feather="eye"></span> Bekijk</a>
                             @if(Auth::user()->admin == 1)
                             <a class="btn btn-link"
-                                href="/contributies/{{$contributie->contributie_id}}/wijzig/{{$contributie->jaargang}}"><span
+                                href="/contributies/{{$contributies[$i]->contributie_id}}/wijzig/{{$contributies[$i]->jaargang}}"><span
                                     data-feather="edit"></span> Wijzig</a>
                             @endif
                         </td>
                     </tr>
-                    @endforeach
+                    @endfor
                 </tbody>
             </table>
         </div>

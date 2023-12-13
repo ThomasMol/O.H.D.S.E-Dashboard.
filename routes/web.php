@@ -37,11 +37,9 @@ Route::middleware(['auth'])->group(function () {
     Route::patch('/declaraties/{declaratie}', 'DeclaratiesController@update');
     Route::delete('/declaraties/{declaratie}', 'DeclaratiesController@destroy');
 
-
     // Contributies
     Route::get('/contributies', 'ContributieController@index');;
     Route::get('/contributie/{contributie}', 'ContributieController@show');;
-
 
     // Kosten
     Route::get('/kosten', 'KostenController@index');
@@ -68,10 +66,8 @@ Route::middleware(['auth', 'admin'])->group(function () {
 
 
     // Contributies
-    Route::get('/contributies', 'ContributieController@index');;
     Route::get('/contributies/toevoegen/{bestuursjaar}', 'ContributieController@create');
     Route::post('/contributies', 'ContributieController@store');
-    Route::get('/contributie/{contributie}', 'ContributieController@show');;
     Route::get('/contributies/{contributie}/wijzig/{bestuursjaar}', 'ContributieController@edit');
     Route::patch('/contributies/{contributie}', 'ContributieController@update');
     Route::delete('/contributies/{contributie}', 'ContributieController@destroy');
@@ -83,10 +79,8 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::get('/instellingen/nieuwebegroting', 'InstellingenController@maakBegroting');
 
     // Kosten
-    Route::get('/kosten', 'KostenController@index');
     Route::get('/kosten/toevoegen/{bestuursjaar}', 'KostenController@create');
     Route::post('/kosten', 'KostenController@store');
-    Route::get('/kosten/{kosten}', 'KostenController@show');
     Route::get('/kosten/{kosten}/wijzig/{bestuursjaar}', 'KostenController@edit');
     Route::patch('/kosten/{kosten}', 'KostenController@update');
     Route::delete('/kosten/{kosten}', 'KostenController@destroy');
