@@ -37,6 +37,17 @@ Route::middleware(['auth'])->group(function () {
     Route::patch('/declaraties/{declaratie}', 'DeclaratiesController@update');
     Route::delete('/declaraties/{declaratie}', 'DeclaratiesController@destroy');
 
+
+    // Contributies
+    Route::get('/contributies', 'ContributieController@index');;
+    Route::get('/contributie/{contributie}', 'ContributieController@show');;
+
+
+    // Kosten
+    Route::get('/kosten', 'KostenController@index');
+    Route::get('/kosten/{kosten}', 'KostenController@show');
+
+
     // Uitgave
     Route::get('/uitgaven', 'UitgavenController@index');
     Route::get('/uitgave/{uitgave}', 'UitgavenController@show');
