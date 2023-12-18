@@ -28,6 +28,18 @@ Route::middleware(['auth'])->group(function () {
     Route::patch('/gegevens', 'GegevensController@update');
     Route::post('/gegevens/wijzig_wachtwoord', 'GegevensController@wijzig_wachtwoord');
 
+    // Leden
+    Route::get('/leden', 'LedenController@index');
+    Route::get('/leden/top5', 'LedenController@top_5');
+
+    // Begroting
+    Route::get('/begroting/{bestuursjaar}', 'BegrotingController@show');
+    Route::get('/begroting/downdload/financien', 'BegrotingController@download_financien');
+
+
+    // Transacties
+    Route::get('/transacties', 'TransactiesController@index');
+    
     // Declaraties
     Route::get('/declaraties', 'DeclaratiesController@index');
     Route::get('/declaraties/toevoegen', 'DeclaratiesController@create');
@@ -58,11 +70,9 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::get('/begrotingen', 'BegrotingController@index');
     Route::get('/begroting/toevoegen', 'BegrotingController@create');
     Route::post('/begroting', 'BegrotingController@store');
-    Route::get('/begroting/{bestuursjaar}', 'BegrotingController@show');
     Route::get('/begroting/{bestuursjaar}/wijzig', 'BegrotingController@edit');
     Route::patch('/begroting/{bestuursjaar}', 'BegrotingController@update');
     Route::delete('/begroting/{bestuursjaar}', 'BegrotingController@destroy');
-    Route::get('/begroting/downdload/financien', 'BegrotingController@download_financien');
 
 
     // Contributies
@@ -86,7 +96,6 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::delete('/kosten/{kosten}', 'KostenController@destroy');
 
     // Leden
-    Route::get('/leden', 'LedenController@index');
     Route::get('/leden/toevoegen', 'LedenController@create');
     Route::post('/leden', 'LedenController@store');
     Route::get('/lid/{lid}', 'LedenController@show');
@@ -94,11 +103,9 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::patch('/leden/{lid}', 'LedenController@update');
     Route::delete('/leden/{lid}', 'LedenController@destroy');
     Route::get('/leden/leden_bestand', 'LedenController@download_ledenbestand');
-    Route::get('/leden/top5', 'LedenController@top_5');
 
 
     // Transacties
-    Route::get('/transacties', 'TransactiesController@index');
     Route::get('/transacties/filter/{soort?}', 'TransactiesController@index');;
     Route::get('/transacties/toevoegen', 'TransactiesController@create');
     Route::post('/transacties', 'TransactiesController@store');

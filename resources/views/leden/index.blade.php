@@ -18,7 +18,9 @@
     <span>ABC</span>
     </a>
     @endif
+    @if(Auth::user()->admin == 1)
     <a href="/leden/leden_bestand" class="btn btn-outline-secondary float-lg-right"><span data-feather="download"></span> Download ledenbestand</a>
+    @endif
 </header>
 
 <div class="card">
@@ -49,6 +51,7 @@
                         <th scope="row">{{ $lid->roepnaam }} {{ $lid->achternaam }}</th>
                         <td>&euro; {{ format_currency($lid->schuld) }}</td>
                         <td>&euro; {{ format_currency($lid->gespaard) }}</td>
+                        @if(Auth::user()->admin == 1)
                         <td scope="col">
                             <a class="btn btn-link" href="/lid/{{$lid->lid_id}}"><span data-feather="eye"></span>
                                 Bekijk</a>
@@ -58,6 +61,7 @@
                                 Wijzig</a>
                             @endif
                         </td>
+                        @endif
                     </tr>
                     @endforeach
                 </tbody>

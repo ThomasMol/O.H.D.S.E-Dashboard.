@@ -36,13 +36,11 @@
                             Overzicht
                         </a>
                     </li>
-                    @if(Auth::user()->admin == 1)
                     <li class="nav-item">
                         <a class="nav-link {{ Request::is('leden*') ? 'active' : '' }}" href="/leden">
                             Alle leden
                         </a>
                     </li>
-                    @endif
 
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="financienDropdown" role="button"
@@ -50,22 +48,18 @@
                             Financi&euml;n
                         </a>
                         <div class="dropdown-menu" aria-labelledby="financienDropdown">
-                            @if(Auth::user()->admin == 1)
                             <a class="dropdown-item {{ Request::is('begroting*') ? 'active' : '' }}"
                                 href="/begroting/{{$huidig_jaar->jaargang}}">
                                 Begroting
                             </a>
-                            @endif
                             <a class="dropdown-item {{ Request::is('declaratie*') ? 'active' : '' }}"
                                 href="/declaraties">
                                 Declaraties
                             </a>
-                            @if(Auth::user()->admin == 1)
                             <a class="dropdown-item {{ Request::is('transacties*') ? 'active' : '' }}"
                                 href="/transacties">
                                 Transacties
                             </a>
-                            @endif
                             <a class="dropdown-item {{ Request::is('contributie*') ? 'active' : '' }}"
                                 href="/contributies">
                                 Contributies
