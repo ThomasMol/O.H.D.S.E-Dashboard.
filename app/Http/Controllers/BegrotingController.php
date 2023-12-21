@@ -6,6 +6,7 @@ use App\Models\Bestuursjaar;
 use App\Models\Inkomsten;
 use App\Models\SErekening;
 use App\Models\Transactie;
+use App\Models\Financien;
 use App\Models\Uitgave;
 use App\Models\Uitgaven;
 use Illuminate\Http\Request;
@@ -37,13 +38,12 @@ class BegrotingController extends Controller
         $inkomsten_list = Inkomsten::where('jaargang', $bestuursjaar->jaargang)->orderBy('soort', 'asc')->get();
         $uitgaven_list = Uitgaven::where('jaargang', $bestuursjaar->jaargang)->orderBy('soort', 'asc')->get();
         $se_rekening = SErekening::find(1);
-/*         $transacties_af_aggregate = Transactie::where('af_bij','Af')->where('datum','>=',$bestuursjaar->van)->where('datum','<=',$bestuursjaar->tot)->sum('bedrag');
-        $uitgaven_aggregate = Uitgave::where('datum','>=',$bestuursjaar->van)->where('datum','<=',$bestuursjaar->tot)->sum('uitgave'); */
         $transacties_af_aggregate = Transactie::where('af_bij','Af')->sum('bedrag');
+        $transacties_bij_aggregate = Transactie::where('af_bij','Bij')->sum('bedrag');
         $uitgaven_aggregate = Uitgave::where('uitgave','>=',0)->sum('uitgave');
+        $liquiditeit = (float) Financien::sum('schuld')  + (float) $se_rekening->saldo;
 
-
-        return view('begroting/show',compact('inkomsten_list','uitgaven_list','bestuursjaar','se_rekening','transacties_af_aggregate','uitgaven_aggregate'));
+        return view('begroting/show',compact('inkomsten_list','uitgaven_list','bestuursjaar','se_rekening','transacties_bij_aggregate','transacties_af_aggregate','uitgaven_aggregate','liquiditeit'));
     }
 
     public function edit(Bestuursjaar $bestuursjaar)
@@ -105,7 +105,18 @@ class BegrotingController extends Controller
     }
 
     public function download_financien(){
-        return Excel::download(new FinancienExport, 'ohd_se_financien_'. Carbon::now()->format('d_m_Y') .'.xlsx');
+
+        // In your controller or wherever you're creating the export instance, pass the required argument
+        $additionalInfo = [
+            'serekening' => SErekening::find(1)->saldo,
+            'af' => Transactie::where('af_bij', 'Af')->sum('bedrag'),
+            'bij' => Transactie::where('af_bij', 'Bij')->sum('bedrag'),
+            'uit' => Uitgave::where('uitgave', '>=', 0)->sum('uitgave'),
+            'liquiditeit' => (float) Financien::sum('schuld') + (float) SErekening::find(1)->saldo,
+        ];
+        
+        
+        return Excel::download(new FinancienExport($additionalInfo), 'ohd_se_financien_'. Carbon::now()->format('d_m_Y') .'.xlsx');
     }
 
 }
