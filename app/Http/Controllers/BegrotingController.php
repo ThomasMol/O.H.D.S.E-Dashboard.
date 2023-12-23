@@ -11,7 +11,7 @@ use App\Models\Uitgave;
 use App\Models\Uitgaven;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
-use App\Exports\FinancienExport;
+use App\Exports\InkomstenUitgavenExport;
 use Illuminate\Support\Carbon;
 
 class BegrotingController extends Controller
@@ -41,7 +41,7 @@ class BegrotingController extends Controller
         $transacties_af_aggregate = Transactie::where('af_bij','Af')->sum('bedrag');
         $transacties_bij_aggregate = Transactie::where('af_bij','Bij')->sum('bedrag');
         $uitgaven_aggregate = Uitgave::where('uitgave','>=',0)->sum('uitgave');
-        $liquiditeit = (float) Financien::sum('schuld')  + (float) $se_rekening->saldo;
+        $liquiditeit = (float) Financien::sum('schuld') - Financien::sum('gespaard')  + (float) $se_rekening->saldo;
 
         return view('begroting/show',compact('inkomsten_list','uitgaven_list','bestuursjaar','se_rekening','transacties_bij_aggregate','transacties_af_aggregate','uitgaven_aggregate','liquiditeit'));
     }
@@ -104,19 +104,22 @@ class BegrotingController extends Controller
         //
     }
 
-    public function download_financien(){
+    public function download_financien(Bestuursjaar $bestuursjaar){
 
-        // In your controller or wherever you're creating the export instance, pass the required argument
         $additionalInfo = [
-            'serekening' => SErekening::find(1)->saldo,
+            'serekening' => SErekening::find(1),
             'af' => Transactie::where('af_bij', 'Af')->sum('bedrag'),
             'bij' => Transactie::where('af_bij', 'Bij')->sum('bedrag'),
             'uit' => Uitgave::where('uitgave', '>=', 0)->sum('uitgave'),
-            'liquiditeit' => (float) Financien::sum('schuld') + (float) SErekening::find(1)->saldo,
+            'liquiditeit' => (float) Financien::sum('schuld') - (float) Financien::sum('gespaard') + (float) SErekening::find(1)->saldo,
         ];
         
-        
-        return Excel::download(new FinancienExport($additionalInfo), 'ohd_se_financien_'. Carbon::now()->format('d_m_Y') .'.xlsx');
+        $inkomsten_list = Inkomsten::where('jaargang', Bestuursjaar::huidigJaar()->jaargang)->orderBy('soort', 'asc')->get();
+        $uitgaven_list = Uitgaven::where('jaargang', Bestuursjaar::huidigJaar()->jaargang)->orderBy('soort', 'asc')->get();
+
+        $inkomstenUitgavenExport = new InkomstenUitgavenExport($inkomsten_list, $uitgaven_list, $additionalInfo);
+
+        return Excel::download(new InkomstenUitgavenExport($inkomsten_list, $uitgaven_list, $additionalInfo), 'ohd_se_begroting_' . Carbon::now()->format('d_m_Y') . '.xlsx'); // Add the title row to the beginning of the export
     }
 
 }

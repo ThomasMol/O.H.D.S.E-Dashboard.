@@ -31,6 +31,7 @@ Route::middleware(['auth'])->group(function () {
     // Leden
     Route::get('/leden', 'LedenController@index');
     Route::get('/leden/top5', 'LedenController@top_5');
+    Route::get('/leden/leden_schulden', 'LedenController@download_schulden');
 
     // Begroting
     Route::get('/begroting/{bestuursjaar}', 'BegrotingController@show');

@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Hash;
 use App\Models\Lid;
 use App\Exports\LedenExport;
 use Maatwebsite\Excel\Facades\Excel;
+use App\Exports\FinancienExport;
 use Illuminate\Support\Carbon;
 
 class LedenController extends Controller
@@ -186,6 +187,10 @@ class LedenController extends Controller
             ->leftJoin('lid_gegevens', 'lid.lid_id','lid_gegevens.lid_id')
             ->orderBy('schuld','desc')->paginate(20);
         return view('leden/index',compact('leden',False));
+    }
+
+    public function download_schulden(){
+        return Excel::download(new FinancienExport(), 'ohd_se_schulden_' . Carbon::now()->format('d_m_Y') . '.xlsx'); // Add the title row to the beginning of the export
     }
 
 }

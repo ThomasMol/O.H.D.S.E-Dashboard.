@@ -7,7 +7,7 @@
     @if(Auth::user()->admin == 1) <a href="/begroting/{{$bestuursjaar->jaargang}}/wijzig" class="btn btn-outline-primary float-lg-right ml-2"><span
             data-feather="edit"></span> Wijzig</a>
     @endif
-    <a href="/begroting/downdload/financien" class="btn btn-outline-secondary float-lg-right"><span data-feather="download"></span> Download finianci&euml;n</a>
+    <a href="/begroting/downdload/financien" class="btn btn-outline-secondary float-lg-right"><span data-feather="download"></span> Download begroting</a>
 </header>
 
 <div class="card">

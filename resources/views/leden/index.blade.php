@@ -19,8 +19,9 @@
     </a>
     @endif
     @if(Auth::user()->admin == 1)
-    <a href="/leden/leden_bestand" class="btn btn-outline-secondary float-lg-right"><span data-feather="download"></span> Download ledenbestand</a>
+    <a href="/leden/leden_bestand" class="btn btn-outline-secondary float-lg-right ml-2"><span data-feather="download"></span> Download ledenbestand</a>
     @endif
+    <a href="/leden/leden_schulden" class="btn btn-outline-secondary float-lg-right"><span data-feather="download"></span> Download schulden</a>
 </header>
 
 <div class="card">

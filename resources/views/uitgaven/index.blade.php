@@ -15,9 +15,9 @@
                 <th scope="col">Datum</th>
                 <th scope="col">Categorie</th>
                 <th scope="col">Omschrijving</th>
+                <th scope="col">Aangeslagen</th>
                 <th scope="col">Budget</th>
                 <th scope="col">Uitgave</th>
-                <th scope="col">Naheffing</th>
                 <th scope="col"></th>
                 @if(Auth::user()->admin == 1)
                 <th scope="col"></th>
@@ -31,9 +31,9 @@
                 <th>{{ Carbon\Carbon::parse($uitgaven[$i]->datum)->translatedFormat('d F Y')}}</th>
                 <td>{{ $uitgaven[$i]->soort }}</td>
                 <td>{{ $uitgaven[$i]->omschrijving }}</td>
+                <td>&euro;{{ $leden_deelname[$i]->naheffing }}</td>
                 <td>&euro;{{ format_currency($uitgaven[$i]->budget) }}</td>
                 <td>&euro;{{ format_currency($uitgaven[$i]->uitgave) }}</td>
-                <td>&euro;{{ $leden_deelname[$i]->naheffing }}</td>
                 <td><a class="btn btn-link" href="/uitgave/{{$uitgaven[$i]->uitgave_id}}"><span data-feather="eye"></span>
                         Bekijk</a>
                     @if(Auth::user()->admin == 1)
