@@ -14,14 +14,38 @@ class DeclaratiesController extends Controller
     {
         $user_id = Auth::user()->lid_id;
 
-        //$declaraties = Declaratie::select('*')->leftJoin('lid','lid.lid_id','declaratie.created_by_id')->groupBy('declaratie.declaratie_id')->orderBy('datum', 'desc')->paginate(10);
-        $declaraties = Declaratie::select('declaratie.declaratie_id', 'betaald_door_id', 'datum', 'declaratie.bedrag', 'omschrijving', 'created_by_id')->join('declaratie_deelname', function ($join) use ($user_id) {
-            $join->on('declaratie.declaratie_id', 'declaratie_deelname.declaratie_id');
-        })->orWhere(function ($query) use ($user_id) {
-            $query->orWhere('declaratie.created_by_id', '=', $user_id)
+        // $declaraties = Declaratie::select('declaratie.declaratie_id', 'betaald_door_id', 'datum', 'declaratie.bedrag', 'omschrijving', 'created_by_id')->join('declaratie_deelname', function ($join) use ($user_id) {
+        //     $join->on('declaratie.declaratie_id', 'declaratie_deelname.declaratie_id');
+        // })->orWhere(function ($query) use ($user_id) {
+        //     $query->orWhere('declaratie.created_by_id', '=', $user_id)
+        //         ->orWhere('declaratie.betaald_door_id', '=', $user_id)
+        //         ->orWhere('declaratie_deelname.lid_id', '=', $user_id);
+        // })->groupBy('declaratie.declaratie_id')->orderBy('datum', 'desc')->paginate(10);
+
+        $declaraties = Declaratie::select(
+            'declaratie.declaratie_id',
+            'declaratie.betaald_door_id',
+            'declaratie.datum',
+            'declaratie.bedrag', // Total amount of the 'declaratie'
+            'declaratie.omschrijving',
+            'declaratie.created_by_id',
+            'declaratie_deelname.bedrag as aangeslagen', // Specific amount the logged-in user is accounted for
+            'lid1.roepnaam as roepnaam', // First name of the user who paid
+            'lid1.achternaam as achternaam', // Last name of the user who paid
+            'lid2.roepnaam as gemaakt_door_roepnaam', // First name of the user who created the 'declaratie'
+            'lid2.achternaam as gemaakt_door_achternaam' // Last name of the user who created the 'declaratie'
+        )->join('declaratie_deelname', function ($join) use ($user_id) {
+            $join->on('declaratie.declaratie_id', '=', 'declaratie_deelname.declaratie_id')
+                ->where('declaratie_deelname.lid_id', '=', $user_id);
+        })->leftJoin('lid as lid1', 'lid1.lid_id', '=', 'declaratie.betaald_door_id')
+        ->leftJoin('lid as lid2', 'lid2.lid_id', '=', 'declaratie.created_by_id')
+        ->where(function ($query) use ($user_id) {
+            $query->where('declaratie.created_by_id', '=', $user_id)
                 ->orWhere('declaratie.betaald_door_id', '=', $user_id)
                 ->orWhere('declaratie_deelname.lid_id', '=', $user_id);
-        })->groupBy('declaratie.declaratie_id')->orderBy('datum', 'desc')->paginate(10);
+        })->groupBy('declaratie.declaratie_id', 'aangeslagen', 'lid1.roepnaam', 'lid1.achternaam', 'lid2.roepnaam', 'lid2.achternaam')
+        ->orderBy('declaratie.datum', 'desc')
+        ->paginate(10);
 
 
         return view('declaraties/index', compact('declaraties'));

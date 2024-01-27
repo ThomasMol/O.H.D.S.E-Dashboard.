@@ -18,9 +18,10 @@
                 <thead>
                     <tr>
                         <th scope="col">Datum</th>
+                        <th scope="col">Aangeslagen</th>
                         <th scope="col">Bedrag</th>
-                        <th scope="col">Soort</th>
                         <th scope="col">Wie</th>
+                        <th scope="col">Soort</th>
                         @if(Auth::user()->admin == 1 )
                         <th scope="col"></th>
                         <th scope="col"></th>
@@ -31,9 +32,10 @@
                     @foreach($kosten as $koste)
                     <tr>
                         <td>{{ $koste['datum'] }}</td>
+                        <td>&euro; {{ format_currency($koste->user_bedrag) }}</td>
                         <td>&euro; {{ format_currency($koste->bedrag) }}</td>
-                        <td>{{ $koste->soort }}</td>
                         <td>{{ $koste->roepnaam }} {{ $koste->achternaam }}</td>
+                        <td>{{ $koste->soort }}</td>
 
                         @if(Auth::user()->admin == 1 )
                         @if(isset($koste->uitgave_id_boete) )

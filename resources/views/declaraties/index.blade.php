@@ -23,9 +23,10 @@
                 <thead>
                     <tr>
                         <th scope="col">Datum</th>
+                        <th scope="col">Aangeslagen</th>
+                        <th scope="col">Bedrag</th>
                         <th scope="col">Omschrijving</th>
-                        <th scope="col">(Totaal) Bedrag</th>
-                        <th scope="col">Aangemaakt door</th>
+                        <th scope="col">Betaald door</th>
                         <th scope="col"></th>
                         <th scope="col"></th>
 
@@ -35,8 +36,9 @@
                     @foreach($declaraties as $declaratie)
                     <tr>
                         <th>{{ Carbon\Carbon::parse($declaratie->datum)->translatedFormat('d F Y - \(l\)') }}</th>
-                        <td>{{ $declaratie->omschrijving }}</td>
+                        <td>&euro; {{ format_currency($declaratie->aangeslagen) }}</td>
                         <td>&euro; {{ format_currency($declaratie->bedrag) }}</td>
+                        <td>{{ $declaratie->omschrijving }}</td>
                         <td>{{ $declaratie->roepnaam }} {{ $declaratie->achternaam }}</td>
                         <td>
                             <a class="btn btn-link" href="/declaratie/{{$declaratie->declaratie_id}}"><span

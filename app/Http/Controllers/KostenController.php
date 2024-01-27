@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
+
 use App\Models\Bestuursjaar;
 use App\Models\Kosten;
 use App\Models\Lid;
@@ -14,13 +17,25 @@ class KostenController extends Controller
 
     public function index()
     {
+        // $kosten = Kosten::select('kosten.kosten_id','kosten.lid_id','kosten.datum',
+        // 'kosten.inkomsten_id','inkomsten.jaargang','inkomsten.soort','lid.roepnaam','lid.achternaam','kosten.bedrag','ud_1.uitgave_id as uitgave_id_boete','ud_2.uitgave_id as uitgave_id_extra')
+        // ->leftJoin('lid', 'lid.lid_id', '=', 'kosten.lid_id')
+        // ->leftJoin('inkomsten', 'kosten.inkomsten_id', '=', 'inkomsten.inkomsten_id')
+        // ->leftJoin('uitgave_deelname as ud_1','ud_1.boete_id','=','kosten.kosten_id')
+        // ->leftJoin('uitgave_deelname as ud_2','ud_2.extra_kosten_id','=','kosten.kosten_id')
+        // ->orderBy('datum','desc')->paginate(10);
+        
+        $userLidId = Auth::user()->lid_id;
         $kosten = Kosten::select('kosten.kosten_id','kosten.lid_id','kosten.datum',
-        'kosten.inkomsten_id','inkomsten.jaargang','inkomsten.soort','lid.roepnaam','lid.achternaam','kosten.bedrag','ud_1.uitgave_id as uitgave_id_boete','ud_2.uitgave_id as uitgave_id_extra')
-        ->leftJoin('lid', 'lid.lid_id', '=', 'kosten.lid_id')
-        ->leftJoin('inkomsten', 'kosten.inkomsten_id', '=', 'inkomsten.inkomsten_id')
-        ->leftJoin('uitgave_deelname as ud_1','ud_1.boete_id','=','kosten.kosten_id')
-        ->leftJoin('uitgave_deelname as ud_2','ud_2.extra_kosten_id','=','kosten.kosten_id')
-        ->orderBy('datum','desc')->paginate(10);
+                'kosten.inkomsten_id','inkomsten.jaargang','inkomsten.soort','lid.roepnaam','lid.achternaam','kosten.bedrag',
+                DB::raw($userLidId . ' as user_lid_id'), // Add user's lid_id as a constant column
+                DB::raw('CASE WHEN kosten.lid_id = ' . $userLidId . ' THEN kosten.bedrag ELSE 0 END AS user_bedrag'),
+                'ud_1.uitgave_id as uitgave_id_boete','ud_2.uitgave_id as uitgave_id_extra')
+                ->leftJoin('lid', 'lid.lid_id', '=', 'kosten.lid_id')
+                ->leftJoin('inkomsten', 'kosten.inkomsten_id', '=', 'inkomsten.inkomsten_id')
+                ->leftJoin('uitgave_deelname as ud_1','ud_1.boete_id','=','kosten.kosten_id')
+                ->leftJoin('uitgave_deelname as ud_2','ud_2.extra_kosten_id','=','kosten.kosten_id')
+                ->orderBy('datum','desc')->paginate(10);
 
         return view('kosten/index',compact('kosten'));
     }
